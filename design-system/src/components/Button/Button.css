@@ -1,0 +1,292 @@
+/* Button — Subliminal Design System
+ * Tokens: --sds-interactive-*, --sds-onmedia-interactive-*, --sds-effects-*,
+ *         --sds-shape-border-radius-*, --sds-typography-*
+ */
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+.sds-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.sds-button:disabled,
+.sds-button[aria-disabled='true'] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sds-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── Sizes ─────────────────────────────────────────────────────────────────── */
+
+.sds-button--small {
+  height: 32px;
+  padding: 0 12px;
+  font-size: var(--sds-typography-font-size-body-interactive-small);
+  line-height: var(--sds-typography-line-height-body-interactive-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  border-radius: var(--sds-shape-border-radius-small);
+  gap: 6px;
+}
+
+.sds-button--small .sds-button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.sds-button--medium {
+  height: 40px;
+  padding: 0 16px;
+  font-size: var(--sds-typography-font-size-body-interactive-medium);
+  line-height: var(--sds-typography-line-height-body-interactive-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+  border-radius: var(--sds-shape-border-radius-medium);
+  gap: 8px;
+}
+
+.sds-button--medium .sds-button__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.sds-button--large {
+  height: 48px;
+  padding: 0 20px;
+  font-size: var(--sds-typography-font-size-body-interactive-large);
+  line-height: var(--sds-typography-line-height-body-interactive-large);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
+  border-radius: var(--sds-shape-border-radius-large);
+  gap: 8px;
+}
+
+.sds-button--large .sds-button__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.sds-button--xlarge {
+  height: 56px;
+  padding: 0 24px;
+  font-size: var(--sds-typography-font-size-body-interactive-huge);
+  line-height: var(--sds-typography-line-height-body-interactive-huge);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-huge);
+  border-radius: var(--sds-shape-border-radius-x-large);
+  gap: 10px;
+}
+
+.sds-button--xlarge .sds-button__icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* ─── Primary Filled ────────────────────────────────────────────────────────── */
+
+.sds-button--primary-filled {
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  color: var(--sds-interactive-primary-filled-content-default);
+  border: none;
+}
+
+.sds-button--primary-filled:hover {
+  background-color: var(--sds-interactive-primary-filled-background-hover);
+  color: var(--sds-interactive-primary-filled-content-hover);
+}
+
+.sds-button--primary-filled:active {
+  background-color: var(--sds-interactive-primary-filled-background-active);
+  color: var(--sds-interactive-primary-filled-content-active);
+}
+
+.sds-button--primary-filled:focus-visible {
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  color: var(--sds-interactive-primary-filled-content-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--primary-filled:disabled,
+.sds-button--primary-filled[aria-disabled='true'] {
+  background-color: var(--sds-interactive-primary-filled-background-disabled);
+  color: var(--sds-interactive-primary-filled-content-disabled);
+}
+
+/* ─── Primary Hollow ────────────────────────────────────────────────────────── */
+
+.sds-button--primary-hollow {
+  background-color: var(--sds-interactive-primary-hollow-background-default);
+  color: var(--sds-interactive-primary-hollow-content-default);
+  border: 1px solid var(--sds-interactive-primary-hollow-stroke-default);
+}
+
+.sds-button--primary-hollow:hover {
+  background-color: var(--sds-interactive-primary-hollow-background-hover);
+  color: var(--sds-interactive-primary-hollow-content-hover);
+  border-color: var(--sds-interactive-primary-hollow-stroke-hover);
+}
+
+.sds-button--primary-hollow:active {
+  background-color: var(--sds-interactive-primary-hollow-background-active);
+  color: var(--sds-interactive-primary-hollow-content-active);
+  border-color: var(--sds-interactive-primary-hollow-stroke-active);
+}
+
+.sds-button--primary-hollow:focus-visible {
+  background-color: var(--sds-interactive-primary-hollow-background-default);
+  color: var(--sds-interactive-primary-hollow-content-default);
+  border-color: var(--sds-interactive-primary-hollow-stroke-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--primary-hollow:disabled,
+.sds-button--primary-hollow[aria-disabled='true'] {
+  background-color: var(--sds-interactive-primary-hollow-background-disabled);
+  color: var(--sds-interactive-primary-hollow-content-disabled);
+  border-color: var(--sds-interactive-primary-hollow-stroke-disabled);
+}
+
+/* ─── Secondary Filled ──────────────────────────────────────────────────────── */
+
+.sds-button--secondary-filled {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+  color: var(--sds-interactive-secondary-filled-content-default);
+  border: none;
+}
+
+.sds-button--secondary-filled:hover {
+  background-color: var(--sds-interactive-secondary-filled-background-hover);
+  color: var(--sds-interactive-secondary-filled-content-hover);
+}
+
+.sds-button--secondary-filled:active {
+  background-color: var(--sds-interactive-secondary-filled-background-active);
+  color: var(--sds-interactive-secondary-filled-content-active);
+}
+
+.sds-button--secondary-filled:focus-visible {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+  color: var(--sds-interactive-secondary-filled-content-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--secondary-filled:disabled,
+.sds-button--secondary-filled[aria-disabled='true'] {
+  background-color: var(--sds-interactive-secondary-filled-background-disabled);
+  color: var(--sds-interactive-secondary-filled-content-disabled);
+}
+
+/* ─── Secondary Hollow ──────────────────────────────────────────────────────── */
+
+.sds-button--secondary-hollow {
+  background-color: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  border: 1px solid var(--sds-interactive-secondary-hollow-stroke-default);
+}
+
+.sds-button--secondary-hollow:hover {
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-hover);
+}
+
+.sds-button--secondary-hollow:active {
+  background-color: var(--sds-interactive-secondary-hollow-background-active);
+  color: var(--sds-interactive-secondary-hollow-content-active);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-active);
+}
+
+.sds-button--secondary-hollow:focus-visible {
+  background-color: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--secondary-hollow:disabled,
+.sds-button--secondary-hollow[aria-disabled='true'] {
+  background-color: var(--sds-interactive-secondary-hollow-background-disabled);
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-disabled);
+}
+
+/* ─── Media Filled ──────────────────────────────────────────────────────────── */
+
+.sds-button--media-filled {
+  background-color: var(--sds-onmedia-interactive-filled-background-default);
+  color: var(--sds-onmedia-interactive-filled-content-default);
+  border: none;
+}
+
+.sds-button--media-filled:hover {
+  background-color: var(--sds-onmedia-interactive-filled-background-hover);
+  color: var(--sds-onmedia-interactive-filled-content-hover);
+}
+
+.sds-button--media-filled:active {
+  background-color: var(--sds-onmedia-interactive-filled-background-active);
+  color: var(--sds-onmedia-interactive-filled-content-active);
+}
+
+.sds-button--media-filled:focus-visible {
+  background-color: var(--sds-onmedia-interactive-filled-background-default);
+  color: var(--sds-onmedia-interactive-filled-content-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--media-filled:disabled,
+.sds-button--media-filled[aria-disabled='true'] {
+  background-color: var(--sds-onmedia-interactive-filled-background-disabled);
+  color: var(--sds-onmedia-interactive-filled-content-disabled);
+}
+
+/* ─── Media Hollow ──────────────────────────────────────────────────────────── */
+
+.sds-button--media-hollow {
+  background-color: var(--sds-onmedia-interactive-hollow-background-default);
+  color: var(--sds-onmedia-interactive-hollow-content-default);
+  border: 1px solid var(--sds-onmedia-interactive-hollow-stroke-default);
+}
+
+.sds-button--media-hollow:hover {
+  background-color: var(--sds-onmedia-interactive-hollow-background-hover);
+  color: var(--sds-onmedia-interactive-hollow-content-hover);
+  border-color: var(--sds-onmedia-interactive-hollow-stroke-hover);
+}
+
+.sds-button--media-hollow:active {
+  background-color: var(--sds-onmedia-interactive-hollow-background-active);
+  color: var(--sds-onmedia-interactive-hollow-content-active);
+  border-color: var(--sds-onmedia-interactive-hollow-stroke-active);
+}
+
+.sds-button--media-hollow:focus-visible {
+  background-color: var(--sds-onmedia-interactive-hollow-background-default);
+  color: var(--sds-onmedia-interactive-hollow-content-default);
+  border-color: var(--sds-onmedia-interactive-hollow-stroke-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--media-hollow:disabled,
+.sds-button--media-hollow[aria-disabled='true'] {
+  background-color: var(--sds-onmedia-interactive-hollow-background-disabled);
+  color: var(--sds-onmedia-interactive-hollow-content-disabled);
+  border-color: var(--sds-onmedia-interactive-hollow-stroke-disabled);
+}
