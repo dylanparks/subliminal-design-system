@@ -1,49 +1,64 @@
+#!/usr/bin/env node
 /**
  * Token build pipeline for the Subliminal design system.
  *
- * Reads Figma variable collection exports and uses Style Dictionary to produce:
- *   - src/tokens/generated/tokens.css   — CSS custom properties (:root + .dark)
- *   - src/tokens/generated/tokens.ts    — TypeScript constants (CSS var strings)
+ * Reads W3C Design Token JSON files exported by Subliminal Relay and produces:
+ *   - tokens.css   — CSS custom properties (:root light + .dark + responsive media queries)
+ *   - tokens.ts    — TypeScript constants (typed CSS var references)
+ *   - fonts.ts     — Google Fonts metadata
  *
- * Usage:
- *   node build-tokens.mjs
+ * ─── Usage ────────────────────────────────────────────────────────────────────
  *
- * Designers update tokens by exporting variables from Figma and replacing files in
- * src/tokens/figma/, then running this script:
- *   - Global Colors.json
- *   - Intent Colors.json
- *   - Typography.json
- *   - Shape.json
- *   - Breakpoint.json
+ *   Within the DS repo (uses built-in default tokens):
+ *     node build-tokens.mjs
+ *     npm run build:tokens
+ *
+ *   In a consumer project (custom Relay-exported tokens):
+ *     npx sds-build-tokens --input ./my-tokens --output ./src/design-tokens
+ *
+ *   Flags:
+ *     --input  -i   Directory containing Relay token JSON files (required for consumers)
+ *     --output -o   Directory for generated output files
+ *
+ * ─── Required token files (export via Subliminal Relay) ──────────────────────
+ *
+ *     global-colors.json       — raw color palette
+ *     intent-colors-light.json — semantic colors, light mode
+ *     intent-colors-dark.json  — semantic colors, dark mode
+ *     typography-lg.json       — typography tokens, LG (default)
+ *     typography-md.json       — typography tokens, MD breakpoint
+ *     typography-xs.json       — typography tokens, XS breakpoint
+ *     shape.json               — border-radius values
+ *     viewport-lg.json         — viewport reference values, LG (default)
+ *     viewport-md.json         — viewport reference values, MD
+ *     viewport-xs.json         — viewport reference values, XS
  */
 
 import StyleDictionary from 'style-dictionary';
-import { readFileSync, mkdirSync, writeFileSync, rmSync } from 'fs';
-import { join, dirname } from 'path';
+import { readFileSync, mkdirSync, writeFileSync, rmSync, existsSync, readdirSync } from 'fs';
+import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { parseArgs } from 'util';
+import AdmZip from 'adm-zip';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// ─── CLI args ─────────────────────────────────────────────────────────────────
+
+const { values: cliArgs } = parseArgs({
+  options: {
+    input:  { type: 'string', short: 'i' },
+    output: { type: 'string', short: 'o' },
+  },
+  strict: false,
+});
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function rgbToHex(r, g, b) {
-  return (
-    '#' +
-    [r, g, b]
-      .map((v) => Math.round(v * 255).toString(16).padStart(2, '0'))
-      .join('')
-  );
-}
-
-function rgbToRgba(r, g, b, a) {
-  return `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)}, ${Math.round(a * 1000) / 1000})`;
-}
 
 /**
  * Convert a Figma variable name to a Style Dictionary token path array.
  * "Colors/Cobalt/50"     → ["color", "cobalt", "50"]
  * "Neutrals/Ash/50"      → ["neutral", "ash", "50"]
- * "Neutrals/White"       → ["neutral", "white"]
  * "Transparent/Light/50" → ["transparent", "light", "50"]
  */
 function figmaNameToPath(name) {
@@ -58,6 +73,18 @@ function figmaNameToRef(aliasName) {
   return `{${figmaNameToPath(aliasName).join('.')}}`;
 }
 
+/**
+ * Convert a Relay W3C alias reference to a Style Dictionary reference.
+ * "{global-colors.Colors.Cobalt.800}" → "{color.cobalt.800}"
+ */
+function relayAliasToRef(aliasValue) {
+  const inner = aliasValue.slice(1, -1); // strip { }
+  const dotIndex = inner.indexOf('.');
+  if (dotIndex === -1) return aliasValue;
+  const varPath = inner.slice(dotIndex + 1).replace(/\./g, '/'); // e.g. "Colors/Cobalt/800"
+  return figmaNameToRef(varPath);
+}
+
 /** Set a value deep inside a nested object given an array path. */
 function setDeep(obj, path, value) {
   let node = obj;
@@ -70,7 +97,6 @@ function setDeep(obj, path, value) {
 
 /**
  * Convert a Figma segment string to a kebab-case CSS-safe identifier.
- * Handles spaces, CamelCase, hyphens, and special chars.
  * "Font size"    → "font-size"
  * "DisplaySmall" → "display-small"
  * "X-Padding"    → "x-padding"
@@ -78,7 +104,7 @@ function setDeep(obj, path, value) {
  */
 function segmentize(str) {
   return str
-    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')   // ABCDef → ABC-Def
+    .replace(/([A-Z]{2,})([A-Z][a-z])/g, '$1-$2') // ABCDef → ABC-Def (single-letter prefix like X stays joined)
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')       // camelCase → camel-Case
     .toLowerCase()
     .replace(/\s+/g, '-')
@@ -88,75 +114,125 @@ function segmentize(str) {
 }
 
 /**
- * Convert a full Figma variable name to a CSS variable suffix.
- * "Typography/Font size/Display/Huge" → "typography-font-size-display-huge"
- * "Border Radius/DisplaySmall"        → "border-radius-display-small"
+ * Recursively traverse a W3C Design Token tree and collect all leaf tokens.
+ * A leaf is any node that has a "$value" key.
+ *
+ * @returns {{ path: string[], value: any, type: string, description?: string }[]}
  */
-function figmaNameToCssSegment(name) {
-  return name.split('/').map(segmentize).join('-');
+function traverseW3C(obj, currentPath = [], results = []) {
+  for (const [key, val] of Object.entries(obj)) {
+    if (val && typeof val === 'object' && '$value' in val) {
+      results.push({
+        path: [...currentPath, key],
+        value: val.$value,
+        type: val.$type,
+        description: val.$description,
+      });
+    } else if (val && typeof val === 'object') {
+      traverseW3C(val, [...currentPath, key], results);
+    }
+  }
+  return results;
+}
+
+// ─── W3C Token Parsers ────────────────────────────────────────────────────────
+
+/**
+ * Parse a Relay global-colors.json (W3C format) into a Style Dictionary token tree.
+ * Token paths follow the Figma group hierarchy: Colors/Cobalt/50 → color.cobalt.50
+ */
+function parseRelayGlobalColors(filePath) {
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
+  const tokens = {};
+
+  for (const { path, value, type } of traverseW3C(data)) {
+    if (type !== 'color') continue;
+    const figmaName = path.join('/');        // "Colors/Cobalt/50"
+    const sdPath = figmaNameToPath(figmaName); // ["color", "cobalt", "50"]
+    setDeep(tokens, sdPath, { value, type: 'color' });
+  }
+
+  return tokens;
 }
 
 /**
- * Parse a Figma variable collection for a single mode into a flat map of
- * CSS variable name → value string. Handles FLOAT and STRING types.
+ * Parse a Relay intent-colors.json (W3C format) into a Style Dictionary token tree.
+ * Alias values like "{global-colors.Colors.Cobalt.800}" are converted to
+ * Style Dictionary references "{color.cobalt.800}".
+ */
+function parseRelayIntentTokens(filePath) {
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
+  const tokens = {};
+
+  for (const { path, value, description } of traverseW3C(data)) {
+    const sdPath = path.map((p) =>
+      p.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    );
+
+    const tokenValue =
+      typeof value === 'string' && value.startsWith('{') && value.endsWith('}')
+        ? relayAliasToRef(value)
+        : value;
+
+    const entry = { value: tokenValue, type: 'color' };
+    if (description) entry.comment = description;
+    setDeep(tokens, sdPath, entry);
+  }
+
+  return tokens;
+}
+
+/**
+ * Parse a Relay flat-token file (shape.json, viewport.json, typography*.json)
+ * into a flat { cssVar: value } map.
  *
  * FLOAT rules:
- *   - FONT_WEIGHT scope → unitless number
- *   - All others → appends "px" (font-size, line-height, letter-spacing, etc.)
- *   - Rounds to 3 decimal places to avoid float imprecision
+ *   - Paths containing "weight" → unitless number (font-weight)
+ *   - All others → appends "px"
  * STRING rules:
  *   - Multi-word values (e.g. "Work Sans") are quoted for CSS font-family use
  *
- * @param {object}   data          - Parsed Figma JSON
- * @param {string}   modeId        - The mode key to read values from
- * @param {string}   [prefix]      - Optional category prefix inserted after "--sds-"
- * @param {string[]} [skipNames]   - Variable name substrings to exclude
+ * @param {string}   filePath
+ * @param {string}   [prefix]  — CSS segment inserted after "--sds-" (e.g. "shape")
+ * @param {string[]} [skip]    — Path segments to exclude (e.g. ["Min Height"])
  */
-function parseFlatTokens(data, modeId, { prefix = '', skipNames = [] } = {}) {
+function parseRelayFlatTokens(filePath, { prefix = '', skip = [] } = {}) {
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
   const vars = {};
-  for (const v of Object.values(data.variables)) {
-    if (v.type !== 'FLOAT' && v.type !== 'STRING') continue;
-    if (skipNames.some((s) => v.name.includes(s))) continue;
 
-    const segment = figmaNameToCssSegment(v.name);
+  for (const { path, value } of traverseW3C(data)) {
+    if (skip.some((s) => path.some((p) => p.includes(s)))) continue;
+
+    const segment = path.map(segmentize).join('-');
     const cssVar = prefix ? `--sds-${prefix}-${segment}` : `--sds-${segment}`;
 
-    if (v.type === 'STRING') {
-      const value = v.resolvedValuesByMode[modeId]?.resolvedValue;
-      if (value !== undefined) {
-        vars[cssVar] = value.includes(' ') ? `"${value}"` : value;
-      }
-    } else {
-      const raw = v.resolvedValuesByMode[modeId]?.resolvedValue;
-      if (raw !== undefined) {
-        const rounded = Math.round(raw * 1000) / 1000;
-        const isUnitless = v.scopes?.includes('FONT_WEIGHT');
-        vars[cssVar] = isUnitless ? String(rounded) : `${rounded}px`;
-      }
+    if (typeof value === 'number') {
+      const isWeight = path.some((p) => /weight/i.test(p));
+      vars[cssVar] = isWeight ? String(value) : `${value}px`;
+    } else if (typeof value === 'string') {
+      vars[cssVar] = value.includes(' ') ? `"${value}"` : value;
     }
   }
+
   return vars;
 }
 
 /**
- * Scan a Figma variable collection and return every unique font family name
- * (across all modes) and every unique font weight value (across all modes).
- * Only looks at FONT_FAMILY and FONT_WEIGHT scoped variables respectively.
+ * Extract font family names and weights from a Relay typography.json (W3C format).
+ * Inspects token paths for "family" / "weight" keywords to classify tokens.
  */
-function extractFontMetadata(data) {
+function extractFontMetadataW3C(filePath) {
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
   const families = new Set();
   const weights = new Set();
 
-  for (const v of Object.values(data.variables)) {
-    if (v.type === 'STRING' && v.scopes?.includes('FONT_FAMILY')) {
-      for (const m of Object.values(v.resolvedValuesByMode)) {
-        if (m?.resolvedValue) families.add(m.resolvedValue);
-      }
+  for (const { path, value } of traverseW3C(data)) {
+    const pathStr = path.join('/').toLowerCase();
+    if (pathStr.includes('family') && typeof value === 'string') {
+      families.add(value);
     }
-    if (v.type === 'FLOAT' && v.scopes?.includes('FONT_WEIGHT')) {
-      for (const m of Object.values(v.resolvedValuesByMode)) {
-        if (m?.resolvedValue != null) weights.add(Math.round(m.resolvedValue));
-      }
+    if (pathStr.includes('weight') && typeof value === 'number') {
+      weights.add(Math.round(value));
     }
   }
 
@@ -166,129 +242,7 @@ function extractFontMetadata(data) {
   };
 }
 
-/**
- * Build a Google Fonts CSS API v2 URL for the given font families and weights.
- * Each family gets the full weight list so any combination is available.
- * Returns null if no families are found.
- *
- * Example output:
- *   https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&family=Work+Sans:wght@400;600&display=swap
- */
-function buildGoogleFontsUrl(families, weights) {
-  if (!families.length) return null;
-  const wStr = weights.join(';');
-  const params = families.map((f) => `family=${f.replace(/\s+/g, '+')}:wght@${wStr}`);
-  return `https://fonts.googleapis.com/css2?${params.join('&')}&display=swap`;
-}
-
-/**
- * Verify which of the requested font families are actually available on Google Fonts
- * by fetching the generated CSS URL and checking the font-family declarations in the
- * response. Best-effort — silently treats network errors as "unable to verify".
- *
- * Returns:
- *   googleFonts  — families confirmed in the Google Fonts response
- *   unverified   — families not found (custom/purchased fonts, self-hosted, etc.)
- *   networkError — true if the request itself failed (offline build, etc.)
- */
-async function verifyGoogleFonts(families, url) {
-  if (!families.length || !url) {
-    return { googleFonts: [], unverified: [], networkError: false };
-  }
-  try {
-    const resp = await fetch(url, {
-      // A real browser UA is required — without it Google Fonts may return
-      // a very old format or reject the request entirely.
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; build-tokens/1.0)' },
-    });
-    if (!resp.ok) {
-      return { googleFonts: [], unverified: families, networkError: false };
-    }
-    const css = await resp.text();
-    const googleFonts = families.filter(
-      (f) => css.includes(`'${f}'`) || css.includes(`"${f}"`)
-    );
-    const unverified = families.filter((f) => !googleFonts.includes(f));
-    return { googleFonts, unverified, networkError: false };
-  } catch {
-    return { googleFonts: [], unverified: [], networkError: true };
-  }
-}
-
-/**
- * Render a flat { cssVar: value } map into a CSS block under the given selector.
- */
-function renderCssBlock(selector, vars) {
-  const lines = Object.entries(vars).map(([k, v]) => `  ${k}: ${v};`);
-  return `${selector} {\n${lines.join('\n')}\n}`;
-}
-
-/**
- * Render a flat { cssVar: value } map into a CSS block nested inside a media query.
- */
-function renderMediaQuery(maxWidth, vars) {
-  const inner = Object.entries(vars).map(([k, v]) => `    ${k}: ${v};`).join('\n');
-  return `@media (max-width: ${maxWidth}px) {\n  :root {\n${inner}\n  }\n}`;
-}
-
-// ─── Figma JSON parsers ────────────────────────────────────────────────────────
-
-/**
- * Parse Global Colors.json into a Style Dictionary token tree.
- * All values are resolved hex / rgba strings — no aliases at this level.
- */
-function parseGlobalColors(filePath) {
-  const data = JSON.parse(readFileSync(filePath, 'utf8'));
-  const modeId = Object.keys(data.modes)[0];
-  const tokens = {};
-
-  for (const v of Object.values(data.variables)) {
-    if (v.type !== 'COLOR') continue;
-    const val = v.valuesByMode[modeId];
-    if (!val || val.type === 'VARIABLE_ALIAS') continue;
-
-    const path = figmaNameToPath(v.name);
-    const colorValue =
-      val.a !== undefined && val.a < 1
-        ? rgbToRgba(val.r, val.g, val.b, val.a)
-        : rgbToHex(val.r, val.g, val.b);
-
-    setDeep(tokens, path, { value: colorValue, type: 'color' });
-  }
-
-  return tokens;
-}
-
-/**
- * Parse Intent Colors.json for a single mode.
- * Values are Style Dictionary references like {color.cobalt.800}.
- */
-function parseIntentTokens(filePath, modeId) {
-  const data = JSON.parse(readFileSync(filePath, 'utf8'));
-  const tokens = {};
-
-  for (const v of Object.values(data.variables)) {
-    if (v.type !== 'COLOR') continue;
-    const resolved = v.resolvedValuesByMode[modeId];
-    if (!resolved) continue;
-
-    const path = v.name
-      .split('/')
-      .map((p) => p.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, ''));
-
-    const tokenValue = resolved.aliasName
-      ? figmaNameToRef(resolved.aliasName)
-      : rgbToHex(resolved.resolvedValue.r, resolved.resolvedValue.g, resolved.resolvedValue.b);
-
-    const entry = { value: tokenValue, type: 'color' };
-    if (v.description) entry.comment = v.description;
-    setDeep(tokens, path, entry);
-  }
-
-  return tokens;
-}
-
-// ─── Style Dictionary custom format: TypeScript constants ────────────────────
+// ─── Style Dictionary custom format: TypeScript constants ─────────────────────
 
 function collectIntentTokens(obj, prefix, results = []) {
   for (const [key, val] of Object.entries(obj)) {
@@ -327,48 +281,167 @@ function objectToTs(obj, indent = 2) {
 
 /**
  * Build a nested TypeScript object from a flat CSS var map.
- * "--sds-typography-font-size-display-huge" → { typography: { 'font-size': { display: { huge: 'var(...)' } } } }
- * Strips the "--sds-" prefix and uses the remaining segments as path.
+ * "--sds-typography-font-size-display-huge" → nested path from segments.
  */
 function flatVarsToNestedTs(vars) {
   const root = {};
-  for (const [cssVar, _] of Object.entries(vars)) {
+  for (const [cssVar] of Object.entries(vars)) {
     const path = cssVar.replace(/^--sds-/, '').split('-');
-    // Re-join hyphenated segments (e.g. "font" + "size" → this is tricky with flat splitting)
-    // Instead, store as a flat camelCase key to keep it simple
     setDeep(root, path, `var(${cssVar})`);
   }
   return root;
 }
 
+// ─── CSS rendering ────────────────────────────────────────────────────────────
+
+function renderCssBlock(selector, vars) {
+  const lines = Object.entries(vars).map(([k, v]) => `  ${k}: ${v};`);
+  return `${selector} {\n${lines.join('\n')}\n}`;
+}
+
+function renderMediaQuery(maxWidth, vars) {
+  const inner = Object.entries(vars).map(([k, v]) => `    ${k}: ${v};`).join('\n');
+  return `@media (max-width: ${maxWidth}px) {\n  :root {\n${inner}\n  }\n}`;
+}
+
+// ─── Google Fonts ─────────────────────────────────────────────────────────────
+
+function buildGoogleFontsUrl(families, weights) {
+  if (!families.length) return null;
+  const wStr = weights.join(';');
+  const params = families.map((f) => `family=${f.replace(/\s+/g, '+')}:wght@${wStr}`);
+  return `https://fonts.googleapis.com/css2?${params.join('&')}&display=swap`;
+}
+
+async function verifyGoogleFonts(families, url) {
+  if (!families.length || !url) {
+    return { googleFonts: [], unverified: [], networkError: false };
+  }
+  try {
+    const resp = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; build-tokens/1.0)' },
+    });
+    if (!resp.ok) {
+      return { googleFonts: [], unverified: families, networkError: false };
+    }
+    const css = await resp.text();
+    const googleFonts = families.filter(
+      (f) => css.includes(`'${f}'`) || css.includes(`"${f}"`)
+    );
+    const unverified = families.filter((f) => !googleFonts.includes(f));
+    return { googleFonts, unverified, networkError: false };
+  } catch {
+    return { googleFonts: [], unverified: [], networkError: true };
+  }
+}
+
 // ─── Main build ───────────────────────────────────────────────────────────────
 
-const figmaDir = join(__dirname, 'src', 'tokens', 'figma');
-const outputDir = join(__dirname, 'src', 'tokens', 'generated');
-const tmpDir = join(__dirname, '.tokens-tmp');
+const outputDir = cliArgs.output
+  ? resolve(process.cwd(), cliArgs.output)
+  : join(__dirname, 'src', 'tokens', 'generated');
+
+const tmpDir = join(outputDir, '.tokens-tmp');
+
+// ─── Resolve input: --input flag, ZIP auto-detect, or DS repo default ─────────
+
+let relayDir;
+let zipExtractDir = null; // set if we extracted a ZIP — cleaned up at the end
+
+function extractZip(zipPath) {
+  const extractTo = join(outputDir, '.tokens-zip');
+  if (existsSync(extractTo)) rmSync(extractTo, { recursive: true, force: true });
+  mkdirSync(extractTo, { recursive: true });
+  const zip = new AdmZip(zipPath);
+  zip.extractAllTo(extractTo, true);
+  // The ZIP contains a single top-level folder (e.g. subliminal-tokens/)
+  // Find it and use it as relayDir
+  const entries = readdirSync(extractTo);
+  const folder = entries.find(e => existsSync(join(extractTo, e, 'global-colors.json')));
+  if (!folder) {
+    // No nested folder — files are at the root of the ZIP
+    return extractTo;
+  }
+  return join(extractTo, folder);
+}
+
+if (cliArgs.input) {
+  const inputPath = resolve(process.cwd(), cliArgs.input);
+  if (inputPath.toLowerCase().endsWith('.zip')) {
+    if (!existsSync(inputPath)) {
+      console.error(`✖ sds-build-tokens: File not found: ${inputPath}`);
+      process.exit(1);
+    }
+    console.log(`  Extracting ${inputPath}...`);
+    zipExtractDir = join(outputDir, '.tokens-zip');
+    relayDir = extractZip(inputPath);
+  } else {
+    relayDir = inputPath;
+  }
+} else {
+  // Auto-detect subliminal-tokens*.zip in the current working directory
+  const cwd = process.cwd();
+  const zipMatches = readdirSync(cwd).filter(f => /^subliminal-tokens.*\.zip$/i.test(f));
+
+  if (zipMatches.length === 1) {
+    const zipPath = join(cwd, zipMatches[0]);
+    console.log(`  Found ${zipMatches[0]} — extracting...`);
+    zipExtractDir = join(outputDir, '.tokens-zip');
+    relayDir = extractZip(zipPath);
+  } else if (zipMatches.length > 1) {
+    console.error('✖ sds-build-tokens: Multiple Subliminal token ZIPs found in this directory:');
+    for (const f of zipMatches) console.error(`    ${f}`);
+    console.error('  Specify which one to use:');
+    console.error(`    npx sds-build-tokens --input ./${zipMatches[0]}`);
+    process.exit(1);
+  } else {
+    // No ZIP found — fall back to DS repo default (src/tokens/relay/)
+    relayDir = join(__dirname, 'src', 'tokens', 'relay');
+    if (!existsSync(relayDir)) {
+      console.error('✖ sds-build-tokens: No subliminal-tokens*.zip found in the current directory.');
+      console.error('  Export your tokens from the Subliminal Relay Figma plugin, then re-run.');
+      console.error('  Or pass the path explicitly:');
+      console.error('    npx sds-build-tokens --input ./subliminal-tokens.zip');
+      process.exit(1);
+    }
+  }
+}
+
+// Guard: ensure relay token files exist before proceeding
+const requiredFiles = [
+  'global-colors.json',
+  'intent-colors-light.json',
+  'intent-colors-dark.json',
+  'typography-lg.json',
+  'typography-md.json',
+  'typography-xs.json',
+  'shape.json',
+  'viewport-lg.json',
+  'viewport-md.json',
+  'viewport-xs.json',
+];
+const missing = requiredFiles.filter((f) => !existsSync(join(relayDir, f)));
+if (missing.length > 0) {
+  console.error(`✖ sds-build-tokens: Missing required token files in ${relayDir}:`);
+  for (const f of missing) console.error(`  • ${f}`);
+  console.error('  Export your Figma variables using Subliminal Relay, then re-run.');
+  process.exit(1);
+}
 
 mkdirSync(outputDir, { recursive: true });
 mkdirSync(tmpDir, { recursive: true });
 
 // ─── Color tokens (Style Dictionary) ──────────────────────────────────────────
 
-const globalColorsPath = join(figmaDir, 'Global Colors.json');
-const intentColorsPath = join(figmaDir, 'Intent Colors.json');
+const globalTokens = parseRelayGlobalColors(join(relayDir, 'global-colors.json'));
+const intentLightTokens = parseRelayIntentTokens(join(relayDir, 'intent-colors-light.json'));
 
-const globalTokens = parseGlobalColors(globalColorsPath);
-
-const intentData = JSON.parse(readFileSync(intentColorsPath, 'utf8'));
-const lightModeId = Object.entries(intentData.modes).find(([, v]) => v === 'Lightmode')[0];
-const darkModeId = Object.entries(intentData.modes).find(([, v]) => v === 'Darkmode')[0];
-
-const intentLightTokens = parseIntentTokens(intentColorsPath, lightModeId);
-const intentDarkTokens = parseIntentTokens(intentColorsPath, darkModeId);
+const intentDarkTokens = parseRelayIntentTokens(join(relayDir, 'intent-colors-dark.json'));
 
 writeFileSync(join(tmpDir, 'global.json'), JSON.stringify(globalTokens));
 writeFileSync(join(tmpDir, 'intent-light.json'), JSON.stringify(intentLightTokens));
 writeFileSync(join(tmpDir, 'intent-dark.json'), JSON.stringify(intentDarkTokens));
 
-const globalRoots = Object.keys(globalTokens);
 
 const sdLight = new StyleDictionary({
   source: [join(tmpDir, 'global.json'), join(tmpDir, 'intent-light.json')],
@@ -381,13 +454,15 @@ const sdLight = new StyleDictionary({
         {
           destination: 'light.css',
           format: 'css/variables',
-          filter: (token) => !globalRoots.includes(token.path[0]),
+          filter: (token) => !token.filePath.endsWith('global.json'),
           options: { selector: ':root', outputReferences: false },
         },
       ],
     },
   },
 });
+
+await sdLight.buildAllPlatforms();
 
 const sdDark = new StyleDictionary({
   source: [join(tmpDir, 'global.json'), join(tmpDir, 'intent-dark.json')],
@@ -400,49 +475,50 @@ const sdDark = new StyleDictionary({
         {
           destination: 'dark.css',
           format: 'css/variables',
-          filter: (token) => !globalRoots.includes(token.path[0]),
+          filter: (token) => !token.filePath.endsWith('global.json'),
           options: { selector: '.dark', outputReferences: false },
         },
       ],
     },
   },
 });
-
-await sdLight.buildAllPlatforms();
 await sdDark.buildAllPlatforms();
+const darkCss = readFileSync(join(tmpDir, 'dark.css'), 'utf8');
 
 // ─── Shape tokens ──────────────────────────────────────────────────────────────
-// Single mode — border-radius values → --sds-shape-border-radius-*
 
-const shapeData = JSON.parse(readFileSync(join(figmaDir, 'Shape.json'), 'utf8'));
-const shapeModeId = Object.keys(shapeData.modes)[0];
-const shapeVars = parseFlatTokens(shapeData, shapeModeId, { prefix: 'shape' });
+const shapeVars = parseRelayFlatTokens(join(relayDir, 'shape.json'), { prefix: 'shape' });
 
-// ─── Breakpoint tokens ─────────────────────────────────────────────────────────
-// Single mode, skip Min Height — viewport reference values → --sds-breakpoint-viewport-*
+// ─── Viewport tokens ───────────────────────────────────────────────────────────
+// Three modes (LG/MD/XS) — each emitted under the matching media query.
+// Viewport/Width drives the responsive breakpoint thresholds: MD styles apply
+// below LG width, XS styles apply below MD width.
 
-const breakpointData = JSON.parse(readFileSync(join(figmaDir, 'Breakpoint.json'), 'utf8'));
-const breakpointModeId = Object.keys(breakpointData.modes)[0];
-const breakpointVars = parseFlatTokens(breakpointData, breakpointModeId, {
-  prefix: 'breakpoint',
-  skipNames: ['Min Height'],
-});
+const viewportLgVars = parseRelayFlatTokens(join(relayDir, 'viewport-lg.json'), { skip: ['Min Height'] });
+const viewportMdVars = parseRelayFlatTokens(join(relayDir, 'viewport-md.json'), { skip: ['Min Height'] });
+const viewportXsVars = parseRelayFlatTokens(join(relayDir, 'viewport-xs.json'), { skip: ['Min Height'] });
+
+// Derive media query thresholds from viewport Width values (e.g. LG=1440 → MD applies below 1440px)
+const viewportLgWidth = JSON.parse(readFileSync(join(relayDir, 'viewport-lg.json'), 'utf8')).Viewport.Width.$value;
+const viewportMdWidth = JSON.parse(readFileSync(join(relayDir, 'viewport-md.json'), 'utf8')).Viewport.Width.$value;
+const mdBreakpoint = viewportLgWidth - 1;  // e.g. 1439
+const xsBreakpoint = viewportMdWidth - 1;  // e.g. 767
+
+const viewportMdDiff = Object.fromEntries(
+  Object.entries(viewportMdVars).filter(([k, v]) => viewportLgVars[k] !== v)
+);
+const viewportXsDiff = Object.fromEntries(
+  Object.entries(viewportXsVars).filter(([k, v]) => viewportLgVars[k] !== v)
+);
 
 // ─── Typography tokens ─────────────────────────────────────────────────────────
-// Three modes: LG (default :root), MD (@media max-width:1279px), XS (@media max-width:767px)
-// Variable names already start with "Typography/" so no extra prefix needed.
+// Three modes (LG/MD/XS) — same breakpoint thresholds as viewport above.
 
-const typographyData = JSON.parse(readFileSync(join(figmaDir, 'Typography.json'), 'utf8'));
-const typographyModes = typographyData.modes; // { "49:0": "LG", "49:1": "MD", "49:2": "XS" }
-const lgModeId = Object.entries(typographyModes).find(([, v]) => v === 'LG')[0];
-const mdModeId = Object.entries(typographyModes).find(([, v]) => v === 'MD')[0];
-const xsModeId = Object.entries(typographyModes).find(([, v]) => v === 'XS')[0];
+const typographyLgVars = parseRelayFlatTokens(join(relayDir, 'typography-lg.json'));
+const typographyMdVars = parseRelayFlatTokens(join(relayDir, 'typography-md.json'));
+const typographyXsVars = parseRelayFlatTokens(join(relayDir, 'typography-xs.json'));
 
-const typographyLgVars = parseFlatTokens(typographyData, lgModeId);
-const typographyMdVars = parseFlatTokens(typographyData, mdModeId);
-const typographyXsVars = parseFlatTokens(typographyData, xsModeId);
-
-// Only emit MD/XS vars that differ from LG — keeps the output lean
+// Only emit MD/XS vars that differ from LG
 const typographyMdDiff = Object.fromEntries(
   Object.entries(typographyMdVars).filter(([k, v]) => typographyLgVars[k] !== v)
 );
@@ -450,28 +526,26 @@ const typographyXsDiff = Object.fromEntries(
   Object.entries(typographyXsVars).filter(([k, v]) => typographyLgVars[k] !== v)
 );
 
-// ─── Merge all CSS outputs ─────────────────────────────────────────────────────
+// ─── Google Fonts ──────────────────────────────────────────────────────────────
 
-const lightCss = readFileSync(join(tmpDir, 'light.css'), 'utf8');
-const darkCss = readFileSync(join(tmpDir, 'dark.css'), 'utf8');
-
-// ─── Google Fonts import ───────────────────────────────────────────────────────
-// Derived automatically from FONT_FAMILY + FONT_WEIGHT variables in Typography.json
-
-const { families: gFamilies, weights: gWeights } = extractFontMetadata(typographyData);
+const { families: gFamilies, weights: gWeights } = extractFontMetadataW3C(
+  join(relayDir, 'typography-lg.json')
+);
 const googleFontsUrl = buildGoogleFontsUrl(gFamilies, gWeights);
-
 const fontVerification = await verifyGoogleFonts(gFamilies, googleFontsUrl);
 
 if (fontVerification.networkError) {
   console.warn('⚠  build-tokens: Could not reach Google Fonts to verify font families (network error).');
-  console.warn('   Font availability checks will be skipped.');
 } else if (fontVerification.unverified.length > 0) {
   console.warn('⚠  build-tokens: The following font families were not found on Google Fonts:');
   for (const f of fontVerification.unverified) {
     console.warn(`   • ${f} — custom or purchased font. Other users will need the file or a self-hosted @font-face.`);
   }
 }
+
+// ─── Merge all CSS outputs ─────────────────────────────────────────────────────
+
+const lightCss = readFileSync(join(tmpDir, 'light.css'), 'utf8');
 
 const parts = [
   '/* Generated by build-tokens.mjs — do not edit manually */',
@@ -490,29 +564,31 @@ const parts = [
   '/* ─── Shape ───────────────────────────────────────────────────────────────── */',
   renderCssBlock(':root', shapeVars),
   '',
-  '/* ─── Breakpoint ──────────────────────────────────────────────────────────── */',
-  renderCssBlock(':root', breakpointVars),
+  '/* ─── Viewport (LG — default) ─────────────────────────────────────────────── */',
+  renderCssBlock(':root', viewportLgVars),
   '',
   '/* ─── Typography (LG — default) ───────────────────────────────────────────── */',
   renderCssBlock(':root', typographyLgVars),
 ];
 
-if (Object.keys(typographyMdDiff).length > 0) {
+if (Object.keys(viewportMdDiff).length > 0 || Object.keys(typographyMdDiff).length > 0) {
   parts.push('');
-  parts.push('/* ─── Typography (MD — ≤1279px) ───────────────────────────────────────────── */');
-  parts.push(renderMediaQuery(1279, typographyMdDiff));
+  parts.push(`/* ─── MD — ≤${mdBreakpoint}px ─────────────────────────────────────────────────── */`);
+  parts.push(renderMediaQuery(mdBreakpoint, { ...viewportMdDiff, ...typographyMdDiff }));
 }
 
-if (Object.keys(typographyXsDiff).length > 0) {
+if (Object.keys(viewportXsDiff).length > 0 || Object.keys(typographyXsDiff).length > 0) {
   parts.push('');
-  parts.push('/* ─── Typography (XS — ≤767px) ────────────────────────────────────────────── */');
-  parts.push(renderMediaQuery(767, typographyXsDiff));
+  parts.push(`/* ─── XS — ≤${xsBreakpoint}px ──────────────────────────────────────────────────── */`);
+  parts.push(renderMediaQuery(xsBreakpoint, { ...viewportXsDiff, ...typographyXsDiff }));
 }
 
-parts.push('');
-parts.push('/* ─── Colors (dark) ───────────────────────────────────────────────────────── */');
-parts.push(darkCss.trim());
-parts.push('');
+if (darkCss) {
+  parts.push('');
+  parts.push('/* ─── Colors (dark) ───────────────────────────────────────────────────────── */');
+  parts.push(darkCss.trim());
+  parts.push('');
+}
 
 writeFileSync(join(outputDir, 'tokens.css'), parts.join('\n'));
 
@@ -525,10 +601,9 @@ const colorNested = buildNestedObject(intentPaths, (path) => {
   return `var(${toCssVarName(sdCssPrefix, path)})`;
 });
 
-// Build flat TS maps for non-color tokens (use LG values as the canonical var names)
 const shapeNested = flatVarsToNestedTs(shapeVars);
 const typographyNested = flatVarsToNestedTs(typographyLgVars);
-const breakpointNested = flatVarsToNestedTs(breakpointVars);
+const breakpointNested = flatVarsToNestedTs(viewportLgVars);
 
 const tokensTs = [
   '/* Generated by build-tokens.mjs — do not edit manually */',
@@ -549,15 +624,12 @@ const tokensTs = [
 writeFileSync(join(outputDir, 'tokens.ts'), tokensTs);
 
 // ─── Generate font metadata ────────────────────────────────────────────────────
-//
-// Consumed by the Storybook preview to warn when a font isn't on Google Fonts
-// or fails to load entirely (custom/purchased/locally-installed fonts).
 
 const fontsTs = [
   '/* Generated by build-tokens.mjs — do not edit manually */',
   '/* Re-run: npm run build:tokens                         */',
   '',
-  '/** All font families declared in Typography.json, with Google Fonts verification status. */',
+  '/** All font families declared in typography-lg.json, with Google Fonts verification status. */',
   'export const fontFamilies: {',
   '  /** Every unique family across all typography tokens. */',
   '  all: string[];',
@@ -575,9 +647,10 @@ const fontsTs = [
 
 writeFileSync(join(outputDir, 'fonts.ts'), fontsTs);
 
-// ─── Cleanup temp files ────────────────────────────────────────────────────────
+// ─── Cleanup ───────────────────────────────────────────────────────────────────
 
 rmSync(tmpDir, { recursive: true, force: true });
+if (zipExtractDir) rmSync(zipExtractDir, { recursive: true, force: true });
 
 console.log('✓ tokens.css');
 console.log('✓ tokens.ts');

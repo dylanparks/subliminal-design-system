@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react';
+import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/tokens/generated/tokens.css';
+import './preview.css';
 import { fontFamilies } from '../src/tokens/generated/fonts';
 
 // ─── Font load check ──────────────────────────────────────────────────────────
@@ -123,6 +125,15 @@ function showFontWarning(missing: string[], localOnly: string[]): void {
 }
 
 const preview: Preview = {
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        Light: '',
+        Dark: 'dark',
+      },
+      defaultTheme: 'Light',
+    }),
+  ],
   parameters: {
     controls: {
       matchers: {

@@ -2,34 +2,50 @@
 /* Re-run: npm run build:tokens                         */
 
 export const tokens = {
+  neutral: {
+    content: {
+      primary: "var(--sds-neutral-content-primary)",
+      secondary: "var(--sds-neutral-content-secondary)",
+      tertiary: "var(--sds-neutral-content-tertiary)",
+      subtle: "var(--sds-neutral-content-subtle)",
+    },
+    background: {
+      default: "var(--sds-neutral-background-default)",
+      offset: "var(--sds-neutral-background-offset)",
+      subtle: "var(--sds-neutral-background-subtle)",
+    },
+    stroke: {
+      default: "var(--sds-neutral-stroke-default)",
+    },
+  },
   interactive: {
     primary: {
       filled: {
-        background: {
-          active: "var(--sds-interactive-primary-filled-background-active)",
-          hover: "var(--sds-interactive-primary-filled-background-hover)",
-          default: "var(--sds-interactive-primary-filled-background-default)",
-          disabled: "var(--sds-interactive-primary-filled-background-disabled)",
-        },
         content: {
           default: "var(--sds-interactive-primary-filled-content-default)",
-          disabled: "var(--sds-interactive-primary-filled-content-disabled)",
           hover: "var(--sds-interactive-primary-filled-content-hover)",
           active: "var(--sds-interactive-primary-filled-content-active)",
+          disabled: "var(--sds-interactive-primary-filled-content-disabled)",
+        },
+        background: {
+          default: "var(--sds-interactive-primary-filled-background-default)",
+          hover: "var(--sds-interactive-primary-filled-background-hover)",
+          active: "var(--sds-interactive-primary-filled-background-active)",
+          disabled: "var(--sds-interactive-primary-filled-background-disabled)",
         },
       },
       hollow: {
-        background: {
-          active: "var(--sds-interactive-primary-hollow-background-active)",
-          hover: "var(--sds-interactive-primary-hollow-background-hover)",
-          default: "var(--sds-interactive-primary-hollow-background-default)",
-          disabled: "var(--sds-interactive-primary-hollow-background-disabled)",
-        },
         content: {
-          active: "var(--sds-interactive-primary-hollow-content-active)",
-          hover: "var(--sds-interactive-primary-hollow-content-hover)",
           default: "var(--sds-interactive-primary-hollow-content-default)",
+          hover: "var(--sds-interactive-primary-hollow-content-hover)",
+          active: "var(--sds-interactive-primary-hollow-content-active)",
           disabled: "var(--sds-interactive-primary-hollow-content-disabled)",
+        },
+        background: {
+          default: "var(--sds-interactive-primary-hollow-background-default)",
+          hover: "var(--sds-interactive-primary-hollow-background-hover)",
+          active: "var(--sds-interactive-primary-hollow-background-active)",
+          disabled: "var(--sds-interactive-primary-hollow-background-disabled)",
         },
         stroke: {
           default: "var(--sds-interactive-primary-hollow-stroke-default)",
@@ -41,22 +57,10 @@ export const tokens = {
     },
     secondary: {
       filled: {
-        background: {
-          active: "var(--sds-interactive-secondary-filled-background-active)",
-          hover: "var(--sds-interactive-secondary-filled-background-hover)",
-          default: "var(--sds-interactive-secondary-filled-background-default)",
-          disabled: "var(--sds-interactive-secondary-filled-background-disabled)",
-          inactive: {
-            default: "var(--sds-interactive-secondary-filled-background-inactive-default)",
-            hover: "var(--sds-interactive-secondary-filled-background-inactive-hover)",
-            active: "var(--sds-interactive-secondary-filled-background-inactive-active)",
-            disabled: "var(--sds-interactive-secondary-filled-background-inactive-disabled)",
-          },
-        },
         content: {
-          active: "var(--sds-interactive-secondary-filled-content-active)",
-          hover: "var(--sds-interactive-secondary-filled-content-hover)",
           default: "var(--sds-interactive-secondary-filled-content-default)",
+          hover: "var(--sds-interactive-secondary-filled-content-hover)",
+          active: "var(--sds-interactive-secondary-filled-content-active)",
           disabled: "var(--sds-interactive-secondary-filled-content-disabled)",
           inactive: {
             default: "var(--sds-interactive-secondary-filled-content-inactive-default)",
@@ -65,28 +69,50 @@ export const tokens = {
             disabled: "var(--sds-interactive-secondary-filled-content-inactive-disabled)",
           },
         },
+        background: {
+          default: "var(--sds-interactive-secondary-filled-background-default)",
+          inactive: {
+            default: "var(--sds-interactive-secondary-filled-background-inactive-default)",
+            hover: "var(--sds-interactive-secondary-filled-background-inactive-hover)",
+            active: "var(--sds-interactive-secondary-filled-background-inactive-active)",
+            disabled: "var(--sds-interactive-secondary-filled-background-inactive-disabled)",
+          },
+          hover: "var(--sds-interactive-secondary-filled-background-hover)",
+          active: "var(--sds-interactive-secondary-filled-background-active)",
+          disabled: "var(--sds-interactive-secondary-filled-background-disabled)",
+        },
       },
       hollow: {
-        background: {
-          active: "var(--sds-interactive-secondary-hollow-background-active)",
-          hover: "var(--sds-interactive-secondary-hollow-background-hover)",
-          default: "var(--sds-interactive-secondary-hollow-background-default)",
-          disabled: "var(--sds-interactive-secondary-hollow-background-disabled)",
-          inactive: "var(--sds-interactive-secondary-hollow-background-inactive)",
-        },
         content: {
-          disabled: "var(--sds-interactive-secondary-hollow-content-disabled)",
-          hover: "var(--sds-interactive-secondary-hollow-content-hover)",
           default: "var(--sds-interactive-secondary-hollow-content-default)",
+          hover: "var(--sds-interactive-secondary-hollow-content-hover)",
           active: "var(--sds-interactive-secondary-hollow-content-active)",
-          inactive: "var(--sds-interactive-secondary-hollow-content-inactive)",
+          disabled: "var(--sds-interactive-secondary-hollow-content-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-secondary-hollow-content-inactive-default)",
+            hover: "var(--sds-interactive-secondary-hollow-content-inactive-hover)",
+            active: "var(--sds-interactive-secondary-hollow-content-inactive-active)",
+            disabled: "var(--sds-interactive-secondary-hollow-content-inactive-disabled)",
+          },
+        },
+        background: {
+          default: "var(--sds-interactive-secondary-hollow-background-default)",
+          hover: "var(--sds-interactive-secondary-hollow-background-hover)",
+          active: "var(--sds-interactive-secondary-hollow-background-active)",
+          disabled: "var(--sds-interactive-secondary-hollow-background-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-secondary-hollow-background-inactive-default)",
+            hover: "var(--sds-interactive-secondary-hollow-background-inactive-hover)",
+            active: "var(--sds-interactive-secondary-hollow-background-inactive-active)",
+            disabled: "var(--sds-interactive-secondary-hollow-background-inactive-disabled)",
+          },
         },
         stroke: {
           default: "var(--sds-interactive-secondary-hollow-stroke-default)",
+          inactive: "var(--sds-interactive-secondary-hollow-stroke-inactive)",
           hover: "var(--sds-interactive-secondary-hollow-stroke-hover)",
           active: "var(--sds-interactive-secondary-hollow-stroke-active)",
           disabled: "var(--sds-interactive-secondary-hollow-stroke-disabled)",
-          inactive: "var(--sds-interactive-secondary-hollow-stroke-inactive)",
         },
       },
     },
@@ -110,32 +136,16 @@ export const tokens = {
       },
     },
   },
-  neutral: {
-    content: {
-      primary: "var(--sds-neutral-content-primary)",
-      secondary: "var(--sds-neutral-content-secondary)",
-      tertiary: "var(--sds-neutral-content-tertiary)",
-      subtle: "var(--sds-neutral-content-subtle)",
-    },
-    background: {
-      subtle: "var(--sds-neutral-background-subtle)",
-      offset: "var(--sds-neutral-background-offset)",
-      default: "var(--sds-neutral-background-default)",
-    },
-    stroke: {
-      default: "var(--sds-neutral-stroke-default)",
-    },
-  },
   status: {
-    informative: {
+    error: {
       content: {
-        defaut: "var(--sds-status-informative-content-defaut)",
-      },
-      stroke: {
-        default: "var(--sds-status-informative-stroke-default)",
+        default: "var(--sds-status-error-content-default)",
       },
       background: {
-        default: "var(--sds-status-informative-background-default)",
+        default: "var(--sds-status-error-background-default)",
+      },
+      stroke: {
+        default: "var(--sds-status-error-stroke-default)",
       },
     },
     success: {
@@ -160,31 +170,33 @@ export const tokens = {
         default: "var(--sds-status-warning-background-default)",
       },
     },
-    error: {
+    informative: {
       content: {
-        default: "var(--sds-status-error-content-default)",
+        defaut: "var(--sds-status-informative-content-defaut)",
       },
       stroke: {
-        default: "var(--sds-status-error-stroke-default)",
+        default: "var(--sds-status-informative-stroke-default)",
       },
       background: {
-        default: "var(--sds-status-error-background-default)",
+        default: "var(--sds-status-informative-background-default)",
       },
     },
   },
-  effects: {
-    overlaysolid: "var(--sds-effects-overlaysolid)",
-    shadowdefault: "var(--sds-effects-shadowdefault)",
-    shadowcallout: "var(--sds-effects-shadowcallout)",
-    focus: "var(--sds-effects-focus)",
-  },
   onmedia: {
+    neutral: {
+      content: {
+        primary: "var(--sds-onmedia-neutral-content-primary)",
+        secondary: "var(--sds-onmedia-neutral-content-secondary)",
+        tertiary: "var(--sds-onmedia-neutral-content-tertiary)",
+        subtle: "var(--sds-onmedia-neutral-content-subtle)",
+      },
+    },
     interactive: {
       filled: {
         content: {
-          active: "var(--sds-onmedia-interactive-filled-content-active)",
-          hover: "var(--sds-onmedia-interactive-filled-content-hover)",
           default: "var(--sds-onmedia-interactive-filled-content-default)",
+          hover: "var(--sds-onmedia-interactive-filled-content-hover)",
+          active: "var(--sds-onmedia-interactive-filled-content-active)",
           disabled: "var(--sds-onmedia-interactive-filled-content-disabled)",
         },
         background: {
@@ -218,23 +230,21 @@ export const tokens = {
         },
       },
     },
-    neutral: {
-      content: {
-        primary: "var(--sds-onmedia-neutral-content-primary)",
-        secondary: "var(--sds-onmedia-neutral-content-secondary)",
-        tertiary: "var(--sds-onmedia-neutral-content-tertiary)",
-        subtle: "var(--sds-onmedia-neutral-content-subtle)",
-      },
-    },
+  },
+  effects: {
+    overlaysolid: "var(--sds-effects-overlaysolid)",
+    shadowdefault: "var(--sds-effects-shadowdefault)",
+    shadowcallout: "var(--sds-effects-shadowcallout)",
+    focus: "var(--sds-effects-focus)",
   },
   accents: {
+    solid: {
+      primary: "var(--sds-accents-solid-primary)",
+      secondary: "var(--sds-accents-solid-secondary)",
+    },
     gradient: {
       primarystart: "var(--sds-accents-gradient-primarystart)",
       primaryend: "var(--sds-accents-gradient-primaryend)",
-    },
-    solid: {
-      secondary: "var(--sds-accents-solid-secondary)",
-      primary: "var(--sds-accents-solid-primary)",
     },
   },
   utility: {
@@ -252,9 +262,7 @@ export const shapeTokens = {
         small: "var(--sds-shape-border-radius-small)",
         medium: "var(--sds-shape-border-radius-medium)",
         large: "var(--sds-shape-border-radius-large)",
-        x: {
-          large: "var(--sds-shape-border-radius-x-large)",
-        },
+        xlarge: "var(--sds-shape-border-radius-xlarge)",
         display: {
           small: "var(--sds-shape-border-radius-display-small)",
           medium: "var(--sds-shape-border-radius-display-medium)",
@@ -269,23 +277,27 @@ export const shapeTokens = {
 export const typographyTokens = {
   typography: {
     font: {
+      family: {
+        title: "var(--sds-typography-font-family-title)",
+        subtitle: "var(--sds-typography-font-family-subtitle)",
+        body: {
+          content: "var(--sds-typography-font-family-body-content)",
+          interactive: "var(--sds-typography-font-family-body-interactive)",
+        },
+      },
       size: {
         title: {
           huge: "var(--sds-typography-font-size-title-huge)",
           large: "var(--sds-typography-font-size-title-large)",
           medium: "var(--sds-typography-font-size-title-medium)",
           small: "var(--sds-typography-font-size-title-small)",
-          x: {
-            small: "var(--sds-typography-font-size-title-x-small)",
-          },
+          xsmall: "var(--sds-typography-font-size-title-xsmall)",
         },
         subtitle: {
           large: "var(--sds-typography-font-size-subtitle-large)",
           medium: "var(--sds-typography-font-size-subtitle-medium)",
           small: "var(--sds-typography-font-size-subtitle-small)",
-          x: {
-            small: "var(--sds-typography-font-size-subtitle-x-small)",
-          },
+          xsmall: "var(--sds-typography-font-size-subtitle-xsmall)",
         },
         body: {
           content: {
@@ -293,9 +305,7 @@ export const typographyTokens = {
             large: "var(--sds-typography-font-size-body-content-large)",
             medium: "var(--sds-typography-font-size-body-content-medium)",
             small: "var(--sds-typography-font-size-body-content-small)",
-            x: {
-              small: "var(--sds-typography-font-size-body-content-x-small)",
-            },
+            xsmall: "var(--sds-typography-font-size-body-content-xsmall)",
           },
           interactive: {
             huge: "var(--sds-typography-font-size-body-interactive-huge)",
@@ -313,14 +323,6 @@ export const typographyTokens = {
           interactive: "var(--sds-typography-font-weight-body-interactive)",
         },
       },
-      family: {
-        title: "var(--sds-typography-font-family-title)",
-        subtitle: "var(--sds-typography-font-family-subtitle)",
-        body: {
-          content: "var(--sds-typography-font-family-body-content)",
-          interactive: "var(--sds-typography-font-family-body-interactive)",
-        },
-      },
     },
     line: {
       height: {
@@ -328,18 +330,14 @@ export const typographyTokens = {
           huge: "var(--sds-typography-line-height-title-huge)",
           large: "var(--sds-typography-line-height-title-large)",
           medium: "var(--sds-typography-line-height-title-medium)",
-          x: {
-            small: "var(--sds-typography-line-height-title-x-small)",
-          },
           small: "var(--sds-typography-line-height-title-small)",
+          xsmall: "var(--sds-typography-line-height-title-xsmall)",
         },
         subtitle: {
           large: "var(--sds-typography-line-height-subtitle-large)",
           medium: "var(--sds-typography-line-height-subtitle-medium)",
           small: "var(--sds-typography-line-height-subtitle-small)",
-          x: {
-            small: "var(--sds-typography-line-height-subtitle-x-small)",
-          },
+          xsmall: "var(--sds-typography-line-height-subtitle-xsmall)",
         },
         body: {
           content: {
@@ -347,9 +345,7 @@ export const typographyTokens = {
             large: "var(--sds-typography-line-height-body-content-large)",
             medium: "var(--sds-typography-line-height-body-content-medium)",
             small: "var(--sds-typography-line-height-body-content-small)",
-            x: {
-              small: "var(--sds-typography-line-height-body-content-x-small)",
-            },
+            xsmall: "var(--sds-typography-line-height-body-content-xsmall)",
           },
           interactive: {
             huge: "var(--sds-typography-line-height-body-interactive-huge)",
@@ -367,27 +363,21 @@ export const typographyTokens = {
           large: "var(--sds-typography-letter-spacing-title-large)",
           medium: "var(--sds-typography-letter-spacing-title-medium)",
           small: "var(--sds-typography-letter-spacing-title-small)",
-          x: {
-            small: "var(--sds-typography-letter-spacing-title-x-small)",
-          },
+          xsmall: "var(--sds-typography-letter-spacing-title-xsmall)",
         },
         subtitle: {
           large: "var(--sds-typography-letter-spacing-subtitle-large)",
           medium: "var(--sds-typography-letter-spacing-subtitle-medium)",
           small: "var(--sds-typography-letter-spacing-subtitle-small)",
-          x: {
-            small: "var(--sds-typography-letter-spacing-subtitle-x-small)",
-          },
+          xsmall: "var(--sds-typography-letter-spacing-subtitle-xsmall)",
         },
         body: {
           content: {
+            huge: "var(--sds-typography-letter-spacing-body-content-huge)",
             large: "var(--sds-typography-letter-spacing-body-content-large)",
             medium: "var(--sds-typography-letter-spacing-body-content-medium)",
             small: "var(--sds-typography-letter-spacing-body-content-small)",
-            x: {
-              small: "var(--sds-typography-letter-spacing-body-content-x-small)",
-            },
-            huge: "var(--sds-typography-letter-spacing-body-content-huge)",
+            xsmall: "var(--sds-typography-letter-spacing-body-content-xsmall)",
           },
           interactive: {
             huge: "var(--sds-typography-letter-spacing-body-interactive-huge)",
@@ -402,12 +392,10 @@ export const typographyTokens = {
 } as const;
 
 export const breakpointTokens = {
-  breakpoint: {
-    viewport: {
-      x: {
-        padding: "var(--sds-breakpoint-viewport-x-padding)",
-      },
-      width: "var(--sds-breakpoint-viewport-width)",
+  viewport: {
+    width: "var(--sds-viewport-width)",
+    x: {
+      padding: "var(--sds-viewport-x-padding)",
     },
   },
 } as const;

@@ -10,57 +10,71 @@
  */
 
 :root {
-  --sds-interactive-primary-filled-background-active: #0120c5; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
-  --sds-interactive-primary-filled-background-hover: #1a39de; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
-  --sds-interactive-primary-filled-background-default: #3e5cff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
-  --sds-interactive-primary-filled-background-disabled: #c0caff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-neutral-content-primary: #151a24; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-content-secondary: #374257; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-content-tertiary: #515f7a; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-content-subtle: #8f9fbf; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-background-default: #ffffff; /** The default background color for the app. */
+  --sds-neutral-background-offset: #f2f5fa; /** An offset color for the app, for example, used to distinguish between sections of content blocks. */
+  --sds-neutral-background-subtle: #e1e6f0; /** An even larger distinguishing background color offset from the default app's background color. */
+  --sds-neutral-stroke-default: #e1e6f0; /** Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements. */
   --sds-interactive-primary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
-  --sds-interactive-primary-filled-content-disabled: #f0f2ff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-hover: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-active: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
-  --sds-interactive-primary-hollow-background-active: #f0f2ff; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-background-hover: #f0f2ff; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-background-default: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-content-active: #0120c5; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
-  --sds-interactive-primary-hollow-content-hover: #1a39de; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-filled-content-disabled: #f0f2ff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
+  --sds-interactive-primary-filled-background-default: #3e5cff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-interactive-primary-filled-background-hover: #1a39de; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-interactive-primary-filled-background-active: #0120c5; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-interactive-primary-filled-background-disabled: #c0caff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
   --sds-interactive-primary-hollow-content-default: #3e5cff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-hollow-content-hover: #1a39de; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-hollow-content-active: #0120c5; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
   --sds-interactive-primary-hollow-content-disabled: #c0caff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-hollow-background-default: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
+  --sds-interactive-primary-hollow-background-hover: #f0f2ff; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
+  --sds-interactive-primary-hollow-background-active: #f0f2ff; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
+  --sds-interactive-primary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
   --sds-interactive-primary-hollow-stroke-default: #9eadff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
   --sds-interactive-primary-hollow-stroke-hover: #7a8fff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
   --sds-interactive-primary-hollow-stroke-active: #5f78ff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
   --sds-interactive-primary-hollow-stroke-disabled: #dbe1ff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
-  --sds-interactive-secondary-filled-background-active: #151a24; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-hover: #0a0b10; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-default: #040506; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-disabled: #d3dbeb; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-inactive-default: #8f9fbf; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-background-inactive-hover: #6f7e9e; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-background-inactive-active: #b6c1d6; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-background-inactive-disabled: #d3dbeb; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-content-active: #e1e6f0; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
-  --sds-interactive-secondary-filled-content-hover: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-secondary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
+  --sds-interactive-secondary-filled-content-hover: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
+  --sds-interactive-secondary-filled-content-active: #e1e6f0; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-secondary-filled-content-disabled: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-secondary-filled-content-inactive-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
   --sds-interactive-secondary-filled-content-inactive-hover: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
   --sds-interactive-secondary-filled-content-inactive-active: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
   --sds-interactive-secondary-filled-content-inactive-disabled: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-hollow-background-active: #f2f5fa; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-hover: #f2f5fa; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-default: rgba(2, 2, 2, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-disabled: rgba(2, 2, 2, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-inactive: rgba(2, 2, 2, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-content-disabled: #d3dbeb; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
-  --sds-interactive-secondary-hollow-content-hover: #0a0b10; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-filled-background-default: #040506; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
+  --sds-interactive-secondary-filled-background-inactive-default: #8f9fbf; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-inactive-hover: #6f7e9e; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-inactive-active: #b6c1d6; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-inactive-disabled: #d3dbeb; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-hover: #0a0b10; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
+  --sds-interactive-secondary-filled-background-active: #151a24; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
+  --sds-interactive-secondary-filled-background-disabled: #d3dbeb; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
   --sds-interactive-secondary-hollow-content-default: #040506; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-hollow-content-hover: #0a0b10; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions. Hollow interactive content types do not require a background or border element. */
   --sds-interactive-secondary-hollow-content-active: #151a24; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
-  --sds-interactive-secondary-hollow-content-inactive: #374257; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-hollow-content-disabled: #d3dbeb; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-hollow-content-inactive-default: #515f7a; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-content-inactive-hover: #151a24; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-content-inactive-active: #232b3b; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-content-inactive-disabled: #d3dbeb; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-default: rgba(2, 2, 2, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-hover: #f2f5fa; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-active: #f2f5fa; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-disabled: rgba(2, 2, 2, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-inactive-default: #ffffff; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-hover: #f2f5fa; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-active: #e1e6f0; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-disabled: #e1e6f0; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
   --sds-interactive-secondary-hollow-stroke-default: #e1e6f0; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
+  --sds-interactive-secondary-hollow-stroke-inactive: #e1e6f0; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-hover: #d3dbeb; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-active: #b6c1d6; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-disabled: #f2f5fa; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
-  --sds-interactive-secondary-hollow-stroke-inactive: #e1e6f0; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-fields-content-default: #0a0b10; /** Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements. */
   --sds-interactive-fields-content-placeholder: #374257; /** Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements. */
   --sds-interactive-fields-content-suggested: #6f7e9e; /** Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements. */
@@ -72,25 +86,25 @@
   --sds-interactive-fields-stroke-hover: #b6c1d6; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-active: #151a24; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-disabled: #e1e6f0; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
-  --sds-status-informative-content-defaut: #005b6f; /** Used for text or icon content that represents an informational state. */
-  --sds-status-informative-stroke-default: #12caf2; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
-  --sds-status-informative-background-default: #e1faff; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
+  --sds-status-error-content-default: #b21a21; /** A general-use error state for text or icon content. */
+  --sds-status-error-background-default: #fce9ea; /** A conditionally error state background used for elements using status-error-content variables. */
+  --sds-status-error-stroke-default: #df2029; /** A conditionally error state border color used for elements using status-error-content variables. */
   --sds-status-success-content-default: #0c6a3b; /** Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback */
   --sds-status-success-stroke-default: #1ab266; /** A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs). */
   --sds-status-success-background-default: #e7f9f0; /** A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis. */
   --sds-status-warning-content-default: #5c4d00; /** Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices. */
   --sds-status-warning-stroke-default: #e2c432; /** A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders). */
   --sds-status-warning-background-default: #f8f3dd; /** A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators. */
-  --sds-status-error-content-default: #b21a21; /** A general-use error state for text or icon content. */
-  --sds-status-error-stroke-default: #df2029; /** A conditionally error state border color used for elements using status-error-content variables. */
-  --sds-status-error-background-default: #fce9ea; /** A conditionally error state background used for elements using status-error-content variables. */
-  --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
-  --sds-effects-shadowdefault: #050609; /** Color used for elevation drop shadow effects only. */
-  --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
-  --sds-effects-focus: #b6c1d6; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
-  --sds-onmedia-interactive-filled-content-active: rgba(2, 2, 2, 0.8); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
-  --sds-onmedia-interactive-filled-content-hover: rgba(2, 2, 2, 0.9); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
+  --sds-status-informative-content-defaut: #005b6f; /** Used for text or icon content that represents an informational state. */
+  --sds-status-informative-stroke-default: #12caf2; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
+  --sds-status-informative-background-default: #e1faff; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
+  --sds-onmedia-neutral-content-primary: rgba(255, 255, 255, 0.98); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-onmedia-neutral-content-secondary: rgba(255, 255, 255, 0.8); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-onmedia-neutral-content-tertiary: rgba(255, 255, 255, 0.6); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-onmedia-neutral-content-subtle: rgba(255, 255, 255, 0.3); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
   --sds-onmedia-interactive-filled-content-default: rgba(2, 2, 2, 0.98); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
+  --sds-onmedia-interactive-filled-content-hover: rgba(2, 2, 2, 0.9); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
+  --sds-onmedia-interactive-filled-content-active: rgba(2, 2, 2, 0.8); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
   --sds-onmedia-interactive-filled-content-disabled: rgba(2, 2, 2, 0.4); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
   --sds-onmedia-interactive-filled-background-default: #ffffff; /** Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content. */
   --sds-onmedia-interactive-filled-background-hover: rgba(255, 255, 255, 0.9); /** Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content. */
@@ -111,14 +125,14 @@
   --sds-onmedia-interactive-hollow-stroke-active: rgba(255, 255, 255, 0.7); /** An optional border color for elements utilizing onmedia-interactive-hollow-content. */
   --sds-onmedia-interactive-hollow-stroke-disabled: rgba(255, 255, 255, 0.1); /** An optional border color for elements utilizing onmedia-interactive-hollow-content. */
   --sds-onmedia-interactive-hollow-stroke-inactive: rgba(255, 255, 255, 0.2); /** An optional border color for elements utilizing onmedia-interactive-hollow-content. */
-  --sds-onmedia-neutral-content-primary: rgba(255, 255, 255, 0.98); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
-  --sds-onmedia-neutral-content-secondary: rgba(255, 255, 255, 0.8); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
-  --sds-onmedia-neutral-content-tertiary: rgba(255, 255, 255, 0.6); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
-  --sds-onmedia-neutral-content-subtle: rgba(255, 255, 255, 0.3); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
+  --sds-effects-shadowdefault: #050609; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-focus: #b6c1d6; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
+  --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
+  --sds-accents-solid-secondary: #040506; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-gradient-primarystart: #3e5cff; /** Color variable only to be used a color stop for gradient styles. */
   --sds-accents-gradient-primaryend: #8707c3; /** Color variable only to be used a color stop for gradient styles. */
-  --sds-accents-solid-secondary: #040506; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
-  --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-utility-transparent: rgba(255, 255, 255, 0); /** Used as a edge case fallback when transparency needs to be declared rather than a background color. */
 }
 
@@ -128,118 +142,122 @@
   --sds-shape-border-radius-small: 12px;
   --sds-shape-border-radius-medium: 16px;
   --sds-shape-border-radius-large: 16px;
-  --sds-shape-border-radius-x-large: 20px;
+  --sds-shape-border-radius-xlarge: 20px;
   --sds-shape-border-radius-display-small: 24px;
   --sds-shape-border-radius-display-medium: 32px;
   --sds-shape-border-radius-display-large: 64px;
   --sds-shape-border-radius-round: 999px;
 }
 
-/* ─── Breakpoint ──────────────────────────────────────────────────────────── */
+/* ─── Viewport (LG — default) ─────────────────────────────────────────────── */
 :root {
-  --sds-breakpoint-viewport-x-padding: 32px;
-  --sds-breakpoint-viewport-width: 1440px;
+  --sds-viewport-width: 1440px;
+  --sds-viewport-x-padding: 32px;
 }
 
 /* ─── Typography (LG — default) ───────────────────────────────────────────── */
 :root {
-  --sds-typography-font-size-title-huge: 64px;
-  --sds-typography-line-height-title-huge: 88px;
-  --sds-typography-font-size-title-large: 56px;
-  --sds-typography-font-size-title-medium: 48px;
-  --sds-typography-font-size-title-small: 36px;
-  --sds-typography-font-size-title-x-small: 28px;
-  --sds-typography-line-height-title-large: 72px;
-  --sds-typography-line-height-title-medium: 56px;
-  --sds-typography-line-height-title-x-small: 32px;
-  --sds-typography-line-height-title-small: 48px;
-  --sds-typography-font-size-subtitle-large: 20px;
-  --sds-typography-font-size-subtitle-medium: 16px;
-  --sds-typography-font-size-subtitle-small: 14px;
-  --sds-typography-font-size-subtitle-x-small: 12px;
-  --sds-typography-line-height-subtitle-large: 24px;
-  --sds-typography-line-height-subtitle-medium: 20px;
-  --sds-typography-line-height-subtitle-small: 20px;
-  --sds-typography-line-height-subtitle-x-small: 16px;
-  --sds-typography-font-weight-title: 800;
-  --sds-typography-font-weight-subtitle: 600;
-  --sds-typography-font-weight-body-content: 400;
-  --sds-typography-font-weight-body-interactive: 800;
   --sds-typography-font-family-title: Manrope;
   --sds-typography-font-family-subtitle: Manrope;
   --sds-typography-font-family-body-content: "Work Sans";
   --sds-typography-font-family-body-interactive: Manrope;
-  --sds-typography-letter-spacing-title-huge: -1.5px;
-  --sds-typography-letter-spacing-title-large: -1px;
-  --sds-typography-letter-spacing-title-medium: -0.5px;
-  --sds-typography-letter-spacing-title-small: -0.25px;
-  --sds-typography-letter-spacing-title-x-small: 0px;
-  --sds-typography-letter-spacing-subtitle-large: 0px;
-  --sds-typography-letter-spacing-subtitle-medium: 0px;
-  --sds-typography-letter-spacing-subtitle-small: 0px;
-  --sds-typography-letter-spacing-subtitle-x-small: 0px;
-  --sds-typography-letter-spacing-body-content-large: -0.5px;
-  --sds-typography-letter-spacing-body-content-medium: -0.2px;
-  --sds-typography-letter-spacing-body-content-small: -0.2px;
-  --sds-typography-letter-spacing-body-content-x-small: 0px;
-  --sds-typography-letter-spacing-body-content-huge: -0.5px;
-  --sds-typography-letter-spacing-body-interactive-huge: 0.5px;
-  --sds-typography-letter-spacing-body-interactive-large: 0.5px;
-  --sds-typography-letter-spacing-body-interactive-medium: 0.2px;
-  --sds-typography-letter-spacing-body-interactive-small: 0px;
+  --sds-typography-font-size-title-huge: 64px;
+  --sds-typography-font-size-title-large: 56px;
+  --sds-typography-font-size-title-medium: 48px;
+  --sds-typography-font-size-title-small: 36px;
+  --sds-typography-font-size-title-xsmall: 28px;
+  --sds-typography-font-size-subtitle-large: 20px;
+  --sds-typography-font-size-subtitle-medium: 16px;
+  --sds-typography-font-size-subtitle-small: 14px;
+  --sds-typography-font-size-subtitle-xsmall: 12px;
   --sds-typography-font-size-body-content-huge: 24px;
   --sds-typography-font-size-body-content-large: 20px;
   --sds-typography-font-size-body-content-medium: 16px;
   --sds-typography-font-size-body-content-small: 14px;
-  --sds-typography-font-size-body-content-x-small: 12px;
+  --sds-typography-font-size-body-content-xsmall: 12px;
   --sds-typography-font-size-body-interactive-huge: 24px;
   --sds-typography-font-size-body-interactive-large: 20px;
   --sds-typography-font-size-body-interactive-medium: 16px;
   --sds-typography-font-size-body-interactive-small: 14px;
+  --sds-typography-line-height-title-huge: 88px;
+  --sds-typography-line-height-title-large: 72px;
+  --sds-typography-line-height-title-medium: 56px;
+  --sds-typography-line-height-title-small: 48px;
+  --sds-typography-line-height-title-xsmall: 32px;
+  --sds-typography-line-height-subtitle-large: 24px;
+  --sds-typography-line-height-subtitle-medium: 20px;
+  --sds-typography-line-height-subtitle-small: 20px;
+  --sds-typography-line-height-subtitle-xsmall: 16px;
   --sds-typography-line-height-body-content-huge: 36px;
   --sds-typography-line-height-body-content-large: 32px;
   --sds-typography-line-height-body-content-medium: 24px;
   --sds-typography-line-height-body-content-small: 20px;
-  --sds-typography-line-height-body-content-x-small: 18px;
+  --sds-typography-line-height-body-content-xsmall: 18px;
   --sds-typography-line-height-body-interactive-huge: 36px;
   --sds-typography-line-height-body-interactive-large: 32px;
   --sds-typography-line-height-body-interactive-medium: 24px;
   --sds-typography-line-height-body-interactive-small: 20px;
+  --sds-typography-font-weight-title: 800;
+  --sds-typography-font-weight-subtitle: 600;
+  --sds-typography-font-weight-body-content: 400;
+  --sds-typography-font-weight-body-interactive: 800;
+  --sds-typography-letter-spacing-title-huge: -1.5px;
+  --sds-typography-letter-spacing-title-large: -1px;
+  --sds-typography-letter-spacing-title-medium: -0.5px;
+  --sds-typography-letter-spacing-title-small: -0.25px;
+  --sds-typography-letter-spacing-title-xsmall: 0px;
+  --sds-typography-letter-spacing-subtitle-large: 0px;
+  --sds-typography-letter-spacing-subtitle-medium: 0px;
+  --sds-typography-letter-spacing-subtitle-small: 0px;
+  --sds-typography-letter-spacing-subtitle-xsmall: 0px;
+  --sds-typography-letter-spacing-body-content-huge: -0.5px;
+  --sds-typography-letter-spacing-body-content-large: -0.5px;
+  --sds-typography-letter-spacing-body-content-medium: -0.20000000298023224px;
+  --sds-typography-letter-spacing-body-content-small: -0.20000000298023224px;
+  --sds-typography-letter-spacing-body-content-xsmall: 0px;
+  --sds-typography-letter-spacing-body-interactive-huge: 0.5px;
+  --sds-typography-letter-spacing-body-interactive-large: 0.5px;
+  --sds-typography-letter-spacing-body-interactive-medium: 0.20000000298023224px;
+  --sds-typography-letter-spacing-body-interactive-small: 0px;
 }
 
-/* ─── Typography (MD — ≤1279px) ───────────────────────────────────────────── */
-@media (max-width: 1279px) {
+/* ─── MD — ≤1439px ─────────────────────────────────────────────────── */
+@media (max-width: 1439px) {
   :root {
+    --sds-viewport-width: 768px;
+    --sds-viewport-x-padding: 24px;
+    --sds-typography-font-family-body-interactive: "Work Sans";
     --sds-typography-font-size-title-huge: 56px;
-    --sds-typography-line-height-title-huge: 72px;
     --sds-typography-font-size-title-large: 48px;
     --sds-typography-font-size-title-medium: 40px;
     --sds-typography-font-size-title-small: 32px;
-    --sds-typography-font-size-title-x-small: 24px;
+    --sds-typography-font-size-title-xsmall: 24px;
+    --sds-typography-line-height-title-huge: 72px;
     --sds-typography-line-height-title-large: 60px;
     --sds-typography-line-height-title-medium: 52px;
     --sds-typography-line-height-title-small: 44px;
     --sds-typography-font-weight-body-interactive: 600;
-    --sds-typography-font-family-body-interactive: "Work Sans";
   }
 }
 
-/* ─── Typography (XS — ≤767px) ────────────────────────────────────────────── */
+/* ─── XS — ≤767px ──────────────────────────────────────────────────── */
 @media (max-width: 767px) {
   :root {
+    --sds-viewport-width: 375px;
+    --sds-viewport-x-padding: 16px;
+    --sds-typography-font-family-body-interactive: "Work Sans";
     --sds-typography-font-size-title-huge: 48px;
-    --sds-typography-line-height-title-huge: 52px;
     --sds-typography-font-size-title-large: 42px;
     --sds-typography-font-size-title-medium: 36px;
     --sds-typography-font-size-title-small: 28px;
-    --sds-typography-font-size-title-x-small: 24px;
+    --sds-typography-font-size-title-xsmall: 24px;
+    --sds-typography-font-size-body-content-huge: 20px;
+    --sds-typography-font-size-body-interactive-huge: 20px;
+    --sds-typography-line-height-title-huge: 52px;
     --sds-typography-line-height-title-large: 48px;
     --sds-typography-line-height-title-medium: 48px;
     --sds-typography-line-height-title-small: 36px;
     --sds-typography-font-weight-body-interactive: 600;
-    --sds-typography-font-family-body-interactive: "Work Sans";
-    --sds-typography-font-size-body-content-huge: 20px;
-    --sds-typography-font-size-body-interactive-huge: 20px;
   }
 }
 
@@ -249,57 +267,71 @@
  */
 
 .dark {
-  --sds-interactive-primary-filled-background-active: #7a8fff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
-  --sds-interactive-primary-filled-background-hover: #5f78ff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
-  --sds-interactive-primary-filled-background-default: #3e5cff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
-  --sds-interactive-primary-filled-background-disabled: #000a40; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-neutral-content-primary: #ffffff; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-content-secondary: #d3dbeb; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-content-tertiary: #b6c1d6; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-content-subtle: #6f7e9e; /** Used for non-interactive text or other content (Text that does not change state) */
+  --sds-neutral-background-default: #040506; /** The default background color for the app. */
+  --sds-neutral-background-offset: #191926; /** An offset color for the app, for example, used to distinguish between sections of content blocks. */
+  --sds-neutral-background-subtle: #27273a; /** An even larger distinguishing background color offset from the default app's background color. */
+  --sds-neutral-stroke-default: #151a24; /** Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements. */
   --sds-interactive-primary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
-  --sds-interactive-primary-filled-content-disabled: #0120c5; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-hover: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-active: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
-  --sds-interactive-primary-hollow-background-active: #000a40; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-background-hover: #000a40; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-background-default: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
-  --sds-interactive-primary-hollow-content-active: #c0caff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
-  --sds-interactive-primary-hollow-content-hover: #9eadff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-filled-content-disabled: #0120c5; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
+  --sds-interactive-primary-filled-background-default: #3e5cff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-interactive-primary-filled-background-hover: #5f78ff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-interactive-primary-filled-background-active: #7a8fff; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
+  --sds-interactive-primary-filled-background-disabled: #000a40; /** Primary-level action background, meant to exclusively be paired with primary-filled-content colors. */
   --sds-interactive-primary-hollow-content-default: #7a8fff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-hollow-content-hover: #9eadff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-hollow-content-active: #c0caff; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
   --sds-interactive-primary-hollow-content-disabled: #1a39de; /** A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-primary-hollow-background-default: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
+  --sds-interactive-primary-hollow-background-hover: #000a40; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
+  --sds-interactive-primary-hollow-background-active: #000a40; /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
+  --sds-interactive-primary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables. */
   --sds-interactive-primary-hollow-stroke-default: #7a8fff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
   --sds-interactive-primary-hollow-stroke-hover: #c0caff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
   --sds-interactive-primary-hollow-stroke-active: #dbe1ff; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
   --sds-interactive-primary-hollow-stroke-disabled: #000f60; /** Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button. */
-  --sds-interactive-secondary-filled-background-active: #e1e6f0; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-hover: #f2f5fa; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-default: #ffffff; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-disabled: #232b3b; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
-  --sds-interactive-secondary-filled-background-inactive-default: #515f7a; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-background-inactive-hover: #6f7e9e; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-background-inactive-active: #b6c1d6; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-background-inactive-disabled: #d3dbeb; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-filled-content-active: #191926; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
-  --sds-interactive-secondary-filled-content-hover: #0a0b10; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-secondary-filled-content-default: #040506; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
+  --sds-interactive-secondary-filled-content-hover: #0a0b10; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
+  --sds-interactive-secondary-filled-content-active: #191926; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-secondary-filled-content-disabled: #0a0b10; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-secondary-filled-content-inactive-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
   --sds-interactive-secondary-filled-content-inactive-hover: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
   --sds-interactive-secondary-filled-content-inactive-active: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
   --sds-interactive-secondary-filled-content-inactive-disabled: #f2f5fa; /** Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
-  --sds-interactive-secondary-hollow-background-active: rgba(255, 255, 255, 0.1); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-hover: rgba(255, 255, 255, 0.05); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-default: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-inactive: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-content-disabled: #6f7e9e; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
-  --sds-interactive-secondary-hollow-content-hover: #f2f5fa; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-filled-background-default: #ffffff; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
+  --sds-interactive-secondary-filled-background-inactive-default: #515f7a; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-inactive-hover: #6f7e9e; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-inactive-active: #b6c1d6; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-inactive-disabled: #d3dbeb; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive. */
+  --sds-interactive-secondary-filled-background-hover: #f2f5fa; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
+  --sds-interactive-secondary-filled-background-active: #e1e6f0; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
+  --sds-interactive-secondary-filled-background-disabled: #232b3b; /** Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors. */
   --sds-interactive-secondary-hollow-content-default: #ffffff; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-hollow-content-hover: #f2f5fa; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions. Hollow interactive content types do not require a background or border element. */
   --sds-interactive-secondary-hollow-content-active: #e1e6f0; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
-  --sds-interactive-secondary-hollow-content-inactive: #8f9fbf; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-hollow-content-disabled: #6f7e9e; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. */
+  --sds-interactive-secondary-hollow-content-inactive-default: #b6c1d6; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-content-inactive-hover: #d3dbeb; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-content-inactive-active: #151a24; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-content-inactive-disabled: #232b3b; /** A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-default: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-hover: rgba(255, 255, 255, 0.05); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-active: rgba(255, 255, 255, 0.1); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
+  --sds-interactive-secondary-hollow-background-inactive-default: #080808; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-hover: #0a0b10; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-active: #151a24; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-disabled: #151a24; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
   --sds-interactive-secondary-hollow-stroke-default: rgba(255, 255, 255, 0.2); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
+  --sds-interactive-secondary-hollow-stroke-inactive: rgba(255, 255, 255, 0.1); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-hover: rgba(255, 255, 255, 0.3); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-active: rgba(255, 255, 255, 0.4); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-disabled: rgba(255, 255, 255, 0); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
-  --sds-interactive-secondary-hollow-stroke-inactive: rgba(255, 255, 255, 0.1); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-fields-content-default: #ffffff; /** Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements. */
   --sds-interactive-fields-content-placeholder: #8f9fbf; /** Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements. */
   --sds-interactive-fields-content-suggested: #6f7e9e; /** Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements. */
@@ -311,25 +343,25 @@
   --sds-interactive-fields-stroke-hover: #374257; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-active: #ffffff; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-disabled: #151a24; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
-  --sds-status-informative-content-defaut: #00b3da; /** Used for text or icon content that represents an informational state. */
-  --sds-status-informative-stroke-default: #008caa; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
-  --sds-status-informative-background-default: #001d23; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
+  --sds-status-error-content-default: #df2029; /** A general-use error state for text or icon content. */
+  --sds-status-error-background-default: #2d0608; /** A conditionally error state background used for elements using status-error-content variables. */
+  --sds-status-error-stroke-default: #b21a21; /** A conditionally error state border color used for elements using status-error-content variables. */
   --sds-status-success-content-default: #1ab266; /** Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback */
   --sds-status-success-stroke-default: #0c6a3b; /** A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs). */
   --sds-status-success-background-default: #041b0f; /** A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis. */
   --sds-status-warning-content-default: #e2c432; /** Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices. */
   --sds-status-warning-stroke-default: #e2c432; /** A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders). */
   --sds-status-warning-background-default: #141100; /** A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators. */
-  --sds-status-error-content-default: #df2029; /** A general-use error state for text or icon content. */
-  --sds-status-error-stroke-default: #b21a21; /** A conditionally error state border color used for elements using status-error-content variables. */
-  --sds-status-error-background-default: #2d0608; /** A conditionally error state background used for elements using status-error-content variables. */
-  --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
-  --sds-effects-shadowdefault: #050609; /** Color used for elevation drop shadow effects only. */
-  --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
-  --sds-effects-focus: #374257; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
-  --sds-onmedia-interactive-filled-content-active: rgba(2, 2, 2, 0.8); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
-  --sds-onmedia-interactive-filled-content-hover: rgba(2, 2, 2, 0.9); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
+  --sds-status-informative-content-defaut: #00b3da; /** Used for text or icon content that represents an informational state. */
+  --sds-status-informative-stroke-default: #008caa; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
+  --sds-status-informative-background-default: #001d23; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
+  --sds-onmedia-neutral-content-primary: rgba(255, 255, 255, 0.98); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-onmedia-neutral-content-secondary: rgba(255, 255, 255, 0.8); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-onmedia-neutral-content-tertiary: rgba(255, 255, 255, 0.6); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-onmedia-neutral-content-subtle: rgba(255, 255, 255, 0.3); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
   --sds-onmedia-interactive-filled-content-default: rgba(2, 2, 2, 0.98); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
+  --sds-onmedia-interactive-filled-content-hover: rgba(2, 2, 2, 0.9); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
+  --sds-onmedia-interactive-filled-content-active: rgba(2, 2, 2, 0.8); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
   --sds-onmedia-interactive-filled-content-disabled: rgba(2, 2, 2, 0.4); /** Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens. */
   --sds-onmedia-interactive-filled-background-default: #ffffff; /** Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content. */
   --sds-onmedia-interactive-filled-background-hover: rgba(255, 255, 255, 0.9); /** Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content. */
@@ -350,13 +382,13 @@
   --sds-onmedia-interactive-hollow-stroke-active: rgba(255, 255, 255, 0.7); /** An optional border color for elements utilizing onmedia-interactive-hollow-content. */
   --sds-onmedia-interactive-hollow-stroke-disabled: rgba(255, 255, 255, 0.1); /** An optional border color for elements utilizing onmedia-interactive-hollow-content. */
   --sds-onmedia-interactive-hollow-stroke-inactive: rgba(255, 255, 255, 0.2); /** An optional border color for elements utilizing onmedia-interactive-hollow-content. */
-  --sds-onmedia-neutral-content-primary: rgba(255, 255, 255, 0.98); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
-  --sds-onmedia-neutral-content-secondary: rgba(255, 255, 255, 0.8); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
-  --sds-onmedia-neutral-content-tertiary: rgba(255, 255, 255, 0.6); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
-  --sds-onmedia-neutral-content-subtle: rgba(255, 255, 255, 0.3); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
+  --sds-effects-shadowdefault: #050609; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-focus: #374257; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
+  --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
+  --sds-accents-solid-secondary: #040506; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-gradient-primarystart: #3e5cff; /** Color variable only to be used a color stop for gradient styles. */
   --sds-accents-gradient-primaryend: #8707c3; /** Color variable only to be used a color stop for gradient styles. */
-  --sds-accents-solid-secondary: #040506; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
-  --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-utility-transparent: rgba(255, 255, 255, 0); /** Used as a edge case fallback when transparency needs to be declared rather than a background color. */
 }

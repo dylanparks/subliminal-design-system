@@ -90,7 +90,7 @@
   font-size: var(--sds-typography-font-size-body-interactive-huge);
   line-height: var(--sds-typography-line-height-body-interactive-huge);
   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-huge);
-  border-radius: var(--sds-shape-border-radius-x-large);
+  border-radius: var(--sds-shape-border-radius-xlarge);
   gap: 10px;
 }
 
