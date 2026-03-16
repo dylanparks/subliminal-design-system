@@ -1,46 +1,107 @@
-# Getting Started with Create React App
+# Subliminal Design System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A component library and design token pipeline built for product teams. Subliminal provides a cohesive set of accessible, themeable React components backed by a Figma-driven token system — bridging design and engineering with a single source of truth.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- **React 19** + **TypeScript**
+- **Vite** — dev server and build tool
+- **Style Dictionary v5** — transforms Figma variable exports into CSS custom properties and typed TypeScript constants
+- **Storybook 8** — component development environment and documentation
+- **Vitest** + **Testing Library** — unit and accessibility testing
+- **Chromatic** — visual regression testing
 
-### `npm start`
+## Token Pipeline
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Design tokens originate in Figma as variable collections and flow through Style Dictionary into two outputs:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Source (Figma JSON) | Contents |
+|---|---|
+| `Global Colors.json` | Raw color palette |
+| `Intent Colors.json` | Semantic color tokens (light + dark modes) |
+| `Typography.json` | Font size + line-height across 3 responsive breakpoints |
+| `Shape.json` | Border-radius scale |
+| `Breakpoint.json` | Viewport width + padding reference values |
 
-### `npm test`
+**Generated outputs** (in `src/tokens/generated/`):
+- `tokens.css` — CSS custom properties prefixed with `--sds-`
+- `tokens.ts` — Typed TypeScript constants
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Designer workflow:** Export Figma JSON → drop into `src/tokens/figma/` → run `npm run build:tokens`.
 
-### `npm run build`
+## Components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Actions
+| Component | Description |
+|---|---|
+| `Button` | Primary interaction element with multiple variants |
+| `ButtonGroup` | Grouped set of related buttons |
+| `Stepper` | Numeric input stepper (horizontal + vertical) |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Fields
+| Component | Status |
+|---|---|
+| `TextField` | Floating label text input with character counter, clear, error/success states |
+| `PasswordField` | Password input with show/hide toggle |
+| `TextArea` | Auto-resizing textarea with floating label and character counter |
+| Search Field | Upcoming |
+| Phone Field | Upcoming |
+| Dropdown | Upcoming |
+| Datepicker | Upcoming |
+| Timepicker | Upcoming |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Upcoming Sections
+- **Inputs** — Checkbox, Radio, Toggle, Rating Input, Slider
+- **Data Display** — Badges, Avatar, Profile
+- **Navigation** — Tabs, Breadcrumbs
+- **Table** — Data tables
+- **Surfaces** — Notification, Modal, Tooltips, Accordion
 
-### `npm run eject`
+## Accessibility
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+All components target **WCAG 2.1 AA**. Field components include:
+- Dual ARIA live regions for character-limit announcements
+- Milestone announcements at 50%, 25%, 10 characters, and at-limit
+- 500ms debounced announcements to avoid live-region spam
+- Keyboard-navigable interactive elements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Install dependencies
+npm install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Start Storybook
+npm run storybook
 
-## Learn More
+# Run tests
+npm test
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Build design tokens from Figma exports
+npm run build:tokens
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Build Storybook for deployment
+npm run build-storybook
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Actions/
+│   │   ├── Button/
+│   │   ├── ButtonGroup/
+│   │   └── Stepper/
+│   └── Fields/
+│       ├── TextField/
+│       ├── PasswordField/
+│       └── TextArea/
+└── tokens/
+    ├── figma/          ← Figma JSON exports (source of truth)
+    └── generated/      ← CSS custom properties + TS constants
+```
+
+## License
+
+See [LICENSE](../LICENSE).
