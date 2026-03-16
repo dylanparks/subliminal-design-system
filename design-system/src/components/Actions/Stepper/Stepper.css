@@ -1,0 +1,118 @@
+/* Stepper — Subliminal Design System
+ * Tokens: --sds-interactive-secondary-*, --sds-effects-*,
+ *         --sds-shape-border-radius-*, --sds-typography-*
+ */
+
+/* ─── Container ─────────────────────────────────────────────────────────────── */
+
+.sds-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sds-stepper--vertical {
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Tighten gap when the value display is present */
+.sds-stepper--vertical.sds-stepper--show-value {
+  gap: 4px;
+}
+
+/* ─── Button ─────────────────────────────────────────────────────────────────── */
+
+.sds-stepper__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--sds-shape-border-radius-round);
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  background-color: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.sds-stepper__button:hover:not(:disabled) {
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-hover);
+}
+
+.sds-stepper__button:active:not(:disabled) {
+  background-color: var(--sds-interactive-secondary-hollow-background-active);
+  color: var(--sds-interactive-secondary-hollow-content-active);
+  border-color: transparent;
+}
+
+.sds-stepper__button:focus-visible {
+  border: 4px solid var(--sds-effects-focus);
+  box-shadow: 0 0 0 6px var(--sds-effects-focus);
+  background-color: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-stepper__button:disabled,
+.sds-stepper__button[aria-disabled='true'] {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--sds-interactive-secondary-hollow-background-disabled);
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  border-color: transparent;
+}
+
+/* ─── Icon ───────────────────────────────────────────────────────────────────── */
+
+.sds-stepper__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ─── Value display ──────────────────────────────────────────────────────────── */
+
+.sds-stepper__value {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+  font-size: var(--sds-typography-font-size-body-interactive-medium);
+  line-height: var(--sds-typography-line-height-body-interactive-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-stepper__value-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 0;
+  cursor: default;
+}
+
+.sds-stepper__value-input:focus {
+  cursor: text;
+}
+
+/* Dim value when the whole stepper is disabled */
+.sds-stepper--disabled .sds-stepper__value {
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+}
+
+.sds-stepper--disabled .sds-stepper__value-input {
+  cursor: not-allowed;
+}

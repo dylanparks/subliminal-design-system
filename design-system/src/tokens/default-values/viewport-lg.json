@@ -1,0 +1,16 @@
+{
+  "Viewport": {
+    "Width": {
+      "$value": 1440,
+      "$type": "number"
+    },
+    "Min Height": {
+      "$value": 1024,
+      "$type": "number"
+    },
+    "X-Padding": {
+      "$value": 32,
+      "$type": "number"
+    }
+  }
+}

@@ -43,7 +43,7 @@ describe('Button', () => {
     render(<Button label="Test" />);
     const btn = screen.getByRole('button');
     expect(btn).toHaveClass('sds-button--primary-filled');
-    expect(btn).toHaveClass('sds-button--medium');
+    expect(btn).toHaveClass('sds-button--small');
   });
 
   it.each([
@@ -62,10 +62,10 @@ describe('Button', () => {
   );
 
   it.each([
+    ['xsmall', 'sds-button--xsmall'],
     ['small', 'sds-button--small'],
     ['medium', 'sds-button--medium'],
     ['large', 'sds-button--large'],
-    ['xlarge', 'sds-button--xlarge'],
   ] as const)('applies %s size class', (size, expectedClass) => {
     render(<Button label="Test" size={size} />);
     expect(screen.getByRole('button')).toHaveClass(expectedClass);

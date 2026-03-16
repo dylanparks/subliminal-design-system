@@ -1,0 +1,312 @@
+/* TextArea — Subliminal Design System
+ * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
+ *         --sds-effects-*, --sds-shape-border-radius-large,
+ *         --sds-typography-font-family-body-content,
+ *         --sds-typography-font-weight-body-content,
+ *         --sds-typography-font-size-body-content-{small|medium},
+ *         --sds-typography-line-height-body-content-{small|medium},
+ *         --sds-typography-letter-spacing-body-content-{small|medium}
+ *
+ * Single size: padding 12px 16px · border-radius-large (16px)
+ *
+ * Label behaviour:
+ *   Default (unfocused, empty) → medium body-content size (acts as visual placeholder)
+ *   Active  (focused, empty)   → transitions to small text at top via :focus-within
+ *   Filled  (has content)      → stays at small text at top via --filled modifier
+ *
+ * Textarea behaviour:
+ *   Hidden (height: 0, opacity: 0) when unfocused + empty.
+ *   Revealed on :focus-within or --filled.
+ *   Height managed by JS auto-resize (inline style overrides CSS height: 0).
+ *   Placeholder shown when focused + empty (separate prop from label).
+ *
+ * Clear button:
+ *   Shown when: filled + focused  |  filled + error  |  filled + success
+ *   Not rendered when disabled.
+ */
+
+/* ─── Root ──────────────────────────────────────────────────────────────────── */
+
+.sds-text-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Visible box ───────────────────────────────────────────────────────────── */
+
+.sds-text-area__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  background-color: var(--sds-interactive-fields-background-default);
+  border-radius: var(--sds-shape-border-radius-large);
+  box-sizing: border-box;
+  cursor: text;
+  gap: 8px;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+/* Hover */
+.sds-text-area__wrapper:hover {
+  background-color: var(--sds-interactive-fields-background-hover);
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+/* Active / focused */
+.sds-text-area__wrapper:focus-within {
+  background-color: var(--sds-interactive-fields-background-active);
+  border-color: var(--sds-interactive-fields-stroke-active);
+}
+
+/* Error — overrides hover and focus-within */
+.sds-text-area--error .sds-text-area__wrapper,
+.sds-text-area--error .sds-text-area__wrapper:hover,
+.sds-text-area--error .sds-text-area__wrapper:focus-within {
+  background-color: var(--sds-status-error-background-default);
+  border-color: var(--sds-status-error-stroke-default);
+}
+
+/* Success — overrides hover and focus-within */
+.sds-text-area--success .sds-text-area__wrapper,
+.sds-text-area--success .sds-text-area__wrapper:hover,
+.sds-text-area--success .sds-text-area__wrapper:focus-within {
+  background-color: var(--sds-status-success-background-default);
+  border-color: var(--sds-status-success-stroke-default);
+}
+
+/* Disabled — overrides all */
+.sds-text-area--disabled .sds-text-area__wrapper {
+  background-color: var(--sds-interactive-fields-background-disabled);
+  border-color: var(--sds-interactive-fields-stroke-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Inner (label + textarea column) ──────────────────────────────────────── */
+
+.sds-text-area__inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* ─── Label ─────────────────────────────────────────────────────────────────── */
+
+/*
+ * Default state: medium body-content size — visually fills the field as a
+ * placeholder substitute when the textarea is hidden.
+ * On focus or fill: transitions to small text, shrinking in place above the
+ * textarea content. No absolute positioning needed; the textarea appears
+ * below in normal flow.
+ */
+.sds-text-area__label {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-medium);
+  line-height: var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-suggested);
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: inherit;
+  transition:
+    font-size    160ms cubic-bezier(0.4, 0, 0.2, 1),
+    line-height  160ms cubic-bezier(0.4, 0, 0.2, 1),
+    letter-spacing 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shrink label to small when focused or filled */
+.sds-text-area__wrapper:focus-within .sds-text-area__label,
+.sds-text-area--filled .sds-text-area__label {
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* ─── Textarea ──────────────────────────────────────────────────────────────── */
+
+.sds-text-area__textarea {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-medium);
+  line-height: var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-default);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  overflow: hidden; /* no scrollbar while JS auto-resize maintains exact height */
+  resize: none;
+  cursor: inherit;
+  display: block;
+  min-height: var(--sds-typography-line-height-body-content-medium, 24px);
+
+  /* Hidden when unfocused and empty; height is 0 from CSS; JS clears inline
+     style on blur so this value takes effect. */
+  height: 0;
+  opacity: 0;
+  transition: opacity 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal when focused or filled — height controlled by JS inline style */
+.sds-text-area__wrapper:focus-within .sds-text-area__textarea,
+.sds-text-area--filled .sds-text-area__textarea {
+  opacity: 1;
+}
+
+.sds-text-area__textarea::placeholder {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+.sds-text-area__textarea:disabled {
+  color: var(--sds-interactive-fields-content-suggested);
+  cursor: not-allowed;
+}
+
+/* ─── Actions (clear button column) ────────────────────────────────────────── */
+
+.sds-text-area__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ─── Clear button ──────────────────────────────────────────────────────────── */
+
+.sds-text-area__clear {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--sds-neutral-content-primary);
+  transition: color 120ms ease;
+  flex-shrink: 0;
+}
+
+.sds-text-area__clear:hover {
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* Show when filled + focused */
+.sds-text-area--filled .sds-text-area__wrapper:focus-within .sds-text-area__clear {
+  display: flex;
+}
+
+/* Show when filled + error */
+.sds-text-area--filled.sds-text-area--error .sds-text-area__clear {
+  display: flex;
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-text-area--filled.sds-text-area--error .sds-text-area__clear:hover {
+  color: var(--sds-status-error-content-default);
+}
+
+/* Show when filled + success */
+.sds-text-area--filled.sds-text-area--success .sds-text-area__clear {
+  display: flex;
+  color: var(--sds-status-success-content-default);
+}
+
+.sds-text-area--filled.sds-text-area--success .sds-text-area__clear:hover {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Support group ─────────────────────────────────────────────────────────── */
+
+.sds-text-area__support {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ─── Message ───────────────────────────────────────────────────────────────── */
+
+.sds-text-area__message {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+}
+
+.sds-text-area--error .sds-text-area__message {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-text-area--success .sds-text-area__message {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Character count ───────────────────────────────────────────────────────── */
+
+.sds-text-area__char-count {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+  white-space: nowrap;
+}
+
+/* At limit — warning */
+.sds-text-area__char-count--at {
+  color: var(--sds-status-warning-content-default);
+}
+
+/* Over limit — error */
+.sds-text-area__char-count--over {
+  color: var(--sds-status-error-content-default);
+}
+
+/* ─── Visually hidden (screen-reader only) ──────────────────────────────────── */
+
+.sds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Focus ring (keyboard navigation) ─────────────────────────────────────── */
+
+.sds-text-area__wrapper:has(.sds-text-area__textarea:focus-visible) {
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}

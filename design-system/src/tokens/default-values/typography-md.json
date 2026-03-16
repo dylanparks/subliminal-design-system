@@ -1,0 +1,296 @@
+{
+  "Typography": {
+    "Font family": {
+      "Title": {
+        "$value": "Manrope",
+        "$type": "string"
+      },
+      "Subtitle": {
+        "$value": "Manrope",
+        "$type": "string"
+      },
+      "Body": {
+        "Content": {
+          "$value": "Work Sans",
+          "$type": "string"
+        },
+        "Interactive": {
+          "$value": "Work Sans",
+          "$type": "string"
+        }
+      }
+    },
+    "Font size": {
+      "Title": {
+        "Huge": {
+          "$value": 56,
+          "$type": "number"
+        },
+        "Large": {
+          "$value": 48,
+          "$type": "number"
+        },
+        "Medium": {
+          "$value": 40,
+          "$type": "number"
+        },
+        "Small": {
+          "$value": 32,
+          "$type": "number"
+        },
+        "XSmall": {
+          "$value": 24,
+          "$type": "number"
+        }
+      },
+      "Subtitle": {
+        "Large": {
+          "$value": 20,
+          "$type": "number"
+        },
+        "Medium": {
+          "$value": 16,
+          "$type": "number"
+        },
+        "Small": {
+          "$value": 14,
+          "$type": "number"
+        },
+        "XSmall": {
+          "$value": 12,
+          "$type": "number"
+        }
+      },
+      "Body": {
+        "Content": {
+          "Huge": {
+            "$value": 24,
+            "$type": "number"
+          },
+          "Large": {
+            "$value": 20,
+            "$type": "number"
+          },
+          "Medium": {
+            "$value": 16,
+            "$type": "number"
+          },
+          "Small": {
+            "$value": 14,
+            "$type": "number"
+          },
+          "XSmall": {
+            "$value": 12,
+            "$type": "number"
+          }
+        },
+        "Interactive": {
+          "Huge": {
+            "$value": 24,
+            "$type": "number"
+          },
+          "Large": {
+            "$value": 20,
+            "$type": "number"
+          },
+          "Medium": {
+            "$value": 16,
+            "$type": "number"
+          },
+          "Small": {
+            "$value": 14,
+            "$type": "number"
+          }
+        }
+      }
+    },
+    "Line height": {
+      "Title": {
+        "Huge": {
+          "$value": 72,
+          "$type": "number"
+        },
+        "Large": {
+          "$value": 60,
+          "$type": "number"
+        },
+        "Medium": {
+          "$value": 52,
+          "$type": "number"
+        },
+        "Small": {
+          "$value": 44,
+          "$type": "number"
+        },
+        "XSmall": {
+          "$value": 32,
+          "$type": "number"
+        }
+      },
+      "Subtitle": {
+        "Large": {
+          "$value": 24,
+          "$type": "number"
+        },
+        "Medium": {
+          "$value": 20,
+          "$type": "number"
+        },
+        "Small": {
+          "$value": 20,
+          "$type": "number"
+        },
+        "XSmall": {
+          "$value": 16,
+          "$type": "number"
+        }
+      },
+      "Body": {
+        "Content": {
+          "Huge": {
+            "$value": 36,
+            "$type": "number"
+          },
+          "Large": {
+            "$value": 32,
+            "$type": "number"
+          },
+          "Medium": {
+            "$value": 24,
+            "$type": "number"
+          },
+          "Small": {
+            "$value": 20,
+            "$type": "number"
+          },
+          "XSmall": {
+            "$value": 18,
+            "$type": "number"
+          }
+        },
+        "Interactive": {
+          "Huge": {
+            "$value": 36,
+            "$type": "number"
+          },
+          "Large": {
+            "$value": 32,
+            "$type": "number"
+          },
+          "Medium": {
+            "$value": 24,
+            "$type": "number"
+          },
+          "Small": {
+            "$value": 20,
+            "$type": "number"
+          }
+        }
+      }
+    },
+    "Font weight": {
+      "Title": {
+        "$value": 800,
+        "$type": "number"
+      },
+      "Subtitle": {
+        "$value": 600,
+        "$type": "number"
+      },
+      "Body": {
+        "Content": {
+          "$value": 400,
+          "$type": "number"
+        },
+        "Interactive": {
+          "$value": 600,
+          "$type": "number"
+        }
+      }
+    },
+    "Letter spacing": {
+      "Title": {
+        "Huge": {
+          "$value": -1.5,
+          "$type": "number"
+        },
+        "Large": {
+          "$value": -1,
+          "$type": "number"
+        },
+        "Medium": {
+          "$value": -0.5,
+          "$type": "number"
+        },
+        "Small": {
+          "$value": -0.25,
+          "$type": "number"
+        },
+        "XSmall": {
+          "$value": 0,
+          "$type": "number"
+        }
+      },
+      "Subtitle": {
+        "Large": {
+          "$value": 0,
+          "$type": "number"
+        },
+        "Medium": {
+          "$value": 0,
+          "$type": "number"
+        },
+        "Small": {
+          "$value": 0,
+          "$type": "number"
+        },
+        "XSmall": {
+          "$value": 0,
+          "$type": "number"
+        }
+      },
+      "Body": {
+        "Content": {
+          "Huge": {
+            "$value": -0.5,
+            "$type": "number"
+          },
+          "Large": {
+            "$value": -0.5,
+            "$type": "number"
+          },
+          "Medium": {
+            "$value": -0.20000000298023224,
+            "$type": "number"
+          },
+          "Small": {
+            "$value": -0.20000000298023224,
+            "$type": "number"
+          },
+          "XSmall": {
+            "$value": 0,
+            "$type": "number"
+          }
+        },
+        "Interactive": {
+          "Huge": {
+            "$value": 0.5,
+            "$type": "number"
+          },
+          "Large": {
+            "$value": 0.5,
+            "$type": "number"
+          },
+          "Medium": {
+            "$value": 0.20000000298023224,
+            "$type": "number"
+          },
+          "Small": {
+            "$value": 0,
+            "$type": "number"
+          }
+        }
+      }
+    }
+  }
+}

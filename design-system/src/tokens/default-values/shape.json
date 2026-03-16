@@ -1,0 +1,44 @@
+{
+  "Border Radius": {
+    "Xxsmall": {
+      "$value": 4,
+      "$type": "number"
+    },
+    "Xsmall": {
+      "$value": 8,
+      "$type": "number"
+    },
+    "Small": {
+      "$value": 10,
+      "$type": "number"
+    },
+    "Medium": {
+      "$value": 12,
+      "$type": "number"
+    },
+    "Large": {
+      "$value": 16,
+      "$type": "number"
+    },
+    "XLarge": {
+      "$value": 20,
+      "$type": "number"
+    },
+    "DisplaySmall": {
+      "$value": 24,
+      "$type": "number"
+    },
+    "DisplayMedium": {
+      "$value": 32,
+      "$type": "number"
+    },
+    "DisplayLarge": {
+      "$value": 64,
+      "$type": "number"
+    },
+    "Round": {
+      "$value": 999,
+      "$type": "number"
+    }
+  }
+}

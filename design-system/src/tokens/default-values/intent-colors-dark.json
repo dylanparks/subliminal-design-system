@@ -1,0 +1,746 @@
+{
+  "Neutral": {
+    "Content": {
+      "Primary": {
+        "$value": "{global-colors.Neutrals.White}",
+        "$type": "color",
+        "$description": "Used for non-interactive text or other content (Text that does not change state)"
+      },
+      "Secondary": {
+        "$value": "{global-colors.Neutrals.Steel.200}",
+        "$type": "color",
+        "$description": "Used for non-interactive text or other content (Text that does not change state)"
+      },
+      "Tertiary": {
+        "$value": "{global-colors.Neutrals.Steel.300}",
+        "$type": "color",
+        "$description": "Used for non-interactive text or other content (Text that does not change state)"
+      },
+      "Subtle": {
+        "$value": "{global-colors.Neutrals.Steel.500}",
+        "$type": "color",
+        "$description": "Used for non-interactive text or other content (Text that does not change state)"
+      }
+    },
+    "Background": {
+      "Default": {
+        "$value": "{global-colors.Neutrals.Steel.975}",
+        "$type": "color",
+        "$description": "The default background color for the app."
+      },
+      "Offset": {
+        "$value": "{global-colors.Neutrals.Slate.900}",
+        "$type": "color",
+        "$description": "An offset color for the app, for example, used to distinguish between sections of content blocks."
+      },
+      "Subtle": {
+        "$value": "{global-colors.Neutrals.Slate.800}",
+        "$type": "color",
+        "$description": "An even larger distinguishing background color offset from the default app's background color."
+      }
+    },
+    "Stroke": {
+      "Default": {
+        "$value": "{global-colors.Neutrals.Steel.900}",
+        "$type": "color",
+        "$description": "Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements."
+      }
+    }
+  },
+  "Interactive": {
+    "Primary": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Hover": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Active": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Indigo.800}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Colors.Indigo.600}",
+            "$type": "color",
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Indigo.500}",
+            "$type": "color",
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Indigo.400}",
+            "$type": "color",
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Indigo.950}",
+            "$type": "color",
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors."
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Colors.Indigo.400}",
+            "$type": "color",
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Indigo.300}",
+            "$type": "color",
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Indigo.200}",
+            "$type": "color",
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Indigo.700}",
+            "$type": "color",
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element."
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Indigo.950}",
+            "$type": "color",
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Indigo.950}",
+            "$type": "color",
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables."
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$value": "{global-colors.Colors.Indigo.400}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Indigo.200}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Indigo.100}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Indigo.900}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button."
+          }
+        }
+      }
+    },
+    "Secondary": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Neutrals.Steel.975}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Hover": {
+            "$value": "{global-colors.Neutrals.Steel.950}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Active": {
+            "$value": "{global-colors.Neutrals.Slate.900}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Neutrals.Steel.950}",
+            "$type": "color",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Neutrals.White}",
+              "$type": "color",
+              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            },
+            "Hover": {
+              "$value": "{global-colors.Neutrals.Steel.50}",
+              "$type": "color",
+              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            },
+            "Active": {
+              "$value": "{global-colors.Neutrals.Steel.50}",
+              "$type": "color",
+              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Neutrals.Steel.50}",
+              "$type": "color",
+              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Neutrals.Steel.600}",
+              "$type": "color",
+              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            },
+            "Hover": {
+              "$value": "{global-colors.Neutrals.Steel.500}",
+              "$type": "color",
+              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            },
+            "Active": {
+              "$value": "{global-colors.Neutrals.Steel.300}",
+              "$type": "color",
+              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Neutrals.Steel.200}",
+              "$type": "color",
+              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
+            }
+          },
+          "Hover": {
+            "$value": "{global-colors.Neutrals.Steel.50}",
+            "$type": "color",
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors."
+          },
+          "Active": {
+            "$value": "{global-colors.Neutrals.Steel.100}",
+            "$type": "color",
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Neutrals.Steel.800}",
+            "$type": "color",
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors."
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element."
+          },
+          "Hover": {
+            "$value": "{global-colors.Neutrals.Steel.50}",
+            "$type": "color",
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions. Hollow interactive content types do not require a background or border element."
+          },
+          "Active": {
+            "$value": "{global-colors.Neutrals.Steel.100}",
+            "$type": "color",
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Neutrals.Steel.500}",
+            "$type": "color",
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Neutrals.Steel.300}",
+              "$type": "color",
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            },
+            "Hover": {
+              "$value": "{global-colors.Neutrals.Steel.200}",
+              "$type": "color",
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            },
+            "Active": {
+              "$value": "{global-colors.Neutrals.Steel.900}",
+              "$type": "color",
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Neutrals.Steel.800}",
+              "$type": "color",
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Light.50}",
+            "$type": "color",
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Light.100}",
+            "$type": "color",
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Neutrals.Ash.975}",
+              "$type": "color",
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            },
+            "Hover": {
+              "$value": "{global-colors.Neutrals.Steel.950}",
+              "$type": "color",
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            },
+            "Active": {
+              "$value": "{global-colors.Neutrals.Steel.900}",
+              "$type": "color",
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Neutrals.Steel.900}",
+              "$type": "color",
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
+            }
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Light.200}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button."
+          },
+          "Inactive": {
+            "$value": "{global-colors.Transparent.Light.100}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Light.300}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Light.400}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button."
+          }
+        }
+      }
+    },
+    "Fields": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Neutrals.White}",
+          "$type": "color",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
+        },
+        "Placeholder": {
+          "$value": "{global-colors.Neutrals.Steel.400}",
+          "$type": "color",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
+        },
+        "Suggested": {
+          "$value": "{global-colors.Neutrals.Steel.500}",
+          "$type": "color",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Transparent.Light.0}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Hover": {
+          "$value": "{global-colors.Neutrals.Steel.950}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Active": {
+          "$value": "{global-colors.Transparent.Light.0}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Disabled": {
+          "$value": "{global-colors.Neutrals.Steel.900}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Neutrals.Steel.800}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Hover": {
+          "$value": "{global-colors.Neutrals.Steel.700}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Active": {
+          "$value": "{global-colors.Neutrals.White}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Disabled": {
+          "$value": "{global-colors.Neutrals.Steel.900}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        }
+      }
+    }
+  },
+  "Status": {
+    "Error": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Colors.Red.500}",
+          "$type": "color",
+          "$description": "A general-use error state for text or icon content."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Red.900}",
+          "$type": "color",
+          "$description": "A conditionally error state background used for elements using status-error-content variables."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Red.600}",
+          "$type": "color",
+          "$description": "A conditionally error state border color used for elements using status-error-content variables."
+        }
+      }
+    },
+    "Success": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Colors.Emerald.400}",
+          "$type": "color",
+          "$description": "Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback"
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Emerald.600}",
+          "$type": "color",
+          "$description": "A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs)."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Emerald.900}",
+          "$type": "color",
+          "$description": "A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis."
+        }
+      }
+    },
+    "Warning": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Colors.Yellow.200}",
+          "$type": "color",
+          "$description": "Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Yellow.200}",
+          "$type": "color",
+          "$description": "A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders)."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Yellow.900}",
+          "$type": "color",
+          "$description": "A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators."
+        }
+      }
+    },
+    "Informative": {
+      "Content": {
+        "Defaut": {
+          "$value": "{global-colors.Colors.Sky.500}",
+          "$type": "color",
+          "$description": "Used for text or icon content that represents an informational state."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Sky.600}",
+          "$type": "color",
+          "$description": "An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames)."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Sky.900}",
+          "$type": "color",
+          "$description": "An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints."
+        }
+      }
+    }
+  },
+  "OnMedia": {
+    "Neutral": {
+      "Content": {
+        "Primary": {
+          "$value": "{global-colors.Transparent.Light.975}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Secondary": {
+          "$value": "{global-colors.Transparent.Light.800}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Tertiary": {
+          "$value": "{global-colors.Transparent.Light.600}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Transparent.Light.300}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        }
+      }
+    },
+    "Interactive": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Dark.975}",
+            "$type": "color",
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Dark.900}",
+            "$type": "color",
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Dark.800}",
+            "$type": "color",
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Dark.400}",
+            "$type": "color",
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens."
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Light.900}",
+            "$type": "color",
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Light.800}",
+            "$type": "color",
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.300}",
+            "$type": "color",
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Neutrals.White}",
+            "$type": "color",
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Light.900}",
+            "$type": "color",
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Light.800}",
+            "$type": "color",
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.400}",
+            "$type": "color",
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed."
+          },
+          "Inactive": {
+            "$value": "{global-colors.Transparent.Light.700}",
+            "$type": "color",
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed."
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Light.50}",
+            "$type": "color",
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Light.100}",
+            "$type": "color",
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.100}",
+            "$type": "color",
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Inactive": {
+            "$value": "{global-colors.Transparent.Light.0}",
+            "$type": "color",
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content."
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Light.500}",
+            "$type": "color",
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Light.600}",
+            "$type": "color",
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Light.700}",
+            "$type": "color",
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Light.100}",
+            "$type": "color",
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content."
+          },
+          "Inactive": {
+            "$value": "{global-colors.Transparent.Light.200}",
+            "$type": "color",
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content."
+          }
+        }
+      }
+    }
+  },
+  "Effects": {
+    "OverlaySolid": {
+      "$value": "{global-colors.Transparent.Dark.600}",
+      "$type": "color",
+      "$description": "Used as the background behind popover display components such as modals."
+    },
+    "ShadowDefault": {
+      "$value": "#050609",
+      "$type": "color",
+      "$description": "Color used for elevation drop shadow effects only."
+    },
+    "ShadowCallout": {
+      "$value": "#050609",
+      "$type": "color",
+      "$description": "Color used for elevation drop shadow effects only."
+    },
+    "Focus": {
+      "$value": "{global-colors.Neutrals.Steel.700}",
+      "$type": "color",
+      "$description": "Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens."
+    }
+  },
+  "Accents": {
+    "Solid": {
+      "Primary": {
+        "$value": "{global-colors.Colors.Indigo.600}",
+        "$type": "color",
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only."
+      },
+      "Secondary": {
+        "$value": "{global-colors.Neutrals.Steel.975}",
+        "$type": "color",
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only."
+      }
+    },
+    "Gradient": {
+      "PrimaryStart": {
+        "$value": "{global-colors.Colors.Indigo.600}",
+        "$type": "color",
+        "$description": "Color variable only to be used a color stop for gradient styles."
+      },
+      "PrimaryEnd": {
+        "$value": "{global-colors.Colors.Purple.700}",
+        "$type": "color",
+        "$description": "Color variable only to be used a color stop for gradient styles."
+      }
+    }
+  },
+  "Utility": {
+    "Transparent": {
+      "$value": "{global-colors.Transparent.Light.0}",
+      "$type": "color",
+      "$description": "Used as a edge case fallback when transparency needs to be declared rather than a background color."
+    }
+  }
+}

@@ -39,62 +39,62 @@
 
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
-.sds-button--small {
-  height: 32px;
+.sds-button--xsmall {
+  height: var(--sds-spacing-size-xsmall);
   padding: 0 12px;
   font-size: var(--sds-typography-font-size-body-interactive-small);
   line-height: var(--sds-typography-line-height-body-interactive-small);
   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
-  border-radius: var(--sds-shape-border-radius-small);
+  border-radius: var(--sds-shape-border-radius-xsmall);
   gap: 6px;
 }
 
-.sds-button--small .sds-button__icon {
+.sds-button--xsmall .sds-button__icon {
   width: 16px;
   height: 16px;
 }
 
-.sds-button--medium {
-  height: 40px;
+.sds-button--small {
+  height: var(--sds-spacing-size-small);
   padding: 0 16px;
   font-size: var(--sds-typography-font-size-body-interactive-medium);
   line-height: var(--sds-typography-line-height-body-interactive-medium);
   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+  border-radius: var(--sds-shape-border-radius-small);
+  gap: 8px;
+}
+
+.sds-button--small .sds-button__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.sds-button--medium {
+  height: var(--sds-spacing-size-medium);
+  padding: 0 20px;
+  font-size: var(--sds-typography-font-size-body-interactive-large);
+  line-height: var(--sds-typography-line-height-body-interactive-large);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
   border-radius: var(--sds-shape-border-radius-medium);
   gap: 8px;
 }
 
 .sds-button--medium .sds-button__icon {
-  width: 18px;
-  height: 18px;
-}
-
-.sds-button--large {
-  height: 48px;
-  padding: 0 20px;
-  font-size: var(--sds-typography-font-size-body-interactive-large);
-  line-height: var(--sds-typography-line-height-body-interactive-large);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
-  border-radius: var(--sds-shape-border-radius-large);
-  gap: 8px;
-}
-
-.sds-button--large .sds-button__icon {
   width: 20px;
   height: 20px;
 }
 
-.sds-button--xlarge {
-  height: 56px;
+.sds-button--large {
+  height: var(--sds-spacing-size-large);
   padding: 0 24px;
   font-size: var(--sds-typography-font-size-body-interactive-huge);
   line-height: var(--sds-typography-line-height-body-interactive-huge);
   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-huge);
-  border-radius: var(--sds-shape-border-radius-x-large);
+  border-radius: var(--sds-shape-border-radius-large);
   gap: 10px;
 }
 
-.sds-button--xlarge .sds-button__icon {
+.sds-button--large .sds-button__icon {
   width: 22px;
   height: 22px;
 }
@@ -104,7 +104,6 @@
 .sds-button--primary-filled {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-interactive-primary-filled-content-default);
-  border: none;
 }
 
 .sds-button--primary-filled:hover {
@@ -168,7 +167,6 @@
 .sds-button--secondary-filled {
   background-color: var(--sds-interactive-secondary-filled-background-default);
   color: var(--sds-interactive-secondary-filled-content-default);
-  border: none;
 }
 
 .sds-button--secondary-filled:hover {
@@ -232,7 +230,6 @@
 .sds-button--media-filled {
   background-color: var(--sds-onmedia-interactive-filled-background-default);
   color: var(--sds-onmedia-interactive-filled-content-default);
-  border: none;
 }
 
 .sds-button--media-filled:hover {
