@@ -138,15 +138,24 @@
 
 /* ─── Shape ───────────────────────────────────────────────────────────────── */
 :root {
-  --sds-shape-border-radius-xsmall: 4px;
-  --sds-shape-border-radius-small: 12px;
-  --sds-shape-border-radius-medium: 16px;
+  --sds-shape-border-radius-xxsmall: 4px;
+  --sds-shape-border-radius-xsmall: 8px;
+  --sds-shape-border-radius-small: 10px;
+  --sds-shape-border-radius-medium: 12px;
   --sds-shape-border-radius-large: 16px;
   --sds-shape-border-radius-xlarge: 20px;
   --sds-shape-border-radius-display-small: 24px;
   --sds-shape-border-radius-display-medium: 32px;
   --sds-shape-border-radius-display-large: 64px;
   --sds-shape-border-radius-round: 999px;
+}
+
+/* ─── Spacing ──────────────────────────────────────────────────────────────── */
+:root {
+  --sds-spacing-size-large: 64px;
+  --sds-spacing-size-medium: 56px;
+  --sds-spacing-size-small: 48px;
+  --sds-spacing-size-xsmall: 36px;
 }
 
 /* ─── Viewport (LG — default) ─────────────────────────────────────────────── */

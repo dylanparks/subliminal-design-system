@@ -1,0 +1,383 @@
+/* TextField — Subliminal Design System
+ * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
+ *         --sds-effects-*, --sds-shape-border-radius-*, --sds-spacing-size-*,
+ *         --sds-typography-font-family-body-content,
+ *         --sds-typography-font-weight-body-content,
+ *         --sds-typography-font-size-body-content-{small|medium},
+ *         --sds-typography-line-height-body-content-{small|medium},
+ *         --sds-typography-letter-spacing-body-content-{small|medium}
+ *
+ * Sizes:
+ *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *   small  → --sds-spacing-size-small  (48px) · border-radius-small  (10px)
+ *
+ * State     CSS mechanism
+ * ──────────────────────────────────────────────────────────────────────
+ * hover     .sds-text-field__wrapper:hover
+ * active    .sds-text-field__wrapper:focus-within
+ * disabled  .sds-text-field--disabled  (+ [disabled] on input)
+ * error     .sds-text-field--error
+ * success   .sds-text-field--success
+ * filled    .sds-text-field--filled    (JS-added when value.length > 0)
+ */
+
+/* ─── Root ──────────────────────────────────────────────────────────────────── */
+
+.sds-text-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Visible box ───────────────────────────────────────────────────────────── */
+
+.sds-text-field__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  background-color: var(--sds-interactive-fields-background-default);
+  box-sizing: border-box;
+  cursor: text;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+/* Hover */
+.sds-text-field__wrapper:hover {
+  background-color: var(--sds-interactive-fields-background-hover);
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+/* Active / focused */
+.sds-text-field__wrapper:focus-within {
+  background-color: var(--sds-interactive-fields-background-active);
+  border-color: var(--sds-interactive-fields-stroke-active);
+}
+
+/* Error — overrides hover and focus-within */
+.sds-text-field--error .sds-text-field__wrapper,
+.sds-text-field--error .sds-text-field__wrapper:hover,
+.sds-text-field--error .sds-text-field__wrapper:focus-within {
+  background-color: var(--sds-status-error-background-default);
+  border-color: var(--sds-status-error-stroke-default);
+}
+
+/* Success — overrides hover and focus-within */
+.sds-text-field--success .sds-text-field__wrapper,
+.sds-text-field--success .sds-text-field__wrapper:hover,
+.sds-text-field--success .sds-text-field__wrapper:focus-within {
+  background-color: var(--sds-status-success-background-default);
+  border-color: var(--sds-status-success-stroke-default);
+}
+
+/* Disabled — overrides all */
+.sds-text-field--disabled .sds-text-field__wrapper {
+  background-color: var(--sds-interactive-fields-background-disabled);
+  border-color: var(--sds-interactive-fields-stroke-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Sizes ─────────────────────────────────────────────────────────────────── */
+
+.sds-text-field--large .sds-text-field__wrapper {
+  height: var(--sds-spacing-size-large);
+  padding: 0 16px;
+  border-radius: var(--sds-shape-border-radius-large);
+  gap: 16px;
+}
+
+.sds-text-field--medium .sds-text-field__wrapper {
+  height: var(--sds-spacing-size-medium);
+  padding: 0 12px;
+  border-radius: var(--sds-shape-border-radius-medium);
+  gap: 16px;
+}
+
+.sds-text-field--small .sds-text-field__wrapper {
+  height: var(--sds-spacing-size-small);
+  padding: 0 12px;
+  border-radius: var(--sds-shape-border-radius-small);
+  gap: 12px;
+}
+
+/* ─── Inner (label + input column) ─────────────────────────────────────────── */
+
+.sds-text-field__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Large/medium: position: relative so the label can be absolutely positioned for
+   smooth floating transitions; align-self: stretch fills the full wrapper height
+   so top/bottom offsets resolve correctly. */
+.sds-text-field--large .sds-text-field__inner,
+.sds-text-field--medium .sds-text-field__inner {
+  position: relative;
+  align-self: stretch;
+  justify-content: flex-end;
+}
+
+.sds-text-field--large .sds-text-field__inner {
+  padding-bottom: 10px;
+}
+
+.sds-text-field--medium .sds-text-field__inner {
+  padding-bottom: 6px;
+}
+
+/* ─── Label ─────────────────────────────────────────────────────────────────── */
+
+.sds-text-field__label {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-medium);
+  line-height: var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-suggested);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  cursor: inherit;
+}
+
+/* Large/medium: absolutely positioned so position AND size animate simultaneously
+   via CSS transforms — no layout reflow, fully smooth. */
+.sds-text-field--large .sds-text-field__label,
+.sds-text-field--medium .sds-text-field__label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  transition:
+    top 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    font-size 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    line-height 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    letter-spacing 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating label — large: focused or filled */
+.sds-text-field--large .sds-text-field__wrapper:focus-within .sds-text-field__label,
+.sds-text-field--large.sds-text-field--filled .sds-text-field__label {
+  top: 10px;
+  transform: translateY(0);
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* Floating label — medium: focused or filled */
+.sds-text-field--medium .sds-text-field__wrapper:focus-within .sds-text-field__label,
+.sds-text-field--medium.sds-text-field--filled .sds-text-field__label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* External label — small size (rendered above the wrapper) */
+.sds-text-field__label--external {
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* ─── Input ─────────────────────────────────────────────────────────────────── */
+
+.sds-text-field__input {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-medium);
+  line-height: var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-default);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  cursor: inherit;
+  transition:
+    opacity 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sds-text-field__input::placeholder {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+.sds-text-field__input:disabled {
+  color: var(--sds-interactive-fields-content-suggested);
+  cursor: not-allowed;
+}
+
+/* Large/medium: keep the input in the DOM so it stays focusable via label[for] and
+   programmatic focus(). display:none breaks all three — clicking, keyboard, and
+   label-triggered focus. max-height + opacity hide it visually without removing
+   it from the tab order. */
+.sds-text-field--large .sds-text-field__input,
+.sds-text-field--medium .sds-text-field__input {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Reveal when focused — cursor, caret, and typing all work */
+.sds-text-field--large .sds-text-field__wrapper:focus-within .sds-text-field__input,
+.sds-text-field--medium .sds-text-field__wrapper:focus-within .sds-text-field__input {
+  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  overflow: visible;
+  opacity: 1;
+}
+
+/* Reveal when filled (has a value) */
+.sds-text-field--large.sds-text-field--filled .sds-text-field__input,
+.sds-text-field--medium.sds-text-field--filled .sds-text-field__input {
+  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  overflow: visible;
+  opacity: 1;
+}
+
+/* Small: input always fully visible */
+.sds-text-field--small .sds-text-field__input {
+  display: block;
+}
+
+/* ─── Clear button ──────────────────────────────────────────────────────────── */
+
+.sds-text-field__clear {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--sds-neutral-content-primary);
+  transition: color 120ms ease;
+}
+
+.sds-text-field__clear:hover {
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* Show clear when focused */
+.sds-text-field__wrapper:focus-within .sds-text-field__clear {
+  display: flex;
+}
+
+/* Show clear in error state — always, with error colour */
+.sds-text-field--error .sds-text-field__clear {
+  display: flex;
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-text-field--error .sds-text-field__clear:hover {
+  color: var(--sds-status-error-content-default);
+}
+
+/* Show clear in success state — always, with success colour */
+.sds-text-field--success .sds-text-field__clear {
+  display: flex;
+  color: var(--sds-status-success-content-default);
+}
+
+.sds-text-field--success .sds-text-field__clear:hover {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Support group ─────────────────────────────────────────────────────────── */
+
+.sds-text-field__support {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ─── Message ───────────────────────────────────────────────────────────────── */
+
+.sds-text-field__message {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+}
+
+.sds-text-field--error .sds-text-field__message {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-text-field--success .sds-text-field__message {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Character count ───────────────────────────────────────────────────────── */
+
+.sds-text-field__char-count {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-small);
+  line-height: var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+  white-space: nowrap;
+}
+
+/* At limit — warning (exactly at maxLength) */
+.sds-text-field__char-count--at {
+  color: var(--sds-status-warning-content-default);
+}
+
+/* Over limit — error (programmatic / paste edge-case) */
+.sds-text-field__char-count--over {
+  color: var(--sds-status-error-content-default);
+}
+
+/* Char-count colour is driven by actual length, never by the field's error/success state. */
+
+/* ─── Visually hidden (screen-reader only) ──────────────────────────────────── */
+
+/* Used for live-region announcers and upfront character-limit hints.
+   Must not use display:none or visibility:hidden — those hide from AT too. */
+.sds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -3,7 +3,7 @@ import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Components/Button',
+  title: 'Actions/Button',
   argTypes: {
     intent: {
       control: 'select',
@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large', 'xlarge'],
+      options: ['xsmall', 'small', 'medium', 'large'],
     },
     disabled: { control: 'boolean' },
     showLabel: { control: 'boolean' },
@@ -25,7 +25,7 @@ const meta: Meta<typeof Button> = {
     label: 'Button',
     intent: 'primary',
     variant: 'filled',
-    size: 'medium',
+    size: 'small',
     disabled: false,
     showLabel: true,
   },

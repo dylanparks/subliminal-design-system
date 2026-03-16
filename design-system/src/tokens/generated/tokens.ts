@@ -258,6 +258,7 @@ export const shapeTokens = {
   shape: {
     border: {
       radius: {
+        xxsmall: "var(--sds-shape-border-radius-xxsmall)",
         xsmall: "var(--sds-shape-border-radius-xsmall)",
         small: "var(--sds-shape-border-radius-small)",
         medium: "var(--sds-shape-border-radius-medium)",
@@ -270,6 +271,17 @@ export const shapeTokens = {
         },
         round: "var(--sds-shape-border-radius-round)",
       },
+    },
+  },
+} as const;
+
+export const spacingTokens = {
+  spacing: {
+    size: {
+      large: "var(--sds-spacing-size-large)",
+      medium: "var(--sds-spacing-size-medium)",
+      small: "var(--sds-spacing-size-small)",
+      xsmall: "var(--sds-spacing-size-xsmall)",
     },
   },
 } as const;

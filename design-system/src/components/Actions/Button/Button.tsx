@@ -1,9 +1,9 @@
-import React from 'react';
+import { type ReactNode, type MouseEventHandler } from 'react';
 import './Button.css';
 
 export type ButtonIntent = 'primary' | 'secondary' | 'media';
 export type ButtonVariant = 'filled' | 'hollow';
-export type ButtonSize = 'small' | 'medium' | 'large' | 'xlarge';
+export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
   intent?: ButtonIntent;
@@ -11,10 +11,10 @@ export interface ButtonProps {
   size?: ButtonSize;
   label?: string;
   showLabel?: boolean;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   iconPosition?: 'left' | 'right';
   disabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
@@ -23,7 +23,7 @@ export interface ButtonProps {
 export function Button({
   intent = 'primary',
   variant = 'filled',
-  size = 'medium',
+  size = 'small',
   label,
   showLabel = true,
   icon,
@@ -59,7 +59,7 @@ export function Button({
       disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel ?? (iconOnly ? label : undefined)}
-      aria-disabled={disabled}
+      aria-disabled={disabled || undefined}
     >
       {hasIcon && iconPosition === 'left' && (
         <span className="sds-button__icon" aria-hidden="true">

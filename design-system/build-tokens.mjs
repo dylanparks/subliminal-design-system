@@ -395,8 +395,8 @@ if (cliArgs.input) {
     console.error(`    npx sds-build-tokens --input ./${zipMatches[0]}`);
     process.exit(1);
   } else {
-    // No ZIP found — fall back to DS repo default (src/tokens/relay/)
-    relayDir = join(__dirname, 'src', 'tokens', 'relay');
+    // No ZIP found — fall back to DS repo default (src/tokens/default-values/)
+    relayDir = join(__dirname, 'src', 'tokens', 'default-values');
     if (!existsSync(relayDir)) {
       console.error('✖ sds-build-tokens: No subliminal-tokens*.zip found in the current directory.');
       console.error('  Export your tokens from the Subliminal Relay Figma plugin, then re-run.');
@@ -416,6 +416,7 @@ const requiredFiles = [
   'typography-md.json',
   'typography-xs.json',
   'shape.json',
+  'spacing.json',
   'viewport-lg.json',
   'viewport-md.json',
   'viewport-xs.json',
@@ -488,6 +489,10 @@ const darkCss = readFileSync(join(tmpDir, 'dark.css'), 'utf8');
 // ─── Shape tokens ──────────────────────────────────────────────────────────────
 
 const shapeVars = parseRelayFlatTokens(join(relayDir, 'shape.json'), { prefix: 'shape' });
+
+// ─── Spacing tokens ────────────────────────────────────────────────────────────
+
+const spacingVars = parseRelayFlatTokens(join(relayDir, 'spacing.json'), { prefix: 'spacing' });
 
 // ─── Viewport tokens ───────────────────────────────────────────────────────────
 // Three modes (LG/MD/XS) — each emitted under the matching media query.
@@ -564,6 +569,9 @@ const parts = [
   '/* ─── Shape ───────────────────────────────────────────────────────────────── */',
   renderCssBlock(':root', shapeVars),
   '',
+  '/* ─── Spacing ──────────────────────────────────────────────────────────────── */',
+  renderCssBlock(':root', spacingVars),
+  '',
   '/* ─── Viewport (LG — default) ─────────────────────────────────────────────── */',
   renderCssBlock(':root', viewportLgVars),
   '',
@@ -602,6 +610,7 @@ const colorNested = buildNestedObject(intentPaths, (path) => {
 });
 
 const shapeNested = flatVarsToNestedTs(shapeVars);
+const spacingNested = flatVarsToNestedTs(spacingVars);
 const typographyNested = flatVarsToNestedTs(typographyLgVars);
 const breakpointNested = flatVarsToNestedTs(viewportLgVars);
 
@@ -614,6 +623,8 @@ const tokensTs = [
   'export type Tokens = typeof tokens;',
   '',
   `export const shapeTokens = ${objectToTs(shapeNested)} as const;`,
+  '',
+  `export const spacingTokens = ${objectToTs(spacingNested)} as const;`,
   '',
   `export const typographyTokens = ${objectToTs(typographyNested)} as const;`,
   '',

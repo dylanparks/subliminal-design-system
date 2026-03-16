@@ -1,0 +1,20 @@
+{
+  "Size": {
+    "Large": {
+      "$value": 64,
+      "$type": "number"
+    },
+    "Medium": {
+      "$value": 56,
+      "$type": "number"
+    },
+    "Small": {
+      "$value": 48,
+      "$type": "number"
+    },
+    "XSmall": {
+      "$value": 36,
+      "$type": "number"
+    }
+  }
+}
