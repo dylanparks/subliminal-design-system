@@ -305,8 +305,5 @@
   border: 0;
 }
 
-/* ─── Focus ring (keyboard navigation) ─────────────────────────────────────── */
-
-.sds-text-area__wrapper:has(.sds-text-area__textarea:focus-visible) {
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
-}
+/* Focus is communicated via the wrapper's border-color change on :focus-within,
+   consistent with TextField — no additional box-shadow ring needed. */
