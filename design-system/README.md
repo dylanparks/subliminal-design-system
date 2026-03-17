@@ -32,6 +32,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 ## Components
 
 ### Actions
+
 | Component | Description |
 |---|---|
 | `Button` | Primary interaction element with multiple variants |
@@ -39,31 +40,70 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `Stepper` | Numeric input stepper (horizontal + vertical) |
 
 ### Fields
+
+| Component | Status | Notes |
+|---|---|---|
+| `TextField` | ✓ | Floating label, character counter, clear, error/success states |
+| `PasswordField` | ✓ | Password input with show/hide toggle |
+| `TextArea` | ✓ | Auto-resizing, floating label, character counter |
+| `SearchField` | ✓ | Standard (`type="search"`) + Autocomplete (WAI-ARIA combobox) |
+| `PhoneField` | Planned | |
+| `Dropdown` | Planned | |
+| `Datepicker` | Planned | |
+| `Timepicker` | Planned | |
+
+### Inputs
+
 | Component | Status |
 |---|---|
-| `TextField` | Floating label text input with character counter, clear, error/success states |
-| `PasswordField` | Password input with show/hide toggle |
-| `TextArea` | Auto-resizing textarea with floating label and character counter |
-| Search Field | Upcoming |
-| Phone Field | Upcoming |
-| Dropdown | Upcoming |
-| Datepicker | Upcoming |
-| Timepicker | Upcoming |
+| `Checkbox` | Planned |
+| `Radio` | Planned |
+| `Toggle` | Planned |
+| `Rating Input` | Planned |
+| `Slider` | Planned |
 
-### Upcoming Sections
-- **Inputs** — Checkbox, Radio, Toggle, Rating Input, Slider
-- **Data Display** — Badges, Avatar, Profile
-- **Navigation** — Tabs, Breadcrumbs
-- **Table** — Data tables
-- **Surfaces** — Notification, Modal, Tooltips, Accordion
+### Navigation
+
+| Component | Status | Notes |
+|---|---|---|
+| `Menu` | ✓ | Portal-rendered, WAI-ARIA menu pattern, single + multi-select, keyboard navigation |
+| `Combobox` | Planned | Filterable select (WAI-ARIA combobox pattern) |
+| `Tabs` | Planned | |
+| `Breadcrumbs` | Planned | |
+
+### Data Display
+
+| Component | Status | Notes |
+|---|---|---|
+| `Badges` | Planned | Menu tag suffix uses a temporary inline pill until this is built |
+| `Avatar` | Planned | |
+| `Profile` | Planned | Avatar + label + support content |
+
+### Table
+
+| Component | Status |
+|---|---|
+| `Table` | Planned |
+
+### Surfaces
+
+| Component | Status |
+|---|---|
+| `Notification` | Planned |
+| `Modal` | Planned |
+| `Tooltips` | Planned |
+| `Accordion` | Planned |
 
 ## Accessibility
 
-All components target **WCAG 2.1 AA**. Field components include:
-- Dual ARIA live regions for character-limit announcements
-- Milestone announcements at 50%, 25%, 10 characters, and at-limit
-- 500ms debounced announcements to avoid live-region spam
-- Keyboard-navigable interactive elements
+All components target **WCAG 2.1 AA**. Patterns in use across the library:
+
+- Field focus communicated via border-color change on `:focus-within` — no redundant focus ring on wrappers
+- Character-limit fields: dual ARIA live regions, milestone announcements (50% / 25% / 10 chars / at-limit), 500ms debounce
+- `SearchField` autocomplete: WAI-ARIA Combobox pattern — `role="combobox"`, DOM focus stays on input, `aria-activedescendant` for virtual navigation, polite live region announcing result counts (1400ms debounce)
+- `Menu`: WAI-ARIA Menu pattern — `role="menu"`, arrow-key navigation, focus save/restore, transparent backdrop for outside-click capture
+- Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
+- Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
 
 ## Getting Started
 
@@ -93,13 +133,24 @@ src/
 │   │   ├── Button/
 │   │   ├── ButtonGroup/
 │   │   └── Stepper/
-│   └── Fields/
-│       ├── TextField/
-│       ├── PasswordField/
-│       └── TextArea/
+│   ├── Fields/
+│   │   ├── TextField/
+│   │   ├── PasswordField/
+│   │   ├── TextArea/
+│   │   └── SearchField/
+│   └── Navigation/
+│       └── Menu/
 └── tokens/
     ├── figma/          ← Figma JSON exports (source of truth)
     └── generated/      ← CSS custom properties + TS constants
+```
+
+Each component folder contains:
+```
+ComponentName.tsx          ← Component + exported types
+ComponentName.css          ← BEM-structured styles using --sds-* tokens
+ComponentName.stories.tsx  ← Storybook stories
+ComponentName.test.tsx     ← Vitest + Testing Library tests
 ```
 
 ## License
