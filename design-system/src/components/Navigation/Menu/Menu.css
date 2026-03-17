@@ -1,0 +1,231 @@
+/* Menu — Subliminal Design System
+ * Navigation/Menu
+ *
+ * Tokens: --sds-neutral-background-*, --sds-neutral-stroke-*, --sds-neutral-content-*,
+ *         --sds-interactive-fields-background-*, --sds-interactive-fields-content-*,
+ *         --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
+ *         --sds-effects-focus, --sds-effects-shadowcallout,
+ *         --sds-shape-border-radius-*, --sds-typography-*
+ *
+ * Subcomponents:
+ *   .sds-menu            → floating list container (portal-rendered, position: fixed)
+ *   .sds-menu-backdrop   → transparent click-capture overlay
+ *   .sds-menu-item       → individual option row
+ *   .sds-menu-item__checkbox   → multi-select checkbox indicator
+ *   .sds-menu-item__icon       → leading icon slot
+ *   .sds-menu-item__content    → label text
+ *   .sds-menu-item__suffix     → trailing suffix (tag | text | icon)
+ *   .sds-menu-divider    → visual separator between groups
+ *
+ * Keyboard states are CSS-driven via :focus-visible.
+ * Hover states are CSS-driven via :hover.
+ * Selected, disabled states are JS-applied modifier classes.
+ */
+
+/* ─── Backdrop ──────────────────────────────────────────────────────────────── */
+
+/*
+ * Full-viewport transparent overlay. Sits below the menu in z-order so that
+ * all outside clicks and touches are captured and trigger onClose — no need for
+ * document-level event listeners. Invisible to assistive technology (aria-hidden).
+ */
+.sds-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1299;
+  background: transparent;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Menu container ────────────────────────────────────────────────────────── */
+
+.sds-menu {
+  position: fixed;
+  z-index: 1300;
+  min-width: 220px;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  background-color: var(--sds-neutral-background-default);
+  border-radius: var(--sds-shape-border-radius-medium);
+  box-shadow: var(--sds-effects-shadowcallout);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  outline: none;
+
+  /* Hidden until position is computed (avoids a flash at 0,0) */
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transform-origin: top left;
+}
+
+/* Reveal + entrance animation — applied once position is confirmed. */
+.sds-menu--ready {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity   140ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 140ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Menu item ─────────────────────────────────────────────────────────────── */
+
+.sds-menu-item {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px; /* WCAG 2.5.8 — minimum touch target */
+  padding: 8px 16px;
+  box-sizing: border-box;
+  list-style: none;
+
+  /* Typography — body content / regular */
+  font-family:     var(--sds-typography-font-family-body-content);
+  font-weight:     var(--sds-typography-font-weight-body-content);
+  font-size:       var(--sds-typography-font-size-body-content-medium);
+  line-height:     var(--sds-typography-line-height-body-content-medium);
+  letter-spacing:  var(--sds-typography-letter-spacing-body-content-medium);
+  color:           var(--sds-interactive-fields-content-default);
+
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: background-color 100ms ease;
+}
+
+/* Hover — keyboard and pointer */
+.sds-menu-item:hover:not(.sds-menu-item--disabled) {
+  background-color: var(--sds-interactive-fields-background-hover);
+}
+
+/*
+ * Focus ring — inset border matching the Figma spec.
+ * Uses outline with a negative offset to draw inside the element bounds
+ * so the item height doesn't expand. Only shown for keyboard navigation
+ * (:focus-visible) to avoid the ring on mouse/touch focus.
+ */
+.sds-menu-item:focus-visible {
+  outline: 4px solid var(--sds-effects-focus);
+  outline-offset: -4px;
+  background-color: var(--sds-interactive-fields-background-hover);
+}
+
+/* Selected / active state — semibold label text */
+.sds-menu-item--selected .sds-menu-item__content {
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+}
+
+/* Disabled state */
+.sds-menu-item--disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  /* Pointer events still fire (for cursor), but we guard in the handler */
+  pointer-events: none;
+}
+
+/* ─── Checkbox indicator (multiSelect mode) ─────────────────────────────────── */
+
+.sds-menu-item__checkbox {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border-radius: var(--sds-shape-border-radius-xxsmall); /* 4px */
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive);
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
+  color: transparent; /* checkmark hidden when unchecked */
+  transition:
+    background-color 120ms ease,
+    border-color     120ms ease,
+    color            120ms ease;
+}
+
+/* Checked: filled dark background + white checkmark */
+.sds-menu-item__checkbox--checked {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+  border-color:     var(--sds-interactive-secondary-filled-background-default);
+  color: var(--sds-interactive-secondary-filled-content-default);
+}
+
+/* ─── Leading icon slot ─────────────────────────────────────────────────────── */
+
+.sds-menu-item__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--sds-interactive-fields-content-default);
+}
+
+/* ─── Label text ────────────────────────────────────────────────────────────── */
+
+.sds-menu-item__content {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Suffix ────────────────────────────────────────────────────────────────── */
+
+.sds-menu-item__suffix {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Tag: pill-shaped badge with a count or label */
+.sds-menu-item__suffix--tag {
+  background-color: var(--sds-neutral-background-subtle);
+  color:            var(--sds-neutral-content-secondary);
+  padding: 2px 6px;
+  border-radius: var(--sds-shape-border-radius-large); /* full pill */
+  font-family:     var(--sds-typography-font-family-subtitle);
+  font-weight:     var(--sds-typography-font-weight-subtitle);
+  font-size:       var(--sds-typography-font-size-subtitle-small);
+  line-height:     var(--sds-typography-line-height-subtitle-small);
+  letter-spacing:  var(--sds-typography-letter-spacing-subtitle-small);
+  white-space: nowrap;
+}
+
+/* Text: keyboard shortcut or secondary label */
+.sds-menu-item__suffix--text {
+  color:           var(--sds-neutral-content-tertiary);
+  font-family:     var(--sds-typography-font-family-body-content);
+  font-weight:     var(--sds-typography-font-weight-body-content);
+  font-size:       var(--sds-typography-font-size-body-content-small);
+  line-height:     var(--sds-typography-line-height-body-content-small);
+  letter-spacing:  var(--sds-typography-letter-spacing-body-content-small);
+  white-space: nowrap;
+}
+
+/* Icon: submenu chevron or custom icon */
+.sds-menu-item__suffix--icon {
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────────── */
+
+.sds-menu-divider {
+  display: block;
+  height: 1px;
+  margin: 4px 0;
+  list-style: none;
+  background-color: var(--sds-neutral-stroke-default);
+}
