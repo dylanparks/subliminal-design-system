@@ -1,34 +1,8 @@
 import { useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Menu, MenuItem, MenuDivider } from './Menu';
-
-// ─── Story helpers ────────────────────────────────────────────────────────────
-
-// Placeholder icons — will be replaced by the icon library.
-function DiamondIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 2L17.5 10L10 18L2.5 10L10 2Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function StarIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 2.5L12.1 7.76L17.5 8.3L13.5 12L14.8 17.5L10 14.7L5.2 17.5L6.5 12L2.5 8.3L7.9 7.76L10 2.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function SettingsIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.3" />
-      <path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.1 4.1l1.4 1.4M14.5 14.5l1.4 1.4M4.1 15.9l1.4-1.4M14.5 5.5l1.4-1.4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-    </svg>
-  );
-}
+import type { MenuSuffix } from './Menu';
+import { DiamondIcon, StarIcon, SettingsIcon } from '../../../icons';
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
@@ -40,15 +14,16 @@ const meta: Meta<typeof Menu> = {
     docs: {
       description: {
         component:
-          'A floating menu anchored to a trigger element. Implements the WAI-ARIA Menu pattern with full keyboard navigation, focus management, and WCAG AA compliance. Single-select items auto-close the menu on activation; multi-select items stay open.',
+          'A floating menu anchored to a trigger element. Implements the WAI-ARIA Menu pattern with full keyboard navigation, focus management, and WCAG AA compliance.\n\n- **single-select**: items show a checkmark when selected; menu auto-closes on activation.\n- **multi-select**: items show checkboxes; menu stays open after each selection.\n- **configure**: items have a drag handle for reordering and an optional toggle switch.',
       },
     },
   },
   argTypes: {
-    multiSelect: {
-      control: 'boolean',
-      description: 'Enables multi-select mode — items show checkboxes and the menu stays open after each selection.',
-      table: { defaultValue: { summary: 'false' } },
+    type: {
+      control: 'select',
+      options: ['single-select', 'multi-select', 'configure'],
+      description: 'The interaction model for all items in this menu.',
+      table: { defaultValue: { summary: 'single-select' } },
     },
     maxHeight: {
       control: { type: 'number', min: 100, max: 600, step: 20 },
@@ -60,47 +35,86 @@ const meta: Meta<typeof Menu> = {
       description: 'Accessible name for the menu (use when there is no visible heading).',
     },
     // Internal state — not meaningful as Storybook controls.
-    open:            { table: { disable: true } },
-    anchorEl:        { table: { disable: true } },
-    onClose:         { table: { disable: true } },
-    children:        { table: { disable: true } },
-    className:       { table: { disable: true } },
+    open:              { table: { disable: true } },
+    anchorEl:          { table: { disable: true } },
+    onClose:           { table: { disable: true } },
+    children:          { table: { disable: true } },
+    className:         { table: { disable: true } },
     'aria-labelledby': { table: { disable: true } },
   },
   args: {
-    multiSelect: false,
-    maxHeight:   360,
+    type:         'single-select',
+    maxHeight:    360,
     'aria-label': 'Options',
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Menu>;
 
-// ─── Default ──────────────────────────────────────────────────────────────────
+// ─── Item controls — shared across stories that support them ──────────────────
 
-export const Default: Story = {
-  render: (args) => {
+type ItemControls = {
+  /** Show a leading icon on each item */
+  showIcons: boolean;
+  /** Trailing suffix variant */
+  suffixType: 'none' | 'tag' | 'text' | 'icon';
+  /** Include a disabled item at the bottom */
+  showDisabled: boolean;
+};
+
+const itemArgTypes = {
+  showIcons: {
+    control: 'boolean',
+    description: 'Show a leading icon on each menu item.',
+    table: { category: 'Item', defaultValue: { summary: 'true' } },
+  },
+  suffixType: {
+    control: 'select',
+    options: ['none', 'tag', 'text', 'icon'],
+    description: 'Trailing suffix shown on each item.',
+    table: { category: 'Item', defaultValue: { summary: 'none' } },
+  },
+  showDisabled: {
+    control: 'boolean',
+    description: 'Include a disabled item separated by a divider.',
+    table: { category: 'Item', defaultValue: { summary: 'true' } },
+  },
+} as const;
+
+// ─── Shared item data ─────────────────────────────────────────────────────────
+
+const ITEMS = [
+  { id: 'profile',    label: 'Profile',    icon: <DiamondIcon />,  tagLabel: '57', shortcut: '⌘P' },
+  { id: 'favourites', label: 'Favourites', icon: <StarIcon />,     tagLabel: '3',  shortcut: '⌘F' },
+  { id: 'settings',   label: 'Settings',   icon: <SettingsIcon />, tagLabel: '12', shortcut: '⌘,' },
+];
+
+function resolveSuffix(item: typeof ITEMS[0], suffixType: ItemControls['suffixType']): MenuSuffix | undefined {
+  if (suffixType === 'tag')  return { type: 'tag',  label: item.tagLabel };
+  if (suffixType === 'text') return { type: 'text', label: item.shortcut };
+  if (suffixType === 'icon') return { type: 'icon' };
+  return undefined;
+}
+
+// ─── Default (single-select) ──────────────────────────────────────────────────
+
+type DefaultArgs = React.ComponentProps<typeof Menu> & ItemControls;
+
+export const SingleSelect: StoryObj<DefaultArgs> = {
+  name: 'Single select',
+  argTypes: itemArgTypes,
+  args: {
+    showIcons:    true,
+    suffixType:   'none',
+    showDisabled: true,
+  },
+  render: ({ showIcons, suffixType, showDisabled, ...menuArgs }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [open, setOpen]         = useState(false);
+    const [open, setOpen]     = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [selected, setSelected] = useState<Set<string>>(new Set());
+    const [active, setActive] = useState<string | null>(null);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const anchorRef               = useRef<HTMLButtonElement>(null);
-
-    function toggle(id: string) {
-      setSelected(prev => {
-        const next = new Set(prev);
-        next.has(id) ? next.delete(id) : next.add(id);
-        return next;
-      });
-    }
-
-    const items = [
-      { id: 'profile',       label: 'Profile',          icon: <DiamondIcon /> },
-      { id: 'favourites',    label: 'Favourites',        icon: <StarIcon /> },
-      { id: 'settings',      label: 'Settings',          icon: <SettingsIcon /> },
-    ];
+    const anchorRef           = useRef<HTMLButtonElement>(null);
 
     return (
       <>
@@ -111,94 +125,32 @@ export const Default: Story = {
           onClick={() => setOpen(v => !v)}
           style={{ padding: '8px 16px', cursor: 'pointer' }}
         >
-          Open Menu
+          {ITEMS.find(o => o.id === active)?.label ?? 'Open Menu'}
         </button>
 
         <Menu
-          {...args}
+          {...menuArgs}
           open={open}
           anchorEl={anchorRef.current}
           onClose={() => setOpen(false)}
         >
-          {items.map(item => (
+          {ITEMS.map(item => (
             <MenuItem
               key={item.id}
-              icon={item.icon}
-              selected={selected.has(item.id)}
-              onClick={() => toggle(item.id)}
+              icon={showIcons ? item.icon : undefined}
+              suffix={resolveSuffix(item, suffixType)}
+              selected={active === item.id}
+              onClick={() => setActive(item.id)}
             >
               {item.label}
             </MenuItem>
           ))}
-          <MenuDivider />
-          <MenuItem disabled>Unavailable option</MenuItem>
-        </Menu>
-      </>
-    );
-  },
-};
-
-// ─── With Icons ───────────────────────────────────────────────────────────────
-
-export const WithIcons: Story = {
-  render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [open, setOpen] = useState(false);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const anchorRef       = useRef<HTMLButtonElement>(null);
-
-    return (
-      <>
-        <button
-          ref={anchorRef}
-          aria-haspopup="menu"
-          aria-expanded={open}
-          onClick={() => setOpen(v => !v)}
-          style={{ padding: '8px 16px', cursor: 'pointer' }}
-        >
-          Open Menu
-        </button>
-
-        <Menu {...args} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
-          <MenuItem icon={<DiamondIcon />}>Diamonds</MenuItem>
-          <MenuItem icon={<StarIcon />}>Favourites</MenuItem>
-          <MenuItem icon={<SettingsIcon />}>Settings</MenuItem>
-          <MenuDivider />
-          <MenuItem icon={<DiamondIcon />} disabled>Unavailable</MenuItem>
-        </Menu>
-      </>
-    );
-  },
-};
-
-// ─── With Suffixes ────────────────────────────────────────────────────────────
-
-export const WithSuffixes: Story = {
-  render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [open, setOpen] = useState(false);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const anchorRef       = useRef<HTMLButtonElement>(null);
-
-    return (
-      <>
-        <button
-          ref={anchorRef}
-          aria-haspopup="menu"
-          aria-expanded={open}
-          onClick={() => setOpen(v => !v)}
-          style={{ padding: '8px 16px', cursor: 'pointer' }}
-        >
-          Open Menu
-        </button>
-
-        <Menu {...args} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
-          <MenuItem suffix={{ type: 'tag',  label: '57' }}>Messages</MenuItem>
-          <MenuItem suffix={{ type: 'tag',  label: '3'  }}>Notifications</MenuItem>
-          <MenuItem suffix={{ type: 'text', label: '⌘K' }}>Search</MenuItem>
-          <MenuItem suffix={{ type: 'text', label: '⌘,' }}>Preferences</MenuItem>
-          <MenuDivider />
-          <MenuItem suffix={{ type: 'icon' }}>More options</MenuItem>
+          {showDisabled && (
+            <>
+              <MenuDivider />
+              <MenuItem disabled>Unavailable option</MenuItem>
+            </>
+          )}
         </Menu>
       </>
     );
@@ -207,15 +159,21 @@ export const WithSuffixes: Story = {
 
 // ─── Multi-select ─────────────────────────────────────────────────────────────
 
-export const MultiSelect: Story = {
+type MultiSelectArgs = React.ComponentProps<typeof Menu> & ItemControls;
+
+export const MultiSelect: StoryObj<MultiSelectArgs> = {
   args: {
-    multiSelect: true,
+    type:         'multi-select',
+    showIcons:    true,
+    suffixType:   'none',
+    showDisabled: true,
   },
-  render: (args) => {
+  argTypes: itemArgTypes,
+  render: ({ showIcons, suffixType, showDisabled, ...menuArgs }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen]         = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [selected, setSelected] = useState<Set<string>>(new Set(['diamonds']));
+    const [selected, setSelected] = useState<Set<string>>(new Set(['favourites']));
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const anchorRef               = useRef<HTMLButtonElement>(null);
 
@@ -239,35 +197,88 @@ export const MultiSelect: Story = {
           Filter ({selected.size})
         </button>
 
-        <Menu {...args} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
-          <MenuItem icon={<DiamondIcon />}  selected={selected.has('diamonds')}   onClick={() => toggle('diamonds')}>Diamonds</MenuItem>
-          <MenuItem icon={<StarIcon />}     selected={selected.has('favourites')} onClick={() => toggle('favourites')}>Favourites</MenuItem>
-          <MenuItem icon={<SettingsIcon />} selected={selected.has('settings')}   onClick={() => toggle('settings')}>Settings</MenuItem>
-          <MenuDivider />
-          <MenuItem disabled>Unavailable option</MenuItem>
+        <Menu {...menuArgs} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
+          {ITEMS.map(item => (
+            <MenuItem
+              key={item.id}
+              icon={showIcons ? item.icon : undefined}
+              suffix={resolveSuffix(item, suffixType)}
+              selected={selected.has(item.id)}
+              onClick={() => toggle(item.id)}
+            >
+              {item.label}
+            </MenuItem>
+          ))}
+          {showDisabled && (
+            <>
+              <MenuDivider />
+              <MenuItem disabled>Unavailable option</MenuItem>
+            </>
+          )}
         </Menu>
       </>
     );
   },
 };
 
-// ─── With selected item (single-select) ──────────────────────────────────────
+// ─── Configure ────────────────────────────────────────────────────────────────
 
-export const WithSelectedItem: Story = {
-  render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [open, setOpen]     = useState(false);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [active, setActive] = useState('profile');
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const anchorRef           = useRef<HTMLButtonElement>(null);
+type ConfigureArgs = React.ComponentProps<typeof Menu> & ItemControls & { showToggles: boolean };
 
-    const options = [
-      { id: 'profile',       label: 'Profile' },
-      { id: 'account',       label: 'Account settings' },
-      { id: 'notifications', label: 'Notifications' },
-      { id: 'help',          label: 'Help & support' },
-    ];
+export const Configure: StoryObj<ConfigureArgs> = {
+  args: {
+    type:         'configure',
+    showIcons:    true,
+    suffixType:   'none',
+    showDisabled: false,
+    showToggles:  true,
+  },
+  argTypes: {
+    ...itemArgTypes,
+    showToggles: {
+      control: 'boolean',
+      description: 'Show the toggle switch on each item.',
+      table: { category: 'Item', defaultValue: { summary: 'true' } },
+    },
+  },
+  render: ({ showIcons, suffixType, showDisabled, showToggles, ...menuArgs }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [open, setOpen] = useState(false);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const anchorRef       = useRef<HTMLButtonElement>(null);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [items, setItems] = useState([
+      { id: 'diamonds',   label: 'Diamonds',   icon: <DiamondIcon />,  enabled: true  },
+      { id: 'favourites', label: 'Favourites', icon: <StarIcon />,     enabled: true  },
+      { id: 'settings',   label: 'Settings',   icon: <SettingsIcon />, enabled: false },
+      { id: 'messages',   label: 'Messages',   icon: <DiamondIcon />,  enabled: true  },
+    ]);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const dragId = useRef<string | null>(null);
+
+    function toggleItem(id: string) {
+      setItems(prev => prev.map(item => item.id === id ? { ...item, enabled: !item.enabled } : item));
+    }
+
+    function handleDragStart(id: string, e: React.DragEvent) {
+      dragId.current = id;
+      e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function handleDrop(targetId: string, e: React.DragEvent<HTMLLIElement>) {
+      e.preventDefault();
+      if (!dragId.current || dragId.current === targetId) return;
+      const position = (e.currentTarget as HTMLElement).dataset.dropPosition ?? 'before';
+      const fromIdx  = items.findIndex(i => i.id === dragId.current);
+      const next     = [...items];
+      const [moved]  = next.splice(fromIdx, 1);
+      // Find target in the already-modified array, then insert before or after it
+      const newToIdx = next.findIndex(i => i.id === targetId);
+      next.splice(position === 'after' ? newToIdx + 1 : newToIdx, 0, moved);
+      setItems(next);
+      dragId.current = null;
+    }
 
     return (
       <>
@@ -278,13 +289,89 @@ export const WithSelectedItem: Story = {
           onClick={() => setOpen(v => !v)}
           style={{ padding: '8px 16px', cursor: 'pointer' }}
         >
-          {options.find(o => o.id === active)?.label ?? 'Select'}
+          Configure columns
+        </button>
+
+        <Menu {...menuArgs} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
+          {items.map((item, i) => (
+            <MenuItem
+              key={item.id}
+              icon={showIcons ? item.icon : undefined}
+              suffix={resolveSuffix(ITEMS[i % ITEMS.length], suffixType)}
+              selected={item.enabled}
+              toggleable={showToggles}
+              onClick={() => toggleItem(item.id)}
+              onDragStart={(e) => handleDragStart(item.id, e)}
+              onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }}
+              onDrop={(e) => handleDrop(item.id, e)}
+            >
+              {item.label}
+            </MenuItem>
+          ))}
+          {showDisabled && (
+            <>
+              <MenuDivider />
+              <MenuItem disabled>Unavailable option</MenuItem>
+            </>
+          )}
+        </Menu>
+      </>
+    );
+  },
+};
+
+// ─── Configure (no toggles) ───────────────────────────────────────────────────
+
+export const ConfigureNoToggles: StoryObj<typeof Menu> = {
+  name: 'Configure (no toggles)',
+  args: {
+    type: 'configure',
+  },
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [open, setOpen] = useState(false);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const anchorRef       = useRef<HTMLButtonElement>(null);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [items, setItems] = useState(['First column', 'Second column', 'Third column']);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const dragLabel = useRef<string | null>(null);
+
+    function handleDrop(targetLabel: string, e: React.DragEvent<HTMLLIElement>) {
+      e.preventDefault();
+      if (!dragLabel.current || dragLabel.current === targetLabel) return;
+      const position = (e.currentTarget as HTMLElement).dataset.dropPosition ?? 'before';
+      const fromIdx  = items.indexOf(dragLabel.current);
+      const next     = [...items];
+      const [moved]  = next.splice(fromIdx, 1);
+      const newToIdx = next.indexOf(targetLabel);
+      next.splice(position === 'after' ? newToIdx + 1 : newToIdx, 0, moved);
+      setItems(next);
+      dragLabel.current = null;
+    }
+
+    return (
+      <>
+        <button
+          ref={anchorRef}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          onClick={() => setOpen(v => !v)}
+          style={{ padding: '8px 16px', cursor: 'pointer' }}
+        >
+          Reorder items
         </button>
 
         <Menu {...args} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
-          {options.map(o => (
-            <MenuItem key={o.id} selected={active === o.id} onClick={() => setActive(o.id)}>
-              {o.label}
+          {items.map(label => (
+            <MenuItem
+              key={label}
+              toggleable={false}
+              onDragStart={(e) => { dragLabel.current = label; e.dataTransfer.effectAllowed = 'move'; }}
+              onDragOver={(e) => { e.dataTransfer.dropEffect = 'move'; }}
+              onDrop={(e) => handleDrop(label, e)}
+            >
+              {label}
             </MenuItem>
           ))}
         </Menu>
@@ -295,7 +382,7 @@ export const WithSelectedItem: Story = {
 
 // ─── Long list (scrollable) ───────────────────────────────────────────────────
 
-export const LongList: Story = {
+export const LongList: StoryObj<typeof Menu> = {
   args: {
     maxHeight: 320,
   },

@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SearchField } from './SearchField';
 
 const meta: Meta<typeof SearchField> = {
   component: SearchField,
   title: 'Fields/SearchField',
+  decorators: [(Story) => <div style={{ maxWidth: '38rem', width: '100%' }}><Story /></div>],
   argTypes: {
     size: {
       control: 'select',
@@ -38,8 +39,45 @@ export default meta;
 type Story = StoryObj<typeof SearchField>;
 
 const ALL_SUGGESTIONS = [
-  'Hamster', 'Goldfish', 'Cat', 'Dog', 'Parrot',
-  'Rabbit', 'Turtle', 'Lizard', 'Snake', 'Hedgehog',
+  'Alpaca',
+  'Canary',
+  'Cat',
+  'Chicken',
+  'Chinchilla',
+  'Cockatiel',
+  'Cockatoo',
+  'Cow',
+  'Degu',
+  'Dog',
+  'Donkey',
+  'Duck',
+  'Ferret',
+  'Finch',
+  'Gerbil',
+  'Goat',
+  'Goldfish',
+  'Guinea Pig',
+  'Hamster',
+  'Hedgehog',
+  'Horse',
+  'Koi',
+  'Llama',
+  'Lovebird',
+  'Macaw',
+  'Miniature Pig',
+  'Mule',
+  'Parrot',
+  'Parakeet',
+  'Peacock',
+  'Pigeon',
+  'Rabbit',
+  'Rat',
+  'Sheep',
+  'Snake',
+  'Sugar Glider',
+  'Tortoise',
+  'Turkey',
+  'Turtle',
 ];
 
 export const Standard: Story = {};

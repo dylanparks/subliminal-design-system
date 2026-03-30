@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import { SearchIcon, CloseIcon, ErrorIcon, SuccessIcon, CheckIcon } from '../../../icons';
 import './SearchField.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -60,31 +61,6 @@ export interface SearchFieldProps {
   className?: string;
   /** Accessible label override (falls back to label prop) */
   'aria-label'?: string;
-}
-
-// ─── Icon sub-components ──────────────────────────────────────────────────────
-// Inline SVG — will be replaced by the icon library import later.
-
-function SearchIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M16 16L21 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ClearIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -208,7 +184,11 @@ export function SearchField({
     if (!isControlled) setInternalValue(next);
     onChange?.(next);
 
-    if (isAutocomplete && !suppressRef.current) {
+    if (isAutocomplete) {
+      // Typing is an explicit intent signal — always open and lift any suppress
+      // that was set by a prior selection or Escape (suppress only blocks re-focus,
+      // not deliberate keystrokes).
+      suppressRef.current = false;
       setIsOpen(true);
       setActiveIndex(-1);
     }
@@ -317,7 +297,11 @@ export function SearchField({
     onChange?.('');
     if (isAutocomplete) {
       setIsOpen(false);
-      suppressRef.current = true;
+      // Explicitly reset suppress: both suggestion clicks and this clear button use
+      // e.preventDefault() on mousedown, so the input never blurs and handleFocus
+      // never fires to clear the flag. Without this, the suppress set by
+      // selectSuggestion would persist and block the list from reopening on typing.
+      suppressRef.current = false;
     }
     inputRef.current?.focus();
   }
@@ -414,7 +398,7 @@ export function SearchField({
               onMouseDown={handleClearMouseDown}
               onClick={handleClearClick}
             >
-              <ClearIcon />
+              <CloseIcon />
             </button>
           )}
         </div>
@@ -439,16 +423,26 @@ export function SearchField({
                 key={suggestion}
                 id={`${listboxId}-option-${index}`}
                 role="option"
-                aria-selected={activeIndex === index}
+                aria-selected={suggestion === currentValue}
                 className={[
-                  'sds-search-field__option',
-                  activeIndex === index && 'sds-search-field__option--active',
+                  'sds-menu-item',
+                  suggestion === currentValue && 'sds-menu-item--selected',
+                  activeIndex === index       && 'sds-menu-item--active',
                 ]
                   .filter(Boolean)
                   .join(' ')}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => selectSuggestion(suggestion)}
               >
+                <span
+                  className={[
+                    'sds-menu-item__checkmark',
+                    suggestion === currentValue && 'sds-menu-item__checkmark--selected',
+                  ].filter(Boolean).join(' ')}
+                  aria-hidden="true"
+                >
+                  <CheckIcon size={16} />
+                </span>
                 {suggestion}
               </li>
             ))}
@@ -475,9 +469,11 @@ export function SearchField({
       )}
 
       {showMessage && (
-        <p id={messageId} className="sds-search-field__message">
-          {message}
-        </p>
+        <div id={messageId} className="sds-search-field__support">
+          {showError   && <ErrorIcon size={16} />}
+          {showSuccess && <SuccessIcon size={16} />}
+          <p className="sds-search-field__message">{message}</p>
+        </div>
       )}
 
     </div>

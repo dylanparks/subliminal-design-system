@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TextField } from './TextField';
 
 const meta: Meta<typeof TextField> = {
   component: TextField,
   title: 'Fields/TextField',
+  decorators: [(Story) => <div style={{ maxWidth: '38rem', width: '100%' }}><Story /></div>],
   argTypes: {
     size: {
       control: 'select',
@@ -38,16 +39,16 @@ export const CharacterLimit: Story = {
 
 export const Error: Story = {
   args: {
-    value:   'Invalid input',
-    message: 'This field contains an error.',
-    error:   true,
+    defaultValue: 'Invalid input',
+    message:      'This field contains an error.',
+    error:        true,
   },
 };
 
 export const Success: Story = {
   args: {
-    value:   'Valid input',
-    message: 'Looks good!',
-    success: true,
+    defaultValue: 'Valid input',
+    message:      'Looks good!',
+    success:      true,
   },
 };

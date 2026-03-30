@@ -1,0 +1,304 @@
+/* SelectField — Subliminal Design System
+ * Fields/SelectField
+ *
+ * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
+ *         --sds-effects-focus, --sds-shape-border-radius-*,
+ *         --sds-spacing-size-*, --sds-typography-*
+ *
+ * Sizes:
+ *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *
+ * State     CSS mechanism
+ * ──────────────────────────────────────────────────────────────────────
+ * hover     .sds-select-field__trigger:hover
+ * open      .sds-select-field--open   (JS-added when menu is open)
+ * disabled  .sds-select-field--disabled
+ * error     .sds-select-field--error
+ * success   .sds-select-field--success
+ * filled    .sds-select-field--filled  (JS-added when value.length > 0)
+ */
+
+/* ─── Root ──────────────────────────────────────────────────────────────────── */
+
+.sds-select-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Trigger (the visible box) ─────────────────────────────────────────────── */
+
+.sds-select-field__trigger {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  background-color: var(--sds-interactive-fields-background-default);
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    border-color     120ms ease;
+}
+
+/* Focus ring — inset outline so the field height doesn't expand */
+.sds-select-field__trigger:focus-visible {
+  outline: 4px solid var(--sds-effects-focus);
+  outline-offset: -4px;
+}
+
+/* Hover */
+.sds-select-field__trigger:hover:not(:disabled) {
+  background-color: var(--sds-interactive-fields-background-hover);
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+/* Open (active) */
+.sds-select-field--open .sds-select-field__trigger {
+  background-color: var(--sds-interactive-fields-background-active);
+  border-color: var(--sds-interactive-fields-stroke-active);
+}
+
+/* Error — overrides hover and open */
+.sds-select-field--error .sds-select-field__trigger,
+.sds-select-field--error .sds-select-field__trigger:hover,
+.sds-select-field--error.sds-select-field--open .sds-select-field__trigger {
+  background-color: var(--sds-status-error-background-default);
+  border-color: var(--sds-status-error-stroke-default);
+}
+
+/* Success — overrides hover and open */
+.sds-select-field--success .sds-select-field__trigger,
+.sds-select-field--success .sds-select-field__trigger:hover,
+.sds-select-field--success.sds-select-field--open .sds-select-field__trigger {
+  background-color: var(--sds-status-success-background-default);
+  border-color: var(--sds-status-success-stroke-default);
+}
+
+/* Disabled — overrides all */
+.sds-select-field--disabled .sds-select-field__trigger {
+  background-color: var(--sds-interactive-fields-background-disabled);
+  border-color: var(--sds-interactive-fields-stroke-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Sizes ─────────────────────────────────────────────────────────────────── */
+
+.sds-select-field--large .sds-select-field__trigger {
+  height: var(--sds-spacing-size-large);
+  padding: 0 16px;
+  border-radius: var(--sds-shape-border-radius-large);
+  gap: 16px;
+}
+
+.sds-select-field--medium .sds-select-field__trigger {
+  height: var(--sds-spacing-size-medium);
+  padding: 0 12px;
+  border-radius: var(--sds-shape-border-radius-medium);
+  gap: 16px;
+}
+
+/* ─── Inner (label + value column) ─────────────────────────────────────────── */
+
+.sds-select-field__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Large/medium: position: relative so the label can be absolutely positioned
+   for smooth floating transitions; align-self: stretch fills the full trigger
+   height so top/bottom offsets resolve correctly. */
+.sds-select-field--large .sds-select-field__inner,
+.sds-select-field--medium .sds-select-field__inner {
+  position: relative;
+  align-self: stretch;
+  justify-content: flex-end;
+}
+
+.sds-select-field--large .sds-select-field__inner {
+  padding-bottom: 10px;
+}
+
+.sds-select-field--medium .sds-select-field__inner {
+  padding-bottom: 6px;
+}
+
+/* ─── Label ─────────────────────────────────────────────────────────────────── */
+
+.sds-select-field__label {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-suggested);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Large/medium: absolutely positioned for smooth float animation */
+.sds-select-field--large .sds-select-field__label,
+.sds-select-field--medium .sds-select-field__label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  transition:
+    top          160ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform    160ms cubic-bezier(0.4, 0, 0.2, 1),
+    font-size    160ms cubic-bezier(0.4, 0, 0.2, 1),
+    line-height  160ms cubic-bezier(0.4, 0, 0.2, 1),
+    letter-spacing 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating label — large: filled only */
+.sds-select-field--large.sds-select-field--filled .sds-select-field__label {
+  top: 10px;
+  transform: translateY(0);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* Floating label — medium: filled only */
+.sds-select-field--medium.sds-select-field--filled .sds-select-field__label {
+  top: 6px;
+  transform: translateY(0);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* ─── Selected value text ────────────────────────────────────────────────────── */
+
+.sds-select-field__value {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  pointer-events: none;
+
+  /* Hidden until filled — same max-height/opacity technique as TextField input */
+  max-height: 0;
+  opacity: 0;
+  transition:
+    opacity    160ms cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal when a value is selected */
+.sds-select-field--filled .sds-select-field__value {
+  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  opacity: 1;
+}
+
+/* Disabled value colour */
+.sds-select-field--disabled .sds-select-field__value {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+/* ─── Chevron ────────────────────────────────────────────────────────────────── */
+
+.sds-select-field__chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--sds-interactive-fields-content-default);
+  transition:
+    color     120ms ease,
+    transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sds-select-field--open .sds-select-field__chevron {
+  transform: rotate(180deg);
+}
+
+.sds-select-field--disabled .sds-select-field__chevron {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+/* ─── Support group ─────────────────────────────────────────────────────────── */
+
+.sds-select-field__support {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+/* Support icon — centers the 16px SVG within the text line-height */
+.sds-select-field__support > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+}
+
+.sds-select-field--error .sds-select-field__support {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-select-field--success .sds-select-field__support {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Message ────────────────────────────────────────────────────────────────── */
+
+.sds-select-field__message {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+}
+
+.sds-select-field--error .sds-select-field__message {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-select-field--success .sds-select-field__message {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Visually hidden (screen-reader only) ──────────────────────────────────── */
+
+.sds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

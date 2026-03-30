@@ -1,0 +1,493 @@
+/* TimePicker — Subliminal Design System
+ * Fields/TimePicker
+ *
+ * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
+ *         --sds-effects-focus, --sds-effects-shadowcallout,
+ *         --sds-shape-border-radius-*, --sds-spacing-size-*, --sds-typography-*
+ *
+ * Sizes:
+ *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *
+ * State     CSS mechanism
+ * ──────────────────────────────────────────────────────────────────────
+ * hover     :hover on wrapper (scoped: not disabled, not open)
+ * open      .sds-timepicker--open (JS-added when popover is visible)
+ * disabled  .sds-timepicker--disabled
+ * error     .sds-timepicker--error
+ * success   .sds-timepicker--success
+ * filled    .sds-timepicker--filled (JS-added when value is non-null)
+ */
+
+/* ─── Root ────────────────────────────────────────────────────── */
+
+.sds-timepicker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Wrapper ─────────────────────────────────────────────────── */
+
+.sds-timepicker__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  background-color: var(--sds-interactive-fields-background-default);
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    border-color     120ms ease;
+}
+
+.sds-timepicker:not(.sds-timepicker--disabled):not(.sds-timepicker--open)
+  .sds-timepicker__wrapper:not(:focus-within):hover {
+  background-color: var(--sds-interactive-fields-background-hover);
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+.sds-timepicker--open .sds-timepicker__wrapper,
+.sds-timepicker__wrapper:focus-within {
+  background-color: var(--sds-interactive-fields-background-active);
+  border-color: var(--sds-interactive-fields-stroke-active);
+}
+
+.sds-timepicker--error .sds-timepicker__wrapper,
+.sds-timepicker--error .sds-timepicker__wrapper:hover,
+.sds-timepicker--error.sds-timepicker--open .sds-timepicker__wrapper,
+.sds-timepicker--error .sds-timepicker__wrapper:focus-within {
+  background-color: var(--sds-status-error-background-default);
+  border-color: var(--sds-status-error-stroke-default);
+}
+
+.sds-timepicker--success .sds-timepicker__wrapper,
+.sds-timepicker--success .sds-timepicker__wrapper:hover,
+.sds-timepicker--success.sds-timepicker--open .sds-timepicker__wrapper,
+.sds-timepicker--success .sds-timepicker__wrapper:focus-within {
+  background-color: var(--sds-status-success-background-default);
+  border-color: var(--sds-status-success-stroke-default);
+}
+
+.sds-timepicker--disabled .sds-timepicker__wrapper {
+  background-color: var(--sds-interactive-fields-background-disabled);
+  border-color: var(--sds-interactive-fields-stroke-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Sizes ───────────────────────────────────────────────────── */
+
+.sds-timepicker--large .sds-timepicker__wrapper {
+  height: var(--sds-spacing-size-large);
+  padding: 0 16px;
+  border-radius: var(--sds-shape-border-radius-large);
+}
+
+.sds-timepicker--medium .sds-timepicker__wrapper {
+  height: var(--sds-spacing-size-medium);
+  padding: 0 12px;
+  border-radius: var(--sds-shape-border-radius-medium);
+}
+
+/* ─── Trigger button (fills the wrapper as a flex row) ──────── */
+
+.sds-timepicker__trigger {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.sds-timepicker--disabled .sds-timepicker__trigger {
+  cursor: not-allowed;
+}
+
+/* ─── Inner (floating label + value column) ─────────────────── */
+
+.sds-timepicker__inner {
+  flex: 1 0 0;
+  min-width: 0;
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.sds-timepicker--large .sds-timepicker__inner {
+  padding-bottom: 10px;
+}
+
+.sds-timepicker--medium .sds-timepicker__inner {
+  padding-bottom: 6px;
+}
+
+/* ─── Floating label ─────────────────────────────────────────── */
+
+.sds-timepicker__label {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-suggested);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  transition:
+    top           160ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform     160ms cubic-bezier(0.4, 0, 0.2, 1),
+    font-size     160ms cubic-bezier(0.4, 0, 0.2, 1),
+    line-height   160ms cubic-bezier(0.4, 0, 0.2, 1),
+    letter-spacing 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Float up — large */
+.sds-timepicker--large.sds-timepicker--filled .sds-timepicker__label {
+  top: 10px;
+  transform: translateY(0);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* Float up — medium */
+.sds-timepicker--medium.sds-timepicker--filled .sds-timepicker__label {
+  top: 6px;
+  transform: translateY(0);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* ─── Value text ──────────────────────────────────────────────── */
+/*
+ * Always in the DOM (aria-hidden). Hidden via max-height/opacity until
+ * --filled is set — identical pattern to SelectField and DatePicker.
+ */
+
+.sds-timepicker__value {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  pointer-events: none;
+
+  /* Hidden until filled */
+  max-height: 0;
+  opacity: 0;
+  transition:
+    opacity    160ms cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal when a value is selected */
+.sds-timepicker--filled .sds-timepicker__value {
+  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  opacity: 1;
+}
+
+.sds-timepicker--disabled .sds-timepicker__value {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+/* ─── Clock icon (trailing) ───────────────────────────────────── */
+
+.sds-timepicker__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  color: var(--sds-interactive-fields-content-default);
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.sds-timepicker--disabled .sds-timepicker__icon {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+/* ─── Clear button ────────────────────────────────────────────────────────── */
+
+.sds-timepicker__clear {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity   120ms ease,
+    transform 120ms ease,
+    color     120ms ease;
+}
+
+.sds-timepicker__clear:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+/* Reveal when filled — scoped so disabled fields never show it */
+.sds-timepicker--clearable.sds-timepicker--filled .sds-timepicker__clear {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+
+/* ─── Backdrop (portal-rendered) ────────────────────────────── */
+
+.sds-timepicker__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1299;
+  background: transparent;
+}
+
+/* ─── Popover (portal-rendered) ──────────────────────────────── */
+
+.sds-timepicker__popover {
+  position: fixed;
+  z-index: 1300;
+  background-color: var(--sds-neutral-background-default);
+  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border-radius: var(--sds-shape-border-radius-large);
+  box-shadow: var(--sds-effects-shadowcallout);
+  box-sizing: border-box;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  /* Entrance animation — hidden until position is confirmed */
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transform-origin: top left;
+}
+
+.sds-timepicker__popover--ready {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity   140ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 140ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Column ─────────────────────────────────────────────────── */
+
+.sds-timepicker__column {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+}
+
+/* Tighten the AM/PM column — only 2 items, doesn't need equal flex */
+.sds-timepicker__column--period {
+  flex: 0 0 auto;
+  min-width: 80px;
+}
+
+/* ─── Column label (Hour / Minute / AM·PM) ──────────────────── */
+
+.sds-timepicker__column-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-small);
+  line-height:    var(--sds-typography-line-height-subtitle-small);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
+  color: var(--sds-neutral-content-subtle);
+  white-space: nowrap;
+}
+
+/* ─── Column body (list + scrollbar row) ─────────────────────── */
+
+/*
+ * Wraps the scrollable list and its custom scrollbar track as a flex row,
+ * identical to the .sds-menu / .sds-menu__list / .sds-menu__scrollbar pattern.
+ * max-height caps height at ~7 items; overflow:hidden clips both children.
+ */
+.sds-timepicker__column-body {
+  display: flex;
+  flex-direction: row;
+  max-height: 308px;
+  overflow: hidden;
+}
+
+/* ─── Column list (scrollable) ───────────────────────────────── */
+
+.sds-timepicker__column-list {
+  flex: 1 1 0;
+  overflow-y: scroll;
+  /* Hide native scrollbar — custom track takes its place */
+  scrollbar-width: none;
+}
+
+.sds-timepicker__column-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Custom scrollbar ───────────────────────────────────────── */
+
+/* Track — 12px wide flex sibling, stretches to the full column height. */
+.sds-timepicker__scrollbar {
+  flex-shrink: 0;
+  width: 12px;
+  align-self: stretch;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Indicator — 6px pill centred within the track, positioned via JS.
+   Min height of 24px satisfies WCAG 2.5.8 minimum target size. */
+.sds-timepicker__scrollbar-indicator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  min-height: 24px;
+  border-radius: var(--sds-shape-border-radius-round, 999px);
+  background-color: var(--sds-neutral-content-subtle);
+  cursor: grab;
+  transition: background-color 120ms ease;
+}
+
+.sds-timepicker__scrollbar-indicator:hover {
+  background-color: var(--sds-neutral-content-secondary);
+}
+
+.sds-timepicker__scrollbar-indicator:active {
+  cursor: grabbing;
+  background-color: var(--sds-neutral-content-secondary);
+}
+
+/* ─── List item ───────────────────────────────────────────────── */
+
+/*
+ * Items are <button> elements — use sds-menu-item from Menu.css for all
+ * visual styles (layout, typography, hover, focus-visible, selected semibold,
+ * checkmark slot). Only button-specific resets and the column-fill width
+ * are defined here.
+ */
+.sds-timepicker__item {
+  /* Button browser-default reset */
+  background: none;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: left;
+  /* Fill the column width (sds-menu-item doesn't set width) */
+  width: 100%;
+}
+
+.sds-timepicker__item--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Column divider ─────────────────────────────────────────── */
+
+.sds-timepicker__col-divider {
+  flex-shrink: 0;
+  width: 1px;
+  background-color: var(--sds-interactive-fields-stroke-default);
+  align-self: stretch;
+}
+
+/* ─── Support group ───────────────────────────────────────────── */
+
+.sds-timepicker__support {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.sds-timepicker__support > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+}
+
+.sds-timepicker--error .sds-timepicker__support {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-timepicker--success .sds-timepicker__support {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Message ────────────────────────────────────────────────── */
+
+.sds-timepicker__message {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+}
+
+.sds-timepicker--error .sds-timepicker__message {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-timepicker--success .sds-timepicker__message {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Screen-reader only ──────────────────────────────────────── */
+
+.sds-timepicker .sds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

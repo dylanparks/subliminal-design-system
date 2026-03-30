@@ -1,4 +1,5 @@
 import { ChangeEvent, KeyboardEvent, MouseEvent, useId, useLayoutEffect, useRef, useState } from 'react';
+import { CloseIcon, ErrorIcon, SuccessIcon, VisibilityIcon, VisibilityOffIcon } from '../../../icons';
 import './PasswordField.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -44,66 +45,6 @@ export interface PasswordFieldProps {
   defaultVisible?: boolean;
   /** Called when the user toggles password visibility */
   onVisibleChange?: (visible: boolean) => void;
-}
-
-// ─── Icon sub-components ──────────────────────────────────────────────────────
-
-function ClearIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function EyeIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M2 10C2 10 5.5 4 10 4C14.5 4 18 10 18 10C18 10 14.5 16 10 16C5.5 16 2 10 2 10Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
-function EyeOffIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M3 3L17 17"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.5 5.3C8.3 5 9.1 4.8 10 4.8C14.5 4.8 17.5 10 17.5 10C17 10.9 16.2 12 15.1 12.9"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M11.5 13.9C11 14.1 10.5 14.3 10 14.3C5.5 14.3 2.5 10 2.5 10C3.1 8.9 4.1 7.5 5.5 6.4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M8 8.2C8.5 7.5 9.2 7 10 7"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -276,7 +217,7 @@ export function PasswordField({
               onMouseDown={handleClearMouseDown}
               onClick={handleClearClick}
             >
-              <ClearIcon />
+              <CloseIcon />
             </button>
           )}
 
@@ -289,14 +230,15 @@ export function PasswordField({
             onMouseDown={handleToggleMouseDown}
             onClick={handleToggleClick}
           >
-            {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+            {showPassword ? <VisibilityOffIcon size={20} /> : <VisibilityIcon size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Support group — message only */}
       {showSupport && (
         <div id={`${inputId}-support`} className="sds-password-field__support">
+          {showError   && <ErrorIcon size={16} />}
+          {showSuccess && <SuccessIcon size={16} />}
           <p className="sds-password-field__message">{message}</p>
         </div>
       )}

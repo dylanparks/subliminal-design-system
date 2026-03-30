@@ -8,7 +8,7 @@ import { Menu, MenuItem, MenuDivider } from './Menu';
 
 /**
  * Renders a controlled Menu with a trigger button.
- * The trigger exposes aria-haspopup and aria-expanded as the consumer should.
+ * Defaults to single-select (the component default).
  */
 function renderMenu(props: Partial<Parameters<typeof Menu>[0]> = {}, items?: React.ReactNode) {
   function Wrapper() {
@@ -64,14 +64,6 @@ describe('Menu — rendering', () => {
     expect(screen.getByRole('menu')).toBeInTheDocument();
   });
 
-  it('renders menu items as menuitem roles', async () => {
-    const user = userEvent.setup();
-    renderMenu();
-    await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
-    expect(items.length).toBeGreaterThanOrEqual(1);
-  });
-
   it('renders a separator for MenuDivider', async () => {
     const user = userEvent.setup();
     renderMenu();
@@ -86,17 +78,18 @@ describe('Menu — rendering', () => {
     expect(screen.getByRole('menu', { name: 'My options' })).toBeInTheDocument();
   });
 
-  it('applies additional className to the menu list', async () => {
+  it('applies additional className to the menu container', async () => {
     const user = userEvent.setup();
     renderMenu({ className: 'custom-menu' });
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menu')).toHaveClass('custom-menu');
+    // className is forwarded to the outer container, not the <ul>
+    expect(document.querySelector('.custom-menu')).toBeInTheDocument();
   });
 });
 
-// ─── MenuItem rendering ───────────────────────────────────────────────────────
+// ─── MenuItem rendering — single-select (default) ─────────────────────────────
 
-describe('MenuItem — rendering', () => {
+describe('MenuItem — single-select rendering', () => {
   it('renders children as the label', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem>My option</MenuItem>);
@@ -104,78 +97,208 @@ describe('MenuItem — rendering', () => {
     expect(screen.getByText('My option')).toBeInTheDocument();
   });
 
+  it('uses role="menuitemradio" in single-select mode', async () => {
+    const user = userEvent.setup();
+    renderMenu({}, <MenuItem>Option</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.getByRole('menuitemradio', { name: 'Option' })).toBeInTheDocument();
+  });
+
+  it('sets aria-checked=true when selected', async () => {
+    const user = userEvent.setup();
+    renderMenu({}, <MenuItem selected>Option</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.getByRole('menuitemradio')).toHaveAttribute('aria-checked', 'true');
+  });
+
+  it('sets aria-checked=false when not selected', async () => {
+    const user = userEvent.setup();
+    renderMenu({}, <MenuItem>Option</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.getByRole('menuitemradio')).toHaveAttribute('aria-checked', 'false');
+  });
+
   it('marks disabled items with aria-disabled', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem disabled>Disabled</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem', { name: 'Disabled' })).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByRole('menuitemradio', { name: 'Disabled' })).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('does not set aria-disabled on enabled items', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem>Enabled</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem', { name: 'Enabled' })).not.toHaveAttribute('aria-disabled');
+    expect(screen.getByRole('menuitemradio', { name: 'Enabled' })).not.toHaveAttribute('aria-disabled');
   });
 
   it('applies sds-menu-item class', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem')).toHaveClass('sds-menu-item');
+    expect(screen.getByRole('menuitemradio')).toHaveClass('sds-menu-item');
   });
 
   it('applies sds-menu-item--selected when selected is true', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem selected>Selected item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem')).toHaveClass('sds-menu-item--selected');
+    expect(screen.getByRole('menuitemradio')).toHaveClass('sds-menu-item--selected');
   });
 
   it('applies sds-menu-item--disabled when disabled is true', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem disabled>Disabled item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem')).toHaveClass('sds-menu-item--disabled');
+    expect(screen.getByRole('menuitemradio')).toHaveClass('sds-menu-item--disabled');
   });
 
   it('applies additional className to the item', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem className="my-item">Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem')).toHaveClass('my-item');
+    expect(screen.getByRole('menuitemradio')).toHaveClass('my-item');
+  });
+
+  it('renders a checkmark indicator (always present for alignment)', async () => {
+    const user = userEvent.setup();
+    renderMenu({}, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const item = screen.getByRole('menuitemradio');
+    expect(item.querySelector('.sds-menu-item__checkmark')).toBeInTheDocument();
+  });
+
+  it('adds --selected modifier to the checkmark when selected', async () => {
+    const user = userEvent.setup();
+    renderMenu({}, <MenuItem selected>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const item = screen.getByRole('menuitemradio');
+    expect(item.querySelector('.sds-menu-item__checkmark--selected')).toBeInTheDocument();
   });
 });
 
-// ─── MultiSelect mode ─────────────────────────────────────────────────────────
+// ─── MenuItem — multi-select ──────────────────────────────────────────────────
 
-describe('MenuItem — multiSelect mode', () => {
-  it('uses menuitemcheckbox role in multiSelect mode', async () => {
+describe('MenuItem — multi-select mode', () => {
+  it('uses menuitemcheckbox role in multi-select mode', async () => {
     const user = userEvent.setup();
-    renderMenu({ multiSelect: true }, <MenuItem>Option</MenuItem>);
+    renderMenu({ type: 'multi-select' }, <MenuItem>Option</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByRole('menuitemcheckbox', { name: 'Option' })).toBeInTheDocument();
   });
 
-  it('sets aria-checked=true when selected in multiSelect mode', async () => {
+  it('sets aria-checked=true when selected in multi-select mode', async () => {
     const user = userEvent.setup();
-    renderMenu({ multiSelect: true }, <MenuItem selected>Option</MenuItem>);
+    renderMenu({ type: 'multi-select' }, <MenuItem selected>Option</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByRole('menuitemcheckbox')).toHaveAttribute('aria-checked', 'true');
   });
 
-  it('sets aria-checked=false when not selected in multiSelect mode', async () => {
+  it('sets aria-checked=false when not selected in multi-select mode', async () => {
     const user = userEvent.setup();
-    renderMenu({ multiSelect: true }, <MenuItem>Option</MenuItem>);
+    renderMenu({ type: 'multi-select' }, <MenuItem>Option</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByRole('menuitemcheckbox')).toHaveAttribute('aria-checked', 'false');
   });
 
   it('does not set aria-checked in single-select mode', async () => {
     const user = userEvent.setup();
-    renderMenu({}, <MenuItem selected>Option</MenuItem>);
+    // aria-checked is always present on menuitemradio; this test verifies multi-select is distinct
+    renderMenu({ type: 'multi-select' }, <MenuItem>Option</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.queryByRole('menuitemradio')).not.toBeInTheDocument();
+  });
+
+  it('renders a checkbox indicator in multi-select mode', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'multi-select' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const item = screen.getByRole('menuitemcheckbox');
+    expect(item.querySelector('.sds-checkbox-indicator')).toBeInTheDocument();
+  });
+});
+
+// ─── MenuItem — configure ─────────────────────────────────────────────────────
+
+describe('MenuItem — configure mode', () => {
+  it('uses role="menuitem" in configure mode', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Option</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.getByRole('menuitem', { name: 'Option' })).toBeInTheDocument();
+  });
+
+  it('does not set aria-checked in configure mode', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem selected>Option</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByRole('menuitem')).not.toHaveAttribute('aria-checked');
+  });
+
+  it('renders a drag handle', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const item = screen.getByRole('menuitem');
+    expect(item.querySelector('.sds-menu-item__drag-handle')).toBeInTheDocument();
+  });
+
+  it('renders a toggle switch by default', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const item = screen.getByRole('menuitem');
+    expect(item.querySelector('.sds-menu-item__toggle')).toBeInTheDocument();
+  });
+
+  it('does not render a toggle switch when toggleable=false', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem toggleable={false}>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const item = screen.getByRole('menuitem');
+    expect(item.querySelector('.sds-menu-item__toggle')).not.toBeInTheDocument();
+  });
+
+  it('toggle has aria-checked=true when selected', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem selected>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const toggle = document.querySelector('.sds-menu-item__toggle')!;
+    expect(toggle).toHaveAttribute('aria-checked', 'true');
+  });
+
+  it('toggle has aria-checked=false when not selected', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const toggle = document.querySelector('.sds-menu-item__toggle')!;
+    expect(toggle).toHaveAttribute('aria-checked', 'false');
+  });
+
+  it('calls onClick when the toggle is clicked', async () => {
+    const user    = userEvent.setup();
+    const onClick = vi.fn();
+    renderMenu({ type: 'configure' }, <MenuItem onClick={onClick}>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const toggle = document.querySelector<HTMLElement>('.sds-menu-item__toggle')!;
+    await user.click(toggle);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not auto-close the menu when the toggle is clicked', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    const toggle = document.querySelector<HTMLElement>('.sds-menu-item__toggle')!;
+    await user.click(toggle);
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+  });
+
+  it('applies sds-menu-item--configure class', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.getByRole('menuitem')).toHaveClass('sds-menu-item--configure');
   });
 });
 
@@ -187,7 +310,7 @@ describe('MenuItem — suffix', () => {
     renderMenu({}, <MenuItem suffix={{ type: 'tag', label: '42' }}>Messages</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByText('42')).toBeInTheDocument();
-    const item = screen.getByRole('menuitem');
+    const item = screen.getByRole('menuitemradio');
     expect(within(item).getByText('42').closest('.sds-menu-item__suffix--tag')).toBeInTheDocument();
   });
 
@@ -196,7 +319,7 @@ describe('MenuItem — suffix', () => {
     renderMenu({}, <MenuItem suffix={{ type: 'text', label: '⌘K' }}>Search</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByText('⌘K')).toBeInTheDocument();
-    const item = screen.getByRole('menuitem');
+    const item = screen.getByRole('menuitemradio');
     expect(within(item).getByText('⌘K').closest('.sds-menu-item__suffix--text')).toBeInTheDocument();
   });
 
@@ -204,7 +327,7 @@ describe('MenuItem — suffix', () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem suffix={{ type: 'icon' }}>Submenu</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    const item = screen.getByRole('menuitem');
+    const item = screen.getByRole('menuitemradio');
     expect(item.querySelector('.sds-menu-item__suffix--icon')).toBeInTheDocument();
   });
 
@@ -219,12 +342,12 @@ describe('MenuItem — suffix', () => {
 // ─── Click / selection ────────────────────────────────────────────────────────
 
 describe('MenuItem — click interaction', () => {
-  it('calls onClick when an enabled item is clicked', async () => {
+  it('calls onClick when an enabled single-select item is clicked', async () => {
     const user    = userEvent.setup();
     const onClick = vi.fn();
     renderMenu({}, <MenuItem onClick={onClick}>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    await user.click(screen.getByRole('menuitem', { name: 'Item' }));
+    await user.click(screen.getByRole('menuitemradio', { name: 'Item' }));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -233,7 +356,7 @@ describe('MenuItem — click interaction', () => {
     const onClick = vi.fn();
     renderMenu({}, <MenuItem onClick={onClick} disabled>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    const item = screen.getByRole('menuitem');
+    const item = screen.getByRole('menuitemradio');
     item.click(); // direct DOM click bypasses pointer-events:none
     expect(onClick).not.toHaveBeenCalled();
   });
@@ -243,13 +366,13 @@ describe('MenuItem — click interaction', () => {
     renderMenu({}, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByRole('menu')).toBeInTheDocument();
-    await user.click(screen.getByRole('menuitem', { name: 'Item' }));
+    await user.click(screen.getByRole('menuitemradio', { name: 'Item' }));
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
   });
 
-  it('does not auto-close the menu after a multiSelect item is clicked', async () => {
+  it('does not auto-close the menu after a multi-select item is clicked', async () => {
     const user = userEvent.setup();
-    renderMenu({ multiSelect: true }, <MenuItem>Item</MenuItem>);
+    renderMenu({ type: 'multi-select' }, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     await user.click(screen.getByRole('menuitemcheckbox', { name: 'Item' }));
     expect(screen.getByRole('menu')).toBeInTheDocument();
@@ -260,7 +383,6 @@ describe('MenuItem — click interaction', () => {
 
 describe('Menu — keyboard navigation', () => {
   beforeEach(() => {
-    // jsdom does not implement getBoundingClientRect, so stub it.
     vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
       top: 100, bottom: 132, left: 50, right: 150,
       width: 100, height: 32, x: 50, y: 100, toJSON: () => ({}),
@@ -271,8 +393,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
-    // First non-disabled item should receive focus
+    const items = screen.getAllByRole('menuitemradio');
     expect(items[0]).toHaveFocus();
   });
 
@@ -280,7 +401,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
+    const items = screen.getAllByRole('menuitemradio');
     items[0].focus();
     await user.keyboard('{ArrowDown}');
     expect(items[1]).toHaveFocus();
@@ -290,7 +411,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
+    const items = screen.getAllByRole('menuitemradio');
     items[1].focus();
     await user.keyboard('{ArrowUp}');
     expect(items[0]).toHaveFocus();
@@ -300,7 +421,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
+    const items = screen.getAllByRole('menuitemradio');
     items[items.length - 1].focus();
     await user.keyboard('{ArrowDown}');
     expect(items[0]).toHaveFocus();
@@ -310,7 +431,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
+    const items = screen.getAllByRole('menuitemradio');
     items[0].focus();
     await user.keyboard('{ArrowUp}');
     expect(items[items.length - 1]).toHaveFocus();
@@ -320,7 +441,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
+    const items = screen.getAllByRole('menuitemradio');
     items[items.length - 1].focus();
     await user.keyboard('{Home}');
     expect(items[0]).toHaveFocus();
@@ -330,7 +451,7 @@ describe('Menu — keyboard navigation', () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
+    const items = screen.getAllByRole('menuitemradio');
     items[0].focus();
     await user.keyboard('{End}');
     expect(items[items.length - 1]).toHaveFocus();
@@ -376,8 +497,7 @@ describe('Menu — keyboard navigation', () => {
       </>
     );
     await user.click(screen.getByTestId('trigger'));
-    const items = screen.getAllByRole('menuitem');
-    // "Alpha" is focused first; disabled items are not in the focusable query
+    const items = screen.getAllByRole('menuitemradio');
     items[0].focus();
     await user.keyboard('{ArrowDown}');
     // Should skip "Beta (disabled)" and focus "Gamma"
@@ -442,25 +562,32 @@ describe('Menu — accessibility', () => {
     expect(screen.getByRole('menu')).toBeInTheDocument();
   });
 
-  it('has role="menuitem" on items in single-select mode', async () => {
+  it('has role="menuitemradio" on items in single-select mode', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem')).toBeInTheDocument();
+    expect(screen.getByRole('menuitemradio')).toBeInTheDocument();
   });
 
-  it('has role="menuitemcheckbox" on items in multiSelect mode', async () => {
+  it('has role="menuitemcheckbox" on items in multi-select mode', async () => {
     const user = userEvent.setup();
-    renderMenu({ multiSelect: true }, <MenuItem>Item</MenuItem>);
+    renderMenu({ type: 'multi-select' }, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     expect(screen.getByRole('menuitemcheckbox')).toBeInTheDocument();
+  });
+
+  it('has role="menuitem" on items in configure mode', async () => {
+    const user = userEvent.setup();
+    renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
+    await user.click(screen.getByTestId('trigger'));
+    expect(screen.getByRole('menuitem')).toBeInTheDocument();
   });
 
   it('keeps items out of the tab order (tabIndex=-1)', async () => {
     const user = userEvent.setup();
     renderMenu({}, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    expect(screen.getByRole('menuitem')).toHaveAttribute('tabindex', '-1');
+    expect(screen.getByRole('menuitemradio')).toHaveAttribute('tabindex', '-1');
   });
 
   it('hides the backdrop from assistive technology', async () => {

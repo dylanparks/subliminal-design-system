@@ -1,0 +1,636 @@
+/* DatePicker — Subliminal Design System
+ * Fields/DatePicker
+ *
+ * Modes: date · range · month · year
+ * Sizes: large (64px) · medium (56px)
+ *
+ * State      CSS mechanism
+ * ─────────────────────────────────────────────────────────────────
+ * hover      :hover on wrapper (scoped: not disabled, not open)
+ * open       .sds-datepicker--open (JS — popover visible)
+ * focus      :focus-within on wrapper
+ * disabled   .sds-datepicker--disabled
+ * error      .sds-datepicker--error
+ * success    .sds-datepicker--success
+ * filled     .sds-datepicker--filled
+ */
+
+/* ─── Root ────────────────────────────────────────────────────── */
+
+.sds-datepicker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Wrapper ─────────────────────────────────────────────────── */
+
+.sds-datepicker__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  background-color: var(--sds-interactive-fields-background-default);
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    border-color     120ms ease;
+}
+
+.sds-datepicker:not(.sds-datepicker--disabled):not(.sds-datepicker--open) .sds-datepicker__wrapper:not(:focus-within):hover {
+  background-color: var(--sds-interactive-fields-background-hover);
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+.sds-datepicker--open .sds-datepicker__wrapper,
+.sds-datepicker__wrapper:focus-within {
+  background-color: var(--sds-interactive-fields-background-active);
+  border-color: var(--sds-interactive-fields-stroke-active);
+}
+
+.sds-datepicker--error .sds-datepicker__wrapper,
+.sds-datepicker--error .sds-datepicker__wrapper:hover,
+.sds-datepicker--error.sds-datepicker--open .sds-datepicker__wrapper,
+.sds-datepicker--error .sds-datepicker__wrapper:focus-within {
+  background-color: var(--sds-status-error-background-default);
+  border-color: var(--sds-status-error-stroke-default);
+}
+
+.sds-datepicker--success .sds-datepicker__wrapper,
+.sds-datepicker--success .sds-datepicker__wrapper:hover,
+.sds-datepicker--success.sds-datepicker--open .sds-datepicker__wrapper,
+.sds-datepicker--success .sds-datepicker__wrapper:focus-within {
+  background-color: var(--sds-status-success-background-default);
+  border-color: var(--sds-status-success-stroke-default);
+}
+
+.sds-datepicker--disabled .sds-datepicker__wrapper {
+  background-color: var(--sds-interactive-fields-background-disabled);
+  border-color: var(--sds-interactive-fields-stroke-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Sizes ───────────────────────────────────────────────────── */
+
+.sds-datepicker--large .sds-datepicker__wrapper {
+  height: var(--sds-spacing-size-large);
+  padding: 0 16px;
+  border-radius: var(--sds-shape-border-radius-large);
+}
+
+.sds-datepicker--medium .sds-datepicker__wrapper {
+  height: var(--sds-spacing-size-medium);
+  padding: 0 12px;
+  border-radius: var(--sds-shape-border-radius-medium);
+}
+
+/* ─── Inner (floating label + trigger text) ──────────────────── */
+
+.sds-datepicker__inner {
+  flex: 1 0 0;
+  min-width: 0;
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.sds-datepicker--large .sds-datepicker__inner {
+  padding-bottom: 10px;
+}
+
+.sds-datepicker--medium .sds-datepicker__inner {
+  padding-bottom: 6px;
+}
+
+/* ─── Floating label ─────────────────────────────────────────── */
+
+.sds-datepicker__label {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-suggested);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  transition:
+    top           160ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform     160ms cubic-bezier(0.4, 0, 0.2, 1),
+    font-size     160ms cubic-bezier(0.4, 0, 0.2, 1),
+    line-height   160ms cubic-bezier(0.4, 0, 0.2, 1),
+    letter-spacing 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Float up — large (only when filled, matching SelectField) */
+.sds-datepicker--large.sds-datepicker--filled .sds-datepicker__label {
+  top: 10px;
+  transform: translateY(0);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* Float up — medium (only when filled, matching SelectField) */
+.sds-datepicker--medium.sds-datepicker--filled .sds-datepicker__label {
+  top: 6px;
+  transform: translateY(0);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+/* ─── Selected value text ─────────────────────────────────────── */
+/*
+ * Always in the DOM (aria-hidden). Hidden via max-height/opacity until
+ * --filled is set — identical pattern to SelectField.__value.
+ */
+
+.sds-datepicker__value {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  pointer-events: none;
+
+  /* Hidden until filled */
+  max-height: 0;
+  opacity: 0;
+  transition:
+    opacity    160ms cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal when a value is selected */
+.sds-datepicker--filled .sds-datepicker__value {
+  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  opacity: 1;
+}
+
+/* Range variant: two date spans with an arrow separator */
+.sds-datepicker__value--range {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sds-datepicker__range-date {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-interactive-fields-content-default);
+  white-space: nowrap;
+}
+
+.sds-datepicker__range-sep {
+  flex-shrink: 0;
+  color: var(--sds-interactive-fields-content-suggested);
+  display: flex;
+  align-items: center;
+}
+
+.sds-datepicker--disabled .sds-datepicker__value,
+.sds-datepicker--disabled .sds-datepicker__range-date {
+  color: var(--sds-interactive-fields-content-suggested);
+}
+
+/* ─── Calendar icon (trailing) ───────────────────────────────── */
+
+.sds-datepicker__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  color: var(--sds-interactive-fields-content-default);
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.sds-datepicker--disabled .sds-datepicker__icon {
+  color: var(--sds-interactive-fields-content-suggested);
+  cursor: not-allowed;
+}
+
+/* ─── Clear button ────────────────────────────────────────────── */
+
+.sds-datepicker__clear {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity   120ms ease,
+    transform 120ms ease,
+    color     120ms ease;
+}
+
+.sds-datepicker__clear:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+/* Reveal when filled — scoped so disabled fields never show it */
+.sds-datepicker--clearable.sds-datepicker--filled .sds-datepicker__clear {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ─── Trigger button (fills the wrapper as a flex row) ──────── */
+
+.sds-datepicker__trigger {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.sds-datepicker--disabled .sds-datepicker__trigger {
+  cursor: not-allowed;
+}
+
+/* ─── Backdrop (portal-rendered) ────────────────────────────── */
+/*
+ * Full-viewport transparent overlay. Sits below the popover in z-order so
+ * all outside clicks and touches are captured — no document event listeners
+ * needed, and touch-scroll dismissal works correctly on mobile.
+ */
+.sds-datepicker__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1299;
+  background: transparent;
+}
+
+/* ─── Popover (portal-rendered) ──────────────────────────────── */
+
+.sds-datepicker__popover {
+  position: fixed;
+  z-index: 1300;
+  background-color: var(--sds-neutral-background-default);
+  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border-radius: var(--sds-shape-border-radius-large);
+  box-shadow: var(--sds-effects-shadowcallout);
+  padding: 16px;
+  box-sizing: border-box;
+  outline: none;
+
+  /* Hidden until position is computed — prevents flash at 0,0 */
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transform-origin: top left;
+}
+
+/* Reveal + entrance animation once position is confirmed */
+.sds-datepicker__popover--ready {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity   140ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 140ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Range mode: two panels side by side */
+.sds-datepicker__popover--range {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+/* ─── Calendar panel ─────────────────────────────────────────── */
+
+.sds-datepicker__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 256px;
+}
+
+/* ─── Header ─────────────────────────────────────────────────── */
+
+.sds-datepicker__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.sds-datepicker__header-title {
+  flex: 1;
+  text-align: center;
+  font-family:    var(--sds-typography-font-family-body-interactive);
+  font-weight:    var(--sds-typography-font-weight-body-interactive);
+  font-size:      var(--sds-typography-font-size-body-interactive-large);
+  line-height:    var(--sds-typography-line-height-body-interactive-large);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
+  color: var(--sds-neutral-content-primary);
+  white-space: nowrap;
+  cursor: default;
+}
+
+
+/* ─── Weekday row ─────────────────────────────────────────────── */
+
+.sds-datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.sds-datepicker__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-subtle);
+}
+
+/* ─── Day grid ────────────────────────────────────────────────── */
+
+.sds-datepicker__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.sds-datepicker__day-cell {
+  /* Range background spans the full cell; button is centered within */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+}
+
+/* Range highlight backgrounds */
+.sds-datepicker__day-cell--in-range {
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+}
+
+/* Left half pill for range start */
+.sds-datepicker__day-cell--range-start::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 0;
+  width: 50%;
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  pointer-events: none;
+}
+
+/* Right half pill for range end */
+.sds-datepicker__day-cell--range-end::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0;
+  width: 50%;
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  pointer-events: none;
+}
+
+/* When start = end (single day selected in range mode), no half-pill */
+.sds-datepicker__day-cell--range-start.sds-datepicker__day-cell--range-end::after {
+  display: none;
+}
+
+.sds-datepicker__day-btn {
+  all: unset;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sds-shape-border-radius-round);
+  box-sizing: border-box;
+  /* Default: Body/Content/Small */
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    1;
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  cursor: pointer;
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+/* Hover — only for plain default days */
+.sds-datepicker__day-btn:hover:not(.sds-datepicker__day-btn--today):not(.sds-datepicker__day-btn--active):not(.sds-datepicker__day-btn--range-start):not(.sds-datepicker__day-btn--range-end):not([aria-disabled='true']) {
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-datepicker__day-btn:focus-visible {
+  outline: 2px solid var(--sds-effects-focus);
+  outline-offset: 2px;
+}
+
+/* Outside-month days */
+.sds-datepicker__day-btn--outside {
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+}
+
+/*
+ * Current date (today) — hollow light-blue circle, blue text, Interactive/Small.
+ * Figma: bg = --interactive/primary/hollow/background/active
+ *        color = --interactive/primary/hollow/content/default
+ */
+.sds-datepicker__day-btn--today {
+  background-color: var(--sds-interactive-primary-hollow-background-active);
+  color: var(--sds-interactive-primary-hollow-content-default);
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+}
+
+/*
+ * Active (selected, non-today) — filled dark-blue circle, white text, Interactive/Small.
+ * Figma: bg = --interactive/primary/filled/background/default
+ *        color = --onmedia/neutral/content/primary
+ */
+.sds-datepicker__day-btn--active {
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  color: var(--sds-onmedia-neutral-content-primary);
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+}
+
+/*
+ * Range endpoints — filled dark-blue (same as today), white text, Interactive/Small.
+ * The half-pill connecting highlight lives on the cell wrapper pseudo-element.
+ */
+.sds-datepicker__day-btn--range-start,
+.sds-datepicker__day-btn--range-end {
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  color: var(--sds-onmedia-neutral-content-primary);
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+}
+
+/* Disabled days (outside-month inherit the --outside colour above) */
+.sds-datepicker__day-btn[aria-disabled='true'] {
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  cursor: not-allowed;
+}
+
+/* ─── Month/Year grid ─────────────────────────────────────────── */
+
+.sds-datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.sds-datepicker__grid-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: var(--sds-shape-border-radius-medium);
+  box-sizing: border-box;
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    1;
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  cursor: pointer;
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+.sds-datepicker__grid-btn:hover:not(.sds-datepicker__grid-btn--current):not([aria-selected='true']) {
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-datepicker__grid-btn:focus-visible {
+  outline: 2px solid var(--sds-effects-focus);
+  outline-offset: 2px;
+}
+
+/* Current month/year (today's) — hollow light-blue, blue text */
+.sds-datepicker__grid-btn--current:not([aria-selected='true']) {
+  background-color: var(--sds-interactive-primary-hollow-background-active);
+  color: var(--sds-interactive-primary-hollow-content-default);
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+}
+
+/* Selected month/year — filled dark-blue, white text */
+.sds-datepicker__grid-btn[aria-selected='true'] {
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  color: var(--sds-onmedia-neutral-content-primary);
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+}
+
+/* ─── Divider between range panels ──────────────────────────────*/
+
+.sds-datepicker__divider {
+  width: 1px;
+  background-color: var(--sds-interactive-fields-stroke-default);
+  align-self: stretch;
+}
+
+/* ─── Support group ───────────────────────────────────────────── */
+
+.sds-datepicker__support {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.sds-datepicker__support > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+}
+
+.sds-datepicker--error .sds-datepicker__support {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-datepicker--success .sds-datepicker__support {
+  color: var(--sds-status-success-content-default);
+}
+
+.sds-datepicker__message {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color: var(--sds-neutral-content-tertiary);
+}
+
+.sds-datepicker--error .sds-datepicker__message {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-datepicker--success .sds-datepicker__message {
+  color: var(--sds-status-success-content-default);
+}
+
+/* ─── Screen-reader only ──────────────────────────────────────── */
+
+.sds-datepicker .sds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

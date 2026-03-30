@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TextArea } from './TextArea';
 
 const meta: Meta<typeof TextArea> = {
   component: TextArea,
   title: 'Fields/TextArea',
+  decorators: [(Story) => <div style={{ maxWidth: '38rem', width: '100%' }}><Story /></div>],
   argTypes: {
     disabled:  { control: 'boolean' },
     error:     { control: 'boolean' },
@@ -33,16 +34,16 @@ export const CharacterLimit: Story = {
 
 export const Error: Story = {
   args: {
-    value:   'Invalid content',
-    message: 'This field contains an error.',
-    error:   true,
+    defaultValue: 'Invalid content',
+    message:      'This field contains an error.',
+    error:        true,
   },
 };
 
 export const Success: Story = {
   args: {
-    value:   'Valid content',
-    message: 'Looks good!',
-    success: true,
+    defaultValue: 'Valid content',
+    message:      'Looks good!',
+    success:      true,
   },
 };
