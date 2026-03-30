@@ -190,7 +190,8 @@
 /* ─── Clear button ──────────────────────────────────────────────────────────── */
 
 .sds-text-area__clear {
-  display: none;
+  display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 24px;
@@ -199,38 +200,33 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--sds-neutral-content-primary);
-  transition: color 120ms ease;
-  flex-shrink: 0;
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity   120ms ease,
+    transform 120ms ease,
+    color     120ms ease;
 }
 
 .sds-text-area__clear:hover {
-  color: var(--sds-neutral-content-secondary);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
 }
 
 /* Show when filled + focused */
 .sds-text-area--filled .sds-text-area__wrapper:focus-within .sds-text-area__clear {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
-/* Show when filled + error */
-.sds-text-area--filled.sds-text-area--error .sds-text-area__clear {
-  display: flex;
-  color: var(--sds-status-error-content-default);
-}
-
-.sds-text-area--filled.sds-text-area--error .sds-text-area__clear:hover {
-  color: var(--sds-status-error-content-default);
-}
-
-/* Show when filled + success */
+/* Show when filled + error / success */
+.sds-text-area--filled.sds-text-area--error .sds-text-area__clear,
 .sds-text-area--filled.sds-text-area--success .sds-text-area__clear {
-  display: flex;
-  color: var(--sds-status-success-content-default);
-}
-
-.sds-text-area--filled.sds-text-area--success .sds-text-area__clear:hover {
-  color: var(--sds-status-success-content-default);
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 /* ─── Support group ─────────────────────────────────────────────────────────── */
@@ -239,8 +235,22 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 8px;
+  gap: 4px;
   width: 100%;
+}
+
+/* Support icon — centers the 16px SVG within the text line-height */
+.sds-text-area__support > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+}
+
+.sds-text-area--error .sds-text-area__support {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-text-area--success .sds-text-area__support {
+  color: var(--sds-status-success-content-default);
 }
 
 /* ─── Message ───────────────────────────────────────────────────────────────── */

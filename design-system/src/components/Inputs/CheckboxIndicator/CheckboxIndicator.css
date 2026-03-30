@@ -1,0 +1,215 @@
+/* CheckboxIndicator — Subliminal Design System
+ * Inputs/CheckboxIndicator
+ *
+ * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
+ *         --sds-onmedia-interactive-filled-*, --sds-onmedia-interactive-hollow-*,
+ *         --sds-effects-focus, --sds-shape-border-radius-xxsmall
+ *
+ * This component is purely visual. Interactive states (hover, focus ring,
+ * pressed) are applied via CSS selectors from the parent component's stylesheet
+ * (e.g. Checkbox.css, Menu.css) rather than from this file, keeping concerns
+ * cleanly separated.
+ *
+ * Modifiers applied by parent context:
+ *   .sds-checkbox-indicator--hover        (e.g. via parent :hover)
+ *   .sds-checkbox-indicator--pressed      (e.g. via parent :active)
+ *   .sds-checkbox-indicator--focus-ring   (e.g. via parent :has(:focus-visible))
+ *
+ * States driven by component props:
+ *   .sds-checkbox-indicator--medium       — 18px size
+ *   .sds-checkbox-indicator--checked      — filled, shows checkmark
+ *   .sds-checkbox-indicator--indeterminate — filled, shows minus
+ *   .sds-checkbox-indicator--on-media     — inverted palette for image backgrounds
+ *   .sds-checkbox-indicator--disabled     — muted disabled appearance
+ */
+
+/* ─── Base (large, unchecked) ────────────────────────────────────────────────── */
+
+.sds-checkbox-indicator {
+  flex-shrink: 0;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing:  border-box;
+  border-radius: var(--sds-shape-border-radius-xxsmall);
+
+  /* Large size (default) */
+  width:  22px;
+  height: 22px;
+
+  /* Unchecked: hollow — white fill, subtle stroke */
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
+
+  transition:
+    background-color 120ms ease,
+    border-color     120ms ease,
+    box-shadow       120ms ease;
+}
+
+/* ─── Icon ────────────────────────────────────────────────────────────────────── */
+
+.sds-checkbox-indicator__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Icon color from filled content token — overridden for on-media and disabled */
+  color: var(--sds-interactive-secondary-filled-content-default);
+}
+
+/* ─── Medium size ────────────────────────────────────────────────────────────── */
+
+.sds-checkbox-indicator--medium {
+  width:  18px;
+  height: 18px;
+}
+
+/* ─── Checked ────────────────────────────────────────────────────────────────── */
+
+.sds-checkbox-indicator--checked {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+  border-color:     var(--sds-interactive-secondary-filled-background-default);
+}
+
+/* ─── Indeterminate ──────────────────────────────────────────────────────────── */
+
+.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+  border-color:     var(--sds-interactive-secondary-filled-background-default);
+}
+
+/* ─── Focus ring (applied by parent via .sds-checkbox-indicator--focus-ring) ─── */
+
+.sds-checkbox-indicator--focus-ring {
+  box-shadow: 0 0 0 6px var(--sds-effects-focus);
+}
+
+/* ─── Hover state (applied by parent context) ────────────────────────────────── */
+
+/* Unchecked hover */
+.sds-checkbox-indicator--hover:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-hover);
+}
+
+/* Checked / indeterminate hover */
+.sds-checkbox-indicator--hover.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--hover.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-hover);
+  border-color:     var(--sds-interactive-secondary-filled-background-hover);
+}
+
+/* ─── Pressed state (applied by parent context) ──────────────────────────────── */
+
+/* Unchecked pressed */
+.sds-checkbox-indicator--pressed:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-active);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-active);
+}
+
+/* Checked / indeterminate pressed */
+.sds-checkbox-indicator--pressed.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--pressed.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-active);
+  border-color:     var(--sds-interactive-secondary-filled-background-active);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────────── */
+
+.sds-checkbox-indicator--disabled {
+  pointer-events: none;
+}
+
+/* Disabled unchecked */
+.sds-checkbox-indicator--disabled:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-disabled);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-disabled);
+}
+
+/* Disabled checked / indeterminate */
+.sds-checkbox-indicator--disabled.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--disabled.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-disabled);
+  border-color:     var(--sds-interactive-secondary-filled-background-disabled);
+}
+
+/* Disabled icon color (muted) */
+.sds-checkbox-indicator--disabled .sds-checkbox-indicator__icon {
+  color: var(--sds-interactive-secondary-filled-content-disabled);
+}
+
+/* ─── On Media ───────────────────────────────────────────────────────────────── */
+
+/* Large on-media is 24px (slightly larger than off-media 22px) */
+.sds-checkbox-indicator--on-media {
+  width:  24px;
+  height: 24px;
+}
+
+/* Medium on-media stays 18px */
+.sds-checkbox-indicator--medium.sds-checkbox-indicator--on-media {
+  width:  18px;
+  height: 18px;
+}
+
+/* On media unchecked */
+.sds-checkbox-indicator--on-media:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-default);
+  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-default);
+}
+
+/* On media checked / indeterminate */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-onmedia-interactive-filled-background-default);
+  border-color:     var(--sds-onmedia-interactive-filled-background-default);
+}
+
+/* On media icon color */
+.sds-checkbox-indicator--on-media .sds-checkbox-indicator__icon {
+  color: var(--sds-onmedia-interactive-filled-content-default);
+}
+
+/* On media hover (unchecked) */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--hover:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-hover);
+  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-hover);
+}
+
+/* On media hover (checked / indeterminate) */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--hover.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--hover.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-onmedia-interactive-filled-background-hover);
+  border-color:     var(--sds-onmedia-interactive-filled-background-hover);
+}
+
+/* On media pressed (unchecked) */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--pressed:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-active);
+  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-active);
+}
+
+/* On media pressed (checked / indeterminate) */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--pressed.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--pressed.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-onmedia-interactive-filled-background-active);
+  border-color:     var(--sds-onmedia-interactive-filled-background-active);
+}
+
+/* On media disabled unchecked */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-disabled);
+  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-disabled);
+}
+
+/* On media disabled checked / indeterminate */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-onmedia-interactive-filled-background-disabled);
+  border-color:     var(--sds-onmedia-interactive-filled-background-disabled);
+}
+
+/* On media disabled icon */
+.sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled .sds-checkbox-indicator__icon {
+  color: var(--sds-onmedia-interactive-filled-content-disabled);
+}

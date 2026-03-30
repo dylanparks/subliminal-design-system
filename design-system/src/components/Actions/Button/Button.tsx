@@ -2,7 +2,7 @@ import { type ReactNode, type MouseEventHandler } from 'react';
 import './Button.css';
 
 export type ButtonIntent = 'primary' | 'secondary' | 'media';
-export type ButtonVariant = 'filled' | 'hollow';
+export type ButtonVariant = 'filled' | 'hollow' | 'hollow-ghost';
 export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 export interface ButtonProps {

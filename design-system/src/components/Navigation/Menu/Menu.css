@@ -11,7 +11,7 @@
  *   .sds-menu            → floating list container (portal-rendered, position: fixed)
  *   .sds-menu-backdrop   → transparent click-capture overlay
  *   .sds-menu-item       → individual option row
- *   .sds-menu-item__checkbox   → multi-select checkbox indicator
+ *   .sds-checkbox-indicator    → multi-select checkbox indicator (from Inputs/CheckboxIndicator)
  *   .sds-menu-item__icon       → leading icon slot
  *   .sds-menu-item__content    → label text
  *   .sds-menu-item__suffix     → trailing suffix (tag | text | icon)
@@ -22,44 +22,32 @@
  * Selected, disabled states are JS-applied modifier classes.
  */
 
-/* ─── Backdrop ──────────────────────────────────────────────────────────────── */
-
-/*
- * Full-viewport transparent overlay. Sits below the menu in z-order so that
- * all outside clicks and touches are captured and trigger onClose — no need for
- * document-level event listeners. Invisible to assistive technology (aria-hidden).
- */
-.sds-menu-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 1299;
-  background: transparent;
-  cursor: default;
-  -webkit-tap-highlight-color: transparent;
-}
 
 /* ─── Menu container ────────────────────────────────────────────────────────── */
 
+/*
+ * Outer container: owns the border-radius, box-shadow, and overflow:hidden.
+ * overflow:hidden ensures the border-radius is always respected regardless of
+ * whether the inner list is scrollable — the native scrollbar never escapes
+ * the rounded corners because it lives in a sibling element, not here.
+ */
 .sds-menu {
   position: fixed;
   z-index: 1300;
   min-width: 220px;
-  list-style: none;
-  margin: 0;
-  padding: 4px 0;
+  display: flex;
+  flex-direction: row;
   background-color: var(--sds-neutral-background-default);
   border-radius: var(--sds-shape-border-radius-medium);
   box-shadow: var(--sds-effects-shadowcallout);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
-  outline: none;
 
   /* Hidden until position is computed (avoids a flash at 0,0) */
   visibility: hidden;
   opacity: 0;
   transform: scale(0.97);
-  transform-origin: top left;
+  transform-origin: top center;
 }
 
 /* Reveal + entrance animation — applied once position is confirmed. */
@@ -72,15 +60,76 @@
     transform 140ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ─── Menu list ──────────────────────────────────────────────────────────────── */
+
+/*
+ * Inner scrollable list. The native scrollbar is hidden so it doesn't poke
+ * outside the outer container's rounded corners — the custom scrollbar track
+ * in .sds-menu__scrollbar takes its place.
+ */
+.sds-menu__list {
+  flex: 1 1 0;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  outline: none;
+  box-sizing: border-box;
+  /* Hide native scrollbar — Chrome/Safari/Edge */
+  scrollbar-width: none;
+}
+
+.sds-menu__list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Custom scrollbar ───────────────────────────────────────────────────────── */
+
+/* Track — 12px wide flex sibling, stretches to the full menu height.
+   cursor: pointer signals that clicking scrolls to that position. */
+.sds-menu__scrollbar {
+  flex-shrink: 0;
+  width: 12px;
+  align-self: stretch;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Indicator — 6px pill centred within the track, positioned via JS.
+   Min height of 24px satisfies WCAG 2.5.8 minimum target size.
+   grab/grabbing cursors communicate draggability. */
+.sds-menu__scrollbar-indicator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  min-height: 24px;
+  border-radius: var(--sds-shape-border-radius-round, 999px);
+  background-color: var(--sds-neutral-content-subtle);
+  cursor: grab;
+  transition: background-color 120ms ease;
+}
+
+.sds-menu__scrollbar-indicator:hover {
+  background-color: var(--sds-neutral-content-secondary);
+}
+
+.sds-menu__scrollbar-indicator:active {
+  cursor: grabbing;
+  background-color: var(--sds-neutral-content-secondary);
+}
+
 /* ─── Menu item ─────────────────────────────────────────────────────────────── */
 
 .sds-menu-item {
   /* Layout */
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   min-height: 44px; /* WCAG 2.5.8 — minimum touch target */
-  padding: 8px 16px;
+  padding: 8px 8px;
   box-sizing: border-box;
   list-style: none;
 
@@ -130,31 +179,34 @@
   pointer-events: none;
 }
 
-/* ─── Checkbox indicator (multiSelect mode) ─────────────────────────────────── */
-
-.sds-menu-item__checkbox {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  box-sizing: border-box;
-  border-radius: var(--sds-shape-border-radius-xxsmall); /* 4px */
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive);
-  background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
-  color: transparent; /* checkmark hidden when unchecked */
-  transition:
-    background-color 120ms ease,
-    border-color     120ms ease,
-    color            120ms ease;
+/*
+ * Keyboard-highlight — used by Combobox, SearchField, and TimePicker for the
+ * aria-activedescendant pattern where DOM focus stays on the input and the
+ * highlighted option is tracked via a CSS class rather than :focus.
+ */
+.sds-menu-item--active {
+  background-color: var(--sds-interactive-fields-background-hover);
 }
 
-/* Checked: filled dark background + white checkmark */
-.sds-menu-item__checkbox--checked {
-  background-color: var(--sds-interactive-secondary-filled-background-default);
-  border-color:     var(--sds-interactive-secondary-filled-background-default);
-  color: var(--sds-interactive-secondary-filled-content-default);
+/* ─── Checkbox indicator (multi-select mode) ─────────────────────────────────── */
+
+/*
+ * The CheckboxIndicator component from Inputs/CheckboxIndicator handles its own
+ * base, checked, and disabled styles. Here we only need to apply the hover and
+ * pressed states that are triggered by the parent menu item's interaction states.
+ */
+
+/* Unchecked indicator: hover */
+.sds-menu-item:hover:not(.sds-menu-item--disabled) .sds-checkbox-indicator:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-hover);
+}
+
+/* Checked / indeterminate indicator: hover */
+.sds-menu-item:hover:not(.sds-menu-item--disabled) .sds-checkbox-indicator--checked,
+.sds-menu-item:hover:not(.sds-menu-item--disabled) .sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-hover);
+  border-color:     var(--sds-interactive-secondary-filled-background-hover);
 }
 
 /* ─── Leading icon slot ─────────────────────────────────────────────────────── */
@@ -228,4 +280,143 @@
   margin: 4px 0;
   list-style: none;
   background-color: var(--sds-neutral-stroke-default);
+}
+
+/* ─── Single-select checkmark ────────────────────────────────────────────────── */
+
+/*
+ * Always occupies a 20×20 slot so items with and without a selected state
+ * stay horizontally aligned. The checkmark is invisible (color: transparent)
+ * when the item is not selected, but still takes up space in the layout.
+ */
+.sds-menu-item__checkmark {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: transparent;
+  transition: color 100ms ease;
+}
+
+.sds-menu-item__checkmark--selected {
+  color: var(--sds-interactive-fields-content-default);
+}
+
+/* ─── Configure — drag handle ────────────────────────────────────────────────── */
+
+/*
+ * Configure items use `cursor: grab` across the entire row.
+ * The toggle zone overrides this with `cursor: pointer` for its own hit area.
+ * padding-right: 0 — the toggle zone provides the right padding instead, so
+ * the zone's clickable area extends flush to the item's right edge.
+ * position: relative — scopes the drop-indicator pseudo-elements.
+ */
+.sds-menu-item--configure {
+  position: relative;
+  cursor: grab;
+  padding-right: 0;
+}
+
+/* Drop indicator line — shown via data-drop-position set by internal drag handlers */
+.sds-menu-item--configure[data-drop-position="before"]::before,
+.sds-menu-item--configure[data-drop-position="after"]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--sds-effects-focus);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sds-menu-item--configure[data-drop-position="before"]::before {
+  top: -1px;
+}
+
+.sds-menu-item--configure[data-drop-position="after"]::after {
+  bottom: -1px;
+}
+
+.sds-menu-item--configure:active {
+  cursor: grabbing;
+}
+
+.sds-menu-item__drag-handle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--sds-neutral-content-subtle);
+}
+
+/* ─── Configure — toggle zone (extended hit area) ───────────────────────────── */
+
+/*
+ * Invisible button that extends the toggle's hit area from the visual pill
+ * all the way to the right edge of the menu item, including the 4 px padding
+ * that the <li> omits in configure mode. align-self: stretch fills the full
+ * item height so the entire right column is tappable.
+ */
+.sds-menu-item__toggle-zone {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0 8px 0 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.sds-menu-item__toggle-zone:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--sds-effects-focus);
+}
+
+/* ─── Configure — toggle switch ──────────────────────────────────────────────── */
+
+/*
+ * Pill-shaped toggle switch (Medium size from design: 37.5 × 20 px).
+ * The thumb slides from left (off) to right (on) via a CSS transform.
+ * position: relative scopes the absolutely-placed thumb to the pill.
+ * Visual only — interaction is handled by the parent .sds-menu-item__toggle-zone.
+ */
+.sds-menu-item__toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 37.5px;
+  height: 20px;
+  padding: 2px;
+  box-sizing: border-box;
+  border-radius: var(--sds-shape-border-radius-round, 999px);
+  background-color: var(--sds-interactive-secondary-filled-background-inactive-default);
+  pointer-events: none;
+  transition: background-color 120ms ease;
+}
+
+.sds-menu-item__toggle--on {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+}
+
+/* Thumb — 16 × 16 px white circle; translates right when toggle is on */
+.sds-menu-item__toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--sds-interactive-secondary-filled-content-default, white);
+  transition: transform 120ms ease;
+  pointer-events: none;
+}
+
+/* 37.5 total width − 16 thumb − 2 left pad − 2 right pad = 17.5 px travel */
+.sds-menu-item__toggle--on .sds-menu-item__toggle-thumb {
+  transform: translateX(17.5px);
 }

@@ -269,7 +269,7 @@
 /* ─── Clear button ──────────────────────────────────────────────────────────── */
 
 .sds-search-field__clear {
-  display: none;
+  display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -279,45 +279,51 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--sds-neutral-content-primary);
-  transition: color 120ms ease;
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity   120ms ease,
+    transform 120ms ease,
+    color     120ms ease;
 }
 
 .sds-search-field__clear:hover {
-  color: var(--sds-neutral-content-secondary);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
 }
 
-/* Show when focused */
-.sds-search-field__wrapper:focus-within .sds-search-field__clear {
-  display: flex;
-}
-
-/* Always show when filled (even without focus) */
-.sds-search-field--filled .sds-search-field__clear {
-  display: flex;
-}
-
-/* Error */
-.sds-search-field--error .sds-search-field__clear {
-  display: flex;
-  color: var(--sds-status-error-content-default);
-}
-
-.sds-search-field--error .sds-search-field__clear:hover {
-  color: var(--sds-status-error-content-default);
-}
-
-/* Success */
-.sds-search-field--success .sds-search-field__clear {
-  display: flex;
-  color: var(--sds-status-success-content-default);
-}
-
-.sds-search-field--success .sds-search-field__clear:hover {
-  color: var(--sds-status-success-content-default);
+/* Show when filled — focus alone is not sufficient (empty field has nothing to clear) */
+.sds-search-field--filled .sds-search-field__clear,
+.sds-search-field--filled.sds-search-field--error .sds-search-field__clear,
+.sds-search-field--filled.sds-search-field--success .sds-search-field__clear {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 /* ─── Support message ───────────────────────────────────────────────────────── */
+
+.sds-search-field__support {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.sds-search-field__support > svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.sds-search-field--error .sds-search-field__support {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-search-field--success .sds-search-field__support {
+  color: var(--sds-status-success-content-default);
+}
 
 .sds-search-field__message {
   margin: 0;
@@ -339,53 +345,45 @@
 
 /* ─── Suggestion listbox ────────────────────────────────────────────────────── */
 
+@keyframes sds-search-field-listbox-enter {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
 .sds-search-field__listbox {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1300;
+  transform-origin: top center;
+  animation: sds-search-field-listbox-enter 140ms cubic-bezier(0.4, 0, 0.2, 1) both;
   list-style: none;
   margin: 0;
   padding: 4px 0;
+  min-width: 220px;
+  max-height: 300px;
   background-color: var(--sds-neutral-background-default);
-  border-radius: var(--sds-shape-border-radius-medium);
+  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border-radius: var(--sds-shape-border-radius-large);
   box-shadow: var(--sds-effects-shadowcallout);
-  max-height: 240px;
+  box-sizing: border-box;
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* Hide native scrollbar — matches Menu and Combobox */
+  scrollbar-width: none;
+}
+
+.sds-search-field__listbox::-webkit-scrollbar {
+  display: none;
 }
 
 /* ─── Suggestion option ─────────────────────────────────────────────────────── */
 
-.sds-search-field__option {
-  display: flex;
-  align-items: center;
-  min-height: 44px; /* WCAG 2.5.8 — exceeds the 24 px minimum for comfort */
-  padding: 8px 16px;
-  box-sizing: border-box;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
-  color:          var(--sds-interactive-fields-content-default);
-  cursor: pointer;
-  user-select: none;
-  outline: none;
-  transition: background-color 100ms ease;
-}
-
-.sds-search-field__option:hover {
-  background-color: var(--sds-interactive-fields-background-hover);
-}
-
-/* Keyboard-active option (via aria-activedescendant) — mirrors Menu's :focus-visible */
-.sds-search-field__option--active {
-  background-color: var(--sds-interactive-fields-background-hover);
-  outline: 4px solid var(--sds-effects-focus);
-  outline-offset: -4px;
-}
+/*
+ * Options use sds-menu-item / sds-menu-item--selected / sds-menu-item--active /
+ * sds-menu-item__checkmark from Menu.css — no SearchField-specific item rules needed.
+ */
 
 /* ─── Visually-hidden live region ───────────────────────────────────────────── */
 /* Announces result counts to screen readers without showing visible text.

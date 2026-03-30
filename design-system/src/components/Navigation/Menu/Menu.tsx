@@ -3,16 +3,25 @@ import {
   useContext,
   useEffect,
   useId,
-  useLayoutEffect,
   useRef,
   useState,
   KeyboardEvent,
   ReactNode,
+  DragEvent,
 } from 'react';
+import { computePosition, flip, shift, offset, autoUpdate } from '@floating-ui/dom';
 import { createPortal } from 'react-dom';
 import './Menu.css';
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  DragHandleIcon,
+} from '../../../icons';
+import { CheckboxIndicator } from '../../Inputs/CheckboxIndicator/CheckboxIndicator';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
+
+export type MenuType = 'single-select' | 'multi-select' | 'configure';
 
 export type MenuSuffixType = 'tag' | 'text' | 'icon';
 
@@ -29,13 +38,16 @@ export interface MenuProps {
   /** Called when the menu should close (outside click, Escape, backdrop tap) */
   onClose: () => void;
   /**
-   * Enables multi-select mode. Items show checkboxes; clicking an item does
-   * not auto-close the menu. Use `selected` on each MenuItem to control state.
+   * The interaction model for all items in this menu.
+   * - 'single-select': items show a checkmark when selected (radio-style); auto-closes on selection.
+   * - 'multi-select':  items show checkboxes; menu stays open after each selection.
+   * - 'configure':     items have a drag handle for reordering and an optional toggle switch.
+   * @default 'single-select'
    */
-  multiSelect?: boolean;
+  type?: MenuType;
   /** Menu content — typically MenuItem and MenuDivider elements */
   children: ReactNode;
-  /** Additional className forwarded to the menu list element */
+  /** Additional className forwarded to the menu container element */
   className?: string;
   /** Accessible name for the menu (use when there is no visible heading) */
   'aria-label'?: string;
@@ -46,17 +58,27 @@ export interface MenuProps {
    * @default 360
    */
   maxHeight?: number;
+  /**
+   * Explicit width in px for the menu container.
+   * Useful when the menu should match the width of its anchor (e.g. SelectField).
+   */
+  width?: number;
 }
 
 export interface MenuItemProps {
   /** Label text rendered inside the item */
   children: ReactNode;
-  /** Called when the item is clicked or activated via keyboard (Enter / Space) */
+  /**
+   * Called when the item is activated.
+   * - single-select / multi-select: item was clicked or activated via keyboard.
+   * - configure: the toggle switch was clicked or activated via keyboard.
+   */
   onClick?: () => void;
   /**
-   * Marks the item as selected.
-   * In multiSelect mode: shows a filled checkbox.
-   * In single-select mode: renders the label in semibold.
+   * Marks the item as selected / active.
+   * - single-select: shows the checkmark and renders the label in semibold.
+   * - multi-select:  shows a filled checkbox and renders the label in semibold.
+   * - configure:     shows the toggle in the on state and renders the label in semibold.
    */
   selected?: boolean;
   /** Prevents interaction and removes the item from the keyboard focus sequence */
@@ -67,62 +89,74 @@ export interface MenuItemProps {
   suffix?: MenuSuffix;
   /** Additional className forwarded to the list item element */
   className?: string;
+  /**
+   * Whether to show the toggle switch (configure mode only).
+   * @default true
+   */
+  toggleable?: boolean;
+  /** Drag event handlers — wire these up to implement reordering (configure mode only) */
+  onDragStart?: (e: DragEvent<HTMLLIElement>) => void;
+  onDragEnd?: (e: DragEvent<HTMLLIElement>) => void;
+  onDragOver?: (e: DragEvent<HTMLLIElement>) => void;
+  onDragLeave?: (e: DragEvent<HTMLLIElement>) => void;
+  onDrop?: (e: DragEvent<HTMLLIElement>) => void;
 }
 
 // ─── Context ──────────────────────────────────────────────────────────────────
 
 interface MenuContextValue {
-  multiSelect: boolean;
+  menuType: MenuType;
   onClose: () => void;
 }
 
-const MenuContext = createContext<MenuContextValue>({ multiSelect: false, onClose: () => {} });
+const MenuContext = createContext<MenuContextValue>({ menuType: 'single-select', onClose: () => {} });
 
-// ─── Icon sub-components ──────────────────────────────────────────────────────
+// ─── SingleSelectCheckmark ────────────────────────────────────────────────────
 
-function CheckIcon() {
-  return (
-    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true">
-      <path
-        d="M1.5 4.5L4.5 7.5L10.5 1.5"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M9 18L15 12L9 6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-// ─── CheckboxIndicator ────────────────────────────────────────────────────────
-
-function CheckboxIndicator({ checked }: { checked: boolean }) {
+function SingleSelectCheckmark({ selected }: { selected: boolean }) {
   return (
     <span
       className={[
-        'sds-menu-item__checkbox',
-        checked && 'sds-menu-item__checkbox--checked',
+        'sds-menu-item__checkmark',
+        selected && 'sds-menu-item__checkmark--selected',
       ]
         .filter(Boolean)
         .join(' ')}
       aria-hidden="true"
     >
-      {checked && <CheckIcon />}
+      <CheckIcon size={16} />
     </span>
+  );
+}
+
+// ─── ToggleSwitch (configure mode) ───────────────────────────────────────────
+
+function ToggleSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      className="sds-menu-item__toggle-zone"
+      onClick={(e) => {
+        e.stopPropagation();
+        onToggle();
+      }}
+      // Prevent pointer-down from initiating a drag on the parent <li>
+      onPointerDown={(e) => e.stopPropagation()}
+      tabIndex={-1}
+    >
+      <span
+        className={[
+          'sds-menu-item__toggle',
+          on && 'sds-menu-item__toggle--on',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+      >
+        <span className="sds-menu-item__toggle-thumb" />
+      </span>
+    </button>
   );
 }
 
@@ -151,34 +185,11 @@ function MenuItemSuffixView({ suffix }: { suffix: MenuSuffix }) {
   );
 }
 
-// ─── Position helper ──────────────────────────────────────────────────────────
+// ─── Position coords ──────────────────────────────────────────────────────────
 
 interface MenuCoords {
   top: number;
   left: number;
-}
-
-const MENU_GAP   = 4;   // px between anchor and menu
-const MENU_EDGE  = 8;   // minimum distance from viewport edge
-
-function computePosition(anchor: DOMRect, menu: DOMRect): MenuCoords {
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-
-  // Vertical: prefer opening below the anchor
-  let top = anchor.bottom + MENU_GAP;
-  if (top + menu.height > vh - MENU_EDGE) {
-    const topAbove = anchor.top - MENU_GAP - menu.height;
-    top = topAbove >= MENU_EDGE ? topAbove : Math.max(MENU_EDGE, vh - menu.height - MENU_EDGE);
-  }
-
-  // Horizontal: left-aligned by default, shift left if it overflows the right edge
-  let left = anchor.left;
-  if (left + menu.width > vw - MENU_EDGE) {
-    left = Math.max(MENU_EDGE, anchor.right - menu.width);
-  }
-
-  return { top, left };
 }
 
 // ─── Keyboard focus helpers ───────────────────────────────────────────────────
@@ -187,9 +198,17 @@ function computePosition(anchor: DOMRect, menu: DOMRect): MenuCoords {
 function getFocusableItems(container: HTMLElement): HTMLElement[] {
   return Array.from(
     container.querySelectorAll<HTMLElement>(
-      '[role="menuitem"]:not([aria-disabled="true"]), [role="menuitemcheckbox"]:not([aria-disabled="true"])'
+      '[role="menuitem"]:not([aria-disabled="true"]), [role="menuitemcheckbox"]:not([aria-disabled="true"]), [role="menuitemradio"]:not([aria-disabled="true"])'
     )
   );
+}
+
+// ─── Scrollbar state ──────────────────────────────────────────────────────────
+
+interface ScrollbarState {
+  visible:  boolean;
+  height:   number;
+  top:      number;
 }
 
 // ─── Menu ─────────────────────────────────────────────────────────────────────
@@ -198,21 +217,84 @@ export function Menu({
   open,
   anchorEl,
   onClose,
-  multiSelect = false,
+  type = 'single-select',
   children,
   className,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
   maxHeight = 360,
+  width,
 }: MenuProps) {
-  const menuRef         = useRef<HTMLUListElement>(null);
-  const menuId          = useId();
-  const [coords, setCoords] = useState<MenuCoords>({ top: 0, left: 0 });
-  const [ready, setReady]   = useState(false);
+  // menuRef → outer container (used for positioning measurements)
+  // listRef → inner <ul> (used for scroll tracking and focus queries)
+  const menuRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const menuId  = useId();
 
-  // ── Focus management ───────────────────────────────────────────────────────
-  // Save the element that had focus before the menu opened so we can restore
-  // it when the menu closes (WCAG 2.1 SC 3.2.2 / WAI-ARIA menu pattern).
+  const [coords,    setCoords]    = useState<MenuCoords>({ top: 0, left: 0 });
+  const [ready,     setReady]     = useState(false);
+  const [scrollbar, setScrollbar] = useState<ScrollbarState>({ visible: false, height: 0, top: 0 });
+
+  // ── Custom scrollbar ────────────────────────────────────────────────────────
+  function updateScrollbar() {
+    const el = listRef.current;
+    if (!el) return;
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    if (scrollHeight <= clientHeight) {
+      setScrollbar(s => s.visible ? { visible: false, height: 0, top: 0 } : s);
+      return;
+    }
+    const ratio           = clientHeight / scrollHeight;
+    const indicatorHeight = Math.max(ratio * clientHeight, 24);
+    const trackPadding    = 8;
+    const trackHeight     = clientHeight - trackPadding;
+    const indicatorRange  = trackHeight - indicatorHeight;
+    const scrollRange     = scrollHeight - clientHeight;
+    const indicatorTop    = 4 + (scrollTop / scrollRange) * indicatorRange;
+    setScrollbar({ visible: true, height: indicatorHeight, top: indicatorTop });
+  }
+
+  function handleIndicatorPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const el = listRef.current;
+    if (!el) return;
+
+    const startY         = e.clientY;
+    const startScrollTop = el.scrollTop;
+
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+
+    function onPointerMove(ev: PointerEvent) {
+      const { scrollHeight, clientHeight } = el!;
+      const indicatorHeight = Math.max((clientHeight / scrollHeight) * clientHeight, 24);
+      const indicatorRange  = (clientHeight - 8) - indicatorHeight;
+      const scrollRange     = scrollHeight - clientHeight;
+      if (indicatorRange <= 0) return;
+      el!.scrollTop = startScrollTop + (ev.clientY - startY) * (scrollRange / indicatorRange);
+    }
+
+    function onPointerUp(ev: PointerEvent) {
+      (e.currentTarget as HTMLDivElement)?.releasePointerCapture(ev.pointerId);
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup',   onPointerUp);
+    }
+
+    document.addEventListener('pointermove', onPointerMove);
+    document.addEventListener('pointerup',   onPointerUp);
+  }
+
+  function handleTrackPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if ((e.target as HTMLElement).classList.contains('sds-menu__scrollbar-indicator')) return;
+    const el = listRef.current;
+    if (!el) return;
+    const rect       = e.currentTarget.getBoundingClientRect();
+    const clickRatio = (e.clientY - rect.top) / rect.height;
+    el.scrollTo({ top: clickRatio * (el.scrollHeight - el.clientHeight), behavior: 'smooth' });
+  }
+
+  // ── Focus management ────────────────────────────────────────────────────────
   useEffect(() => {
     if (!open) return;
     const prevFocus = document.activeElement as HTMLElement | null;
@@ -221,54 +303,77 @@ export function Menu({
     };
   }, [open]);
 
-  // Focus the first focusable item once the menu is positioned and visible.
   useEffect(() => {
-    if (!ready || !menuRef.current) return;
-    getFocusableItems(menuRef.current)[0]?.focus();
+    if (!ready || !listRef.current) return;
+    const listEl = listRef.current;
+
+    // Single-select: scroll the selected item to the bottom of the visible list
+    // and place focus on it (matches Base UI combobox "reopen" behaviour).
+    const selectedEl =
+      type === 'single-select'
+        ? listEl.querySelector<HTMLElement>('[role="menuitemradio"][aria-checked="true"]')
+        : null;
+
+    if (selectedEl) {
+      // Align the item's bottom edge with the list's bottom edge so it appears
+      // at the bottom of the list with all preceding items visible above it.
+      const listRect = listEl.getBoundingClientRect();
+      const itemRect = selectedEl.getBoundingClientRect();
+      listEl.scrollTop = listEl.scrollTop + itemRect.bottom - listRect.bottom;
+      selectedEl.focus();
+    } else {
+      getFocusableItems(listEl)[0]?.focus();
+    }
+
+    updateScrollbar();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
 
-  // ── Positioning ────────────────────────────────────────────────────────────
-  // Runs synchronously after every paint while the menu is open so that the
-  // position is always correct before the browser shows the frame to the user.
-  useLayoutEffect(() => {
-    if (!open || !anchorEl || !menuRef.current) {
+  // ── Positioning — Floating UI autoUpdate ────────────────────────────────────
+  // autoUpdate re-runs computePosition on every ancestor scroll and resize,
+  // keeping the menu anchored to its trigger as the page scrolls.
+  useEffect(() => {
+    if (!open || !anchorEl || !menuRef.current) return;
+    const floatingEl = menuRef.current;
+
+    const cleanup = autoUpdate(anchorEl, floatingEl, () => {
+      computePosition(anchorEl, floatingEl, {
+        placement: 'bottom-start',
+        strategy:  'fixed',
+        middleware: [offset(4), flip({ padding: 8 }), shift({ padding: 8 })],
+      }).then(({ x, y }) => {
+        setCoords({ top: y, left: x });
+        setReady(true);
+      });
+    });
+
+    return () => {
+      cleanup();
       setReady(false);
-      return;
-    }
-    const anchorRect = anchorEl.getBoundingClientRect();
-    const menuRect   = menuRef.current.getBoundingClientRect();
-    setCoords(computePosition(anchorRect, menuRect));
-    setReady(true);
+    };
   }, [open, anchorEl]);
 
-  // ── Close on scroll / resize ───────────────────────────────────────────────
-  // We close (rather than reposition) on scroll/resize so that the menu never
-  // ends up detached from its anchor in unexpected ways.
+  // ── Close on outside pointerdown ────────────────────────────────────────────
   useEffect(() => {
     if (!open) return;
-    function handleScroll(e: Event) {
-      // Scrolling inside the menu list itself (e.g. the scrollable item list or
-      // dragging its scrollbar) must not close the menu.
+
+    function handlePointerDown(e: PointerEvent) {
       if (menuRef.current?.contains(e.target as Node)) return;
+      // Let the anchor's own click handler toggle the menu — don't double-close.
+      if (anchorEl?.contains(e.target as Node)) return;
       onClose();
     }
-    window.addEventListener('scroll',  handleScroll, { passive: true, capture: true });
-    window.addEventListener('resize',  onClose,      { passive: true });
-    return () => {
-      window.removeEventListener('scroll',  handleScroll, true);
-      window.removeEventListener('resize',  onClose);
-    };
-  }, [open, onClose]);
 
-  // ── Keyboard navigation ────────────────────────────────────────────────────
-  // Implements the WAI-ARIA Menu keyboard pattern:
-  //   ArrowDown / ArrowUp  → move focus through items (wraps)
-  //   Home / End           → jump to first / last item
-  //   Escape               → close menu, return focus to trigger
-  //   Tab                  → close menu, allow natural tab order to continue
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [open, anchorEl, onClose]);
+
+  // ── Keyboard navigation ──────────────────────────────────────────────────────
   function handleKeyDown(e: KeyboardEvent<HTMLUListElement>) {
-    if (!menuRef.current) return;
-    const items   = getFocusableItems(menuRef.current);
+    if (!listRef.current) return;
+    const items   = getFocusableItems(listRef.current);
     const current = items.indexOf(document.activeElement as HTMLElement);
 
     switch (e.key) {
@@ -298,7 +403,6 @@ export function Menu({
         break;
       }
       case 'Tab': {
-        // Do not prevent default — let focus move naturally, but close the menu.
         onClose();
         break;
       }
@@ -308,24 +412,9 @@ export function Menu({
   if (!open) return null;
 
   return createPortal(
-    <MenuContext.Provider value={{ multiSelect, onClose }}>
-      {/*
-        Transparent full-viewport backdrop captures outside clicks and touches
-        on all devices (mouse and touch) without needing pointer-event listeners
-        on the document. aria-hidden keeps it invisible to assistive technology.
-      */}
+    <MenuContext.Provider value={{ menuType: type, onClose }}>
       <div
-        className="sds-menu-backdrop"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-
-      <ul
         ref={menuRef}
-        id={menuId}
-        role="menu"
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
         className={[
           'sds-menu',
           ready && 'sds-menu--ready',
@@ -334,16 +423,40 @@ export function Menu({
           .filter(Boolean)
           .join(' ')}
         style={{
-          top:       coords.top,
-          left:      coords.left,
-          maxHeight: maxHeight,
+          top:  coords.top,
+          left: coords.left,
+          ...(width !== undefined && { width }),
         }}
-        onKeyDown={handleKeyDown}
-        // The list itself is not tabbable — focus is managed programmatically.
-        tabIndex={-1}
       >
-        {children}
-      </ul>
+        <ul
+          ref={listRef}
+          id={menuId}
+          role="menu"
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          className="sds-menu__list"
+          style={{ maxHeight }}
+          onKeyDown={handleKeyDown}
+          onScroll={updateScrollbar}
+          tabIndex={-1}
+        >
+          {children}
+        </ul>
+
+        {scrollbar.visible && (
+          <div
+            className="sds-menu__scrollbar"
+            aria-hidden="true"
+            onPointerDown={handleTrackPointerDown}
+          >
+            <div
+              className="sds-menu__scrollbar-indicator"
+              style={{ height: scrollbar.height, top: scrollbar.top }}
+              onPointerDown={handleIndicatorPointerDown}
+            />
+          </div>
+        )}
+      </div>
     </MenuContext.Provider>,
     document.body
   );
@@ -354,22 +467,35 @@ export function Menu({
 export function MenuItem({
   children,
   onClick,
-  selected  = false,
-  disabled  = false,
+  selected   = false,
+  disabled   = false,
   icon,
   suffix,
   className,
+  toggleable = true,
+  onDragStart,
+  onDragEnd,
+  onDragOver,
+  onDragLeave,
+  onDrop,
 }: MenuItemProps) {
-  const { multiSelect, onClose } = useContext(MenuContext);
+  const { menuType, onClose } = useContext(MenuContext);
 
-  // WAI-ARIA: checkbox role when the menu supports multi-selection so that
-  // screen readers announce the checked/unchecked state on each item.
-  const role = multiSelect ? 'menuitemcheckbox' : 'menuitem';
+  const isSingleSelect = menuType === 'single-select';
+  const isMultiSelect  = menuType === 'multi-select';
+  const isConfigure    = menuType === 'configure';
+
+  // WAI-ARIA role:
+  //   menuitemradio   — single-select (mutually exclusive, aria-checked indicates state)
+  //   menuitemcheckbox — multi-select (independent, aria-checked indicates state)
+  //   menuitem        — configure (drag + toggle; selection not communicated via role)
+  const role = isSingleSelect ? 'menuitemradio' : isMultiSelect ? 'menuitemcheckbox' : 'menuitem';
 
   const rootClasses = [
     'sds-menu-item',
-    selected  && 'sds-menu-item--selected',
-    disabled  && 'sds-menu-item--disabled',
+    isConfigure                     && 'sds-menu-item--configure',
+    selected && !(isConfigure && !toggleable) && 'sds-menu-item--selected',
+    disabled                        && 'sds-menu-item--disabled',
     className,
   ]
     .filter(Boolean)
@@ -378,45 +504,110 @@ export function MenuItem({
   function handleClick() {
     if (disabled) return;
     onClick?.();
-    // Single-select: close the menu after activation — WCAG AA compliant, matches
-    // the WAI-ARIA Menu Button pattern (focus returns to trigger on selection).
-    // Multi-select: stay open so the user can make additional selections.
-    if (!multiSelect) onClose();
+    // single-select: auto-close (WAI-ARIA Menu Button pattern)
+    // multi-select and configure: stay open
+    if (isSingleSelect) onClose();
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLLIElement>) {
     if (disabled) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+      // In configure mode, Space/Enter activates the toggle (drag is pointer-only)
       onClick?.();
-      if (!multiSelect) onClose();
+      if (isSingleSelect) onClose();
     }
+  }
+
+  // ── Internal drag handlers — manage the drop-indicator line ──────────────────
+  // These compute before/after position and set data-drop-position on the <li>,
+  // which CSS uses to show the colored indicator line. Consumer handlers are
+  // called through so they can still implement the actual reorder logic.
+
+  function handleDragOverInternal(e: DragEvent<HTMLLIElement>) {
+    e.preventDefault(); // Required to allow drop
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.dataset.dropPosition = e.clientY < rect.top + rect.height / 2 ? 'before' : 'after';
+    onDragOver?.(e);
+  }
+
+  function handleDragLeaveInternal(e: DragEvent<HTMLLIElement>) {
+    // Only clear when leaving to outside the item (not to a child element)
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      delete e.currentTarget.dataset.dropPosition;
+    }
+    onDragLeave?.(e);
+  }
+
+  function handleDropInternal(e: DragEvent<HTMLLIElement>) {
+    // Call consumer first so they can read data-drop-position before it's cleared
+    onDrop?.(e);
+    delete e.currentTarget.dataset.dropPosition;
+  }
+
+  function handleDragEndInternal(e: DragEvent<HTMLLIElement>) {
+    // Clear any lingering indicator — handles cancelled drags where dragLeave never fired
+    document.querySelectorAll<HTMLElement>('[data-drop-position]').forEach(el => {
+      delete el.dataset.dropPosition;
+    });
+    onDragEnd?.(e);
   }
 
   return (
     <li
       role={role}
-      aria-checked={multiSelect ? selected : undefined}
+      // aria-checked communicates selection to screen readers for radio/checkbox roles
+      aria-checked={!isConfigure ? selected : undefined}
       aria-disabled={disabled ? true : undefined}
-      // Disabled items are removed from the focus sequence entirely.
-      // Non-disabled items use tabIndex={-1} so only the JS focus management
-      // (arrow keys) can move focus within the menu — not Tab.
       tabIndex={disabled ? undefined : -1}
       className={rootClasses}
-      onClick={handleClick}
+      // Configure: click is handled exclusively by the toggle button
+      onClick={!isConfigure ? handleClick : undefined}
       onKeyDown={handleKeyDown}
+      draggable={isConfigure}
+      onDragStart={isConfigure ? onDragStart : undefined}
+      onDragEnd={isConfigure ? handleDragEndInternal : undefined}
+      onDragOver={isConfigure ? handleDragOverInternal : undefined}
+      onDragLeave={isConfigure ? handleDragLeaveInternal : undefined}
+      onDrop={isConfigure ? handleDropInternal : undefined}
     >
-      {multiSelect && <CheckboxIndicator checked={selected} />}
+      {/* ── Leading indicator ─────────────────────────────────────────────── */}
+      {isSingleSelect && <SingleSelectCheckmark selected={selected} />}
+      {isMultiSelect  && (
+        <CheckboxIndicator
+          checked={selected}
+          size="medium"
+          disabled={disabled}
+        />
+      )}
+      {isConfigure    && (
+        <span className="sds-menu-item__drag-handle" aria-hidden="true">
+          <DragHandleIcon size={20} />
+        </span>
+      )}
 
+      {/* ── Leading icon ──────────────────────────────────────────────────── */}
       {icon && (
         <span className="sds-menu-item__icon" aria-hidden="true">
           {icon}
         </span>
       )}
 
+      {/* ── Label ─────────────────────────────────────────────────────────── */}
       <span className="sds-menu-item__content">{children}</span>
 
+      {/* ── Suffix ────────────────────────────────────────────────────────── */}
       {suffix && <MenuItemSuffixView suffix={suffix} />}
+
+      {/* ── Configure toggle ──────────────────────────────────────────────── */}
+      {isConfigure && toggleable && (
+        <ToggleSwitch
+          on={selected}
+          onToggle={() => {
+            if (!disabled) handleClick();
+          }}
+        />
+      )}
     </li>
   );
 }

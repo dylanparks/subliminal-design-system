@@ -1,4 +1,5 @@
 import { ChangeEvent, KeyboardEvent, MouseEvent, useEffect, useId, useRef, useState } from 'react';
+import { CloseIcon, WarningIcon, ErrorIcon, SuccessIcon } from '../../../icons';
 import './TextField.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -42,46 +43,6 @@ export interface TextFieldProps {
   className?: string;
   /** Accessible label override (falls back to label prop) */
   'aria-label'?: string;
-}
-
-// ─── Icon sub-components ──────────────────────────────────────────────────────
-
-function ClearIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function WarningIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path
-        d="M8 2L14.5 13.5H1.5L8 2Z"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      />
-      <rect x="7.25" y="5.75" width="1.5" height="3.75" rx="0.75" fill="currentColor" />
-      <circle cx="8" cy="11.25" r="0.75" fill="currentColor" />
-    </svg>
-  );
-}
-
-function ErrorCircleIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.3" />
-      <rect x="7.25" y="4.5" width="1.5" height="4.5" rx="0.75" fill="currentColor" />
-      <circle cx="8" cy="11" r="0.75" fill="currentColor" />
-    </svg>
-  );
 }
 
 // ─── WCAG AA — character-count announcement helpers ───────────────────────────
@@ -319,7 +280,7 @@ export function TextField({
             onMouseDown={handleClearMouseDown}
             onClick={handleClearClick}
           >
-            <ClearIcon />
+            <CloseIcon />
           </button>
         )}
       </div>
@@ -331,7 +292,11 @@ export function TextField({
           className="sds-text-field__support"
         >
           {message && (
-            <p className="sds-text-field__message">{message}</p>
+            <>
+              {showError   && <ErrorIcon size={16} />}
+              {showSuccess && <SuccessIcon size={16} />}
+              <p className="sds-text-field__message">{message}</p>
+            </>
           )}
 
           {maxLength !== undefined && (
@@ -343,8 +308,8 @@ export function TextField({
               ].filter(Boolean).join(' ')}
               aria-hidden="true"
             >
-              {charCountState === 'at'   && <WarningIcon />}
-              {charCountState === 'over' && <ErrorCircleIcon />}
+              {charCountState === 'at'   && <WarningIcon size={16} />}
+              {charCountState === 'over' && <ErrorIcon size={16} />}
               <span>{charLength}</span>
               <span>/{maxLength}</span>
             </span>

@@ -47,20 +47,22 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `PasswordField` | ✓ | Show/hide toggle |
 | `TextArea` | ✓ | Auto-resizing, floating label, character counter |
 | `SearchField` | ✓ | Standard (`type="search"`) + Autocomplete (WAI-ARIA combobox) |
-| `PhoneField` | Planned | |
+| `PhoneField` | ✓ | Country selector (flag + dial code), timezone detection, numeric formatting, WCAG AA |
+| `SelectField` | ✓ | Dropdown built on Menu, floating label, error/success states, WCAG AA |
+| `DatePicker` | ✓ | Date / range / month / year modes, Floating UI positioning, WCAG AA |
+| `TimePicker` | ✓ | 12 h / 24 h, configurable minute intervals (1·5·10·15·30), WCAG AA |
 | `Dropdown` | Planned | |
-| `Datepicker` | Planned | |
-| `Timepicker` | Planned | |
 
 ### Inputs
 
-| Component | Status |
-|---|---|
-| `Checkbox` | Planned |
-| `Radio` | Planned |
-| `Toggle` | Planned |
-| `Rating Input` | Planned |
-| `Slider` | Planned |
+| Component | Status | Notes |
+|---|---|---|
+| `Checkbox` | ✓ | Native `<input type="checkbox">`, label + description, indeterminate state, WCAG AA |
+| ↳ `CheckboxIndicator` | ✓ | Visual sub-component; usable standalone (e.g. multi-select Menu items) |
+| `Radio` | Planned | |
+| `Toggle` | Planned | |
+| `Rating Input` | Planned | |
+| `Slider` | Planned | |
 
 ### Navigation
 
@@ -102,6 +104,10 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - Character-limit fields: dual ARIA live regions, milestone announcements (50% / 25% / 10 chars / at-limit), 500ms debounce
 - `SearchField` autocomplete: WAI-ARIA Combobox pattern — `role="combobox"`, DOM focus stays on input, `aria-activedescendant` for virtual navigation, polite live region announcing result counts (1400ms debounce)
 - `Menu`: WAI-ARIA Menu pattern — `role="menu"`, arrow-key navigation, focus save/restore, transparent backdrop for outside-click capture
+- `PhoneField`: `role="group"` wrapper, country button as WAI-ARIA combobox (`role="combobox"`, `aria-expanded`, `aria-haspopup="menu"`), printable-character typeahead in country list, `role="status"` live region for dial-code changes, `autocomplete="tel-national"` + `inputmode="numeric"` on phone input
+- `SelectField`: trigger button as WAI-ARIA combobox (`role="combobox"`, `aria-expanded`, `aria-haspopup="menu"`), keyboard open/close (Space / Enter / ArrowDown / ArrowUp / Escape), `role="status"` live region announces selected option, focus restored to trigger on close
+- `TimePicker`: trigger as button with `aria-haspopup="dialog"` + `aria-expanded`, popover is `role="dialog" aria-modal`, each column is `role="listbox"` with `aria-orientation="vertical"`, items are `role="option"` with `aria-selected`, roving tabindex within each column, Arrow up/down navigates within column, Escape closes, `role="status"` live region announces each committed time change
+- `Checkbox`: native `<input type="checkbox">` (visually hidden) inside a `<label>` for form participation and screen-reader support; `indeterminate` set imperatively via ref; focus ring on indicator via `:has(:focus-visible)` (keyboard-only, no ring on mouse clicks); `CheckboxIndicator` is always `aria-hidden`
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
 
@@ -140,7 +146,14 @@ design-system/
     │   │   ├── TextField/
     │   │   ├── PasswordField/
     │   │   ├── TextArea/
-    │   │   └── SearchField/
+    │   │   ├── SearchField/
+    │   │   ├── PhoneField/
+    │   │   ├── SelectField/
+    │   │   ├── DatePicker/
+    │   │   └── TimePicker/
+    │   ├── Inputs/
+    │   │   ├── CheckboxIndicator/
+    │   │   └── Checkbox/
     │   └── Navigation/
     │       └── Menu/
     └── tokens/

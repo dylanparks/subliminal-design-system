@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { RemoveIcon, AddIcon } from '../../../icons';
 import './Stepper.css';
 
 export type StepperOrientation = 'horizontal' | 'vertical';
@@ -70,18 +71,9 @@ export function Stepper({
       className="sds-stepper__button"
       onClick={() => update(value - step)}
       disabled={disabled || atMin}
-      aria-disabled={disabled || atMin}
       aria-label="Decrease"
     >
-      <svg
-        className="sds-stepper__icon"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path d="M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
+      <RemoveIcon className="sds-stepper__icon" size={20} />
     </button>
   );
 
@@ -91,18 +83,9 @@ export function Stepper({
       className="sds-stepper__button"
       onClick={() => update(value + step)}
       disabled={disabled || atMax}
-      aria-disabled={disabled || atMax}
       aria-label="Increase"
     >
-      <svg
-        className="sds-stepper__icon"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
+      <AddIcon className="sds-stepper__icon" size={20} />
     </button>
   );
 

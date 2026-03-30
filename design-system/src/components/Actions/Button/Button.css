@@ -24,8 +24,7 @@
     box-shadow 120ms ease;
 }
 
-.sds-button:disabled,
-.sds-button[aria-disabled='true'] {
+.sds-button:disabled {
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -122,8 +121,7 @@
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--primary-filled:disabled,
-.sds-button--primary-filled[aria-disabled='true'] {
+.sds-button--primary-filled:disabled {
   background-color: var(--sds-interactive-primary-filled-background-disabled);
   color: var(--sds-interactive-primary-filled-content-disabled);
 }
@@ -133,7 +131,7 @@
 .sds-button--primary-hollow {
   background-color: var(--sds-interactive-primary-hollow-background-default);
   color: var(--sds-interactive-primary-hollow-content-default);
-  border: 1px solid var(--sds-interactive-primary-hollow-stroke-default);
+  border: 2px solid var(--sds-interactive-primary-hollow-stroke-default);
 }
 
 .sds-button--primary-hollow:hover {
@@ -155,8 +153,7 @@
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--primary-hollow:disabled,
-.sds-button--primary-hollow[aria-disabled='true'] {
+.sds-button--primary-hollow:disabled {
   background-color: var(--sds-interactive-primary-hollow-background-disabled);
   color: var(--sds-interactive-primary-hollow-content-disabled);
   border-color: var(--sds-interactive-primary-hollow-stroke-disabled);
@@ -185,8 +182,7 @@
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--secondary-filled:disabled,
-.sds-button--secondary-filled[aria-disabled='true'] {
+.sds-button--secondary-filled:disabled {
   background-color: var(--sds-interactive-secondary-filled-background-disabled);
   color: var(--sds-interactive-secondary-filled-content-disabled);
 }
@@ -196,7 +192,7 @@
 .sds-button--secondary-hollow {
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
-  border: 1px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
 }
 
 .sds-button--secondary-hollow:hover {
@@ -218,8 +214,7 @@
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--secondary-hollow:disabled,
-.sds-button--secondary-hollow[aria-disabled='true'] {
+.sds-button--secondary-hollow:disabled {
   background-color: var(--sds-interactive-secondary-hollow-background-disabled);
   color: var(--sds-interactive-secondary-hollow-content-disabled);
   border-color: var(--sds-interactive-secondary-hollow-stroke-disabled);
@@ -248,8 +243,7 @@
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--media-filled:disabled,
-.sds-button--media-filled[aria-disabled='true'] {
+.sds-button--media-filled:disabled {
   background-color: var(--sds-onmedia-interactive-filled-background-disabled);
   color: var(--sds-onmedia-interactive-filled-content-disabled);
 }
@@ -259,7 +253,7 @@
 .sds-button--media-hollow {
   background-color: var(--sds-onmedia-interactive-hollow-background-default);
   color: var(--sds-onmedia-interactive-hollow-content-default);
-  border: 1px solid var(--sds-onmedia-interactive-hollow-stroke-default);
+  border: 2px solid var(--sds-onmedia-interactive-hollow-stroke-default);
 }
 
 .sds-button--media-hollow:hover {
@@ -281,9 +275,92 @@
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--media-hollow:disabled,
-.sds-button--media-hollow[aria-disabled='true'] {
+.sds-button--media-hollow:disabled {
   background-color: var(--sds-onmedia-interactive-hollow-background-disabled);
   color: var(--sds-onmedia-interactive-hollow-content-disabled);
   border-color: var(--sds-onmedia-interactive-hollow-stroke-disabled);
+}
+
+/* ─── Primary Hollow Ghost ──────────────────────────────────────────────────── */
+
+.sds-button--primary-hollow-ghost {
+  background-color: var(--sds-interactive-primary-hollow-background-default);
+  color: var(--sds-interactive-primary-hollow-content-default);
+}
+
+.sds-button--primary-hollow-ghost:hover {
+  background-color: var(--sds-interactive-primary-hollow-background-hover);
+  color: var(--sds-interactive-primary-hollow-content-hover);
+}
+
+.sds-button--primary-hollow-ghost:active {
+  background-color: var(--sds-interactive-primary-hollow-background-active);
+  color: var(--sds-interactive-primary-hollow-content-active);
+}
+
+.sds-button--primary-hollow-ghost:focus-visible {
+  background-color: var(--sds-interactive-primary-hollow-background-default);
+  color: var(--sds-interactive-primary-hollow-content-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--primary-hollow-ghost:disabled {
+  background-color: var(--sds-interactive-primary-hollow-background-disabled);
+  color: var(--sds-interactive-primary-hollow-content-disabled);
+}
+
+/* ─── Secondary Hollow Ghost ────────────────────────────────────────────────── */
+
+.sds-button--secondary-hollow-ghost {
+  background-color: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-button--secondary-hollow-ghost:hover {
+  background-color: var(--sds-interactive-secondary-hollow-background-hover);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-button--secondary-hollow-ghost:active {
+  background-color: var(--sds-interactive-secondary-hollow-background-active);
+  color: var(--sds-interactive-secondary-hollow-content-active);
+}
+
+.sds-button--secondary-hollow-ghost:focus-visible {
+  background-color: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--secondary-hollow-ghost:disabled {
+  background-color: var(--sds-interactive-secondary-hollow-background-disabled);
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+}
+
+/* ─── Media Hollow Ghost ────────────────────────────────────────────────────── */
+
+.sds-button--media-hollow-ghost {
+  background-color: var(--sds-onmedia-interactive-hollow-background-default);
+  color: var(--sds-onmedia-interactive-hollow-content-default);
+}
+
+.sds-button--media-hollow-ghost:hover {
+  background-color: var(--sds-onmedia-interactive-hollow-background-hover);
+  color: var(--sds-onmedia-interactive-hollow-content-hover);
+}
+
+.sds-button--media-hollow-ghost:active {
+  background-color: var(--sds-onmedia-interactive-hollow-background-active);
+  color: var(--sds-onmedia-interactive-hollow-content-active);
+}
+
+.sds-button--media-hollow-ghost:focus-visible {
+  background-color: var(--sds-onmedia-interactive-hollow-background-default);
+  color: var(--sds-onmedia-interactive-hollow-content-default);
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+.sds-button--media-hollow-ghost:disabled {
+  background-color: var(--sds-onmedia-interactive-hollow-background-disabled);
+  color: var(--sds-onmedia-interactive-hollow-content-disabled);
 }

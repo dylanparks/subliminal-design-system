@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PasswordField } from './PasswordField';
 
 const meta: Meta<typeof PasswordField> = {
   component: PasswordField,
   title: 'Fields/PasswordField',
+  decorators: [(Story) => <div style={{ maxWidth: '38rem', width: '100%' }}><Story /></div>],
   argTypes: {
     size: {
       control: 'select',
@@ -39,16 +40,16 @@ export const CharacterLimit: Story = {
 
 export const Error: Story = {
   args: {
-    value:   'wrongpassword',
-    message: 'Incorrect password.',
-    error:   true,
+    defaultValue: 'wrongpassword',
+    message:      'Incorrect password.',
+    error:        true,
   },
 };
 
 export const Success: Story = {
   args: {
-    value:   'StrongPassword1!',
-    message: 'Password accepted.',
-    success: true,
+    defaultValue: 'StrongPassword1!',
+    message:      'Password accepted.',
+    success:      true,
   },
 };

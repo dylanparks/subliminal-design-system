@@ -263,7 +263,7 @@
 /* ─── Clear button ──────────────────────────────────────────────────────────── */
 
 .sds-text-field__clear {
-  display: none;
+  display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -273,37 +273,27 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--sds-neutral-content-primary);
-  transition: color 120ms ease;
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity   120ms ease,
+    transform 120ms ease,
+    color     120ms ease;
 }
 
 .sds-text-field__clear:hover {
-  color: var(--sds-neutral-content-secondary);
+  color: var(--sds-interactive-secondary-hollow-content-hover);
 }
 
-/* Show clear when focused */
-.sds-text-field__wrapper:focus-within .sds-text-field__clear {
-  display: flex;
-}
-
-/* Show clear in error state — always, with error colour */
-.sds-text-field--error .sds-text-field__clear {
-  display: flex;
-  color: var(--sds-status-error-content-default);
-}
-
-.sds-text-field--error .sds-text-field__clear:hover {
-  color: var(--sds-status-error-content-default);
-}
-
-/* Show clear in success state — always, with success colour */
-.sds-text-field--success .sds-text-field__clear {
-  display: flex;
-  color: var(--sds-status-success-content-default);
-}
-
-.sds-text-field--success .sds-text-field__clear:hover {
-  color: var(--sds-status-success-content-default);
+/* Show clear when filled */
+.sds-text-field--filled .sds-text-field__clear,
+.sds-text-field--filled.sds-text-field--error .sds-text-field__clear,
+.sds-text-field--filled.sds-text-field--success .sds-text-field__clear {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 /* ─── Support group ─────────────────────────────────────────────────────────── */
@@ -312,8 +302,22 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 8px;
+  gap: 4px;
   width: 100%;
+}
+
+/* Support icon — centers the 16px SVG within the text line-height */
+.sds-text-field__support > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+}
+
+.sds-text-field--error .sds-text-field__support {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-text-field--success .sds-text-field__support {
+  color: var(--sds-status-success-content-default);
 }
 
 /* ─── Message ───────────────────────────────────────────────────────────────── */

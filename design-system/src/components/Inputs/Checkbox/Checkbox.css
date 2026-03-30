@@ -1,0 +1,163 @@
+/* Checkbox — Subliminal Design System
+ * Inputs/Checkbox
+ *
+ * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
+ *         --sds-effects-focus, --sds-shape-border-radius-xxsmall,
+ *         --sds-typography-*
+ *
+ * Structure:
+ *   .sds-checkbox                → root <label>, lays out indicator + text
+ *   .sds-checkbox__input         → visually hidden native <input type="checkbox">
+ *   .sds-checkbox__indicator-wrap → top-aligns indicator to first line of text
+ *   .sds-checkbox-indicator      → visual tick-box (from CheckboxIndicator)
+ *   .sds-checkbox__label-frame   → column of label + optional description
+ *   .sds-checkbox__label         → primary label text
+ *   .sds-checkbox__description   → secondary description text
+ *
+ * Interactive state cascade:
+ *   Hover  → .sds-checkbox:hover modifies .sds-checkbox-indicator
+ *   Pressed→ .sds-checkbox:active modifies .sds-checkbox-indicator
+ *   Focus  → :has(:focus-visible) adds focus ring to .sds-checkbox-indicator
+ *   Disabled → .sds-checkbox--disabled mutes the whole component
+ */
+
+/* ─── Root label ─────────────────────────────────────────────────────────────── */
+
+.sds-checkbox {
+  display:     flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Visually hidden native input ───────────────────────────────────────────── */
+
+/*
+ * The <input> stays in the document flow for focus management and form
+ * participation, but is invisible and zero-sized so it doesn't affect layout.
+ * Avoid `display:none` or `visibility:hidden` — those remove it from the
+ * accessibility tree and break keyboard focus.
+ */
+.sds-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Indicator wrap ─────────────────────────────────────────────────────────── */
+
+/*
+ * py-px aligns the indicator's top edge with the label text's cap-height,
+ * matching the Figma "Checkbox container" vertical offset.
+ */
+.sds-checkbox__indicator-wrap {
+  display:     flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+/* ─── Label frame ────────────────────────────────────────────────────────────── */
+
+.sds-checkbox__label-frame {
+  display:     flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ─── Label text (Large — default) ──────────────────────────────────────────── */
+
+.sds-checkbox__label {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color:          var(--sds-neutral-content-primary);
+}
+
+/* ─── Description text (Large — default) ────────────────────────────────────── */
+
+.sds-checkbox__description {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color:          var(--sds-neutral-content-tertiary);
+}
+
+/* ─── Medium size overrides ──────────────────────────────────────────────────── */
+
+.sds-checkbox--medium .sds-checkbox__label {
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+.sds-checkbox--medium .sds-checkbox__description {
+  font-size:      var(--sds-typography-font-size-body-content-xsmall);
+  line-height:    var(--sds-typography-line-height-body-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+}
+
+/* ─── Hover states ───────────────────────────────────────────────────────────── */
+
+/* Unchecked indicator on hover */
+.sds-checkbox:hover:not(.sds-checkbox--disabled) .sds-checkbox-indicator:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-hover);
+}
+
+/* Checked / indeterminate indicator on hover */
+.sds-checkbox:hover:not(.sds-checkbox--disabled) .sds-checkbox-indicator--checked,
+.sds-checkbox:hover:not(.sds-checkbox--disabled) .sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-hover);
+  border-color:     var(--sds-interactive-secondary-filled-background-hover);
+}
+
+/* ─── Pressed (active) states ────────────────────────────────────────────────── */
+
+/* Unchecked indicator on press */
+.sds-checkbox:active:not(.sds-checkbox--disabled) .sds-checkbox-indicator:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-active);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-active);
+}
+
+/* Checked / indeterminate indicator on press */
+.sds-checkbox:active:not(.sds-checkbox--disabled) .sds-checkbox-indicator--checked,
+.sds-checkbox:active:not(.sds-checkbox--disabled) .sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-interactive-secondary-filled-background-active);
+  border-color:     var(--sds-interactive-secondary-filled-background-active);
+}
+
+/* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
+
+/*
+ * :has(:focus-visible) shows the focus ring only for keyboard navigation —
+ * mouse clicks do not trigger :focus-visible.
+ * The ring is applied to the indicator, not the label, matching the Figma spec.
+ */
+.sds-checkbox:has(.sds-checkbox__input:focus-visible) .sds-checkbox-indicator {
+  box-shadow: 0 0 0 6px var(--sds-effects-focus);
+}
+
+/* ─── Disabled state ─────────────────────────────────────────────────────────── */
+
+.sds-checkbox--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sds-checkbox--disabled .sds-checkbox__label,
+.sds-checkbox--disabled .sds-checkbox__description {
+  opacity: 0.45;
+}
