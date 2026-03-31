@@ -141,6 +141,16 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    a11y: {
+      // axe-core config applied to every story
+      config: {},
+      options: {
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21aa'],
+        },
+      },
+    },
   },
 };
 
