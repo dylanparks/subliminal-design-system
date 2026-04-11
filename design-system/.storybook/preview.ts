@@ -18,7 +18,7 @@ import { fontFamilies } from '../src/tokens/generated/fonts';
 //
 // The check fires once per Storybook session and is dismissed with ×.
 
-if (typeof document !== 'undefined') {
+if (typeof document !== 'undefined' && typeof document.fonts !== 'undefined') {
   checkFontsOnLoad();
 }
 
@@ -144,12 +144,18 @@ const preview: Preview = {
     a11y: {
       // axe-core config applied to every story
       config: {},
+
       options: {
         runOnly: {
           type: 'tag',
           values: ['wcag2a', 'wcag2aa', 'wcag21aa'],
         },
       },
+
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo'
     },
   },
 };
