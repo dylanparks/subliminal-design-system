@@ -1,10 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within, expect, waitFor } from '@storybook/test';
 import { DatePicker } from './DatePicker';
 
 const meta: Meta<typeof DatePicker> = {
   component: DatePicker,
   title: 'Fields/DatePicker',
-  decorators: [(Story) => <div style={{ maxWidth: '38rem', width: '100%' }}><Story /></div>],
+  decorators: [(Story) => (
+    <div style={{ maxWidth: '38rem', width: '100%', paddingBottom: '24rem' }}>
+      <Story />
+    </div>
+  )],
   parameters: {
     docs: {
       description: {
@@ -37,7 +42,20 @@ const meta: Meta<typeof DatePicker> = {
 export default meta;
 type Story = StoryObj<typeof DatePicker>;
 
-export const Default: Story = {};
+// Default: pin a date so the calendar snapshot is deterministic (no "today" drift).
+export const Default: Story = {
+  args: {
+    defaultValue: { year: 2026, month: 4, day: 11 },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /^date/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
+};
 
 export const Range: Story = {
   args: {
@@ -46,13 +64,31 @@ export const Range: Story = {
     defaultStartValue: { year: 2026, month: 3, day: 10 },
     defaultEndValue:   { year: 2026, month: 3, day: 22 },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /date range/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
 };
 
+// RangeEmpty: pin a start value so the calendar opens to a fixed month.
 export const RangeEmpty: Story = {
   args: {
-    mode:  'range',
-    label: 'Date range',
+    mode:              'range',
+    label:             'Date range',
+    defaultStartValue: { year: 2026, month: 4, day: 1 },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /date range/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
 };
 
 export const Month: Story = {
@@ -61,6 +97,14 @@ export const Month: Story = {
     label:        'Month',
     defaultValue: { year: 2026, month: 3, day: 1 },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /month/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
 };
 
 export const Year: Story = {
@@ -69,6 +113,14 @@ export const Year: Story = {
     label:        'Year',
     defaultValue: { year: 2026, month: 1, day: 1 },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /year/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
 };
 
 export const Error: Story = {
@@ -77,6 +129,14 @@ export const Error: Story = {
     error:        true,
     message:      'Please select a valid date.',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /^date/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
 };
 
 export const Success: Story = {
@@ -85,4 +145,12 @@ export const Success: Story = {
     success:      true,
     message:      'Date confirmed.',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /^date/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 400 } },
 };

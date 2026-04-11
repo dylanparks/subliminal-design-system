@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within, expect, waitFor } from '@storybook/test';
 import { TimePicker } from './TimePicker';
 
 const meta: Meta<typeof TimePicker> = {
@@ -60,7 +61,20 @@ const meta: Meta<typeof TimePicker> = {
 export default meta;
 type Story = StoryObj<typeof TimePicker>;
 
-export const Default: Story = {};
+// Shared play function — opens the time picker popover.
+// The popover is portal-rendered so we query document directly.
+const openPopover: Story['play'] = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole('button', { name: /select a time/i }));
+  await waitFor(() =>
+    expect(document.querySelector('[role="dialog"]')).toBeInTheDocument()
+  );
+};
+
+export const Default: Story = {
+  play: openPopover,
+  parameters: { chromatic: { delay: 400 } },
+};
 
 export const Error: Story = {
   args: {
@@ -68,6 +82,8 @@ export const Error: Story = {
     error:        true,
     message:      'Please select a valid time.',
   },
+  play: openPopover,
+  parameters: { chromatic: { delay: 400 } },
 };
 
 export const Success: Story = {
@@ -76,4 +92,6 @@ export const Success: Story = {
     success:      true,
     message:      'Appointment time confirmed.',
   },
+  play: openPopover,
+  parameters: { chromatic: { delay: 400 } },
 };

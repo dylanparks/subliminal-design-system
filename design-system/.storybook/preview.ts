@@ -157,6 +157,14 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: 'todo'
     },
+    chromatic: {
+      // Capture every story in both themes so visual diffs and a11y checks
+      // cover light and dark mode. Theme names must match withThemeByClassName keys.
+      modes: {
+        light: { theme: 'Light' },
+        dark:  { theme: 'Dark'  },
+      },
+    },
   },
 };
 

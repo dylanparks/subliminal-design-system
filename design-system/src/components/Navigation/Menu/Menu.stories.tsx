@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within, expect, waitFor } from '@storybook/test';
 import { Menu, MenuItem, MenuDivider } from './Menu';
 import type { MenuSuffix } from './Menu';
 import { DiamondIcon, StarIcon, SettingsIcon } from '../../../icons';
@@ -108,6 +109,14 @@ export const SingleSelect: StoryObj<DefaultArgs> = {
     suffixType:   'none',
     showDisabled: true,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /open menu/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 300 } },
   render: ({ showIcons, suffixType, showDisabled, ...menuArgs }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen]     = useState(false);
@@ -169,6 +178,14 @@ export const MultiSelect: StoryObj<MultiSelectArgs> = {
     showDisabled: true,
   },
   argTypes: itemArgTypes,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /filter/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 300 } },
   render: ({ showIcons, suffixType, showDisabled, ...menuArgs }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen]         = useState(false);
@@ -241,6 +258,14 @@ export const Configure: StoryObj<ConfigureArgs> = {
       table: { category: 'Item', defaultValue: { summary: 'true' } },
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /configure columns/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 300 } },
   render: ({ showIcons, suffixType, showDisabled, showToggles, ...menuArgs }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
@@ -327,6 +352,14 @@ export const ConfigureNoToggles: StoryObj<typeof Menu> = {
   args: {
     type: 'configure',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /reorder items/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 300 } },
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
@@ -386,6 +419,14 @@ export const LongList: StoryObj<typeof Menu> = {
   args: {
     maxHeight: 320,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /open long menu/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+    );
+  },
+  parameters: { chromatic: { delay: 300 } },
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen]     = useState(false);

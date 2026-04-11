@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within, expect, waitFor } from '@storybook/test';
 import { SelectField } from './SelectField';
 
 const OPTIONS = [
@@ -37,7 +38,20 @@ const meta: Meta<typeof SelectField> = {
 export default meta;
 type Story = StoryObj<typeof SelectField>;
 
-export const Default: Story = {};
+// Shared play function — opens the dropdown by clicking the combobox trigger.
+// The dropdown menu is portal-rendered so we query document directly.
+const openDropdown: Story['play'] = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole('combobox'));
+  await waitFor(() =>
+    expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+  );
+};
+
+export const Default: Story = {
+  play: openDropdown,
+  parameters: { chromatic: { delay: 300 } },
+};
 
 export const Error: Story = {
   args: {
@@ -45,6 +59,8 @@ export const Error: Story = {
     error:        true,
     message:      'Please select a valid option.',
   },
+  play: openDropdown,
+  parameters: { chromatic: { delay: 300 } },
 };
 
 export const Success: Story = {
@@ -53,4 +69,6 @@ export const Success: Story = {
     success:      true,
     message:      'Selection confirmed.',
   },
+  play: openDropdown,
+  parameters: { chromatic: { delay: 300 } },
 };

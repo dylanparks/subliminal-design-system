@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within, expect, waitFor } from '@storybook/test';
 import { Combobox } from './Combobox';
 
 const OPTIONS = [
@@ -100,7 +101,20 @@ const meta: Meta<typeof Combobox> = {
 export default meta;
 type Story = StoryObj<typeof Combobox>;
 
-export const Default: Story = {};
+// Shared play function — opens the listbox by clicking the combobox input.
+// The listbox is portal-rendered so we query document directly.
+const openListbox: Story['play'] = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole('combobox'));
+  await waitFor(() =>
+    expect(document.querySelector('[role="listbox"]')).toBeInTheDocument()
+  );
+};
+
+export const Default: Story = {
+  play: openListbox,
+  parameters: { chromatic: { delay: 300 } },
+};
 
 export const Error: Story = {
   args: {
@@ -108,6 +122,8 @@ export const Error: Story = {
     error:        true,
     message:      'Please select a valid option.',
   },
+  play: openListbox,
+  parameters: { chromatic: { delay: 300 } },
 };
 
 export const Success: Story = {
@@ -116,6 +132,8 @@ export const Success: Story = {
     success:      true,
     message:      'Selection confirmed.',
   },
+  play: openListbox,
+  parameters: { chromatic: { delay: 300 } },
 };
 
 export const LongList: Story = {
@@ -125,4 +143,6 @@ export const LongList: Story = {
       label: `Option ${i + 1}`,
     })),
   },
+  play: openListbox,
+  parameters: { chromatic: { delay: 300 } },
 };

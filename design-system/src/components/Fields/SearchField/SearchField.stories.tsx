@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { userEvent, within, expect, waitFor } from '@storybook/test';
 import { SearchField } from './SearchField';
 
 const meta: Meta<typeof SearchField> = {
@@ -104,6 +105,16 @@ export const Autocomplete: Story = {
       </div>
     );
   },
+  // Type 'c' to reveal suggestions (matches Cat, Chicken, Chinchilla, etc.)
+  // The listbox is inline (not portaled) so within(canvasElement) scoping works.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.type(canvas.getByRole('combobox'), 'c');
+    await waitFor(() =>
+      expect(canvas.getByRole('listbox')).toBeVisible()
+    );
+  },
+  parameters: { chromatic: { delay: 200 } },
 };
 
 export const Error: Story = {
