@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, within, expect, waitFor } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { Menu, MenuItem, MenuDivider } from './Menu';
 import type { MenuSuffix } from './Menu';
 import { DiamondIcon, StarIcon, SettingsIcon } from '../../../icons';

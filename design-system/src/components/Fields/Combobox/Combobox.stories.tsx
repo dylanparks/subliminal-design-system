@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, within, expect, waitFor } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { Combobox } from './Combobox';
 
 const OPTIONS = [

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { userEvent, within, expect, waitFor } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { DatePicker } from './DatePicker';
 
 const meta: Meta<typeof DatePicker> = {
