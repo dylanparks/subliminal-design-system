@@ -398,24 +398,24 @@
           "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
         },
         "Placeholder": {
-          "$value": "{global-colors.Neutrals.Steel.400}",
+          "$value": "{global-colors.Neutrals.Steel.300}",
           "$type": "color",
           "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
         },
         "Suggested": {
-          "$value": "{global-colors.Neutrals.Steel.500}",
+          "$value": "{global-colors.Neutrals.Steel.400}",
           "$type": "color",
           "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
         }
       },
       "Background": {
         "Default": {
-          "$value": "{global-colors.Transparent.Light.0}",
+          "$value": "{global-colors.Neutrals.Steel.900}",
           "$type": "color",
           "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
         },
         "Hover": {
-          "$value": "{global-colors.Neutrals.Steel.950}",
+          "$value": "{global-colors.Neutrals.Steel.900}",
           "$type": "color",
           "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
         },

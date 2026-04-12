@@ -1,7 +1,7 @@
-/* Story canvas background — uses the neutral offset token so it
+/* Story canvas background — uses the neutral primary background token so it
    responds automatically to the Light / Dark theme toggle. */
 body,
 #storybook-root {
-  background-color: var(--sds-neutral-background-offset);
+  background-color: var(--sds-neutral-background-default);
   min-height: 100vh;
 }

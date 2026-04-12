@@ -387,7 +387,7 @@
   font-size:      var(--sds-typography-font-size-body-content-small);
   line-height:    var(--sds-typography-line-height-body-content-small);
   letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
-  color: var(--sds-neutral-content-subtle);
+  color: var(--sds-neutral-content-tertiary);
 }
 
 /* ─── Day grid ────────────────────────────────────────────────── */
@@ -473,7 +473,7 @@
 
 /* Outside-month days */
 .sds-datepicker__day-btn--outside {
-  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  color: var(--sds-interactive-secondary-hollow-content-inactive-default);
 }
 
 /*
@@ -514,7 +514,7 @@
 
 /* Disabled days (outside-month inherit the --outside colour above) */
 .sds-datepicker__day-btn[aria-disabled='true'] {
-  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  color: var(--sds-interactive-secondary-hollow-content-inactive-default);
   cursor: not-allowed;
 }
 
