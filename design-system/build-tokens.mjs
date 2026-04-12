@@ -96,6 +96,15 @@ function setDeep(obj, path, value) {
 }
 
 /**
+ * Convert a camelCase property name to kebab-case for CSS var naming.
+ * "boxShadow"       → "box-shadow"
+ * "backdropFilter"  → "backdrop-filter"
+ */
+function camelToKebab(str) {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase();
+}
+
+/**
  * Convert a Figma segment string to a kebab-case CSS-safe identifier.
  * "Font size"    → "font-size"
  * "DisplaySmall" → "display-small"
@@ -215,6 +224,81 @@ function parseRelayFlatTokens(filePath, { prefix = '', skip = [] } = {}) {
   }
 
   return vars;
+}
+
+/**
+ * Parse effect-styles.json exported by Subliminal Relay into a flat CSS var map.
+ *
+ * Each effect style leaf has a $value.css object of camelCase CSS properties.
+ * One CSS custom property is emitted per CSS property per effect style:
+ *   Static/elevation/low + boxShadow → --sds-effect-static-elevation-low-box-shadow
+ *
+ * WebkitBackdropFilter is skipped — the unprefixed backdropFilter var is sufficient;
+ * consumers can apply the webkit prefix at usage time if needed.
+ *
+ * @param {string} filePath
+ * @returns {Record<string, string>} flat { cssVar: value } map
+ */
+function parseEffectStyles(filePath) {
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
+  const vars = {};
+
+  function walk(node, path) {
+    if (node && typeof node === 'object' && '$type' in node && node.$type === 'effect') {
+      const css = node.$value?.css ?? {};
+      const pathSegments = path.map(p => segmentize(p)).join('-');
+      for (const [prop, value] of Object.entries(css)) {
+        if (prop === 'WebkitBackdropFilter') continue;
+        const cssVar = `--sds-effect-${pathSegments}-${camelToKebab(prop)}`;
+        vars[cssVar] = value;
+      }
+    } else if (node && typeof node === 'object') {
+      for (const [key, child] of Object.entries(node)) {
+        if (!key.startsWith('$')) walk(child, [...path, key]);
+      }
+    }
+  }
+
+  walk(data, []);
+  return vars;
+}
+
+/**
+ * Build a nested TypeScript object from effect-styles.json.
+ * Each leaf becomes an object of { camelCaseProp: 'var(--sds-effect-...)' }
+ * for direct use as React inline styles or Emotion css() arguments.
+ *
+ * Example:
+ *   effectTokens.Static.elevation.low.boxShadow
+ *   → 'var(--sds-effect-static-elevation-low-box-shadow)'
+ *
+ * @param {string} filePath
+ * @returns {object}
+ */
+function buildEffectNestedTs(filePath) {
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
+  const root = {};
+
+  function walk(node, path) {
+    if (node && typeof node === 'object' && '$type' in node && node.$type === 'effect') {
+      const css = node.$value?.css ?? {};
+      const pathSegments = path.map(p => segmentize(p)).join('-');
+      const leaf = {};
+      for (const [prop, _value] of Object.entries(css)) {
+        if (prop === 'WebkitBackdropFilter') continue;
+        const cssVar = `--sds-effect-${pathSegments}-${camelToKebab(prop)}`;
+        leaf[prop] = `var(${cssVar})`;
+      }
+      if (Object.keys(leaf).length > 0) setDeep(root, path, leaf);
+    } else if (node && typeof node === 'object') {
+      for (const [key, child] of Object.entries(node)) {
+        if (!key.startsWith('$')) walk(child, [...path, key]);
+      }
+    }
+  }
+
+  walk(data, []);
+  return root;
 }
 
 /**
@@ -494,6 +578,12 @@ const shapeVars = parseRelayFlatTokens(join(relayDir, 'shape.json'), { prefix: '
 
 const spacingVars = parseRelayFlatTokens(join(relayDir, 'spacing.json'), { prefix: 'spacing' });
 
+// ─── Effect style tokens (optional) ───────────────────────────────────────────
+
+const effectStylesPath = join(relayDir, 'effect-styles.json');
+const effectVars = existsSync(effectStylesPath) ? parseEffectStyles(effectStylesPath) : {};
+const effectNested = existsSync(effectStylesPath) ? buildEffectNestedTs(effectStylesPath) : {};
+
 // ─── Viewport tokens ───────────────────────────────────────────────────────────
 // Three modes (LG/MD/XS) — each emitted under the matching media query.
 // Viewport/Width drives the responsive breakpoint thresholds: MD styles apply
@@ -572,6 +662,13 @@ const parts = [
   '/* ─── Spacing ──────────────────────────────────────────────────────────────── */',
   renderCssBlock(':root', spacingVars),
   '',
+  ...(Object.keys(effectVars).length > 0
+    ? [
+        '/* ─── Effects ─────────────────────────────────────────────────────────────── */',
+        renderCssBlock(':root', effectVars),
+        '',
+      ]
+    : []),
   '/* ─── Viewport (LG — default) ─────────────────────────────────────────────── */',
   renderCssBlock(':root', viewportLgVars),
   '',
@@ -614,6 +711,18 @@ const spacingNested = flatVarsToNestedTs(spacingVars);
 const typographyNested = flatVarsToNestedTs(typographyLgVars);
 const breakpointNested = flatVarsToNestedTs(viewportLgVars);
 
+const effectTsLines = Object.keys(effectNested).length > 0
+  ? [
+      '',
+      '/**',
+      ' * Effect style tokens — each leaf is a CSS style object for direct use',
+      ' * as React inline styles or Emotion css() arguments.',
+      ' * Example: css(effectTokens.Static.elevation.low)',
+      ' */',
+      `export const effectTokens = ${objectToTs(effectNested)} as const;`,
+    ]
+  : [];
+
 const tokensTs = [
   '/* Generated by build-tokens.mjs — do not edit manually */',
   '/* Re-run: npm run build:tokens                         */',
@@ -629,6 +738,7 @@ const tokensTs = [
   `export const typographyTokens = ${objectToTs(typographyNested)} as const;`,
   '',
   `export const breakpointTokens = ${objectToTs(breakpointNested)} as const;`,
+  ...effectTsLines,
   '',
 ].join('\n');
 
@@ -666,4 +776,7 @@ if (zipExtractDir) rmSync(zipExtractDir, { recursive: true, force: true });
 console.log('✓ tokens.css');
 console.log('✓ tokens.ts');
 console.log('✓ fonts.ts');
+if (Object.keys(effectVars).length > 0) {
+  console.log(`  ✓ effectTokens — ${Object.keys(effectVars).length} effect vars`);
+}
 console.log(`  → ${outputDir}`);
