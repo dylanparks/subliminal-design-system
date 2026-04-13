@@ -2,7 +2,7 @@
  * Fields/Combobox
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-focus, --sds-effects-shadowcallout,
+ *         --sds-effects-focus, --sds-effect-interactive-popover-default-box-shadow,
  *         --sds-shape-border-radius-*, --sds-spacing-size-*, --sds-typography-*
  *
  * Sizes:
@@ -346,8 +346,8 @@
   background-color: var(--sds-neutral-background-default);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
-  box-shadow: var(--sds-effects-shadowcallout);
-  padding: 4px 0;
+  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
+  padding: 8px 0;
   box-sizing: border-box;
   /* Hide native scrollbar */
   scrollbar-width: none;

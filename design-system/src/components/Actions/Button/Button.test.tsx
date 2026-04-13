@@ -49,14 +49,17 @@ describe('Button', () => {
   it.each([
     ['primary', 'filled', 'sds-button--primary-filled'],
     ['primary', 'hollow', 'sds-button--primary-hollow'],
+    ['primary', 'ghost', 'sds-button--primary-ghost'],
     ['secondary', 'filled', 'sds-button--secondary-filled'],
     ['secondary', 'hollow', 'sds-button--secondary-hollow'],
-    ['media', 'filled', 'sds-button--media-filled'],
-    ['media', 'hollow', 'sds-button--media-hollow'],
+    ['secondary', 'ghost', 'sds-button--secondary-ghost'],
+    ['static', 'filled', 'sds-button--static-filled'],
+    ['static', 'hollow', 'sds-button--static-hollow'],
+    ['static', 'ghost', 'sds-button--static-ghost'],
   ] as const)(
     'applies %s %s class correctly',
-    (intent, variant, expectedClass) => {
-      render(<Button label="Test" intent={intent} variant={variant} />);
+    (variant, fillStyle, expectedClass) => {
+      render(<Button label="Test" variant={variant} fillStyle={fillStyle} />);
       expect(screen.getByRole('button')).toHaveClass(expectedClass);
     }
   );

@@ -5,13 +5,13 @@ const meta: Meta<typeof Button> = {
   component: Button,
   title: 'Actions/Button',
   argTypes: {
-    intent: {
-      control: 'select',
-      options: ['primary', 'secondary', 'media'],
-    },
     variant: {
       control: 'select',
-      options: ['filled', 'hollow', 'hollow-ghost'],
+      options: ['primary', 'secondary', 'static'],
+    },
+    fillStyle: {
+      control: 'select',
+      options: ['filled', 'hollow', 'ghost'],
     },
     size: {
       control: 'select',
@@ -23,8 +23,8 @@ const meta: Meta<typeof Button> = {
   },
   args: {
     label: 'Button',
-    intent: 'primary',
-    variant: 'filled',
+    variant: 'primary',
+    fillStyle: 'filled',
     size: 'small',
     disabled: false,
     showLabel: true,

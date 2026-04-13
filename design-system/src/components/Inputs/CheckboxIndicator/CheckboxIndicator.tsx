@@ -3,16 +3,18 @@ import { CheckIcon, RemoveIcon } from '../../../icons';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
+export type CheckboxSelection = 'selected' | 'unselected' | 'indeterminate';
 export type CheckboxIndicatorSize = 'medium' | 'large';
 
 export interface CheckboxIndicatorProps {
-  /** Whether the indicator is in the checked (selected) state */
-  checked?: boolean;
   /**
-   * Whether the indicator is in the indeterminate state.
-   * Takes visual precedence over `checked` when both are true.
+   * Selection state of the indicator.
+   * - `'selected'`      → filled background, checkmark icon
+   * - `'unselected'`    → hollow background, no icon
+   * - `'indeterminate'` → filled background, minus/dash icon
+   * @default 'unselected'
    */
-  indeterminate?: boolean;
+  selection?: CheckboxSelection;
   /** Visual size of the indicator. @default 'large' */
   size?: CheckboxIndicatorSize;
   /**
@@ -22,6 +24,8 @@ export interface CheckboxIndicatorProps {
   onMedia?: boolean;
   /** Renders the disabled visual appearance */
   disabled?: boolean;
+  /** Renders the error visual appearance */
+  error?: boolean;
   /** Additional className forwarded to the indicator element */
   className?: string;
 }
@@ -37,22 +41,25 @@ export interface CheckboxIndicatorProps {
  * from the parent component (Checkbox, MenuItem, etc.).
  */
 export function CheckboxIndicator({
-  checked = false,
-  indeterminate = false,
+  selection = 'unselected',
   size = 'large',
   onMedia = false,
   disabled = false,
+  error = false,
   className,
 }: CheckboxIndicatorProps) {
-  const isFilled = checked || indeterminate;
+  const isChecked       = selection === 'selected';
+  const isIndeterminate = selection === 'indeterminate';
+  const isFilled        = isChecked || isIndeterminate;
 
   const classes = [
     'sds-checkbox-indicator',
-    size === 'medium'    && 'sds-checkbox-indicator--medium',
-    checked              && 'sds-checkbox-indicator--checked',
-    indeterminate        && 'sds-checkbox-indicator--indeterminate',
-    onMedia              && 'sds-checkbox-indicator--on-media',
-    disabled             && 'sds-checkbox-indicator--disabled',
+    size === 'medium'  && 'sds-checkbox-indicator--medium',
+    isChecked          && 'sds-checkbox-indicator--checked',
+    isIndeterminate    && 'sds-checkbox-indicator--indeterminate',
+    onMedia            && 'sds-checkbox-indicator--on-media',
+    disabled           && 'sds-checkbox-indicator--disabled',
+    error              && 'sds-checkbox-indicator--error',
     className,
   ]
     .filter(Boolean)
@@ -62,7 +69,7 @@ export function CheckboxIndicator({
     <span className={classes} aria-hidden="true">
       {isFilled && (
         <span className="sds-checkbox-indicator__icon">
-          {indeterminate ? <RemoveIcon size={16} /> : <CheckIcon size={16} />}
+          {isIndeterminate ? <RemoveIcon size={16} /> : <CheckIcon size={16} />}
         </span>
       )}
     </span>

@@ -575,7 +575,7 @@ export function MenuItem({
       {isSingleSelect && <SingleSelectCheckmark selected={selected} />}
       {isMultiSelect  && (
         <CheckboxIndicator
-          checked={selected}
+          selection={selected ? 'selected' : 'unselected'}
           size="medium"
           disabled={disabled}
         />

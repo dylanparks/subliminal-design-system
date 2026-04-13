@@ -308,7 +308,7 @@
   background-color: var(--sds-neutral-background-default);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
-  box-shadow: var(--sds-effects-shadowcallout);
+  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
   padding: 16px;
   box-sizing: border-box;
   outline: none;
@@ -491,11 +491,11 @@
 /*
  * Active (selected, non-today) — filled dark-blue circle, white text, Interactive/Small.
  * Figma: bg = --interactive/primary/filled/background/default
- *        color = --onmedia/neutral/content/primary
+ *        color = --neutral/content/static/primary
  */
 .sds-datepicker__day-btn--active {
   background-color: var(--sds-interactive-primary-filled-background-default);
-  color: var(--sds-onmedia-neutral-content-primary);
+  color: var(--sds-neutral-content-static-primary);
   font-family: var(--sds-typography-font-family-body-interactive);
   font-weight: var(--sds-typography-font-weight-body-interactive);
 }
@@ -507,7 +507,7 @@
 .sds-datepicker__day-btn--range-start,
 .sds-datepicker__day-btn--range-end {
   background-color: var(--sds-interactive-primary-filled-background-default);
-  color: var(--sds-onmedia-neutral-content-primary);
+  color: var(--sds-neutral-content-static-primary);
   font-family: var(--sds-typography-font-family-body-interactive);
   font-weight: var(--sds-typography-font-weight-body-interactive);
 }
@@ -565,7 +565,7 @@
 /* Selected month/year — filled dark-blue, white text */
 .sds-datepicker__grid-btn[aria-selected='true'] {
   background-color: var(--sds-interactive-primary-filled-background-default);
-  color: var(--sds-onmedia-neutral-content-primary);
+  color: var(--sds-neutral-content-static-primary);
   font-family: var(--sds-typography-font-family-body-interactive);
   font-weight: var(--sds-typography-font-weight-body-interactive);
 }

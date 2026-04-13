@@ -1,5 +1,5 @@
 /* Button — Subliminal Design System
- * Tokens: --sds-interactive-*, --sds-onmedia-interactive-*, --sds-effects-*,
+ * Tokens: --sds-interactive-*, --sds-interactive-static-*, --sds-effects-*,
  *         --sds-shape-border-radius-*, --sds-typography-*
  */
 
@@ -220,147 +220,147 @@
   border-color: var(--sds-interactive-secondary-hollow-stroke-disabled);
 }
 
-/* ─── Media Filled ──────────────────────────────────────────────────────────── */
+/* ─── Static Filled ─────────────────────────────────────────────────────────── */
 
-.sds-button--media-filled {
-  background-color: var(--sds-onmedia-interactive-filled-background-default);
-  color: var(--sds-onmedia-interactive-filled-content-default);
+.sds-button--static-filled {
+  background-color: var(--sds-interactive-static-filled-background-default);
+  color: var(--sds-interactive-static-filled-content-default);
 }
 
-.sds-button--media-filled:hover {
-  background-color: var(--sds-onmedia-interactive-filled-background-hover);
-  color: var(--sds-onmedia-interactive-filled-content-hover);
+.sds-button--static-filled:hover {
+  background-color: var(--sds-interactive-static-filled-background-hover);
+  color: var(--sds-interactive-static-filled-content-hover);
 }
 
-.sds-button--media-filled:active {
-  background-color: var(--sds-onmedia-interactive-filled-background-active);
-  color: var(--sds-onmedia-interactive-filled-content-active);
+.sds-button--static-filled:active {
+  background-color: var(--sds-interactive-static-filled-background-active);
+  color: var(--sds-interactive-static-filled-content-active);
 }
 
-.sds-button--media-filled:focus-visible {
-  background-color: var(--sds-onmedia-interactive-filled-background-default);
-  color: var(--sds-onmedia-interactive-filled-content-default);
+.sds-button--static-filled:focus-visible {
+  background-color: var(--sds-interactive-static-filled-background-default);
+  color: var(--sds-interactive-static-filled-content-default);
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--media-filled:disabled {
-  background-color: var(--sds-onmedia-interactive-filled-background-disabled);
-  color: var(--sds-onmedia-interactive-filled-content-disabled);
+.sds-button--static-filled:disabled {
+  background-color: var(--sds-interactive-static-filled-background-disabled);
+  color: var(--sds-interactive-static-filled-content-disabled);
 }
 
-/* ─── Media Hollow ──────────────────────────────────────────────────────────── */
+/* ─── Static Hollow ─────────────────────────────────────────────────────────── */
 
-.sds-button--media-hollow {
-  background-color: var(--sds-onmedia-interactive-hollow-background-default);
-  color: var(--sds-onmedia-interactive-hollow-content-default);
-  border: 2px solid var(--sds-onmedia-interactive-hollow-stroke-default);
+.sds-button--static-hollow {
+  background-color: var(--sds-interactive-static-hollow-background-default);
+  color: var(--sds-interactive-static-hollow-content-default);
+  border: 2px solid var(--sds-interactive-static-hollow-stroke-default);
 }
 
-.sds-button--media-hollow:hover {
-  background-color: var(--sds-onmedia-interactive-hollow-background-hover);
-  color: var(--sds-onmedia-interactive-hollow-content-hover);
-  border-color: var(--sds-onmedia-interactive-hollow-stroke-hover);
+.sds-button--static-hollow:hover {
+  background-color: var(--sds-interactive-static-hollow-background-hover);
+  color: var(--sds-interactive-static-hollow-content-hover);
+  border-color: var(--sds-interactive-static-hollow-stroke-hover);
 }
 
-.sds-button--media-hollow:active {
-  background-color: var(--sds-onmedia-interactive-hollow-background-active);
-  color: var(--sds-onmedia-interactive-hollow-content-active);
-  border-color: var(--sds-onmedia-interactive-hollow-stroke-active);
+.sds-button--static-hollow:active {
+  background-color: var(--sds-interactive-static-hollow-background-active);
+  color: var(--sds-interactive-static-hollow-content-active);
+  border-color: var(--sds-interactive-static-hollow-stroke-active);
 }
 
-.sds-button--media-hollow:focus-visible {
-  background-color: var(--sds-onmedia-interactive-hollow-background-default);
-  color: var(--sds-onmedia-interactive-hollow-content-default);
-  border-color: var(--sds-onmedia-interactive-hollow-stroke-default);
+.sds-button--static-hollow:focus-visible {
+  background-color: var(--sds-interactive-static-hollow-background-default);
+  color: var(--sds-interactive-static-hollow-content-default);
+  border-color: var(--sds-interactive-static-hollow-stroke-default);
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--media-hollow:disabled {
-  background-color: var(--sds-onmedia-interactive-hollow-background-disabled);
-  color: var(--sds-onmedia-interactive-hollow-content-disabled);
-  border-color: var(--sds-onmedia-interactive-hollow-stroke-disabled);
+.sds-button--static-hollow:disabled {
+  background-color: var(--sds-interactive-static-hollow-background-disabled);
+  color: var(--sds-interactive-static-hollow-content-disabled);
+  border-color: var(--sds-interactive-static-hollow-stroke-disabled);
 }
 
-/* ─── Primary Hollow Ghost ──────────────────────────────────────────────────── */
+/* ─── Primary Ghost ─────────────────────────────────────────────────────────── */
 
-.sds-button--primary-hollow-ghost {
+.sds-button--primary-ghost {
   background-color: var(--sds-interactive-primary-hollow-background-default);
   color: var(--sds-interactive-primary-hollow-content-default);
 }
 
-.sds-button--primary-hollow-ghost:hover {
+.sds-button--primary-ghost:hover {
   background-color: var(--sds-interactive-primary-hollow-background-hover);
   color: var(--sds-interactive-primary-hollow-content-hover);
 }
 
-.sds-button--primary-hollow-ghost:active {
+.sds-button--primary-ghost:active {
   background-color: var(--sds-interactive-primary-hollow-background-active);
   color: var(--sds-interactive-primary-hollow-content-active);
 }
 
-.sds-button--primary-hollow-ghost:focus-visible {
+.sds-button--primary-ghost:focus-visible {
   background-color: var(--sds-interactive-primary-hollow-background-default);
   color: var(--sds-interactive-primary-hollow-content-default);
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--primary-hollow-ghost:disabled {
+.sds-button--primary-ghost:disabled {
   background-color: var(--sds-interactive-primary-hollow-background-disabled);
   color: var(--sds-interactive-primary-hollow-content-disabled);
 }
 
-/* ─── Secondary Hollow Ghost ────────────────────────────────────────────────── */
+/* ─── Secondary Ghost ───────────────────────────────────────────────────────── */
 
-.sds-button--secondary-hollow-ghost {
+.sds-button--secondary-ghost {
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
 }
 
-.sds-button--secondary-hollow-ghost:hover {
+.sds-button--secondary-ghost:hover {
   background-color: var(--sds-interactive-secondary-hollow-background-hover);
   color: var(--sds-interactive-secondary-hollow-content-hover);
 }
 
-.sds-button--secondary-hollow-ghost:active {
+.sds-button--secondary-ghost:active {
   background-color: var(--sds-interactive-secondary-hollow-background-active);
   color: var(--sds-interactive-secondary-hollow-content-active);
 }
 
-.sds-button--secondary-hollow-ghost:focus-visible {
+.sds-button--secondary-ghost:focus-visible {
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--secondary-hollow-ghost:disabled {
+.sds-button--secondary-ghost:disabled {
   background-color: var(--sds-interactive-secondary-hollow-background-disabled);
   color: var(--sds-interactive-secondary-hollow-content-disabled);
 }
 
-/* ─── Media Hollow Ghost ────────────────────────────────────────────────────── */
+/* ─── Static Ghost ──────────────────────────────────────────────────────────── */
 
-.sds-button--media-hollow-ghost {
-  background-color: var(--sds-onmedia-interactive-hollow-background-default);
-  color: var(--sds-onmedia-interactive-hollow-content-default);
+.sds-button--static-ghost {
+  background-color: var(--sds-interactive-static-hollow-background-default);
+  color: var(--sds-interactive-static-hollow-content-default);
 }
 
-.sds-button--media-hollow-ghost:hover {
-  background-color: var(--sds-onmedia-interactive-hollow-background-hover);
-  color: var(--sds-onmedia-interactive-hollow-content-hover);
+.sds-button--static-ghost:hover {
+  background-color: var(--sds-interactive-static-hollow-background-hover);
+  color: var(--sds-interactive-static-hollow-content-hover);
 }
 
-.sds-button--media-hollow-ghost:active {
-  background-color: var(--sds-onmedia-interactive-hollow-background-active);
-  color: var(--sds-onmedia-interactive-hollow-content-active);
+.sds-button--static-ghost:active {
+  background-color: var(--sds-interactive-static-hollow-background-active);
+  color: var(--sds-interactive-static-hollow-content-active);
 }
 
-.sds-button--media-hollow-ghost:focus-visible {
-  background-color: var(--sds-onmedia-interactive-hollow-background-default);
-  color: var(--sds-onmedia-interactive-hollow-content-default);
+.sds-button--static-ghost:focus-visible {
+  background-color: var(--sds-interactive-static-hollow-background-default);
+  color: var(--sds-interactive-static-hollow-content-default);
   box-shadow: 0 0 0 3px var(--sds-effects-focus);
 }
 
-.sds-button--media-hollow-ghost:disabled {
-  background-color: var(--sds-onmedia-interactive-hollow-background-disabled);
-  color: var(--sds-onmedia-interactive-hollow-content-disabled);
+.sds-button--static-ghost:disabled {
+  background-color: var(--sds-interactive-static-hollow-background-disabled);
+  color: var(--sds-interactive-static-hollow-content-disabled);
 }

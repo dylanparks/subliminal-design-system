@@ -1,0 +1,547 @@
+{
+  "Interactive": {
+    "Element": {
+      "Default": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Hover": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Active": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Focus": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "0px 0px 0px 4px rgba(182, 193, 214, 1)",
+            "filter": "drop-shadow(0px 0px 0px rgba(182, 193, 214, 1))"
+          },
+          "cssRaw": "box-shadow: 0px 0px 0px 4px rgba(182, 193, 214, 1);\nfilter: drop-shadow(0px 0px 0px rgba(182, 193, 214, 1));",
+          "emotion": {
+            "boxShadow": "0px 0px 0px 4px rgba(182, 193, 214, 1)",
+            "filter": "drop-shadow(0px 0px 0px rgba(182, 193, 214, 1))"
+          }
+        },
+        "$effects": [
+          {
+            "type": "DROP_SHADOW",
+            "color": {
+              "r": 0.7137255072593689,
+              "g": 0.7568627595901489,
+              "b": 0.8392156958580017,
+              "a": 1
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 4,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Disabled": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Error": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Success": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      }
+    },
+    "Card": {
+      "Default": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Hover": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Active": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Focus": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Disabled": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Error": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      },
+      "Success": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      }
+    },
+    "Popover": {
+      "Default": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "0px 8px 25px 1px rgba(0, 0, 0, 0.1)",
+            "filter": "drop-shadow(0px 8px 25px rgba(0, 0, 0, 0.1))"
+          },
+          "cssRaw": "box-shadow: 0px 8px 25px 1px rgba(0, 0, 0, 0.1);\nfilter: drop-shadow(0px 8px 25px rgba(0, 0, 0, 0.1));",
+          "emotion": {
+            "boxShadow": "0px 8px 25px 1px rgba(0, 0, 0, 0.1)",
+            "filter": "drop-shadow(0px 8px 25px rgba(0, 0, 0, 0.1))"
+          }
+        },
+        "$effects": [
+          {
+            "type": "DROP_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.10000000149011612
+            },
+            "offset": {
+              "x": 0,
+              "y": 8
+            },
+            "radius": 25,
+            "spread": 1,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      }
+    }
+  },
+  "Static": {
+    "Element": {
+      "Default": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      }
+    },
+    "Card": {
+      "Default": {
+        "$type": "effect",
+        "$value": {
+          "css": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          },
+          "cssRaw": "box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);",
+          "emotion": {
+            "boxShadow": "inset 0px 0px 0px 0px rgba(0, 0, 0, 0)"
+          }
+        },
+        "$effects": [
+          {
+            "type": "INNER_SHADOW",
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0
+            },
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "spread": 0,
+            "visible": true,
+            "blendMode": "NORMAL"
+          }
+        ]
+      }
+    }
+  }
+}

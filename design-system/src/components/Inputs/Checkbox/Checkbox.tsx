@@ -22,6 +22,8 @@ export interface CheckboxProps {
   onChange?: (checked: boolean) => void;
   /** Prevents interaction */
   disabled?: boolean;
+  /** Renders error styling on the indicator and label */
+  error?: boolean;
   /** Visual size. @default 'large' */
   size?: CheckboxSize;
   /** Forwarded to the underlying `<input>` element */
@@ -51,6 +53,7 @@ export function Checkbox({
   indeterminate = false,
   onChange,
   disabled = false,
+  error = false,
   size = 'large',
   id,
   name,
@@ -67,10 +70,17 @@ export function Checkbox({
     }
   }, [indeterminate, checked]);
 
+  const selection = indeterminate && !checked
+    ? 'indeterminate'
+    : checked
+      ? 'selected'
+      : 'unselected';
+
   const rootClasses = [
     'sds-checkbox',
-    size === 'medium'   && 'sds-checkbox--medium',
-    disabled            && 'sds-checkbox--disabled',
+    size === 'medium' && 'sds-checkbox--medium',
+    disabled          && 'sds-checkbox--disabled',
+    error             && 'sds-checkbox--error',
     className,
   ]
     .filter(Boolean)
@@ -93,10 +103,10 @@ export function Checkbox({
       {/* Indicator is vertically padded to align with the label text baseline */}
       <span className="sds-checkbox__indicator-wrap" aria-hidden="true">
         <CheckboxIndicator
-          checked={checked}
-          indeterminate={indeterminate}
+          selection={selection}
           size={size}
           disabled={disabled}
+          error={error}
         />
       </span>
 

@@ -8,6 +8,12 @@ export const tokens = {
       secondary: "var(--sds-neutral-content-secondary)",
       tertiary: "var(--sds-neutral-content-tertiary)",
       subtle: "var(--sds-neutral-content-subtle)",
+      static: {
+        primary: "var(--sds-neutral-content-static-primary)",
+        secondary: "var(--sds-neutral-content-static-secondary)",
+        tertiary: "var(--sds-neutral-content-static-tertiary)",
+        subtle: "var(--sds-neutral-content-static-subtle)",
+      },
     },
     background: {
       default: "var(--sds-neutral-background-default)",
@@ -121,6 +127,72 @@ export const tokens = {
         },
       },
     },
+    static: {
+      filled: {
+        content: {
+          default: "var(--sds-interactive-static-filled-content-default)",
+          hover: "var(--sds-interactive-static-filled-content-hover)",
+          active: "var(--sds-interactive-static-filled-content-active)",
+          disabled: "var(--sds-interactive-static-filled-content-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-static-filled-content-inactive-default)",
+            hover: "var(--sds-interactive-static-filled-content-inactive-hover)",
+            active: "var(--sds-interactive-static-filled-content-inactive-active)",
+            disabled: "var(--sds-interactive-static-filled-content-inactive-disabled)",
+          },
+        },
+        background: {
+          default: "var(--sds-interactive-static-filled-background-default)",
+          hover: "var(--sds-interactive-static-filled-background-hover)",
+          active: "var(--sds-interactive-static-filled-background-active)",
+          disabled: "var(--sds-interactive-static-filled-background-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-static-filled-background-inactive-default)",
+            hover: "var(--sds-interactive-static-filled-background-inactive-hover)",
+            active: "var(--sds-interactive-static-filled-background-inactive-active)",
+            disabled: "var(--sds-interactive-static-filled-background-inactive-disabled)",
+          },
+        },
+      },
+      hollow: {
+        content: {
+          default: "var(--sds-interactive-static-hollow-content-default)",
+          hover: "var(--sds-interactive-static-hollow-content-hover)",
+          active: "var(--sds-interactive-static-hollow-content-active)",
+          disabled: "var(--sds-interactive-static-hollow-content-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-static-hollow-content-inactive-default)",
+            hover: "var(--sds-interactive-static-hollow-content-inactive-hover)",
+            active: "var(--sds-interactive-static-hollow-content-inactive-active)",
+            disabled: "var(--sds-interactive-static-hollow-content-inactive-disabled)",
+          },
+        },
+        background: {
+          default: "var(--sds-interactive-static-hollow-background-default)",
+          hover: "var(--sds-interactive-static-hollow-background-hover)",
+          active: "var(--sds-interactive-static-hollow-background-active)",
+          disabled: "var(--sds-interactive-static-hollow-background-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-static-hollow-background-inactive-default)",
+            hover: "var(--sds-interactive-static-hollow-background-inactive-hover)",
+            active: "var(--sds-interactive-static-hollow-background-inactive-active)",
+            disabled: "var(--sds-interactive-static-hollow-background-inactive-disabled)",
+          },
+        },
+        stroke: {
+          default: "var(--sds-interactive-static-hollow-stroke-default)",
+          hover: "var(--sds-interactive-static-hollow-stroke-hover)",
+          active: "var(--sds-interactive-static-hollow-stroke-active)",
+          disabled: "var(--sds-interactive-static-hollow-stroke-disabled)",
+          inactive: {
+            default: "var(--sds-interactive-static-hollow-stroke-inactive-default)",
+            hover: "var(--sds-interactive-static-hollow-stroke-inactive-hover)",
+            active: "var(--sds-interactive-static-hollow-stroke-inactive-active)",
+            disabled: "var(--sds-interactive-static-hollow-stroke-inactive-disabled)",
+          },
+        },
+      },
+    },
     fields: {
       content: {
         default: "var(--sds-interactive-fields-content-default)",
@@ -148,6 +220,7 @@ export const tokens = {
       },
       background: {
         default: "var(--sds-status-error-background-default)",
+        strong: "var(--sds-status-error-background-strong)",
       },
       stroke: {
         default: "var(--sds-status-error-stroke-default)",
@@ -184,82 +257,6 @@ export const tokens = {
       },
       background: {
         default: "var(--sds-status-informative-background-default)",
-      },
-    },
-  },
-  onmedia: {
-    neutral: {
-      content: {
-        primary: "var(--sds-onmedia-neutral-content-primary)",
-        secondary: "var(--sds-onmedia-neutral-content-secondary)",
-        tertiary: "var(--sds-onmedia-neutral-content-tertiary)",
-        subtle: "var(--sds-onmedia-neutral-content-subtle)",
-      },
-    },
-    interactive: {
-      filled: {
-        content: {
-          default: "var(--sds-onmedia-interactive-filled-content-default)",
-          hover: "var(--sds-onmedia-interactive-filled-content-hover)",
-          active: "var(--sds-onmedia-interactive-filled-content-active)",
-          disabled: "var(--sds-onmedia-interactive-filled-content-disabled)",
-          inactive: {
-            default: "var(--sds-onmedia-interactive-filled-content-inactive-default)",
-            hover: "var(--sds-onmedia-interactive-filled-content-inactive-hover)",
-            active: "var(--sds-onmedia-interactive-filled-content-inactive-active)",
-            disabled: "var(--sds-onmedia-interactive-filled-content-inactive-disabled)",
-          },
-        },
-        background: {
-          default: "var(--sds-onmedia-interactive-filled-background-default)",
-          hover: "var(--sds-onmedia-interactive-filled-background-hover)",
-          active: "var(--sds-onmedia-interactive-filled-background-active)",
-          disabled: "var(--sds-onmedia-interactive-filled-background-disabled)",
-          inactive: {
-            default: "var(--sds-onmedia-interactive-filled-background-inactive-default)",
-            hover: "var(--sds-onmedia-interactive-filled-background-inactive-hover)",
-            active: "var(--sds-onmedia-interactive-filled-background-inactive-active)",
-            disabled: "var(--sds-onmedia-interactive-filled-background-inactive-disabled)",
-          },
-        },
-      },
-      hollow: {
-        content: {
-          default: "var(--sds-onmedia-interactive-hollow-content-default)",
-          hover: "var(--sds-onmedia-interactive-hollow-content-hover)",
-          active: "var(--sds-onmedia-interactive-hollow-content-active)",
-          disabled: "var(--sds-onmedia-interactive-hollow-content-disabled)",
-          inactive: {
-            default: "var(--sds-onmedia-interactive-hollow-content-inactive-default)",
-            hover: "var(--sds-onmedia-interactive-hollow-content-inactive-hover)",
-            active: "var(--sds-onmedia-interactive-hollow-content-inactive-active)",
-            disabled: "var(--sds-onmedia-interactive-hollow-content-inactive-disabled)",
-          },
-        },
-        background: {
-          default: "var(--sds-onmedia-interactive-hollow-background-default)",
-          hover: "var(--sds-onmedia-interactive-hollow-background-hover)",
-          active: "var(--sds-onmedia-interactive-hollow-background-active)",
-          disabled: "var(--sds-onmedia-interactive-hollow-background-disabled)",
-          inactive: {
-            default: "var(--sds-onmedia-interactive-hollow-background-inactive-default)",
-            hover: "var(--sds-onmedia-interactive-hollow-background-inactive-hover)",
-            active: "var(--sds-onmedia-interactive-hollow-background-inactive-active)",
-            disabled: "var(--sds-onmedia-interactive-hollow-background-inactive-disabled)",
-          },
-        },
-        stroke: {
-          default: "var(--sds-onmedia-interactive-hollow-stroke-default)",
-          hover: "var(--sds-onmedia-interactive-hollow-stroke-hover)",
-          active: "var(--sds-onmedia-interactive-hollow-stroke-active)",
-          disabled: "var(--sds-onmedia-interactive-hollow-stroke-disabled)",
-          inactive: {
-            default: "var(--sds-onmedia-interactive-hollow-stroke-inactive-default)",
-            hover: "var(--sds-onmedia-interactive-hollow-stroke-inactive-hover)",
-            active: "var(--sds-onmedia-interactive-hollow-stroke-inactive-active)",
-            disabled: "var(--sds-onmedia-interactive-hollow-stroke-inactive-disabled)",
-          },
-        },
       },
     },
   },
@@ -440,6 +437,81 @@ export const breakpointTokens = {
     width: "var(--sds-viewport-width)",
     x: {
       padding: "var(--sds-viewport-x-padding)",
+    },
+  },
+} as const;
+
+/**
+ * Effect style tokens — each leaf is a CSS style object for direct use
+ * as React inline styles or Emotion css() arguments.
+ * Example: css(effectTokens.Static.elevation.low)
+ */
+export const effectTokens = {
+  Interactive: {
+    Element: {
+      Default: {
+        boxShadow: "var(--sds-effect-interactive-element-default-box-shadow)",
+      },
+      Hover: {
+        boxShadow: "var(--sds-effect-interactive-element-hover-box-shadow)",
+      },
+      Active: {
+        boxShadow: "var(--sds-effect-interactive-element-active-box-shadow)",
+      },
+      Focus: {
+        boxShadow: "var(--sds-effect-interactive-element-focus-box-shadow)",
+        filter: "var(--sds-effect-interactive-element-focus-filter)",
+      },
+      Disabled: {
+        boxShadow: "var(--sds-effect-interactive-element-disabled-box-shadow)",
+      },
+      Error: {
+        boxShadow: "var(--sds-effect-interactive-element-error-box-shadow)",
+      },
+      Success: {
+        boxShadow: "var(--sds-effect-interactive-element-success-box-shadow)",
+      },
+    },
+    Card: {
+      Default: {
+        boxShadow: "var(--sds-effect-interactive-card-default-box-shadow)",
+      },
+      Hover: {
+        boxShadow: "var(--sds-effect-interactive-card-hover-box-shadow)",
+      },
+      Active: {
+        boxShadow: "var(--sds-effect-interactive-card-active-box-shadow)",
+      },
+      Focus: {
+        boxShadow: "var(--sds-effect-interactive-card-focus-box-shadow)",
+      },
+      Disabled: {
+        boxShadow: "var(--sds-effect-interactive-card-disabled-box-shadow)",
+      },
+      Error: {
+        boxShadow: "var(--sds-effect-interactive-card-error-box-shadow)",
+      },
+      Success: {
+        boxShadow: "var(--sds-effect-interactive-card-success-box-shadow)",
+      },
+    },
+    Popover: {
+      Default: {
+        boxShadow: "var(--sds-effect-interactive-popover-default-box-shadow)",
+        filter: "var(--sds-effect-interactive-popover-default-filter)",
+      },
+    },
+  },
+  Static: {
+    Element: {
+      Default: {
+        boxShadow: "var(--sds-effect-static-element-default-box-shadow)",
+      },
+    },
+    Card: {
+      Default: {
+        boxShadow: "var(--sds-effect-static-card-default-box-shadow)",
+      },
     },
   },
 } as const;

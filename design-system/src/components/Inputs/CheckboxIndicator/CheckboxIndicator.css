@@ -2,7 +2,7 @@
  * Inputs/CheckboxIndicator
  *
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
- *         --sds-onmedia-interactive-filled-*, --sds-onmedia-interactive-hollow-*,
+ *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
  *         --sds-effects-focus, --sds-shape-border-radius-xxsmall
  *
  * This component is purely visual. Interactive states (hover, focus ring,
@@ -16,11 +16,12 @@
  *   .sds-checkbox-indicator--focus-ring   (e.g. via parent :has(:focus-visible))
  *
  * States driven by component props:
- *   .sds-checkbox-indicator--medium       — 18px size
- *   .sds-checkbox-indicator--checked      — filled, shows checkmark
- *   .sds-checkbox-indicator--indeterminate — filled, shows minus
- *   .sds-checkbox-indicator--on-media     — inverted palette for image backgrounds
- *   .sds-checkbox-indicator--disabled     — muted disabled appearance
+ *   .sds-checkbox-indicator--medium        — 18px size
+ *   .sds-checkbox-indicator--checked       — filled, shows checkmark  (selection='selected')
+ *   .sds-checkbox-indicator--indeterminate — filled, shows minus       (selection='indeterminate')
+ *   .sds-checkbox-indicator--on-media      — inverted palette for image backgrounds
+ *   .sds-checkbox-indicator--disabled      — muted disabled appearance
+ *   .sds-checkbox-indicator--error         — red border/fill for error state
  */
 
 /* ─── Base (large, unchecked) ────────────────────────────────────────────────── */
@@ -138,6 +139,21 @@
   color: var(--sds-interactive-secondary-filled-content-disabled);
 }
 
+/* ─── Error ──────────────────────────────────────────────────────────────────── */
+
+/* Error unchecked — red border + tinted background */
+.sds-checkbox-indicator--error:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
+  background-color: var(--sds-status-error-background-default);
+  border-color:     var(--sds-status-error-stroke-default);
+}
+
+/* Error checked / indeterminate — solid red fill */
+.sds-checkbox-indicator--error.sds-checkbox-indicator--checked,
+.sds-checkbox-indicator--error.sds-checkbox-indicator--indeterminate {
+  background-color: var(--sds-status-error-background-strong);
+  border-color:     var(--sds-status-error-background-strong);
+}
+
 /* ─── On Media ───────────────────────────────────────────────────────────────── */
 
 /* Large on-media is 24px (slightly larger than off-media 22px) */
@@ -154,62 +170,62 @@
 
 /* On media unchecked */
 .sds-checkbox-indicator--on-media:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
-  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-default);
-  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-default);
+  background-color: var(--sds-interactive-static-hollow-background-inactive-default);
+  border-color:     var(--sds-interactive-static-hollow-stroke-inactive-default);
 }
 
 /* On media checked / indeterminate */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--checked,
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--indeterminate {
-  background-color: var(--sds-onmedia-interactive-filled-background-default);
-  border-color:     var(--sds-onmedia-interactive-filled-background-default);
+  background-color: var(--sds-interactive-static-filled-background-default);
+  border-color:     var(--sds-interactive-static-filled-background-default);
 }
 
 /* On media icon color */
 .sds-checkbox-indicator--on-media .sds-checkbox-indicator__icon {
-  color: var(--sds-onmedia-interactive-filled-content-default);
+  color: var(--sds-interactive-static-filled-content-default);
 }
 
 /* On media hover (unchecked) */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--hover:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
-  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-hover);
-  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-hover);
+  background-color: var(--sds-interactive-static-hollow-background-inactive-hover);
+  border-color:     var(--sds-interactive-static-hollow-stroke-inactive-hover);
 }
 
 /* On media hover (checked / indeterminate) */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--hover.sds-checkbox-indicator--checked,
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--hover.sds-checkbox-indicator--indeterminate {
-  background-color: var(--sds-onmedia-interactive-filled-background-hover);
-  border-color:     var(--sds-onmedia-interactive-filled-background-hover);
+  background-color: var(--sds-interactive-static-filled-background-hover);
+  border-color:     var(--sds-interactive-static-filled-background-hover);
 }
 
 /* On media pressed (unchecked) */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--pressed:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
-  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-active);
-  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-active);
+  background-color: var(--sds-interactive-static-hollow-background-inactive-active);
+  border-color:     var(--sds-interactive-static-hollow-stroke-inactive-active);
 }
 
 /* On media pressed (checked / indeterminate) */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--pressed.sds-checkbox-indicator--checked,
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--pressed.sds-checkbox-indicator--indeterminate {
-  background-color: var(--sds-onmedia-interactive-filled-background-active);
-  border-color:     var(--sds-onmedia-interactive-filled-background-active);
+  background-color: var(--sds-interactive-static-filled-background-active);
+  border-color:     var(--sds-interactive-static-filled-background-active);
 }
 
 /* On media disabled unchecked */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled:not(.sds-checkbox-indicator--checked):not(.sds-checkbox-indicator--indeterminate) {
-  background-color: var(--sds-onmedia-interactive-hollow-background-inactive-disabled);
-  border-color:     var(--sds-onmedia-interactive-hollow-stroke-inactive-disabled);
+  background-color: var(--sds-interactive-static-hollow-background-inactive-disabled);
+  border-color:     var(--sds-interactive-static-hollow-stroke-inactive-disabled);
 }
 
 /* On media disabled checked / indeterminate */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled.sds-checkbox-indicator--checked,
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled.sds-checkbox-indicator--indeterminate {
-  background-color: var(--sds-onmedia-interactive-filled-background-disabled);
-  border-color:     var(--sds-onmedia-interactive-filled-background-disabled);
+  background-color: var(--sds-interactive-static-filled-background-disabled);
+  border-color:     var(--sds-interactive-static-filled-background-disabled);
 }
 
 /* On media disabled icon */
 .sds-checkbox-indicator--on-media.sds-checkbox-indicator--disabled .sds-checkbox-indicator__icon {
-  color: var(--sds-onmedia-interactive-filled-content-disabled);
+  color: var(--sds-interactive-static-filled-content-disabled);
 }

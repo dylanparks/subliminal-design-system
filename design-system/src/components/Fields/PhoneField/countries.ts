@@ -31,6 +31,7 @@ const FLAGPACK_CODE_OVERRIDES: Record<string, string> = {
   GB: 'GB-UKM', // Flagpack uses GB-UKM for the United Kingdom
   BQ: 'NL',     // Caribbean Netherlands — no combined BQ flag; use Netherlands (parent country)
   AC: 'SH',     // Ascension Island — part of Saint Helena, Ascension and Tristan da Cunha
+  TA: 'SH',     // Tristan da Cunha — part of Saint Helena, Ascension and Tristan da Cunha
 };
 
 /**

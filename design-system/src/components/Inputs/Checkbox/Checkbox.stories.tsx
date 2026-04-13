@@ -12,7 +12,7 @@ const meta: Meta<typeof Checkbox> = {
     docs: {
       description: {
         component:
-          'A labelled checkbox input. Uses a native `<input type="checkbox">` for full accessibility and form participation. Supports checked, indeterminate, and disabled states across two sizes.\n\n**Accessibility:** WCAG AA compliant. The native input handles keyboard interaction (Space to toggle), and the focus ring appears only on keyboard navigation (`:focus-visible`).',
+          'A labelled checkbox input. Uses a native `<input type="checkbox">` for full accessibility and form participation. Supports checked, indeterminate, disabled, and error states across two sizes.\n\n**Accessibility:** WCAG AA compliant. The native input handles keyboard interaction (Space to toggle), and the focus ring appears only on keyboard navigation (`:focus-visible`).',
       },
     },
   },
@@ -40,6 +40,11 @@ const meta: Meta<typeof Checkbox> = {
       description: 'Prevents interaction and dims the component.',
       table: { defaultValue: { summary: 'false' } },
     },
+    error: {
+      control: 'boolean',
+      description: 'Error state — red indicator and label.',
+      table: { defaultValue: { summary: 'false' } },
+    },
     size: {
       control: 'select',
       options: ['large', 'medium'],
@@ -58,6 +63,7 @@ const meta: Meta<typeof Checkbox> = {
     checked:       false,
     indeterminate: false,
     disabled:      false,
+    error:         false,
     size:          'large',
   },
 };
@@ -82,4 +88,17 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
   render: (args) => <Checkbox {...args} onChange={() => {}} />,
+};
+
+// ─── Error ────────────────────────────────────────────────────────────────────
+
+export const Error: Story = {
+  args: { error: true },
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [checked, setChecked] = useState(args.checked);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => { setChecked(args.checked); }, [args.checked]);
+    return <Checkbox {...args} checked={checked} onChange={setChecked} />;
+  },
 };

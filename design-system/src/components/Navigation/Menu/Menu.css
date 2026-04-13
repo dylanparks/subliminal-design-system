@@ -4,7 +4,7 @@
  * Tokens: --sds-neutral-background-*, --sds-neutral-stroke-*, --sds-neutral-content-*,
  *         --sds-interactive-fields-background-*, --sds-interactive-fields-content-*,
  *         --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
- *         --sds-effects-focus, --sds-effects-shadowcallout,
+ *         --sds-effects-focus, --sds-effect-interactive-popover-default-box-shadow,
  *         --sds-shape-border-radius-*, --sds-typography-*
  *
  * Subcomponents:
@@ -38,8 +38,9 @@
   display: flex;
   flex-direction: row;
   background-color: var(--sds-neutral-background-default);
-  border-radius: var(--sds-shape-border-radius-medium);
-  box-shadow: var(--sds-effects-shadowcallout);
+  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border-radius: var(--sds-shape-border-radius-large);
+  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
   overflow: hidden;
   box-sizing: border-box;
 
@@ -72,7 +73,7 @@
   min-width: 0;
   list-style: none;
   margin: 0;
-  padding: 4px 0;
+  padding: 8px 0;
   overflow-y: scroll;
   overflow-x: hidden;
   outline: none;

@@ -183,8 +183,8 @@ function CalendarHeader({ title, prevLabel, nextLabel, onPrev, onNext }: Calenda
   return (
     <div className="sds-datepicker__header">
       <Button
-        intent="secondary"
-        variant="hollow-ghost"
+        variant="secondary"
+        fillStyle="ghost"
         size="xsmall"
         showLabel={false}
         icon={<ChevronLeftIcon size={16} />}
@@ -193,8 +193,8 @@ function CalendarHeader({ title, prevLabel, nextLabel, onPrev, onNext }: Calenda
       />
       <span className="sds-datepicker__header-title">{title}</span>
       <Button
-        intent="secondary"
-        variant="hollow-ghost"
+        variant="secondary"
+        fillStyle="ghost"
         size="xsmall"
         showLabel={false}
         icon={<ChevronRightIcon size={16} />}

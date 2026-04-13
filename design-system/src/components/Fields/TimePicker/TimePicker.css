@@ -2,7 +2,7 @@
  * Fields/TimePicker
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-focus, --sds-effects-shadowcallout,
+ *         --sds-effects-focus, --sds-effect-interactive-popover-default-box-shadow,
  *         --sds-shape-border-radius-*, --sds-spacing-size-*, --sds-typography-*
  *
  * Sizes:
@@ -284,7 +284,7 @@
   background-color: var(--sds-neutral-background-default);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
-  box-shadow: var(--sds-effects-shadowcallout);
+  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
   box-sizing: border-box;
   outline: none;
   display: flex;

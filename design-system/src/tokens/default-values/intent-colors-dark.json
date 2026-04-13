@@ -20,6 +20,28 @@
         "$value": "{global-colors.Neutrals.Steel.500}",
         "$type": "color",
         "$description": "Used for non-interactive text or other content (Text that does not change state)"
+      },
+      "Static": {
+        "Primary": {
+          "$value": "{global-colors.Transparent.Light.975}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Secondary": {
+          "$value": "{global-colors.Transparent.Light.800}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Tertiary": {
+          "$value": "{global-colors.Transparent.Light.600}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Transparent.Light.300}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        }
       }
     },
     "Background": {
@@ -390,190 +412,7 @@
         }
       }
     },
-    "Fields": {
-      "Content": {
-        "Default": {
-          "$value": "{global-colors.Neutrals.White}",
-          "$type": "color",
-          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
-        },
-        "Placeholder": {
-          "$value": "{global-colors.Neutrals.Steel.300}",
-          "$type": "color",
-          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
-        },
-        "Suggested": {
-          "$value": "{global-colors.Neutrals.Steel.400}",
-          "$type": "color",
-          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
-        }
-      },
-      "Background": {
-        "Default": {
-          "$value": "{global-colors.Neutrals.Steel.900}",
-          "$type": "color",
-          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
-        },
-        "Hover": {
-          "$value": "{global-colors.Neutrals.Steel.900}",
-          "$type": "color",
-          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
-        },
-        "Active": {
-          "$value": "{global-colors.Transparent.Light.0}",
-          "$type": "color",
-          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
-        },
-        "Disabled": {
-          "$value": "{global-colors.Neutrals.Steel.900}",
-          "$type": "color",
-          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
-        }
-      },
-      "Stroke": {
-        "Default": {
-          "$value": "{global-colors.Neutrals.Steel.800}",
-          "$type": "color",
-          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
-        },
-        "Hover": {
-          "$value": "{global-colors.Neutrals.Steel.700}",
-          "$type": "color",
-          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
-        },
-        "Active": {
-          "$value": "{global-colors.Neutrals.White}",
-          "$type": "color",
-          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
-        },
-        "Disabled": {
-          "$value": "{global-colors.Neutrals.Steel.900}",
-          "$type": "color",
-          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
-        }
-      }
-    }
-  },
-  "Status": {
-    "Error": {
-      "Content": {
-        "Default": {
-          "$value": "{global-colors.Colors.Red.500}",
-          "$type": "color",
-          "$description": "A general-use error state for text or icon content."
-        }
-      },
-      "Background": {
-        "Default": {
-          "$value": "{global-colors.Colors.Red.900}",
-          "$type": "color",
-          "$description": "A conditionally error state background used for elements using status-error-content variables."
-        }
-      },
-      "Stroke": {
-        "Default": {
-          "$value": "{global-colors.Colors.Red.600}",
-          "$type": "color",
-          "$description": "A conditionally error state border color used for elements using status-error-content variables."
-        }
-      }
-    },
-    "Success": {
-      "Content": {
-        "Default": {
-          "$value": "{global-colors.Colors.Emerald.400}",
-          "$type": "color",
-          "$description": "Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback"
-        }
-      },
-      "Stroke": {
-        "Default": {
-          "$value": "{global-colors.Colors.Emerald.600}",
-          "$type": "color",
-          "$description": "A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs)."
-        }
-      },
-      "Background": {
-        "Default": {
-          "$value": "{global-colors.Colors.Emerald.900}",
-          "$type": "color",
-          "$description": "A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis."
-        }
-      }
-    },
-    "Warning": {
-      "Content": {
-        "Default": {
-          "$value": "{global-colors.Colors.Yellow.200}",
-          "$type": "color",
-          "$description": "Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices."
-        }
-      },
-      "Stroke": {
-        "Default": {
-          "$value": "{global-colors.Colors.Yellow.200}",
-          "$type": "color",
-          "$description": "A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders)."
-        }
-      },
-      "Background": {
-        "Default": {
-          "$value": "{global-colors.Colors.Yellow.900}",
-          "$type": "color",
-          "$description": "A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators."
-        }
-      }
-    },
-    "Informative": {
-      "Content": {
-        "Defaut": {
-          "$value": "{global-colors.Colors.Sky.500}",
-          "$type": "color",
-          "$description": "Used for text or icon content that represents an informational state."
-        }
-      },
-      "Stroke": {
-        "Default": {
-          "$value": "{global-colors.Colors.Sky.600}",
-          "$type": "color",
-          "$description": "An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames)."
-        }
-      },
-      "Background": {
-        "Default": {
-          "$value": "{global-colors.Colors.Sky.900}",
-          "$type": "color",
-          "$description": "An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints."
-        }
-      }
-    }
-  },
-  "OnMedia": {
-    "Neutral": {
-      "Content": {
-        "Primary": {
-          "$value": "{global-colors.Transparent.Light.975}",
-          "$type": "color",
-          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
-        },
-        "Secondary": {
-          "$value": "{global-colors.Transparent.Light.800}",
-          "$type": "color",
-          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
-        },
-        "Tertiary": {
-          "$value": "{global-colors.Transparent.Light.600}",
-          "$type": "color",
-          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
-        },
-        "Subtle": {
-          "$value": "{global-colors.Transparent.Light.300}",
-          "$type": "color",
-          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
-        }
-      }
-    },
-    "Interactive": {
+    "Static": {
       "Filled": {
         "Content": {
           "Default": {
@@ -792,6 +631,168 @@
               "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content."
             }
           }
+        }
+      }
+    },
+    "Fields": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Neutrals.White}",
+          "$type": "color",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
+        },
+        "Placeholder": {
+          "$value": "{global-colors.Neutrals.Steel.300}",
+          "$type": "color",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
+        },
+        "Suggested": {
+          "$value": "{global-colors.Neutrals.Steel.400}",
+          "$type": "color",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Neutrals.Steel.900}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Hover": {
+          "$value": "{global-colors.Neutrals.Steel.900}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Active": {
+          "$value": "{global-colors.Transparent.Light.0}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Disabled": {
+          "$value": "{global-colors.Neutrals.Steel.900}",
+          "$type": "color",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Neutrals.Steel.800}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Hover": {
+          "$value": "{global-colors.Neutrals.Steel.700}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Active": {
+          "$value": "{global-colors.Neutrals.White}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Disabled": {
+          "$value": "{global-colors.Neutrals.Steel.900}",
+          "$type": "color",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        }
+      }
+    }
+  },
+  "Status": {
+    "Error": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Colors.Red.500}",
+          "$type": "color",
+          "$description": "A general-use error state for text or icon content."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Red.900}",
+          "$type": "color",
+          "$description": "A conditionally error state background used for elements using status-error-content variables."
+        },
+        "Strong": {
+          "$value": "{global-colors.Colors.Red.600}",
+          "$type": "color",
+          "$description": "A conditionally error state background used for elements using status-error-content variables."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Red.600}",
+          "$type": "color",
+          "$description": "A conditionally error state border color used for elements using status-error-content variables."
+        }
+      }
+    },
+    "Success": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Colors.Emerald.400}",
+          "$type": "color",
+          "$description": "Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback"
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Emerald.600}",
+          "$type": "color",
+          "$description": "A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs)."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Emerald.900}",
+          "$type": "color",
+          "$description": "A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis."
+        }
+      }
+    },
+    "Warning": {
+      "Content": {
+        "Default": {
+          "$value": "{global-colors.Colors.Yellow.200}",
+          "$type": "color",
+          "$description": "Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Yellow.200}",
+          "$type": "color",
+          "$description": "A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders)."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Yellow.900}",
+          "$type": "color",
+          "$description": "A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators."
+        }
+      }
+    },
+    "Informative": {
+      "Content": {
+        "Defaut": {
+          "$value": "{global-colors.Colors.Sky.500}",
+          "$type": "color",
+          "$description": "Used for text or icon content that represents an informational state."
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$value": "{global-colors.Colors.Sky.600}",
+          "$type": "color",
+          "$description": "An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames)."
+        }
+      },
+      "Background": {
+        "Default": {
+          "$value": "{global-colors.Colors.Sky.900}",
+          "$type": "color",
+          "$description": "An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints."
         }
       }
     }

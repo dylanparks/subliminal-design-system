@@ -150,6 +150,13 @@
   box-shadow: 0 0 0 6px var(--sds-effects-focus);
 }
 
+/* ─── Error state ────────────────────────────────────────────────────────────── */
+
+.sds-checkbox--error .sds-checkbox__label,
+.sds-checkbox--error .sds-checkbox__description {
+  color: var(--sds-status-error-content-default);
+}
+
 /* ─── Disabled state ─────────────────────────────────────────────────────────── */
 
 .sds-checkbox--disabled {

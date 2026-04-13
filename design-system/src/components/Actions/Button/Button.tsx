@@ -1,13 +1,13 @@
 import { type ReactNode, type MouseEventHandler } from 'react';
 import './Button.css';
 
-export type ButtonIntent = 'primary' | 'secondary' | 'media';
-export type ButtonVariant = 'filled' | 'hollow' | 'hollow-ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'static';
+export type ButtonFillStyle = 'filled' | 'hollow' | 'ghost';
 export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
-  intent?: ButtonIntent;
   variant?: ButtonVariant;
+  fillStyle?: ButtonFillStyle;
   size?: ButtonSize;
   label?: string;
   showLabel?: boolean;
@@ -21,8 +21,8 @@ export interface ButtonProps {
 }
 
 export function Button({
-  intent = 'primary',
-  variant = 'filled',
+  variant = 'primary',
+  fillStyle = 'filled',
   size = 'small',
   label,
   showLabel = true,
@@ -34,15 +34,10 @@ export function Button({
   type = 'button',
   'aria-label': ariaLabel,
 }: ButtonProps) {
-  const intentClass =
-    intent === 'media'
-      ? `sds-button--media-${variant}`
-      : `sds-button--${intent}-${variant}`;
-
   const classes = [
     'sds-button',
     `sds-button--${size}`,
-    intentClass,
+    `sds-button--${variant}-${fillStyle}`,
     className,
   ]
     .filter(Boolean)

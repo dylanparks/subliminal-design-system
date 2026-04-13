@@ -16,15 +16,11 @@ const meta: Meta<typeof CheckboxIndicator> = {
     },
   },
   argTypes: {
-    checked: {
-      control: 'boolean',
-      description: 'Whether the indicator shows a checkmark (selected state).',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    indeterminate: {
-      control: 'boolean',
-      description: 'Indeterminate state — shows a dash and takes precedence over `checked` visually.',
-      table: { defaultValue: { summary: 'false' } },
+    selection: {
+      control: 'select',
+      options: ['unselected', 'selected', 'indeterminate'],
+      description: 'Selection state of the indicator.',
+      table: { defaultValue: { summary: 'unselected' } },
     },
     size: {
       control: 'select',
@@ -42,13 +38,18 @@ const meta: Meta<typeof CheckboxIndicator> = {
       description: 'Muted disabled appearance.',
       table: { defaultValue: { summary: 'false' } },
     },
+    error: {
+      control: 'boolean',
+      description: 'Error state appearance.',
+      table: { defaultValue: { summary: 'false' } },
+    },
   },
   args: {
-    checked:       false,
-    indeterminate: false,
-    size:          'large',
-    onMedia:       false,
-    disabled:      false,
+    selection: 'unselected',
+    size:      'large',
+    onMedia:   false,
+    disabled:  false,
+    error:     false,
   },
 };
 

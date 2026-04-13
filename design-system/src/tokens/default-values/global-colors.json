@@ -1351,6 +1351,60 @@
         "$value": "#020202fa",
         "$type": "color"
       }
+    },
+    "Red": {
+      "0": {
+        "$value": "#df202900",
+        "$type": "color"
+      },
+      "50": {
+        "$value": "#df20290d",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#df20291a",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#df202933",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#df20294d",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "#df202966",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "#df202980",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "#df202999",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "#df2029b2",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "#df2029cc",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "#df2029e5",
+        "$type": "color"
+      },
+      "950": {
+        "$value": "#df2029f2",
+        "$type": "color"
+      },
+      "975": {
+        "$value": "#df2029fa",
+        "$type": "color"
+      }
     }
   }
 }
