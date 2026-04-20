@@ -7,7 +7,7 @@ A component library and design token pipeline built for product teams. Sublimina
 - **React 19** + **TypeScript**
 - **Vite** — dev server and build tool
 - **Style Dictionary v5** — transforms Figma variable exports into CSS custom properties and typed TypeScript constants
-- **Storybook 8** — component development environment and documentation
+- **Storybook 10** — component development environment and documentation
 - **Vitest** + **Testing Library** — unit and accessibility testing
 - **Chromatic** — visual regression testing
 
