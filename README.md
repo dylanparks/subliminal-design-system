@@ -51,7 +51,6 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `SelectField` | ✓ | Dropdown built on Menu, floating label, error/success states, WCAG AA |
 | `DatePicker` | ✓ | Date / range / month / year modes, Floating UI positioning, WCAG AA |
 | `TimePicker` | ✓ | 12 h / 24 h, configurable minute intervals (1·5·10·15·30), WCAG AA |
-| `Dropdown` | Planned | |
 
 ### Inputs
 
