@@ -85,8 +85,16 @@
 .sds-select-field--disabled .sds-select-field__trigger {
   background-color: var(--sds-interactive-fields-background-disabled);
   border-color: var(--sds-interactive-fields-stroke-disabled);
-  cursor: not-allowed;
   pointer-events: none;
+  position: relative;
+}
+
+.sds-select-field--disabled .sds-select-field__trigger::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
 }
 
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */

@@ -204,28 +204,6 @@
             "$type": "color",
             "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used."
           },
-          "Inactve": {
-            "Default": {
-              "$value": "{global-colors.Neutrals.Steel.975}",
-              "$type": "color",
-              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            },
-            "Hover": {
-              "$value": "{global-colors.Neutrals.Steel.950}",
-              "$type": "color",
-              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            },
-            "Active": {
-              "$value": "{global-colors.Neutrals.Steel.950}",
-              "$type": "color",
-              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            },
-            "Disabled": {
-              "$value": "{global-colors.Neutrals.Steel.950}",
-              "$type": "color",
-              "$description": "Used for text content or SVG elements ONLY on top of interactive filled inactive backgrounds. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            }
-          },
           "Disabled": {
             "$value": "{global-colors.Neutrals.Steel.950}",
             "$type": "color",
@@ -252,28 +230,6 @@
             "$value": "{global-colors.Neutrals.Steel.700}",
             "$type": "color",
             "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors."
-          },
-          "Inactive": {
-            "Default": {
-              "$value": "{global-colors.Neutrals.Steel.500}",
-              "$type": "color",
-              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            },
-            "Hover": {
-              "$value": "{global-colors.Neutrals.Steel.500}",
-              "$type": "color",
-              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            },
-            "Active": {
-              "$value": "{global-colors.Neutrals.Steel.300}",
-              "$type": "color",
-              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            },
-            "Disabled": {
-              "$value": "{global-colors.Neutrals.Steel.800}",
-              "$type": "color",
-              "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content inactive colors. Examples of where inactive is used vs default secondary filled would be components such as toggle switches that have a filled background both when inactive."
-            }
           }
         }
       },
@@ -412,6 +368,188 @@
         }
       }
     },
+    "Negative": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Colors.Red.950}",
+            "$type": "color",
+            "$description": "Text or icon content color for negative-intent interactive elements with a filled background, such as destructive action controls. Must always be paired with Interactive/Negative/Filled/Background/Default."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Red.900}",
+            "$type": "color",
+            "$description": "Text or icon content color for a negative-intent filled interactive element in a hovered state. Must always be paired with Interactive/Negative/Filled/Background/Hover."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Red.900}",
+            "$type": "color",
+            "$description": "Text or icon content color for a negative-intent filled interactive element in a pressed or active state. Must always be paired with Interactive/Negative/Filled/Background/Active."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Red.950}",
+            "$type": "color",
+            "$description": "Text or icon content color for a negative-intent filled interactive element in a non-interactive disabled state. Must always be paired with Interactive/Negative/Filled/Background/Disabled."
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Colors.Red.400}",
+            "$type": "color",
+            "$description": "Fill color for negative-intent interactive elements requiring a filled container, such as destructive or validation-critical action controls. Must always be paired with Interactive/Negative/Filled/Content/Default."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Red.300}",
+            "$type": "color",
+            "$description": "Fill color for a negative-intent filled interactive element in a hovered state. Must always be paired with Interactive/Negative/Filled/Content/Hover."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Red.200}",
+            "$type": "color",
+            "$description": "Fill color for a negative-intent filled interactive element in a pressed or active state. Must always be paired with Interactive/Negative/Filled/Content/Active."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Red.800}",
+            "$type": "color",
+            "$description": "Fill color for a negative-intent filled interactive element in a non-interactive disabled state. Must always be paired with Interactive/Negative/Filled/Content/Disabled."
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$value": "{global-colors.Colors.Red.400}",
+            "$type": "color",
+            "$description": "Text or icon content color for negative-intent interactive elements using a hollow or ghost treatment, where a filled background is not required (such as destructive links, ghost actions, or validation-flagged selection controls). Background and stroke are optional and context-dependent."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Red.300}",
+            "$type": "color",
+            "$description": "Text or icon content color for a negative-intent hollow interactive element in a hovered state. Background and stroke pairings are optional depending on the component context."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Red.200}",
+            "$type": "color",
+            "$description": "Text or icon content color for a negative-intent hollow interactive element in a pressed or active state. Background and stroke pairings are optional depending on the component context."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Colors.Red.800}",
+            "$type": "color",
+            "$description": "Text or icon content color for a negative-intent hollow interactive element in a non-interactive disabled state. Background and stroke pairings are optional depending on the component context."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Colors.Red.600}",
+              "$type": "color",
+              "$description": "Text or icon content color for a negative-intent hollow interactive element in its inactive (non-chosen) state, such as an unselected selection control flagging a required unanswered option. Background and stroke are optional depending on the component context."
+            },
+            "Hover": {
+              "$value": "{global-colors.Colors.Red.500}",
+              "$type": "color",
+              "$description": "Text or icon content color for a negative-intent hollow inactive interactive element being hovered. Background and stroke pairings are optional depending on the component context."
+            },
+            "Active": {
+              "$value": "{global-colors.Colors.Red.400}",
+              "$type": "color",
+              "$description": "Text or icon content color for a negative-intent hollow inactive interactive element being pressed. Background and stroke pairings are optional depending on the component context."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Colors.Red.800}",
+              "$type": "color",
+              "$description": "Text or icon content color for a negative-intent hollow inactive interactive element in a non-interactive disabled state. Background and stroke pairings are optional depending on the component context."
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Red.0}",
+            "$type": "color",
+            "$description": "Optional background fill for negative-intent hollow interactive elements. Transparent by default; only apply when the component context requires a subtle surface behind the content (such as a hover wash on a ghost destructive action)."
+          },
+          "Hover": {
+            "$value": "{global-colors.Colors.Red.950}",
+            "$type": "color",
+            "$description": "Optional background fill for a negative-intent hollow interactive element in a hovered state. Only apply when the component context calls for a visible background on hover."
+          },
+          "Active": {
+            "$value": "{global-colors.Colors.Red.900}",
+            "$type": "color",
+            "$description": "Optional background fill for a negative-intent hollow interactive element in a pressed or active state. Only apply when the component context calls for a visible background on press."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Red.0}",
+            "$type": "color",
+            "$description": "Optional background fill for a negative-intent hollow interactive element in a disabled state. Transparent in most contexts; apply only when a background is required for the specific component."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Colors.Red.950}",
+              "$type": "color",
+              "$description": "Optional background fill for a negative-intent hollow interactive element in its inactive (non-chosen) state. Apply only when the component requires a visible surface to communicate the inactive negative condition (such as a flagged but unselected selection control)."
+            },
+            "Hover": {
+              "$value": "{global-colors.Colors.Red.900}",
+              "$type": "color",
+              "$description": "Optional background fill for a negative-intent hollow inactive interactive element being hovered. Apply only when the component context requires a visible background on hover."
+            },
+            "Active": {
+              "$value": "{global-colors.Colors.Red.800}",
+              "$type": "color",
+              "$description": "Optional background fill for a negative-intent hollow inactive interactive element being pressed. Apply only when the component context requires a visible background on press."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Colors.Red.950}",
+              "$type": "color",
+              "$description": "Optional background fill for a negative-intent hollow inactive interactive element in a disabled state. Apply only when the component requires a surface even in a disabled condition."
+            }
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$value": "{global-colors.Transparent.Red.300}",
+            "$type": "color",
+            "$description": "Optional border color for negative-intent hollow interactive elements. Apply only when the component requires a visible outline to communicate its negative intent, such as a hollow destructive action control with a border. Not required for ghost or link treatments."
+          },
+          "Hover": {
+            "$value": "{global-colors.Transparent.Red.400}",
+            "$type": "color",
+            "$description": "Optional border color for a negative-intent hollow interactive element in a hovered state. Apply only when the component uses a visible outline treatment."
+          },
+          "Active": {
+            "$value": "{global-colors.Transparent.Red.500}",
+            "$type": "color",
+            "$description": "Optional border color for a negative-intent hollow interactive element in a pressed or active state. Apply only when the component uses a visible outline treatment."
+          },
+          "Disabled": {
+            "$value": "{global-colors.Transparent.Red.0}",
+            "$type": "color",
+            "$description": "Optional border color for a negative-intent hollow interactive element in a disabled state. Apply only when the component uses a visible outline treatment."
+          },
+          "Inactive": {
+            "Default": {
+              "$value": "{global-colors.Colors.Red.400}",
+              "$type": "color",
+              "$description": "Optional border color for a negative-intent hollow interactive element in its inactive (non-chosen) state. Apply only when the component requires a visible outline to communicate the inactive negative condition, such as a flagged but unselected selection control with a border."
+            },
+            "Hover": {
+              "$value": "{global-colors.Colors.Red.300}",
+              "$type": "color",
+              "$description": "Optional border color for a negative-intent hollow inactive interactive element being hovered. Apply only when the component uses a visible outline treatment."
+            },
+            "Active": {
+              "$value": "{global-colors.Colors.Red.200}",
+              "$type": "color",
+              "$description": "Optional border color for a negative-intent hollow inactive interactive element being pressed. Apply only when the component uses a visible outline treatment."
+            },
+            "Disabled": {
+              "$value": "{global-colors.Colors.Red.800}",
+              "$type": "color",
+              "$description": "Optional border color for a negative-intent hollow inactive interactive element in a disabled state. Apply only when the component uses a visible outline treatment."
+            }
+          }
+        }
+      }
+    },
     "Static": {
       "Filled": {
         "Content": {
@@ -434,24 +572,6 @@
             "$value": "{global-colors.Transparent.Dark.300}",
             "$type": "color",
             "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens."
-          },
-          "Inactive": {
-            "Default": {
-              "$value": "{global-colors.Transparent.Dark.975}",
-              "$type": "color"
-            },
-            "Hover": {
-              "$value": "{global-colors.Transparent.Dark.900}",
-              "$type": "color"
-            },
-            "Active": {
-              "$value": "{global-colors.Transparent.Dark.900}",
-              "$type": "color"
-            },
-            "Disabled": {
-              "$value": "{global-colors.Transparent.Dark.300}",
-              "$type": "color"
-            }
           }
         },
         "Background": {
@@ -474,28 +594,6 @@
             "$value": "{global-colors.Transparent.Light.400}",
             "$type": "color",
             "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
-          },
-          "Inactive": {
-            "Default": {
-              "$value": "{global-colors.Transparent.Light.600}",
-              "$type": "color",
-              "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
-            },
-            "Hover": {
-              "$value": "{global-colors.Transparent.Light.700}",
-              "$type": "color",
-              "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
-            },
-            "Active": {
-              "$value": "{global-colors.Transparent.Light.800}",
-              "$type": "color",
-              "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
-            },
-            "Disabled": {
-              "$value": "{global-colors.Transparent.Light.200}",
-              "$type": "color",
-              "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content."
-            }
           }
         }
       },
@@ -672,6 +770,16 @@
           "$value": "{global-colors.Neutrals.Steel.900}",
           "$type": "color",
           "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens."
+        },
+        "Error": {
+          "$value": "{global-colors.Colors.Red.900}",
+          "$type": "color",
+          "$description": "Background color applied to input-based elements when they enter a validation error state, indicating that the field's value is invalid or a required response was not provided. Must be used alongside a clear non-color error indicator (such as an error message or icon) and should be paired with Interactive/Fields/Stroke/Error for optimal accessibility, though the stroke is not strictly required if sufficient alternative error signaling is present."
+        },
+        "Success": {
+          "$value": "{global-colors.Colors.Emerald.900}",
+          "$type": "color",
+          "$description": "Background color applied to input-based elements when they have passed validation or their value has been actively confirmed as valid by the system (such as a username availability check or a matched password confirmation field). Must be used alongside a clear non-color success indicator such as a success message or icon, and should be paired with Interactive/Fields/Stroke/Success for optimal visual clarity."
         }
       },
       "Stroke": {
@@ -694,6 +802,16 @@
           "$value": "{global-colors.Neutrals.Steel.900}",
           "$type": "color",
           "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
+        },
+        "Error": {
+          "$value": "{global-colors.Colors.Red.400}",
+          "$type": "color",
+          "$description": "Border or outline color applied to input-based elements in a validation error state to visually reinforce that the field requires attention or correction. Strongly recommended to be used alongside Interactive/Fields/Background/Error and a non-color error indicator (such as an error message or icon); while WCAG AA does not require this stroke if sufficient alternative error signaling is present, including it at 3:1 contrast against adjacent colors is best practice for users with low vision."
+        },
+        "Success": {
+          "$value": "{global-colors.Colors.Emerald.400}",
+          "$type": "color",
+          "$description": "Border or outline color applied to input-based elements to reinforce that the field's value has been validated or confirmed as acceptable. Strongly recommended alongside Interactive/Fields/Background/Success; any accompanying success message text or icon should use Status/Success/Content/Default rather than a fields-specific content token, as non-interactive status content within and around field components is handled by the Status token family."
         }
       }
     }
@@ -702,26 +820,21 @@
     "Error": {
       "Content": {
         "Default": {
-          "$value": "{global-colors.Colors.Red.500}",
+          "$value": "{global-colors.Colors.Red.300}",
           "$type": "color",
           "$description": "A general-use error state for text or icon content."
         }
       },
       "Background": {
         "Default": {
-          "$value": "{global-colors.Colors.Red.900}",
-          "$type": "color",
-          "$description": "A conditionally error state background used for elements using status-error-content variables."
-        },
-        "Strong": {
-          "$value": "{global-colors.Colors.Red.600}",
+          "$value": "{global-colors.Colors.Red.800}",
           "$type": "color",
           "$description": "A conditionally error state background used for elements using status-error-content variables."
         }
       },
       "Stroke": {
         "Default": {
-          "$value": "{global-colors.Colors.Red.600}",
+          "$value": "{global-colors.Colors.Red.400}",
           "$type": "color",
           "$description": "A conditionally error state border color used for elements using status-error-content variables."
         }
@@ -737,14 +850,14 @@
       },
       "Stroke": {
         "Default": {
-          "$value": "{global-colors.Colors.Emerald.600}",
+          "$value": "{global-colors.Colors.Emerald.400}",
           "$type": "color",
           "$description": "A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs)."
         }
       },
       "Background": {
         "Default": {
-          "$value": "{global-colors.Colors.Emerald.900}",
+          "$value": "{global-colors.Colors.Emerald.800}",
           "$type": "color",
           "$description": "A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis."
         }
@@ -767,7 +880,7 @@
       },
       "Background": {
         "Default": {
-          "$value": "{global-colors.Colors.Yellow.900}",
+          "$value": "{global-colors.Colors.Yellow.800}",
           "$type": "color",
           "$description": "A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators."
         }
@@ -790,7 +903,7 @@
       },
       "Background": {
         "Default": {
-          "$value": "{global-colors.Colors.Sky.900}",
+          "$value": "{global-colors.Colors.Sky.800}",
           "$type": "color",
           "$description": "An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints."
         }

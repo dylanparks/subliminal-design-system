@@ -1,0 +1,74 @@
+/* CheckboxGroup — Subliminal Design System
+ * Inputs/CheckboxGroup
+ *
+ * Tokens: --sds-status-error-content-default, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-checkbox-group              → root container
+ *   .sds-checkbox-group__label-slot  → open label slot (group heading, help text, etc.)
+ *   .sds-checkbox-group__error-message → error icon + validation text row (below label)
+ *   .sds-checkbox-group__error-icon  → wrapper for ErrorIcon
+ *   .sds-checkbox-group__items       → vertical stack of CheckboxItems
+ *
+ * Spacing:
+ *   label → error message : 4px  (margin-bottom on label-slot)
+ *   error message → items : 12px (margin-bottom on error-message)
+ *   label → items (no error): 12px (margin-bottom on label-slot when no error present,
+ *                                    handled via :not(:has(+ .sds-checkbox-group__error-message)))
+ *
+ * Modifiers:
+ *   .sds-checkbox-group--medium → 12px gap between items (default large = 16px)
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-checkbox-group {
+  display:        flex;
+  flex-direction: column;
+}
+
+/* ─── Label slot ─────────────────────────────────────────────────────────────── */
+
+/* When followed by the error message, only 4px gap */
+.sds-checkbox-group__label-slot:has(+ .sds-checkbox-group__error-message) {
+  margin-bottom: 4px;
+}
+
+/* When followed directly by items (no error message), 12px gap */
+.sds-checkbox-group__label-slot:has(+ .sds-checkbox-group__items) {
+  margin-bottom: 12px;
+}
+
+/* ─── Error message ──────────────────────────────────────────────────────────── */
+
+.sds-checkbox-group__error-message {
+  display:       flex;
+  align-items:   center;
+  gap: 4px;
+  margin-bottom: 12px;
+  color: var(--sds-status-error-content-default);
+
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+.sds-checkbox-group__error-icon {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ─── Items stack ────────────────────────────────────────────────────────────── */
+
+.sds-checkbox-group__items {
+  display:        flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sds-checkbox-group--medium .sds-checkbox-group__items {
+  gap: 12px;
+}

@@ -63,11 +63,19 @@
 }
 
 .sds-stepper__button:disabled {
-  cursor: not-allowed;
   pointer-events: none;
+  position: relative;
   background-color: var(--sds-interactive-secondary-hollow-background-disabled);
   color: var(--sds-interactive-secondary-hollow-content-disabled);
   border-color: var(--sds-interactive-secondary-hollow-stroke-disabled);
+}
+
+.sds-stepper__button:disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
 }
 
 /* ─── Icon ───────────────────────────────────────────────────────────────────── */

@@ -1,7 +1,7 @@
 import { type ReactNode, type MouseEventHandler } from 'react';
 import './Button.css';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'static';
+export type ButtonVariant = 'primary' | 'secondary' | 'static' | 'negative';
 export type ButtonFillStyle = 'filled' | 'hollow' | 'ghost';
 export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 

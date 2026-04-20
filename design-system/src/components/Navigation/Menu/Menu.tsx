@@ -17,7 +17,7 @@ import {
   ChevronRightIcon,
   DragHandleIcon,
 } from '../../../icons';
-import { CheckboxIndicator } from '../../Inputs/CheckboxIndicator/CheckboxIndicator';
+import { CheckboxIndicator } from '../../Inputs/Checkbox/CheckboxIndicator';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

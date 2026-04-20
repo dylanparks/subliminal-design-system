@@ -83,8 +83,16 @@
 .sds-combobox--disabled .sds-combobox__wrapper {
   background-color: var(--sds-interactive-fields-background-disabled);
   border-color: var(--sds-interactive-fields-stroke-disabled);
-  cursor: not-allowed;
   pointer-events: none;
+  position: relative;
+}
+
+.sds-combobox--disabled .sds-combobox__wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
 }
 
 /* ─── Sizes ──────────────────────────────────────────────────────────────── */

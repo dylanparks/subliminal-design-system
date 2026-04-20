@@ -3,7 +3,8 @@
  *
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
  *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
- *         --sds-effects-focus, --sds-shape-border-radius-xxsmall
+ *         --sds-interactive-negative-filled-*, --sds-effects-focus,
+ *         --sds-shape-border-radius-xxsmall
  *
  * This component is purely visual. Interactive states (hover, focus ring,
  * pressed) are applied via CSS selectors from the parent component's stylesheet
@@ -150,8 +151,8 @@
 /* Error checked / indeterminate — solid red fill */
 .sds-checkbox-indicator--error.sds-checkbox-indicator--checked,
 .sds-checkbox-indicator--error.sds-checkbox-indicator--indeterminate {
-  background-color: var(--sds-status-error-background-strong);
-  border-color:     var(--sds-status-error-background-strong);
+  background-color: var(--sds-interactive-negative-filled-background-default);
+  border-color:     var(--sds-interactive-negative-filled-background-default);
 }
 
 /* ─── On Media ───────────────────────────────────────────────────────────────── */

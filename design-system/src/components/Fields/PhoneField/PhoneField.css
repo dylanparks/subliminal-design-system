@@ -90,8 +90,16 @@
 .sds-phone-field--disabled .sds-phone-field__wrapper {
   background-color: var(--sds-interactive-fields-background-disabled);
   border-color: var(--sds-interactive-fields-stroke-disabled);
-  cursor: not-allowed;
   pointer-events: none;
+  position: relative;
+}
+
+.sds-phone-field--disabled .sds-phone-field__wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
 }
 
 /* ─── Sizes — wrapper ───────────────────────────────────────────────────────── */

@@ -72,8 +72,16 @@
 .sds-datepicker--disabled .sds-datepicker__wrapper {
   background-color: var(--sds-interactive-fields-background-disabled);
   border-color: var(--sds-interactive-fields-stroke-disabled);
-  cursor: not-allowed;
   pointer-events: none;
+  position: relative;
+}
+
+.sds-datepicker--disabled .sds-datepicker__wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
 }
 
 /* ─── Sizes ───────────────────────────────────────────────────── */

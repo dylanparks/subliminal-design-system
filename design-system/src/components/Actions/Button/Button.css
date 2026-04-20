@@ -1,5 +1,6 @@
 /* Button — Subliminal Design System
- * Tokens: --sds-interactive-*, --sds-interactive-static-*, --sds-effects-*,
+ * Tokens: --sds-interactive-*, --sds-interactive-static-*,
+ *         --sds-interactive-negative-*, --sds-effects-*,
  *         --sds-shape-border-radius-*, --sds-typography-*
  */
 
@@ -25,8 +26,16 @@
 }
 
 .sds-button:disabled {
-  cursor: not-allowed;
   pointer-events: none;
+  position: relative;
+}
+
+.sds-button:disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
 }
 
 .sds-button__icon {
@@ -98,6 +107,15 @@
   height: 22px;
 }
 
+/* ─── Ghost (shared) ────────────────────────────────────────────────────────── */
+
+/* Ghost buttons are padding-less and content-sized with no background */
+.sds-button[class*="-ghost"] {
+  padding: 0;
+  height: auto;
+  background-color: transparent;
+}
+
 /* ─── Primary Filled ────────────────────────────────────────────────────────── */
 
 .sds-button--primary-filled {
@@ -118,7 +136,7 @@
 .sds-button--primary-filled:focus-visible {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-interactive-primary-filled-content-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--primary-filled:disabled {
@@ -150,13 +168,36 @@
   background-color: var(--sds-interactive-primary-hollow-background-default);
   color: var(--sds-interactive-primary-hollow-content-default);
   border-color: var(--sds-interactive-primary-hollow-stroke-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--primary-hollow:disabled {
   background-color: var(--sds-interactive-primary-hollow-background-disabled);
   color: var(--sds-interactive-primary-hollow-content-disabled);
   border-color: var(--sds-interactive-primary-hollow-stroke-disabled);
+}
+
+/* ─── Primary Ghost ─────────────────────────────────────────────────────────── */
+
+.sds-button--primary-ghost {
+  color: var(--sds-interactive-primary-hollow-content-default);
+}
+
+.sds-button--primary-ghost:hover {
+  color: var(--sds-interactive-primary-hollow-content-hover);
+}
+
+.sds-button--primary-ghost:active {
+  color: var(--sds-interactive-primary-hollow-content-active);
+}
+
+.sds-button--primary-ghost:focus-visible {
+  color: var(--sds-interactive-primary-hollow-content-default);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+.sds-button--primary-ghost:disabled {
+  color: var(--sds-interactive-primary-hollow-content-disabled);
 }
 
 /* ─── Secondary Filled ──────────────────────────────────────────────────────── */
@@ -179,7 +220,7 @@
 .sds-button--secondary-filled:focus-visible {
   background-color: var(--sds-interactive-secondary-filled-background-default);
   color: var(--sds-interactive-secondary-filled-content-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--secondary-filled:disabled {
@@ -211,13 +252,36 @@
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
   border-color: var(--sds-interactive-secondary-hollow-stroke-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--secondary-hollow:disabled {
   background-color: var(--sds-interactive-secondary-hollow-background-disabled);
   color: var(--sds-interactive-secondary-hollow-content-disabled);
   border-color: var(--sds-interactive-secondary-hollow-stroke-disabled);
+}
+
+/* ─── Secondary Ghost ───────────────────────────────────────────────────────── */
+
+.sds-button--secondary-ghost {
+  color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-button--secondary-ghost:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-button--secondary-ghost:active {
+  color: var(--sds-interactive-secondary-hollow-content-active);
+}
+
+.sds-button--secondary-ghost:focus-visible {
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+.sds-button--secondary-ghost:disabled {
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
 }
 
 /* ─── Static Filled ─────────────────────────────────────────────────────────── */
@@ -240,7 +304,7 @@
 .sds-button--static-filled:focus-visible {
   background-color: var(--sds-interactive-static-filled-background-default);
   color: var(--sds-interactive-static-filled-content-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--static-filled:disabled {
@@ -272,7 +336,7 @@
   background-color: var(--sds-interactive-static-hollow-background-default);
   color: var(--sds-interactive-static-hollow-content-default);
   border-color: var(--sds-interactive-static-hollow-stroke-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--static-hollow:disabled {
@@ -281,86 +345,109 @@
   border-color: var(--sds-interactive-static-hollow-stroke-disabled);
 }
 
-/* ─── Primary Ghost ─────────────────────────────────────────────────────────── */
-
-.sds-button--primary-ghost {
-  background-color: var(--sds-interactive-primary-hollow-background-default);
-  color: var(--sds-interactive-primary-hollow-content-default);
-}
-
-.sds-button--primary-ghost:hover {
-  background-color: var(--sds-interactive-primary-hollow-background-hover);
-  color: var(--sds-interactive-primary-hollow-content-hover);
-}
-
-.sds-button--primary-ghost:active {
-  background-color: var(--sds-interactive-primary-hollow-background-active);
-  color: var(--sds-interactive-primary-hollow-content-active);
-}
-
-.sds-button--primary-ghost:focus-visible {
-  background-color: var(--sds-interactive-primary-hollow-background-default);
-  color: var(--sds-interactive-primary-hollow-content-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
-}
-
-.sds-button--primary-ghost:disabled {
-  background-color: var(--sds-interactive-primary-hollow-background-disabled);
-  color: var(--sds-interactive-primary-hollow-content-disabled);
-}
-
-/* ─── Secondary Ghost ───────────────────────────────────────────────────────── */
-
-.sds-button--secondary-ghost {
-  background-color: var(--sds-interactive-secondary-hollow-background-default);
-  color: var(--sds-interactive-secondary-hollow-content-default);
-}
-
-.sds-button--secondary-ghost:hover {
-  background-color: var(--sds-interactive-secondary-hollow-background-hover);
-  color: var(--sds-interactive-secondary-hollow-content-hover);
-}
-
-.sds-button--secondary-ghost:active {
-  background-color: var(--sds-interactive-secondary-hollow-background-active);
-  color: var(--sds-interactive-secondary-hollow-content-active);
-}
-
-.sds-button--secondary-ghost:focus-visible {
-  background-color: var(--sds-interactive-secondary-hollow-background-default);
-  color: var(--sds-interactive-secondary-hollow-content-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
-}
-
-.sds-button--secondary-ghost:disabled {
-  background-color: var(--sds-interactive-secondary-hollow-background-disabled);
-  color: var(--sds-interactive-secondary-hollow-content-disabled);
-}
-
 /* ─── Static Ghost ──────────────────────────────────────────────────────────── */
 
 .sds-button--static-ghost {
-  background-color: var(--sds-interactive-static-hollow-background-default);
   color: var(--sds-interactive-static-hollow-content-default);
 }
 
 .sds-button--static-ghost:hover {
-  background-color: var(--sds-interactive-static-hollow-background-hover);
   color: var(--sds-interactive-static-hollow-content-hover);
 }
 
 .sds-button--static-ghost:active {
-  background-color: var(--sds-interactive-static-hollow-background-active);
   color: var(--sds-interactive-static-hollow-content-active);
 }
 
 .sds-button--static-ghost:focus-visible {
-  background-color: var(--sds-interactive-static-hollow-background-default);
   color: var(--sds-interactive-static-hollow-content-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 .sds-button--static-ghost:disabled {
-  background-color: var(--sds-interactive-static-hollow-background-disabled);
   color: var(--sds-interactive-static-hollow-content-disabled);
+}
+
+/* ─── Negative Filled ───────────────────────────────────────────────────────── */
+
+.sds-button--negative-filled {
+  background-color: var(--sds-interactive-negative-filled-background-default);
+  color: var(--sds-interactive-negative-filled-content-default);
+}
+
+.sds-button--negative-filled:hover {
+  background-color: var(--sds-interactive-negative-filled-background-hover);
+  color: var(--sds-interactive-negative-filled-content-hover);
+}
+
+.sds-button--negative-filled:active {
+  background-color: var(--sds-interactive-negative-filled-background-active);
+  color: var(--sds-interactive-negative-filled-content-active);
+}
+
+.sds-button--negative-filled:focus-visible {
+  background-color: var(--sds-interactive-negative-filled-background-default);
+  color: var(--sds-interactive-negative-filled-content-default);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+.sds-button--negative-filled:disabled {
+  background-color: var(--sds-interactive-negative-filled-background-disabled);
+  color: var(--sds-interactive-negative-filled-content-disabled);
+}
+
+/* ─── Negative Hollow ───────────────────────────────────────────────────────── */
+
+.sds-button--negative-hollow {
+  background-color: var(--sds-interactive-negative-hollow-background-default);
+  color: var(--sds-interactive-negative-hollow-content-default);
+  border: 2px solid var(--sds-interactive-negative-hollow-stroke-default);
+}
+
+.sds-button--negative-hollow:hover {
+  background-color: var(--sds-interactive-negative-hollow-background-hover);
+  color: var(--sds-interactive-negative-hollow-content-hover);
+  border-color: var(--sds-interactive-negative-hollow-stroke-hover);
+}
+
+.sds-button--negative-hollow:active {
+  background-color: var(--sds-interactive-negative-hollow-background-active);
+  color: var(--sds-interactive-negative-hollow-content-active);
+  border-color: var(--sds-interactive-negative-hollow-stroke-active);
+}
+
+.sds-button--negative-hollow:focus-visible {
+  background-color: var(--sds-interactive-negative-hollow-background-default);
+  color: var(--sds-interactive-negative-hollow-content-default);
+  border-color: var(--sds-interactive-negative-hollow-stroke-default);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+.sds-button--negative-hollow:disabled {
+  background-color: var(--sds-interactive-negative-hollow-background-disabled);
+  color: var(--sds-interactive-negative-hollow-content-disabled);
+  border-color: var(--sds-interactive-negative-hollow-stroke-disabled);
+}
+
+/* ─── Negative Ghost ────────────────────────────────────────────────────────── */
+
+.sds-button--negative-ghost {
+  color: var(--sds-interactive-negative-hollow-content-default);
+}
+
+.sds-button--negative-ghost:hover {
+  color: var(--sds-interactive-negative-hollow-content-hover);
+}
+
+.sds-button--negative-ghost:active {
+  color: var(--sds-interactive-negative-hollow-content-active);
+}
+
+.sds-button--negative-ghost:focus-visible {
+  color: var(--sds-interactive-negative-hollow-content-default);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+.sds-button--negative-ghost:disabled {
+  color: var(--sds-interactive-negative-hollow-content-disabled);
 }
