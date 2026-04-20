@@ -56,8 +56,8 @@ Design tokens originate in Figma as variable collections and flow through Style 
 
 | Component | Status | Notes |
 |---|---|---|
-| `CheckboxItem` | ✓ | Core checkbox — native `<input type="checkbox">`, free children slot, indeterminate state, WCAG AA |
 | `CheckboxGroup` | ✓ | Layout container for multiple CheckboxItems — open label slot, error validation message |
+| `CheckboxItem` | ✓ | Core checkbox — native `<input type="checkbox">`, free children slot, indeterminate state, WCAG AA |
 | ↳ `CheckboxIndicator` | ✓ | Utility visual sub-component; not part of core API — used internally and by multi-select Menu items |
 | `Radio` | Planned | |
 | `Toggle` | Planned | |
