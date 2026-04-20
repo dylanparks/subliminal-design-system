@@ -35,7 +35,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 
 | Component | Status | Notes |
 |---|---|---|
-| `Button` | ✓ | Multiple variants |
+| `Button` | ✓ | Variants: primary, secondary, static, negative — fill styles: filled, hollow, ghost |
 | `ButtonGroup` | ✓ | Grouped related buttons |
 | `Stepper` | ✓ | Numeric input stepper, horizontal + vertical |
 
@@ -57,8 +57,9 @@ Design tokens originate in Figma as variable collections and flow through Style 
 
 | Component | Status | Notes |
 |---|---|---|
-| `Checkbox` | ✓ | Native `<input type="checkbox">`, label + description, indeterminate state, WCAG AA |
-| ↳ `CheckboxIndicator` | ✓ | Visual sub-component; usable standalone (e.g. multi-select Menu items) |
+| `CheckboxItem` | ✓ | Core checkbox — native `<input type="checkbox">`, free children slot, indeterminate state, WCAG AA |
+| `CheckboxGroup` | ✓ | Layout container for multiple CheckboxItems — open label slot, error validation message |
+| ↳ `CheckboxIndicator` | ✓ | Utility visual sub-component; not part of core API — used internally and by multi-select Menu items |
 | `Radio` | Planned | |
 | `Toggle` | Planned | |
 | `Rating Input` | Planned | |
@@ -107,7 +108,7 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - `PhoneField`: `role="group"` wrapper, country button as WAI-ARIA combobox (`role="combobox"`, `aria-expanded`, `aria-haspopup="menu"`), printable-character typeahead in country list, `role="status"` live region for dial-code changes, `autocomplete="tel-national"` + `inputmode="numeric"` on phone input
 - `SelectField`: trigger button as WAI-ARIA combobox (`role="combobox"`, `aria-expanded`, `aria-haspopup="menu"`), keyboard open/close (Space / Enter / ArrowDown / ArrowUp / Escape), `role="status"` live region announces selected option, focus restored to trigger on close
 - `TimePicker`: trigger as button with `aria-haspopup="dialog"` + `aria-expanded`, popover is `role="dialog" aria-modal`, each column is `role="listbox"` with `aria-orientation="vertical"`, items are `role="option"` with `aria-selected`, roving tabindex within each column, Arrow up/down navigates within column, Escape closes, `role="status"` live region announces each committed time change
-- `Checkbox`: native `<input type="checkbox">` (visually hidden) inside a `<label>` for form participation and screen-reader support; `indeterminate` set imperatively via ref; focus ring on indicator via `:has(:focus-visible)` (keyboard-only, no ring on mouse clicks); `CheckboxIndicator` is always `aria-hidden`
+- `CheckboxItem`: native `<input type="checkbox">` (visually hidden) inside a `<label>` for form participation and screen-reader support; `indeterminate` set imperatively via ref; focus ring on indicator via `:has(:focus-visible)` with `mousedown` guard to suppress Chrome's checkbox `:focus-visible` on click; `CheckboxIndicator` is always `aria-hidden`
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
 
@@ -152,8 +153,7 @@ design-system/
     │   │   ├── DatePicker/
     │   │   └── TimePicker/
     │   ├── Inputs/
-    │   │   ├── CheckboxIndicator/
-    │   │   └── Checkbox/
+    │   │   └── Checkbox/           ← CheckboxItem, CheckboxGroup, CheckboxIndicator (utility)
     │   └── Navigation/
     │       └── Menu/
     └── tokens/
