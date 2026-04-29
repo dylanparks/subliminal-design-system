@@ -1,0 +1,173 @@
+/* Tag — Subliminal Design System
+ * DataDisplay/Tag
+ *
+ * Tokens: --sds-interactive-primary-hollow-*, --sds-status-*, --sds-neutral-*,
+ *         --sds-shape-border-radius-*, --sds-typography-*
+ *
+ * Sizes:
+ *   large → padding 4px 8px · border-radius-small (10px) · icon 20×20px
+ *   small → padding 2px 6px · border-radius-xsmall (8px) · icon 16×16px
+ *
+ * Fill styles: solid (background fill), outline (border only)
+ * Types:       primary · neutral · informational · success · warning · error
+ * Modifier:    --static  (on-media: white on translucent)
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-small);
+  line-height:    var(--sds-typography-line-height-subtitle-small);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
+
+  background-color: var(--_sds-tag-bg, transparent);
+  color:            var(--_sds-tag-color);
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────────── */
+
+.sds-tag--large {
+  padding:       4px 8px;
+  border-radius: var(--sds-shape-border-radius-small);
+}
+
+.sds-tag--small {
+  padding:       2px 6px;
+  border-radius: var(--sds-shape-border-radius-xsmall);
+}
+
+/* ─── Icon padding ───────────────────────────────────────────────────────────── */
+
+.sds-tag--large.sds-tag--icon-start {
+  padding-inline-start: 4px;
+  padding-inline-end:   8px;
+}
+
+.sds-tag--large.sds-tag--icon-end {
+  padding-inline-start: 8px;
+  padding-inline-end:   4px;
+}
+
+.sds-tag--small.sds-tag--icon-start {
+  padding-inline-start: 4px;
+  padding-inline-end:   6px;
+}
+
+.sds-tag--small.sds-tag--icon-end {
+  padding-inline-start: 6px;
+  padding-inline-end:   4px;
+}
+
+/* ─── Icon slot ──────────────────────────────────────────────────────────────── */
+
+.sds-tag__icon {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sds-tag--large .sds-tag__icon {
+  width:  20px;
+  height: 20px;
+}
+
+.sds-tag--small .sds-tag__icon {
+  width:  16px;
+  height: 16px;
+}
+
+.sds-tag__icon > svg {
+  width:  100%;
+  height: 100%;
+}
+
+/* ─── Outline border ─────────────────────────────────────────────────────────── */
+
+.sds-tag--outline {
+  border: 2px solid var(--_sds-tag-border);
+}
+
+/* ─── Solid types ────────────────────────────────────────────────────────────── */
+
+.sds-tag--solid.sds-tag--primary {
+  --_sds-tag-bg:    var(--sds-interactive-primary-hollow-background-active);
+  --_sds-tag-color: var(--sds-interactive-primary-hollow-content-default);
+}
+
+.sds-tag--solid.sds-tag--informational {
+  --_sds-tag-bg:    var(--sds-status-informative-background-default);
+  --_sds-tag-color: var(--sds-status-informative-content-defaut);
+}
+
+.sds-tag--solid.sds-tag--neutral {
+  --_sds-tag-bg:    var(--sds-neutral-background-subtle);
+  --_sds-tag-color: var(--sds-neutral-content-secondary);
+}
+
+.sds-tag--solid.sds-tag--warning {
+  --_sds-tag-bg:    var(--sds-status-warning-background-default);
+  --_sds-tag-color: var(--sds-status-warning-content-default);
+}
+
+.sds-tag--solid.sds-tag--success {
+  --_sds-tag-bg:    var(--sds-status-success-background-default);
+  --_sds-tag-color: var(--sds-status-success-content-default);
+}
+
+.sds-tag--solid.sds-tag--error {
+  --_sds-tag-bg:    var(--sds-status-error-background-default);
+  --_sds-tag-color: var(--sds-status-error-content-default);
+}
+
+/* ─── Outline types ──────────────────────────────────────────────────────────── */
+
+.sds-tag--outline.sds-tag--primary {
+  --_sds-tag-border: var(--sds-interactive-primary-hollow-stroke-active);
+  --_sds-tag-color:  var(--sds-interactive-primary-hollow-content-default);
+}
+
+.sds-tag--outline.sds-tag--informational {
+  --_sds-tag-border: var(--sds-status-informative-stroke-default);
+  --_sds-tag-color:  var(--sds-status-informative-content-defaut);
+}
+
+.sds-tag--outline.sds-tag--neutral {
+  --_sds-tag-border: var(--sds-neutral-content-subtle);
+  --_sds-tag-color:  var(--sds-neutral-content-secondary);
+}
+
+.sds-tag--outline.sds-tag--warning {
+  --_sds-tag-border: var(--sds-status-warning-stroke-default);
+  --_sds-tag-color:  var(--sds-status-warning-content-default);
+}
+
+.sds-tag--outline.sds-tag--success {
+  --_sds-tag-border: var(--sds-status-success-stroke-default);
+  --_sds-tag-color:  var(--sds-status-success-content-default);
+}
+
+.sds-tag--outline.sds-tag--error {
+  --_sds-tag-border: var(--sds-status-error-stroke-default);
+  --_sds-tag-color:  var(--sds-status-error-content-default);
+}
+
+/* ─── Static (on-media) ──────────────────────────────────────────────────────── */
+
+.sds-tag--static.sds-tag--solid {
+  --_sds-tag-bg:    var(--sds-neutral-content-static-subtle);
+  --_sds-tag-color: var(--sds-neutral-content-static-primary);
+}
+
+.sds-tag--static.sds-tag--outline {
+  --_sds-tag-border: var(--sds-neutral-content-static-subtle);
+  --_sds-tag-color:  var(--sds-neutral-content-static-primary);
+}

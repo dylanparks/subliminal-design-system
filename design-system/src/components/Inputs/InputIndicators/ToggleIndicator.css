@@ -1,0 +1,174 @@
+/* ToggleIndicator — Subliminal Design System
+ * Inputs/InputIndicators/ToggleIndicator
+ *
+ * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
+ *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
+ *         --sds-interactive-negative-filled-*, --sds-status-error-*
+ *
+ * Structure:
+ *   .sds-toggle-indicator        → the track (pill shape)
+ *   .sds-toggle-indicator__thumb → the sliding circle
+ *
+ * The thumb slides via transform: translateX on the --checked modifier.
+ * Interactive states are driven from the parent Toggle component's CSS.
+ *
+ * Dimensions (Figma-verified):
+ *   Large  — track: 44×24px, thumb: 16×16px, travel: 20px
+ *   Medium — track: 36×20px, thumb: 12×12px, travel: 16px
+ */
+
+/* ─── Track (large, off) ─────────────────────────────────────────────────────── */
+
+.sds-toggle-indicator {
+  position:    relative;
+  flex-shrink: 0;
+  display:     inline-flex;
+  align-items: center;
+  box-sizing:  border-box;
+  border-radius: 9999px;
+  overflow: hidden;
+
+  width:  44px;
+  height: 24px;
+  padding: 2px;
+
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
+
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+/* ─── Track on ───────────────────────────────────────────────────────────────── */
+
+.sds-toggle-indicator--checked {
+  border-color: transparent;
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+}
+
+/* ─── Thumb ──────────────────────────────────────────────────────────────────── */
+
+.sds-toggle-indicator__thumb {
+  display:       block;
+  flex-shrink:   0;
+  border-radius: 50%;
+  width:  16px;
+  height: 16px;
+
+  background-color: var(--sds-interactive-secondary-hollow-content-inactive-default);
+
+  transform: translateX(0);
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-secondary-filled-content-default);
+  transform: translateX(20px);
+}
+
+/* ─── Medium size ────────────────────────────────────────────────────────────── */
+
+.sds-toggle-indicator--medium {
+  width:  36px;
+  height: 20px;
+}
+
+.sds-toggle-indicator--medium .sds-toggle-indicator__thumb {
+  width:  12px;
+  height: 12px;
+}
+
+.sds-toggle-indicator--medium.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  transform: translateX(16px);
+}
+
+/* ─── RTL ────────────────────────────────────────────────────────────────────── */
+
+[dir="rtl"] .sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  transform: translateX(-20px);
+}
+
+[dir="rtl"] .sds-toggle-indicator--medium.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  transform: translateX(-16px);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────────── */
+
+.sds-toggle-indicator--disabled {
+  pointer-events: none;
+}
+
+.sds-toggle-indicator--disabled:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-secondary-hollow-stroke-inactive-disabled);
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-disabled);
+}
+
+.sds-toggle-indicator--disabled.sds-toggle-indicator--checked {
+  background-color: var(--sds-interactive-secondary-filled-background-disabled);
+}
+
+.sds-toggle-indicator--disabled:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-secondary-hollow-content-inactive-disabled);
+}
+
+.sds-toggle-indicator--disabled.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-secondary-filled-content-disabled);
+}
+
+/* ─── Error ──────────────────────────────────────────────────────────────────── */
+
+/* Off error — hollow with red border and red thumb */
+.sds-toggle-indicator--error:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-negative-hollow-stroke-inactive-default);
+  background-color: var(--sds-interactive-negative-hollow-background-inactive-default);
+}
+
+.sds-toggle-indicator--error:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-negative-hollow-content-inactive-default);
+}
+
+/* On error — filled red with white thumb */
+.sds-toggle-indicator--error.sds-toggle-indicator--checked {
+  border-color: transparent;
+  background-color: var(--sds-interactive-negative-filled-background-default);
+}
+
+.sds-toggle-indicator--error.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-negative-filled-content-default);
+}
+
+/* ─── On Media ───────────────────────────────────────────────────────────────── */
+
+.sds-toggle-indicator--on-media:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-static-hollow-stroke-inactive-default);
+  background-color: var(--sds-interactive-static-hollow-background-inactive-default);
+}
+
+.sds-toggle-indicator--on-media:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-static-hollow-content-inactive-default);
+}
+
+.sds-toggle-indicator--on-media.sds-toggle-indicator--checked {
+  border-color: transparent;
+  background-color: var(--sds-interactive-static-filled-background-default);
+}
+
+.sds-toggle-indicator--on-media.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-static-filled-content-default);
+}
+
+.sds-toggle-indicator--on-media.sds-toggle-indicator--disabled:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-static-hollow-stroke-inactive-disabled);
+  background-color: var(--sds-interactive-static-hollow-background-inactive-disabled);
+}
+
+.sds-toggle-indicator--on-media.sds-toggle-indicator--disabled:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-static-hollow-content-inactive-disabled);
+}
+
+.sds-toggle-indicator--on-media.sds-toggle-indicator--disabled.sds-toggle-indicator--checked {
+  background-color: var(--sds-interactive-static-filled-background-disabled);
+}
+
+.sds-toggle-indicator--on-media.sds-toggle-indicator--disabled.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-static-filled-content-disabled);
+}

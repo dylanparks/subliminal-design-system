@@ -125,6 +125,23 @@ function showFontWarning(missing: string[], localOnly: string[]): void {
 }
 
 const preview: Preview = {
+  globalTypes: {
+    direction: {
+      description: 'Text direction',
+      toolbar: {
+        title: 'Direction',
+        icon: 'paragraph',
+        items: [
+          { value: 'ltr', title: 'LTR', right: '→' },
+          { value: 'rtl', title: 'RTL', right: '←' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    direction: 'ltr',
+  },
   decorators: [
     withThemeByClassName({
       themes: {
@@ -133,6 +150,10 @@ const preview: Preview = {
       },
       defaultTheme: 'Light',
     }),
+    (_Story, context) => {
+      document.documentElement.dir = (context.globals['direction'] as string) ?? 'ltr';
+      return _Story();
+    },
   ],
   parameters: {
     controls: {

@@ -1,0 +1,103 @@
+/* FileUploadItem — Subliminal Design System
+ * Fields/FileUpload/FileUploadItem
+ *
+ * Tokens: --sds-neutral-content-*, --sds-status-error-*, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-file-upload-item              → flat flex-row wrapper (no card)
+ *   .sds-file-upload-item__type-icon   → optional Material Symbols Rounded glyph
+ *   .sds-file-upload-item__body        → flex column, grows to fill row
+ *   .sds-file-upload-item__label-group → filename + size in a baseline row
+ *   .sds-file-upload-item__name        → filename, subtitle/small
+ *   .sds-file-upload-item__size        → formatted file size, body-content/small
+ *   ProgressBar                        → rendered below label-group when uploading
+ *   .sds-file-upload-item__error-message → icon + text row on error status
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+/* ─── Root (flat row, no card) ───────────────────────────────────────────────── */
+
+.sds-file-upload-item {
+  display:     flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ─── File type icon ─────────────────────────────────────────────────────────── */
+
+.sds-file-upload-item__type-icon {
+  flex-shrink: 0;
+  font-size:   24px;
+  line-height: 1;
+  color:       var(--sds-neutral-content-secondary);
+
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ─── Body ───────────────────────────────────────────────────────────────────── */
+
+.sds-file-upload-item__body {
+  display:        flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── Label group ────────────────────────────────────────────────────────────── */
+
+.sds-file-upload-item__label-group {
+  display:     flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.sds-file-upload-item__name {
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-small);
+  line-height:    var(--sds-typography-line-height-subtitle-small);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
+  color:          var(--sds-neutral-content-primary);
+  flex: 1;
+  min-width: 0;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+.sds-file-upload-item__size {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color:          var(--sds-neutral-content-tertiary);
+  flex-shrink:    0;
+  white-space:    nowrap;
+}
+
+/* ─── Error message ──────────────────────────────────────────────────────────── */
+
+.sds-file-upload-item__error-message {
+  display:     flex;
+  align-items: flex-start;
+  gap: 4px;
+  color:       var(--sds-status-error-content-default);
+}
+
+.sds-file-upload-item__error-message > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-xsmall) - 14px) / 2);
+}
+
+.sds-file-upload-item__error-text {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-xsmall);
+  line-height:    var(--sds-typography-line-height-body-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+}

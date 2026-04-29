@@ -301,6 +301,7 @@ export function PhoneField({
               aria-invalid={showError ? true : undefined}
               aria-describedby={[supportId, dialHintId].join(' ')}
               className="sds-phone-field__input"
+              dir="ltr"
               onChange={handlePhoneChange}
               onKeyDown={handlePhoneKeyDown}
             />

@@ -1,0 +1,198 @@
+/* ProgressBar — Subliminal Design System
+ * DataDisplay/ProgressBar/ProgressBar
+ *
+ * Tokens: --sds-neutral-background-subtle, --sds-accents-solid-primary,
+ *         --sds-status-error-content-default, --sds-status-success-content-default,
+ *         --sds-neutral-content-tertiary, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-progress-bar              → root wrapper
+ *   .sds-progress-bar__header      → label + value row
+ *   .sds-progress-bar__track       → background rail
+ *   .sds-progress-bar__fill        → foreground fill (width driven by inline style)
+ *   .sds-progress-bar__message     → validation icon + text row
+ *
+ * Indeterminate: --indeterminate modifier replaces inline width with a gradient sweep animation.
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-progress-bar {
+  display:        flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Header (label + value) ─────────────────────────────────────────────────── */
+
+.sds-progress-bar__header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     baseline;
+  gap: 4px;
+}
+
+.sds-progress-bar__label {
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-small);
+  line-height:    var(--sds-typography-line-height-subtitle-small);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
+  color:          var(--sds-neutral-content-tertiary);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.sds-progress-bar__value {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color:          var(--sds-neutral-content-tertiary);
+  flex-shrink:    0;
+  white-space:    nowrap;
+}
+
+/* ─── Track ──────────────────────────────────────────────────────────────────── */
+
+.sds-progress-bar__track {
+  position:      relative;
+  overflow:      hidden;
+  width:         100%;
+  height:        4px;
+  border-radius: 9999px;
+  background-color: var(--sds-neutral-background-subtle);
+}
+
+/* ─── Fill ───────────────────────────────────────────────────────────────────── */
+
+.sds-progress-bar__fill {
+  height:        100%;
+  border-radius: 9999px;
+  background-color: var(--sds-accents-solid-primary);
+  transition: width 200ms ease;
+}
+
+.sds-progress-bar--error .sds-progress-bar__fill {
+  background-color: var(--sds-status-error-content-default);
+}
+
+.sds-progress-bar--success .sds-progress-bar__fill {
+  background-color: var(--sds-status-success-content-default);
+}
+
+/* ─── Indeterminate ──────────────────────────────────────────────────────────── */
+
+/*
+ * The fill is 50% wide and starts fully off-screen left (translateX(-100%)).
+ * translateX(300%) moves it 3× its own width = 1.5× the track, landing fully
+ * off-screen right. The track's overflow:hidden clips it cleanly throughout.
+ */
+@keyframes sds-progress-indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+.sds-progress-bar--indeterminate .sds-progress-bar__fill {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: 50%;
+  height: 100%;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--sds-accents-solid-primary),
+    transparent
+  );
+  animation: sds-progress-indeterminate 1.4s ease-in-out infinite;
+  transition: none;
+}
+
+.sds-progress-bar--indeterminate.sds-progress-bar--error .sds-progress-bar__fill {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--sds-status-error-content-default),
+    transparent
+  );
+}
+
+.sds-progress-bar--indeterminate.sds-progress-bar--success .sds-progress-bar__fill {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--sds-status-success-content-default),
+    transparent
+  );
+}
+
+/* ─── Indeterminate RTL ──────────────────────────────────────────────────────── */
+
+@keyframes sds-progress-indeterminate-rtl {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-300%); }
+}
+
+[dir="rtl"] .sds-progress-bar--indeterminate .sds-progress-bar__fill {
+  animation-name: sds-progress-indeterminate-rtl;
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    var(--sds-accents-solid-primary),
+    transparent
+  );
+}
+
+[dir="rtl"] .sds-progress-bar--indeterminate.sds-progress-bar--error .sds-progress-bar__fill {
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    var(--sds-status-error-content-default),
+    transparent
+  );
+}
+
+[dir="rtl"] .sds-progress-bar--indeterminate.sds-progress-bar--success .sds-progress-bar__fill {
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    var(--sds-status-success-content-default),
+    transparent
+  );
+}
+
+/* ─── Validation message ─────────────────────────────────────────────────────── */
+
+.sds-progress-bar__message {
+  display:     flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.sds-progress-bar--error .sds-progress-bar__message {
+  color: var(--sds-status-error-content-default);
+}
+
+.sds-progress-bar--success .sds-progress-bar__message {
+  color: var(--sds-status-success-content-default);
+}
+
+.sds-progress-bar__message > svg {
+  flex-shrink: 0;
+  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+}
+
+.sds-progress-bar__message-text {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}

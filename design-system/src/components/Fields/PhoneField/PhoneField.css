@@ -300,6 +300,10 @@
 
 /* ─── Phone input ────────────────────────────────────────────────────────────── */
 
+[dir="rtl"] .sds-phone-field__input {
+  text-align: right;
+}
+
 .sds-phone-field__input {
   font-family: var(--sds-typography-font-family-body-content);
   font-weight: var(--sds-typography-font-weight-body-content);

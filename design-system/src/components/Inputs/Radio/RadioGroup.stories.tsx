@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CheckboxGroup } from './CheckboxGroup';
-import { Checkbox } from './Checkbox';
+import { RadioGroup } from './RadioGroup';
+import { Radio } from './Radio';
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
-const meta: Meta<typeof CheckboxGroup> = {
-  component: CheckboxGroup,
-  title: 'Inputs/CheckboxGroup',
+const meta: Meta<typeof RadioGroup> = {
+  component: RadioGroup,
+  title: 'Inputs/RadioGroup',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'Layout container and state manager for a set of Checkboxs. Provide `defaultValue` (uncontrolled) or `value` + `onValueChange` (controlled) to let the group own checked state — each Checkbox only needs a `value` prop. Add `allValues` and a `parent` Checkbox to get automatic select-all / indeterminate wiring.',
+          'Layout container and state manager for a set of Radio items. Provide `defaultValue` (uncontrolled) or `value` + `onValueChange` (controlled) to let the group own selection — each Radio only needs a `value` prop. Arrow-key navigation between radios is handled natively by the browser.',
       },
     },
   },
@@ -28,7 +28,7 @@ const meta: Meta<typeof CheckboxGroup> = {
     },
     disabled: {
       control: 'boolean',
-      description: 'Disables all Checkboxs in the group.',
+      description: 'Disables all Radio items in the group.',
       table: { defaultValue: { summary: 'false' } },
     },
     size: {
@@ -42,22 +42,22 @@ const meta: Meta<typeof CheckboxGroup> = {
     value:        { table: { disable: true } },
     defaultValue: { table: { disable: true } },
     onValueChange:{ table: { disable: true } },
-    allValues:    { table: { disable: true } },
+    name:         { table: { disable: true } },
+    required:     { table: { disable: true } },
     className:    { table: { disable: true } },
   },
   args: {
     error:        false,
-    errorMessage: 'Please select at least one option.',
+    errorMessage: 'Please select an option.',
     disabled:     false,
     size:         'large',
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof CheckboxGroup>;
+type Story = StoryObj<typeof RadioGroup>;
 
 // ─── Story helper ─────────────────────────────────────────────────────────────
-// The group label slot accepts any non-interactive content — this is one example.
 
 function GroupLabel({ text }: { text: string }) {
   return (
@@ -78,11 +78,11 @@ function GroupLabel({ text }: { text: string }) {
 
 export const Default: Story = {
   render: (args) => (
-    <CheckboxGroup {...args} defaultValue={[]} label={<GroupLabel text="Select options" />}>
-      <Checkbox value="a" label="Option A" description="Description for option A" size={args.size} />
-      <Checkbox value="b" label="Option B" description="Description for option B" size={args.size} />
-      <Checkbox value="c" label="Option C" size={args.size} />
-    </CheckboxGroup>
+    <RadioGroup {...args} defaultValue="" label={<GroupLabel text="Select an option" />}>
+      <Radio value="a" label="Option A" description="Description for option A" size={args.size} />
+      <Radio value="b" label="Option B" description="Description for option B" size={args.size} />
+      <Radio value="c" label="Option C" size={args.size} />
+    </RadioGroup>
   ),
 };
 
@@ -91,14 +91,14 @@ export const Default: Story = {
 export const Error: Story = {
   args: {
     error:        true,
-    errorMessage: 'Please select at least one option.',
+    errorMessage: 'Please select an option.',
   },
   render: (args) => (
-    <CheckboxGroup {...args} defaultValue={[]} label={<GroupLabel text="Select options" />}>
-      <Checkbox value="a" label="Option A" error size={args.size} />
-      <Checkbox value="b" label="Option B" error size={args.size} />
-      <Checkbox value="c" label="Option C" error size={args.size} />
-    </CheckboxGroup>
+    <RadioGroup {...args} defaultValue="" label={<GroupLabel text="Select an option" />}>
+      <Radio value="a" label="Option A" error size={args.size} />
+      <Radio value="b" label="Option B" error size={args.size} />
+      <Radio value="c" label="Option C" error size={args.size} />
+    </RadioGroup>
   ),
 };
 
@@ -107,28 +107,10 @@ export const Error: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
   render: (args) => (
-    <CheckboxGroup {...args} defaultValue={['a']} label={<GroupLabel text="Select options" />}>
-      <Checkbox value="a" label="Option A" description="Description for option A" size={args.size} />
-      <Checkbox value="b" label="Option B" description="Description for option B" size={args.size} />
-      <Checkbox value="c" label="Option C" size={args.size} />
-    </CheckboxGroup>
-  ),
-};
-
-// ─── With parent (select all) ─────────────────────────────────────────────────
-
-export const WithParent: Story = {
-  render: (args) => (
-    <CheckboxGroup
-      {...args}
-      defaultValue={[]}
-      allValues={['a', 'b', 'c']}
-      label={<GroupLabel text="Select options" />}
-    >
-      <Checkbox parent label="Select all" size={args.size} />
-      <Checkbox value="a" label="Option A" description="Description for option A" size={args.size} />
-      <Checkbox value="b" label="Option B" description="Description for option B" size={args.size} />
-      <Checkbox value="c" label="Option C" size={args.size} />
-    </CheckboxGroup>
+    <RadioGroup {...args} defaultValue="a" label={<GroupLabel text="Select an option" />}>
+      <Radio value="a" label="Option A" description="Description for option A" size={args.size} />
+      <Radio value="b" label="Option B" description="Description for option B" size={args.size} />
+      <Radio value="c" label="Option C" size={args.size} />
+    </RadioGroup>
   ),
 };

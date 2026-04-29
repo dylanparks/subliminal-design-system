@@ -114,7 +114,7 @@ export function TextField({
 
   // ── Character-count visual state ───────────────────────────────────────────
   // Always driven by actual value length — never by the field's error/success prop.
-  // This matches industry standard (Uber Base, Material) and WCAG intent.
+  // Always independent of the field's error/success state per WCAG intent.
   const charLength = currentValue.length;
   const charCountState: CharCountState =
     maxLength === undefined   ? 'under' :

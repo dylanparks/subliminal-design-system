@@ -1,0 +1,142 @@
+/* RadioIndicator — Subliminal Design System
+ * Inputs/InputIndicators/RadioIndicator
+ *
+ * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
+ *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
+ *         --sds-interactive-negative-filled-*, --sds-status-error-*,
+ *         --sds-effects-focus
+ *
+ * Circular outer ring; inner dot rendered via ::after when selected.
+ * Interactive states are driven from the parent Radio component's CSS.
+ *
+ * States driven by props:
+ *   .sds-radio-indicator--medium        — 18px outer ring
+ *   .sds-radio-indicator--selected      — filled ring + inner dot
+ *   .sds-radio-indicator--on-media      — inverted palette
+ *   .sds-radio-indicator--disabled      — muted appearance
+ *   .sds-radio-indicator--error         — red ring/fill
+ */
+
+/* ─── Base (large, unselected) ───────────────────────────────────────────────── */
+
+.sds-radio-indicator {
+  flex-shrink: 0;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing:  border-box;
+  border-radius: 50%;
+
+  width:  22px;
+  height: 22px;
+
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
+
+  transition:
+    background-color 120ms ease,
+    border-color     120ms ease,
+    box-shadow       120ms ease;
+}
+
+/* ─── Inner dot (selected state) ─────────────────────────────────────────────── */
+
+.sds-radio-indicator--selected::after {
+  content: '';
+  display: block;
+  width:  8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--sds-interactive-secondary-filled-content-default);
+}
+
+/* ─── Medium size ────────────────────────────────────────────────────────────── */
+
+.sds-radio-indicator--medium {
+  width:  18px;
+  height: 18px;
+}
+
+.sds-radio-indicator--medium.sds-radio-indicator--selected::after {
+  width:  6px;
+  height: 6px;
+}
+
+/* ─── Selected ───────────────────────────────────────────────────────────────── */
+
+.sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-secondary-filled-background-default);
+  border-color:     var(--sds-interactive-secondary-filled-background-default);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────────── */
+
+.sds-radio-indicator--disabled {
+  pointer-events: none;
+}
+
+.sds-radio-indicator--disabled:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-disabled);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-disabled);
+}
+
+.sds-radio-indicator--disabled.sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-secondary-filled-background-disabled);
+  border-color:     var(--sds-interactive-secondary-filled-background-disabled);
+}
+
+.sds-radio-indicator--disabled.sds-radio-indicator--selected::after {
+  background-color: var(--sds-interactive-secondary-filled-content-disabled);
+}
+
+/* ─── Error ──────────────────────────────────────────────────────────────────── */
+
+.sds-radio-indicator--error:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-status-error-background-default);
+  border-color:     var(--sds-status-error-stroke-default);
+}
+
+.sds-radio-indicator--error.sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-negative-filled-background-default);
+  border-color:     var(--sds-interactive-negative-filled-background-default);
+}
+
+/* ─── On Media ───────────────────────────────────────────────────────────────── */
+
+.sds-radio-indicator--on-media {
+  width:  24px;
+  height: 24px;
+}
+
+.sds-radio-indicator--medium.sds-radio-indicator--on-media {
+  width:  18px;
+  height: 18px;
+}
+
+.sds-radio-indicator--on-media:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-static-hollow-background-inactive-default);
+  border-color:     var(--sds-interactive-static-hollow-stroke-inactive-default);
+}
+
+.sds-radio-indicator--on-media.sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-static-filled-background-default);
+  border-color:     var(--sds-interactive-static-filled-background-default);
+}
+
+.sds-radio-indicator--on-media.sds-radio-indicator--selected::after {
+  background-color: var(--sds-interactive-static-filled-content-default);
+}
+
+.sds-radio-indicator--on-media.sds-radio-indicator--disabled:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-static-hollow-background-inactive-disabled);
+  border-color:     var(--sds-interactive-static-hollow-stroke-inactive-disabled);
+}
+
+.sds-radio-indicator--on-media.sds-radio-indicator--disabled.sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-static-filled-background-disabled);
+  border-color:     var(--sds-interactive-static-filled-background-disabled);
+}
+
+.sds-radio-indicator--on-media.sds-radio-indicator--disabled.sds-radio-indicator--selected::after {
+  background-color: var(--sds-interactive-static-filled-content-disabled);
+}

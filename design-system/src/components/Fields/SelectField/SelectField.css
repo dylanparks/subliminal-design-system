@@ -40,7 +40,7 @@
   background-color: var(--sds-interactive-fields-background-default);
   box-sizing: border-box;
   cursor: pointer;
-  text-align: left;
+  text-align: start;
   outline: none;
   transition:
     background-color 120ms ease,

@@ -321,7 +321,7 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 0 8px;
+  padding: 0 0 0 8px;
 }
 
 /* Tighten the AM/PM column — only 2 items, doesn't need equal flex */
@@ -342,7 +342,7 @@
   font-size:      var(--sds-typography-font-size-subtitle-small);
   line-height:    var(--sds-typography-line-height-subtitle-small);
   letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
-  color: var(--sds-neutral-content-subtle);
+  color: var(--sds-neutral-content-tertiary);
   white-space: nowrap;
 }
 
@@ -421,7 +421,7 @@
   border: none;
   -webkit-appearance: none;
   appearance: none;
-  text-align: left;
+  text-align: start;
   /* Fill the column width (sds-menu-item doesn't set width) */
   width: 100%;
 }

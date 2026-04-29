@@ -58,8 +58,8 @@
 }
 
 .sds-button--xsmall .sds-button__icon {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 .sds-button--small {
@@ -73,8 +73,8 @@
 }
 
 .sds-button--small .sds-button__icon {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .sds-button--medium {
@@ -88,8 +88,8 @@
 }
 
 .sds-button--medium .sds-button__icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .sds-button--large {
@@ -103,8 +103,8 @@
 }
 
 .sds-button--large .sds-button__icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 /* ─── Ghost (shared) ────────────────────────────────────────────────────────── */
@@ -114,6 +114,7 @@
   padding: 0;
   height: auto;
   background-color: transparent;
+  overflow: hidden;
 }
 
 /* ─── Primary Filled ────────────────────────────────────────────────────────── */

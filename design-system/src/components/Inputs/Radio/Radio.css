@@ -1,0 +1,183 @@
+/* Radio — Subliminal Design System
+ * Inputs/Radio/Radio
+ *
+ * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
+ *         --sds-interactive-negative-*, --sds-effects-focus, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-radio                → root <label>, lays out indicator + slot
+ *   .sds-radio__input         → visually hidden native <input type="radio">
+ *   .sds-radio__indicator-wrap → top-aligns indicator to first line of content
+ *   .sds-radio-indicator       → visual circle (from RadioIndicator)
+ *   .sds-radio__label-slot    → free content slot (children)
+ *
+ * Interactive state cascade:
+ *   Hover   → .sds-radio:hover modifies .sds-radio-indicator
+ *   Pressed → .sds-radio:active modifies .sds-radio-indicator
+ *   Focus   → :has(:focus-visible) adds focus ring to .sds-radio-indicator
+ *   Error   → .sds-radio--error drives negative token variants for hover/active
+ *   Disabled→ .sds-radio--disabled mutes the whole component
+ */
+
+/* ─── Root label ─────────────────────────────────────────────────────────────── */
+
+.sds-radio {
+  display:     flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Visually hidden native input ───────────────────────────────────────────── */
+
+.sds-radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Indicator wrap ─────────────────────────────────────────────────────────── */
+
+.sds-radio__indicator-wrap {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: var(--sds-typography-line-height-body-content-medium);
+}
+
+.sds-radio--medium .sds-radio__indicator-wrap {
+  height: var(--sds-typography-line-height-body-content-small);
+}
+
+/* ─── Content slot ───────────────────────────────────────────────────────────── */
+
+.sds-radio__label-slot {
+  display:        flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ─── Default label + description ────────────────────────────────────────────── */
+
+.sds-radio__label,
+.sds-radio__description {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+}
+
+.sds-radio__label {
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color:          var(--sds-neutral-content-primary);
+}
+
+.sds-radio__description {
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color:          var(--sds-neutral-content-tertiary);
+}
+
+/* Medium size overrides */
+.sds-radio--medium .sds-radio__label {
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+.sds-radio--medium .sds-radio__description {
+  font-size:      var(--sds-typography-font-size-body-content-xsmall);
+  line-height:    var(--sds-typography-line-height-body-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+}
+
+/* Error — label and description take on error content color */
+.sds-radio--error .sds-radio__label,
+.sds-radio--error .sds-radio__description {
+  color: var(--sds-status-error-content-default);
+}
+
+/* ─── Hover states ───────────────────────────────────────────────────────────── */
+
+/* Unselected hover — default */
+.sds-radio:hover:not(.sds-radio--disabled):not(.sds-radio--error) .sds-radio-indicator:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-hover);
+}
+
+/* Selected hover — default */
+.sds-radio:hover:not(.sds-radio--disabled):not(.sds-radio--error) .sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-secondary-filled-background-hover);
+  border-color:     var(--sds-interactive-secondary-filled-background-hover);
+}
+
+/* Unselected hover — error */
+.sds-radio--error:hover:not(.sds-radio--disabled) .sds-radio-indicator:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-negative-hollow-background-inactive-hover);
+  border-color:     var(--sds-interactive-negative-hollow-stroke-inactive-hover);
+}
+
+/* Selected hover — error */
+.sds-radio--error:hover:not(.sds-radio--disabled) .sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-negative-filled-background-hover);
+  border-color:     var(--sds-interactive-negative-filled-background-hover);
+}
+
+/* ─── Pressed (active) states ────────────────────────────────────────────────── */
+
+/* Unselected pressed — default */
+.sds-radio:active:not(.sds-radio--disabled):not(.sds-radio--error) .sds-radio-indicator:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-active);
+  border-color:     var(--sds-interactive-secondary-hollow-stroke-inactive-active);
+}
+
+/* Selected pressed — default */
+.sds-radio:active:not(.sds-radio--disabled):not(.sds-radio--error) .sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-secondary-filled-background-active);
+  border-color:     var(--sds-interactive-secondary-filled-background-active);
+}
+
+/* Unselected pressed — error */
+.sds-radio--error:active:not(.sds-radio--disabled) .sds-radio-indicator:not(.sds-radio-indicator--selected) {
+  background-color: var(--sds-interactive-negative-hollow-background-inactive-active);
+  border-color:     var(--sds-interactive-negative-hollow-stroke-inactive-active);
+}
+
+/* Selected pressed — error */
+.sds-radio--error:active:not(.sds-radio--disabled) .sds-radio-indicator--selected {
+  background-color: var(--sds-interactive-negative-filled-background-active);
+  border-color:     var(--sds-interactive-negative-filled-background-active);
+}
+
+/* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
+
+.sds-radio:not([data-mouse-focus]):has(.sds-radio__input:focus-visible) .sds-radio-indicator {
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+/* ─── Disabled state ─────────────────────────────────────────────────────────── */
+
+.sds-radio--disabled {
+  pointer-events: none;
+  position: relative;
+}
+
+.sds-radio--disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+.sds-radio--disabled .sds-radio__label-slot {
+  opacity: 0.45;
+}

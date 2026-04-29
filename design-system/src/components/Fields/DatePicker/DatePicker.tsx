@@ -187,7 +187,7 @@ function CalendarHeader({ title, prevLabel, nextLabel, onPrev, onNext }: Calenda
         fillStyle="ghost"
         size="xsmall"
         showLabel={false}
-        icon={<ChevronLeftIcon size={16} />}
+        icon={<ChevronLeftIcon size={20} />}
         aria-label={prevLabel}
         onClick={onPrev}
       />
@@ -197,7 +197,7 @@ function CalendarHeader({ title, prevLabel, nextLabel, onPrev, onNext }: Calenda
         fillStyle="ghost"
         size="xsmall"
         showLabel={false}
-        icon={<ChevronRightIcon size={16} />}
+        icon={<ChevronRightIcon size={20} />}
         aria-label={nextLabel}
         onClick={onNext}
       />
@@ -235,59 +235,72 @@ function DayGridPanel({
   const t           = today();
   const effectiveEnd = isRange && rangeStart && !rangeEnd ? hoverDate : rangeEnd;
 
-  return (
-    <>
-      <div className="sds-datepicker__weekdays" role="row">
-        {WEEKDAYS.map(d => (
-          <div key={d} className="sds-datepicker__weekday" role="columnheader" aria-label={d}>{d}</div>
-        ))}
-      </div>
-      <div className="sds-datepicker__days" role="grid" aria-label={panelLabel} onKeyDown={onGridKeyDown}>
-        {cells.map((cell, idx) => {
-          const isOutside    = cell.month !== viewMonth;
-          const isTodayCell  = sameDate(cell, t);
-          const isSelected   = isRange ? sameDate(cell, rangeStart) || sameDate(cell, rangeEnd) : sameDate(cell, selected);
-          const isRangeStart = isRange && sameDate(cell, rangeStart);
-          const isRangeEnd   = isRange && sameDate(cell, rangeEnd ?? effectiveEnd);
-          const inRange      = isRange && isBetween(cell, rangeStart ?? null, effectiveEnd ?? null);
-          const isFocused    = sameDate(cell, focusedDate);
+  const rows: CalendarDate[][] = [];
+  for (let i = 0; i < cells.length; i += 7) rows.push(cells.slice(i, i + 7));
 
-          return (
-            <div
-              key={idx}
-              role="gridcell"
-              className={[
-                'sds-datepicker__day-cell',
-                inRange                       && 'sds-datepicker__day-cell--in-range',
-                isRangeStart && !isRangeEnd   && 'sds-datepicker__day-cell--range-start',
-                isRangeEnd   && !isRangeStart && 'sds-datepicker__day-cell--range-end',
-              ].filter(Boolean).join(' ')}
-            >
-              <button
-                type="button"
-                tabIndex={isFocused ? 0 : -1}
-                className={[
-                  'sds-datepicker__day-btn',
-                  isOutside                      && 'sds-datepicker__day-btn--outside',
-                  isTodayCell                    && 'sds-datepicker__day-btn--today',
-                  isSelected && !isTodayCell     && 'sds-datepicker__day-btn--active',
-                  isRangeStart                   && 'sds-datepicker__day-btn--range-start',
-                  isRangeEnd                     && 'sds-datepicker__day-btn--range-end',
-                ].filter(Boolean).join(' ')}
-                aria-selected={(isSelected || isRangeStart || isRangeEnd) ? true : undefined}
-                aria-label={`${cell.day} ${MONTH_NAMES[cell.month - 1]} ${cell.year}`}
-                onMouseEnter={() => onHover?.(cell)}
-                onMouseLeave={() => onHover?.(null)}
-                onClick={() => onSelect(cell)}
-                onFocus={() => onFocusDate?.(cell)}
-              >
-                {cell.day}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-    </>
+  return (
+    <table
+      className="sds-datepicker__days"
+      role="grid"
+      aria-label={panelLabel}
+      onKeyDown={onGridKeyDown}
+    >
+      <thead>
+        <tr className="sds-datepicker__weekdays">
+          {WEEKDAYS.map(d => (
+            <th key={d} scope="col" className="sds-datepicker__weekday" abbr={d}>{d}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, rowIdx) => (
+          <tr key={rowIdx}>
+            {row.map((cell, cellIdx) => {
+              const isOutside    = cell.month !== viewMonth;
+              const isTodayCell  = sameDate(cell, t);
+              const isSelected   = isRange ? sameDate(cell, rangeStart) || sameDate(cell, rangeEnd) : sameDate(cell, selected);
+              const isRangeStart = isRange && sameDate(cell, rangeStart);
+              const isRangeEnd   = isRange && sameDate(cell, rangeEnd ?? effectiveEnd);
+              const inRange      = isRange && isBetween(cell, rangeStart ?? null, effectiveEnd ?? null);
+              const isFocused    = sameDate(cell, focusedDate);
+
+              return (
+                <td
+                  key={cellIdx}
+                  aria-selected={(isSelected || isRangeStart || isRangeEnd) ? true : undefined}
+                  className={[
+                    'sds-datepicker__day-cell',
+                    inRange                       && 'sds-datepicker__day-cell--in-range',
+                    isRangeStart && !isRangeEnd   && 'sds-datepicker__day-cell--range-start',
+                    isRangeEnd   && !isRangeStart && 'sds-datepicker__day-cell--range-end',
+                  ].filter(Boolean).join(' ')}
+                >
+                  <button
+                    type="button"
+                    tabIndex={isFocused ? 0 : -1}
+                    className={[
+                      'sds-datepicker__day-btn',
+                      isOutside                      && 'sds-datepicker__day-btn--outside',
+                      isTodayCell                    && 'sds-datepicker__day-btn--today',
+                      isSelected && !isTodayCell     && 'sds-datepicker__day-btn--active',
+                      isRangeStart                   && 'sds-datepicker__day-btn--range-start',
+                      isRangeEnd                     && 'sds-datepicker__day-btn--range-end',
+                    ].filter(Boolean).join(' ')}
+                    aria-label={`${cell.day} ${MONTH_NAMES[cell.month - 1]} ${cell.year}`}
+                    onMouseEnter={() => onHover?.(cell)}
+                    onMouseLeave={() => onHover?.(null)}
+                    onClick={() => onSelect(cell)}
+                    onFocus={() => onFocusDate?.(cell)}
+                  >
+                    {cell.day}
+                  </button>
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -645,6 +658,7 @@ export function DatePicker({
     }
 
     if (mode === 'month') {
+      const monthRows = [0, 4, 8].map(start => MONTH_SHORT.slice(start, start + 4));
       return (
         <div className="sds-datepicker__panel">
           <CalendarHeader
@@ -654,39 +668,45 @@ export function DatePicker({
             onPrev={prevYear}
             onNext={nextYear}
           />
-          <div
+          <table
             className="sds-datepicker__grid"
             role="grid"
             aria-label={`Months of ${viewYear}`}
             onKeyDown={monthGridKeyDown}
           >
-            {MONTH_SHORT.map((name, i) => {
-              const month      = i + 1;
-              const isSelected = currentValue?.year === viewYear && currentValue?.month === month;
-              const isCurrent  = t.year === viewYear && t.month === month;
-              const isFocused  = focusedDate?.year === viewYear && focusedDate?.month === month;
-              return (
-                <button
-                  key={month}
-                  type="button"
-                  role="gridcell"
-                  tabIndex={isFocused ? 0 : -1}
-                  className={['sds-datepicker__grid-btn', isCurrent && 'sds-datepicker__grid-btn--current'].filter(Boolean).join(' ')}
-                  aria-selected={isSelected ? true : undefined}
-                  aria-label={`${MONTH_NAMES[i]} ${viewYear}`}
-                  onClick={() => handleMonthSelect(month)}
-                >
-                  {name}
-                </button>
-              );
-            })}
-          </div>
+            <tbody>
+              {monthRows.map((row, rowIdx) => (
+                <tr key={rowIdx}>
+                  {row.map((name, colIdx) => {
+                    const month      = rowIdx * 4 + colIdx + 1;
+                    const isSelected = currentValue?.year === viewYear && currentValue?.month === month;
+                    const isCurrent  = t.year === viewYear && t.month === month;
+                    const isFocused  = focusedDate?.year === viewYear && focusedDate?.month === month;
+                    return (
+                      <td key={month} aria-selected={isSelected ? true : undefined} className="sds-datepicker__grid-cell">
+                        <button
+                          type="button"
+                          tabIndex={isFocused ? 0 : -1}
+                          className={['sds-datepicker__grid-btn', isCurrent && 'sds-datepicker__grid-btn--current'].filter(Boolean).join(' ')}
+                          aria-label={`${MONTH_NAMES[month - 1]} ${viewYear}`}
+                          onClick={() => handleMonthSelect(month)}
+                        >
+                          {name}
+                        </button>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
     }
 
     // year mode
     const years = Array.from({ length: 12 }, (_, i) => yearBlockStart + i);
+    const yearRows = [0, 4, 8].map(start => years.slice(start, start + 4));
     return (
       <div className="sds-datepicker__panel">
         <CalendarHeader
@@ -696,32 +716,37 @@ export function DatePicker({
           onPrev={prevYearBlock}
           onNext={nextYearBlock}
         />
-        <div
+        <table
           className="sds-datepicker__grid"
           role="grid"
           aria-label={`Years ${yearBlockStart} to ${yearBlockStart + 11}`}
           onKeyDown={yearGridKeyDown}
         >
-          {years.map(year => {
-            const isSelected = currentValue?.year === year;
-            const isCurrent  = t.year === year;
-            const isFocused  = focusedDate?.year === year;
-            return (
-              <button
-                key={year}
-                type="button"
-                role="gridcell"
-                tabIndex={isFocused ? 0 : -1}
-                className={['sds-datepicker__grid-btn', isCurrent && 'sds-datepicker__grid-btn--current'].filter(Boolean).join(' ')}
-                aria-selected={isSelected ? true : undefined}
-                aria-label={String(year)}
-                onClick={() => handleYearSelect(year)}
-              >
-                {year}
-              </button>
-            );
-          })}
-        </div>
+          <tbody>
+            {yearRows.map((row, rowIdx) => (
+              <tr key={rowIdx}>
+                {row.map(year => {
+                  const isSelected = currentValue?.year === year;
+                  const isCurrent  = t.year === year;
+                  const isFocused  = focusedDate?.year === year;
+                  return (
+                    <td key={year} aria-selected={isSelected ? true : undefined} className="sds-datepicker__grid-cell">
+                      <button
+                        type="button"
+                        tabIndex={isFocused ? 0 : -1}
+                        className={['sds-datepicker__grid-btn', isCurrent && 'sds-datepicker__grid-btn--current'].filter(Boolean).join(' ')}
+                        aria-label={String(year)}
+                        onClick={() => handleYearSelect(year)}
+                      >
+                        {year}
+                      </button>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

@@ -10,6 +10,7 @@ import { createPortal } from 'react-dom';
 import { computePosition, flip, shift, offset, autoUpdate } from '@floating-ui/dom';
 import { KeyboardArrowDownIcon, CloseIcon, SuccessIcon, ErrorIcon } from '../../../icons';
 import './Combobox.css';
+import '../../Navigation/Menu/Menu.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

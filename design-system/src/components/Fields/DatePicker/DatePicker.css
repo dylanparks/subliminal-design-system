@@ -317,7 +317,7 @@
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
   box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
-  padding: 16px;
+  padding: 24px;
   box-sizing: border-box;
   outline: none;
 
@@ -350,7 +350,7 @@
 .sds-datepicker__panel {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   width: 256px;
 }
 
@@ -362,6 +362,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 4px;
+  direction: ltr;
 }
 
 .sds-datepicker__header-title {
@@ -378,18 +379,21 @@
 }
 
 
-/* ─── Weekday row ─────────────────────────────────────────────── */
+/* ─── Day grid (table) ────────────────────────────────────────── */
 
-.sds-datepicker__weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+.sds-datepicker__days {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
+/* ─── Weekday header row ──────────────────────────────────────── */
+
 .sds-datepicker__weekday {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 32px;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
   font-family:    var(--sds-typography-font-family-body-content);
   font-weight:    var(--sds-typography-font-weight-body-content);
   font-size:      var(--sds-typography-font-size-body-content-small);
@@ -398,20 +402,15 @@
   color: var(--sds-neutral-content-tertiary);
 }
 
-/* ─── Day grid ────────────────────────────────────────────────── */
-
-.sds-datepicker__days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
+/* ─── Day cell ────────────────────────────────────────────────── */
 
 .sds-datepicker__day-cell {
   /* Range background spans the full cell; button is centered within */
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 36px;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /* Range highlight backgrounds */
@@ -451,6 +450,7 @@
   position: relative;
   z-index: 1;
   display: flex;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   width: 32px;
@@ -529,30 +529,38 @@
 /* ─── Month/Year grid ─────────────────────────────────────────── */
 
 .sds-datepicker__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 4px;
+  margin: -4px;
+  width: calc(100% + 8px);
+}
+
+.sds-datepicker__grid-cell {
+  padding: 0;
+  vertical-align: middle;
 }
 
 .sds-datepicker__grid-btn {
   all: unset;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  padding: 16px;
   box-sizing: border-box;
   font-family:    var(--sds-typography-font-family-body-content);
   font-weight:    var(--sds-typography-font-weight-body-content);
   font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    1;
+  line-height:    var(--sds-typography-line-height-body-content-small);
   letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-interactive-secondary-hollow-content-default);
+  border-radius: var(--sds-shape-border-radius-round);
   cursor: pointer;
   transition: background-color 100ms ease, color 100ms ease;
 }
 
-.sds-datepicker__grid-btn:hover:not(.sds-datepicker__grid-btn--current):not([aria-selected='true']) {
+.sds-datepicker__grid-cell:not([aria-selected='true']) .sds-datepicker__grid-btn:hover:not(.sds-datepicker__grid-btn--current) {
   background-color: var(--sds-interactive-secondary-hollow-background-hover);
   color: var(--sds-interactive-secondary-hollow-content-hover);
 }
@@ -562,20 +570,25 @@
   outline-offset: 2px;
 }
 
-/* Current month/year (today's) — hollow light-blue, blue text */
-.sds-datepicker__grid-btn--current:not([aria-selected='true']) {
+/* Current month/year (today's) — hollow light-blue, blue text, round pill */
+.sds-datepicker__grid-cell:not([aria-selected='true']) .sds-datepicker__grid-btn--current {
   background-color: var(--sds-interactive-primary-hollow-background-active);
   color: var(--sds-interactive-primary-hollow-content-default);
-  font-family: var(--sds-typography-font-family-body-interactive);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
+  border-radius: var(--sds-shape-border-radius-round);
+  padding: 12px 16px;
 }
 
-/* Selected month/year — filled dark-blue, white text */
-.sds-datepicker__grid-btn[aria-selected='true'] {
+/* Selected month/year — filled dark-blue, white text, ExtraBold, round pill */
+.sds-datepicker__grid-cell[aria-selected='true'] .sds-datepicker__grid-btn {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-family: var(--sds-typography-font-family-body-interactive);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
+  font-family:    var(--sds-typography-font-family-body-interactive);
+  font-weight:    var(--sds-typography-font-weight-body-interactive);
+  font-size:      var(--sds-typography-font-size-body-interactive-small);
+  line-height:    var(--sds-typography-line-height-body-interactive-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  padding: 12px 16px;
+  border-radius: var(--sds-shape-border-radius-round);
 }
 
 /* ─── Divider between range panels ──────────────────────────────*/

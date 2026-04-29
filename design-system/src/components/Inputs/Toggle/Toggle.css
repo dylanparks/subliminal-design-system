@@ -1,0 +1,193 @@
+/* Toggle — Subliminal Design System
+ * Inputs/Toggle/Toggle
+ *
+ * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
+ *         --sds-interactive-negative-*, --sds-effects-focus, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-toggle                → root <label>
+ *   .sds-toggle__input         → visually hidden <input type="checkbox" role="switch">
+ *   .sds-toggle__indicator-wrap → aligns track to first content line
+ *   .sds-toggle-indicator       → visual track + thumb (from ToggleIndicator)
+ *   .sds-toggle__label-slot    → free content slot
+ *
+ * Interactive state cascade:
+ *   Hover   → .sds-toggle:hover modifies .sds-toggle-indicator track
+ *   Pressed → .sds-toggle:active modifies .sds-toggle-indicator track
+ *   Focus   → :has(:focus-visible) adds focus ring to .sds-toggle-indicator
+ *   Error   → .sds-toggle--error drives negative token variants
+ *   Disabled→ .sds-toggle--disabled mutes the whole component
+ */
+
+/* ─── Root label ─────────────────────────────────────────────────────────────── */
+
+.sds-toggle {
+  display:     flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Visually hidden native input ───────────────────────────────────────────── */
+
+.sds-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Indicator wrap ─────────────────────────────────────────────────────────── */
+
+.sds-toggle__indicator-wrap {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: var(--sds-typography-line-height-body-content-medium);
+}
+
+.sds-toggle--medium .sds-toggle__indicator-wrap {
+  height: var(--sds-typography-line-height-body-content-small);
+}
+
+/* ─── Content slot ───────────────────────────────────────────────────────────── */
+
+.sds-toggle__label-slot {
+  display:        flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ─── Default label + description ────────────────────────────────────────────── */
+
+.sds-toggle__label,
+.sds-toggle__description {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+}
+
+.sds-toggle__label {
+  font-size:      var(--sds-typography-font-size-body-content-medium);
+  line-height:    var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color:          var(--sds-neutral-content-primary);
+}
+
+.sds-toggle__description {
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  color:          var(--sds-neutral-content-tertiary);
+}
+
+.sds-toggle--medium .sds-toggle__label {
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+.sds-toggle--medium .sds-toggle__description {
+  font-size:      var(--sds-typography-font-size-body-content-xsmall);
+  line-height:    var(--sds-typography-line-height-body-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+}
+
+.sds-toggle--error .sds-toggle__label,
+.sds-toggle--error .sds-toggle__description {
+  color: var(--sds-status-error-content-default);
+}
+
+/* ─── Hover states ───────────────────────────────────────────────────────────── */
+
+/* Off hover — default */
+.sds-toggle:hover:not(.sds-toggle--disabled):not(.sds-toggle--error) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-secondary-hollow-stroke-inactive-hover);
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+}
+
+.sds-toggle:hover:not(.sds-toggle--disabled):not(.sds-toggle--error) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-secondary-hollow-content-inactive-hover);
+}
+
+/* On hover — default */
+.sds-toggle:hover:not(.sds-toggle--disabled):not(.sds-toggle--error) .sds-toggle-indicator--checked {
+  background-color: var(--sds-interactive-secondary-filled-background-hover);
+}
+
+/* Off hover — error */
+.sds-toggle--error:hover:not(.sds-toggle--disabled) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-negative-hollow-stroke-inactive-hover);
+  background-color: var(--sds-interactive-negative-hollow-background-inactive-hover);
+}
+
+.sds-toggle--error:hover:not(.sds-toggle--disabled) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-negative-hollow-content-inactive-hover);
+}
+
+/* On hover — error */
+.sds-toggle--error:hover:not(.sds-toggle--disabled) .sds-toggle-indicator--checked {
+  background-color: var(--sds-interactive-negative-filled-background-hover);
+}
+
+/* ─── Pressed (active) states ────────────────────────────────────────────────── */
+
+/* Off pressed — default */
+.sds-toggle:active:not(.sds-toggle--disabled):not(.sds-toggle--error) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-secondary-hollow-stroke-inactive-active);
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-active);
+}
+
+.sds-toggle:active:not(.sds-toggle--disabled):not(.sds-toggle--error) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-secondary-hollow-content-inactive-active);
+}
+
+/* On pressed — default */
+.sds-toggle:active:not(.sds-toggle--disabled):not(.sds-toggle--error) .sds-toggle-indicator--checked {
+  background-color: var(--sds-interactive-secondary-filled-background-active);
+}
+
+/* Off pressed — error */
+.sds-toggle--error:active:not(.sds-toggle--disabled) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) {
+  border-color: var(--sds-interactive-negative-hollow-stroke-inactive-active);
+  background-color: var(--sds-interactive-negative-hollow-background-inactive-active);
+}
+
+.sds-toggle--error:active:not(.sds-toggle--disabled) .sds-toggle-indicator:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
+  background-color: var(--sds-interactive-negative-hollow-content-inactive-active);
+}
+
+/* On pressed — error */
+.sds-toggle--error:active:not(.sds-toggle--disabled) .sds-toggle-indicator--checked {
+  background-color: var(--sds-interactive-negative-filled-background-active);
+}
+
+/* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
+
+.sds-toggle:not([data-mouse-focus]):has(.sds-toggle__input:focus-visible) .sds-toggle-indicator {
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+/* ─── Disabled state ─────────────────────────────────────────────────────────── */
+
+.sds-toggle--disabled {
+  pointer-events: none;
+  position: relative;
+}
+
+.sds-toggle--disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+.sds-toggle--disabled .sds-toggle__label-slot {
+  opacity: 0.45;
+}

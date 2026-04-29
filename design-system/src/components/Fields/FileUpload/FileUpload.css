@@ -1,0 +1,139 @@
+/* FileUpload — Subliminal Design System
+ * Fields/FileUpload/FileUpload
+ *
+ * Tokens: --sds-interactive-fields-background-*, --sds-interactive-fields-stroke-*,
+ *         --sds-interactive-fields-content-*, --sds-status-error-*,
+ *         --sds-effects-focus, --sds-shape-border-radius-xlarge,
+ *         --sds-typography-*
+ *
+ * Structure:
+ *   .sds-file-upload             → root wrapper
+ *   .sds-file-upload__zone       → drop target / clickable area
+ *   .sds-file-upload__input      → visually hidden <input type="file">
+ *   .sds-file-upload__prompt     → default inner content (icon + title + button)
+ *   .sds-file-upload__footer     → hint / error message below zone
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-file-upload {
+  display:        flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ─── Drop zone ──────────────────────────────────────────────────────────────── */
+
+.sds-file-upload__zone {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+
+  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border-radius: var(--sds-shape-border-radius-xlarge);
+  background-color: var(--sds-interactive-fields-background-default);
+
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  overflow: hidden;
+
+  transition: box-shadow 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+.sds-file-upload__zone:hover:not(.sds-file-upload__zone--disabled) {
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+.sds-file-upload__zone:focus-visible,
+.sds-file-upload__zone[data-drag-over] {
+  box-shadow:   0 0 0 4px var(--sds-effects-focus);
+  border-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+/* ─── Zone modifiers ─────────────────────────────────────────────────────────── */
+
+.sds-file-upload__zone--error {
+  border-color: var(--sds-status-error-stroke-default);
+}
+
+.sds-file-upload__zone--disabled {
+  cursor:         not-allowed;
+  opacity:        0.5;
+  pointer-events: none;
+}
+
+/* ─── Hidden input ───────────────────────────────────────────────────────────── */
+
+.sds-file-upload__input {
+  position:   absolute;
+  width:      1px;
+  height:     1px;
+  padding:    0;
+  margin:     -1px;
+  overflow:   hidden;
+  clip:       rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border:     0;
+}
+
+/* ─── Default prompt ─────────────────────────────────────────────────────────── */
+
+.sds-file-upload__prompt {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap: 16px;
+  width: 100%;
+}
+
+.sds-file-upload__prompt-upload-section {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.sds-file-upload__prompt-icon {
+  color: var(--sds-neutral-content-secondary);
+}
+
+.sds-file-upload__prompt-title {
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-medium);
+  line-height:    var(--sds-typography-line-height-subtitle-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-medium);
+  color:          var(--sds-neutral-content-primary);
+  text-align:     center;
+  white-space:    nowrap;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────────── */
+
+.sds-file-upload__footer {
+  padding: 0 2px;
+}
+
+.sds-file-upload__hint,
+.sds-file-upload__error-message {
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+.sds-file-upload__hint {
+  color: var(--sds-neutral-content-tertiary);
+}
+
+.sds-file-upload__error-message {
+  color: var(--sds-status-error-content-default);
+}

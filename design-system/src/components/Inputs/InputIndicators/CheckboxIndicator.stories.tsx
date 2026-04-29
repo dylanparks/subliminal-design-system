@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CheckboxIndicator } from './CheckboxIndicator';
 
-// ─── Meta ─────────────────────────────────────────────────────────────────────
-
 const meta: Meta<typeof CheckboxIndicator> = {
   component: CheckboxIndicator,
-  title: 'Inputs/Checkbox/Indicator',
+  title: 'Inputs/InputIndicators/CheckboxIndicator',
   parameters: {
     layout: 'centered',
     docs: {
@@ -55,7 +53,5 @@ const meta: Meta<typeof CheckboxIndicator> = {
 
 export default meta;
 type Story = StoryObj<typeof CheckboxIndicator>;
-
-// ─── Default ──────────────────────────────────────────────────────────────────
 
 export const Default: Story = {};

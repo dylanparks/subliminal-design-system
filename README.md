@@ -51,17 +51,21 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `SelectField` | ✓ | Dropdown built on Menu, floating label, error/success states, WCAG AA |
 | `DatePicker` | ✓ | Date / range / month / year modes, Floating UI positioning, WCAG AA |
 | `TimePicker` | ✓ | 12 h / 24 h, configurable minute intervals (1·5·10·15·30), WCAG AA |
+| `FileUpload` | ✓ | Drop zone + `FileUploadItem` — drag-and-drop, click-to-browse, MIME/size validation, progress |
 | `Dropdown` | Planned | |
 
 ### Inputs
 
 | Component | Status | Notes |
 |---|---|---|
-| `CheckboxItem` | ✓ | Core checkbox — native `<input type="checkbox">`, free children slot, indeterminate state, WCAG AA |
-| `CheckboxGroup` | ✓ | Layout container for multiple CheckboxItems — open label slot, error validation message |
-| ↳ `CheckboxIndicator` | ✓ | Utility visual sub-component; not part of core API — used internally and by multi-select Menu items |
-| `Radio` | Planned | |
-| `Toggle` | Planned | |
+| `Checkbox` | ✓ | Core checkbox — native `<input type="checkbox">`, free children slot, indeterminate state, WCAG AA |
+| `CheckboxGroup` | ✓ | Group container — context-managed value state, select-all parent, cascading disabled, `aria-labelledby` |
+| `Radio` | ✓ | Single radio item — always used inside `RadioGroup`; browser arrow-key navigation via shared `name` |
+| `RadioGroup` | ✓ | `role="radiogroup"` container — controlled/uncontrolled value, cascading disabled, `aria-labelledby` |
+| `Toggle` | ✓ | On/off switch — `<input type="checkbox" role="switch">`, controlled/uncontrolled, error state, WCAG AA |
+| ↳ `CheckboxIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally and by multi-select Menu items |
+| ↳ `RadioIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally by `Radio` |
+| ↳ `ToggleIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — track + thumb, used internally by `Toggle` |
 | `Rating Input` | Planned | |
 | `Slider` | Planned | |
 
@@ -78,6 +82,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 
 | Component | Status | Notes |
 |---|---|---|
+| `ProgressBar` | ✓ | Determinate + indeterminate (animated sweep), error/success states, optional label + value |
 | `Badges` | Planned | Menu tag suffix uses a temporary inline pill until this is built |
 | `Avatar` | Planned | |
 | `Profile` | Planned | Avatar + label + support content |
@@ -108,7 +113,11 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - `PhoneField`: `role="group"` wrapper, country button as WAI-ARIA combobox (`role="combobox"`, `aria-expanded`, `aria-haspopup="menu"`), printable-character typeahead in country list, `role="status"` live region for dial-code changes, `autocomplete="tel-national"` + `inputmode="numeric"` on phone input
 - `SelectField`: trigger button as WAI-ARIA combobox (`role="combobox"`, `aria-expanded`, `aria-haspopup="menu"`), keyboard open/close (Space / Enter / ArrowDown / ArrowUp / Escape), `role="status"` live region announces selected option, focus restored to trigger on close
 - `TimePicker`: trigger as button with `aria-haspopup="dialog"` + `aria-expanded`, popover is `role="dialog" aria-modal`, each column is `role="listbox"` with `aria-orientation="vertical"`, items are `role="option"` with `aria-selected`, roving tabindex within each column, Arrow up/down navigates within column, Escape closes, `role="status"` live region announces each committed time change
-- `CheckboxItem`: native `<input type="checkbox">` (visually hidden) inside a `<label>` for form participation and screen-reader support; `indeterminate` set imperatively via ref; focus ring on indicator via `:has(:focus-visible)` with `mousedown` guard to suppress Chrome's checkbox `:focus-visible` on click; `CheckboxIndicator` is always `aria-hidden`
+- `Checkbox`: native `<input type="checkbox">` (visually hidden) inside a `<label>` for form participation and screen-reader support; `indeterminate` set imperatively via ref; focus ring on indicator via `:has(:focus-visible)` with `mousedown` guard to suppress Chrome's checkbox `:focus-visible` on click; `CheckboxIndicator` is always `aria-hidden`
+- `CheckboxGroup`: `role="group"` + `aria-labelledby` wired to label slot via `useId()`; group value state cascades to items via React context; parent checkbox derives indeterminate state from child values
+- `RadioGroup`: `role="radiogroup"` + `aria-labelledby`; arrow-key navigation handled natively by browser when all radios share the same auto-generated `name` attribute
+- `Toggle`: `<input type="checkbox" role="switch">` for switch semantics + form participation; `aria-checked` mirrors resolved checked state; same Chrome `:focus-visible` mousedown guard as Checkbox
+- `ProgressBar`: `role="progressbar"` + `aria-valuemin/max/now/text`; omits `aria-valuenow` when indeterminate; `aria-valuetext` reads "Loading…" for indeterminate
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
 
@@ -151,9 +160,15 @@ design-system/
     │   │   ├── PhoneField/
     │   │   ├── SelectField/
     │   │   ├── DatePicker/
-    │   │   └── TimePicker/
+    │   │   ├── TimePicker/
+    │   │   └── FileUpload/
     │   ├── Inputs/
-    │   │   └── Checkbox/           ← CheckboxItem, CheckboxGroup, CheckboxIndicator (utility)
+    │   │   ├── Checkbox/           ← Checkbox, CheckboxGroup
+    │   │   ├── Radio/              ← Radio, RadioGroup
+    │   │   ├── Toggle/             ← Toggle
+    │   │   └── InputIndicators/    ← CheckboxIndicator, RadioIndicator, ToggleIndicator (utility)
+    │   ├── DataDisplay/
+    │   │   └── ProgressBar/
     │   └── Navigation/
     │       └── Menu/
     └── tokens/

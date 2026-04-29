@@ -1,0 +1,71 @@
+/* RadioGroup — Subliminal Design System
+ * Inputs/Radio/RadioGroup
+ *
+ * Tokens: --sds-status-error-content-default, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-radio-group              → root container (role="radiogroup")
+ *   .sds-radio-group__label-slot  → open label slot (group heading, help text, etc.)
+ *   .sds-radio-group__error-message → error icon + validation text row (below label)
+ *   .sds-radio-group__error-icon  → wrapper for ErrorIcon
+ *   .sds-radio-group__items       → vertical stack of Radio items
+ *
+ * Spacing:
+ *   label → error message : 4px
+ *   error message → items : 12px
+ *   label → items (no error): 12px
+ *
+ * Modifiers:
+ *   .sds-radio-group--medium → 12px gap between items (default large = 16px)
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-radio-group {
+  display:        flex;
+  flex-direction: column;
+}
+
+/* ─── Label slot ─────────────────────────────────────────────────────────────── */
+
+.sds-radio-group__label-slot:has(+ .sds-radio-group__error-message) {
+  margin-bottom: 4px;
+}
+
+.sds-radio-group__label-slot:has(+ .sds-radio-group__items) {
+  margin-bottom: 12px;
+}
+
+/* ─── Error message ──────────────────────────────────────────────────────────── */
+
+.sds-radio-group__error-message {
+  display:       flex;
+  align-items:   center;
+  gap: 4px;
+  margin-bottom: 12px;
+  color: var(--sds-status-error-content-default);
+
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+}
+
+.sds-radio-group__error-icon {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ─── Items stack ────────────────────────────────────────────────────────────── */
+
+.sds-radio-group__items {
+  display:        flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sds-radio-group--medium .sds-radio-group__items {
+  gap: 12px;
+}

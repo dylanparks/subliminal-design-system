@@ -17,7 +17,8 @@ import {
   ChevronRightIcon,
   DragHandleIcon,
 } from '../../../icons';
-import { CheckboxIndicator } from '../../Inputs/Checkbox/CheckboxIndicator';
+import { CheckboxIndicator } from '../../Inputs/InputIndicators/CheckboxIndicator';
+import { ToggleIndicator } from '../../Inputs/InputIndicators/ToggleIndicator';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -126,37 +127,6 @@ function SingleSelectCheckmark({ selected }: { selected: boolean }) {
     >
       <CheckIcon size={16} />
     </span>
-  );
-}
-
-// ─── ToggleSwitch (configure mode) ───────────────────────────────────────────
-
-function ToggleSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={on}
-      className="sds-menu-item__toggle-zone"
-      onClick={(e) => {
-        e.stopPropagation();
-        onToggle();
-      }}
-      // Prevent pointer-down from initiating a drag on the parent <li>
-      onPointerDown={(e) => e.stopPropagation()}
-      tabIndex={-1}
-    >
-      <span
-        className={[
-          'sds-menu-item__toggle',
-          on && 'sds-menu-item__toggle--on',
-        ]
-          .filter(Boolean)
-          .join(' ')}
-      >
-        <span className="sds-menu-item__toggle-thumb" />
-      </span>
-    </button>
   );
 }
 
@@ -308,7 +278,7 @@ export function Menu({
     const listEl = listRef.current;
 
     // Single-select: scroll the selected item to the bottom of the visible list
-    // and place focus on it (matches Base UI combobox "reopen" behaviour).
+    // and place focus on it when the menu reopens.
     const selectedEl =
       type === 'single-select'
         ? listEl.querySelector<HTMLElement>('[role="menuitemradio"][aria-checked="true"]')
@@ -438,7 +408,7 @@ export function Menu({
           style={{ maxHeight }}
           onKeyDown={handleKeyDown}
           onScroll={updateScrollbar}
-          tabIndex={-1}
+          tabIndex={0}
         >
           {children}
         </ul>
@@ -480,6 +450,7 @@ export function MenuItem({
   onDrop,
 }: MenuItemProps) {
   const { menuType, onClose } = useContext(MenuContext);
+  const labelId = useId();
 
   const isSingleSelect = menuType === 'single-select';
   const isMultiSelect  = menuType === 'multi-select';
@@ -594,19 +565,28 @@ export function MenuItem({
       )}
 
       {/* ── Label ─────────────────────────────────────────────────────────── */}
-      <span className="sds-menu-item__content">{children}</span>
+      <span id={labelId} className="sds-menu-item__content">{children}</span>
 
       {/* ── Suffix ────────────────────────────────────────────────────────── */}
       {suffix && <MenuItemSuffixView suffix={suffix} />}
 
       {/* ── Configure toggle ──────────────────────────────────────────────── */}
       {isConfigure && toggleable && (
-        <ToggleSwitch
-          on={selected}
-          onToggle={() => {
+        <button
+          type="button"
+          role="switch"
+          aria-checked={selected}
+          aria-labelledby={labelId}
+          className="sds-menu-item__toggle-zone"
+          onClick={(e) => {
+            e.stopPropagation();
             if (!disabled) handleClick();
           }}
-        />
+          onPointerDown={(e) => e.stopPropagation()}
+          tabIndex={-1}
+        >
+          <ToggleIndicator checked={selected} size="medium" disabled={disabled} />
+        </button>
       )}
     </li>
   );
