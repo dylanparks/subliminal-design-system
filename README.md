@@ -7,7 +7,7 @@ A component library and design token pipeline built for product teams. Sublimina
 - **React 19** + **TypeScript**
 - **Vite** — dev server and build tool
 - **Style Dictionary v5** — transforms Figma variable exports into CSS custom properties and typed TypeScript constants
-- **Storybook 8** — component development environment and documentation
+- **Storybook 10** — component development environment and documentation
 - **Vitest** + **Testing Library** — unit and accessibility testing
 - **Chromatic** — visual regression testing
 
@@ -52,7 +52,6 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `DatePicker` | ✓ | Date / range / month / year modes, Floating UI positioning, WCAG AA |
 | `TimePicker` | ✓ | 12 h / 24 h, configurable minute intervals (1·5·10·15·30), WCAG AA |
 | `FileUpload` | ✓ | Drop zone + `FileUploadItem` — drag-and-drop, click-to-browse, MIME/size validation, progress |
-| `Dropdown` | Planned | |
 
 ### Inputs
 
@@ -83,7 +82,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | Component | Status | Notes |
 |---|---|---|
 | `ProgressBar` | ✓ | Determinate + indeterminate (animated sweep), error/success states, optional label + value |
-| `Badges` | Planned | Menu tag suffix uses a temporary inline pill until this is built |
+| `Tag` | ✓ | Semantic label — 6 types, solid/outline fill styles, large/small sizes, optional icon |
 | `Avatar` | Planned | |
 | `Profile` | Planned | Avatar + label + support content |
 
@@ -168,7 +167,8 @@ design-system/
     │   │   ├── Toggle/             ← Toggle
     │   │   └── InputIndicators/    ← CheckboxIndicator, RadioIndicator, ToggleIndicator (utility)
     │   ├── DataDisplay/
-    │   │   └── ProgressBar/
+    │   │   ├── ProgressBar/
+    │   │   └── Tag/
     │   └── Navigation/
     │       └── Menu/
     └── tokens/
