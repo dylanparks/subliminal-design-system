@@ -1,7 +1,7 @@
 /* RatingInput — Subliminal Design System
  * Inputs/RatingInput
  *
- * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
+ * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
  *         --sds-effects-focus, --sds-shape-border-radius-round, --sds-typography-*,
  *         --sds-neutral-content-*
  *
@@ -83,7 +83,7 @@
   width: 24px;
   height: 24px;
   border-radius: var(--sds-shape-border-radius-round, 999px);
-  color: var(--sds-interactive-secondary-hollow-stroke-default);
+  color: var(--sds-interactive-secondary-hollow-stroke-inactive-default);
   transition: color 120ms ease, box-shadow 120ms ease;
 }
 
