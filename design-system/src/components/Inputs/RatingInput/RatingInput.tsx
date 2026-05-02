@@ -1,5 +1,6 @@
 import { useState, useId } from 'react';
 import './RatingInput.css';
+import { StarFilledIcon, StarIcon } from '../../../icons';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -31,46 +32,6 @@ export interface RatingInputProps {
 }
 
 // ─── Star icons ───────────────────────────────────────────────────────────────
-
-// Material Symbols (Rounded) star path — 24dp optical grid.
-const STAR_PATH = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
-
-function StarFilledIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d={STAR_PATH} fill="currentColor" />
-    </svg>
-  );
-}
-
-function StarOutlineIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d={STAR_PATH}
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 // ─── RatingInput ──────────────────────────────────────────────────────────────
 
@@ -178,7 +139,7 @@ export function RatingInput({
                 onChange={() => handleChange(star)}
               />
               <span className="sds-rating-input__star-icon" aria-hidden="true">
-                {isFilled ? <StarFilledIcon /> : <StarOutlineIcon />}
+                {isFilled ? <StarFilledIcon size={24} /> : <StarIcon size={24} />}
               </span>
             </label>
           );
