@@ -61,7 +61,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `CheckboxGroup` | ✓ | Group container — context-managed value state, select-all parent, cascading disabled, `aria-labelledby` |
 | `Radio` | ✓ | Single radio item — always used inside `RadioGroup`; browser arrow-key navigation via shared `name` |
 | `RadioGroup` | ✓ | `role="radiogroup"` container — controlled/uncontrolled value, cascading disabled, `aria-labelledby` |
-| `Toggle` | ✓ | On/off switch — `<input type="checkbox" role="switch">`, controlled/uncontrolled, error state, WCAG AA |
+| `Toggle` | ✓ | On/off switch — `<input type="checkbox" role="switch">`, controlled/uncontrolled, WCAG AA |
 | ↳ `CheckboxIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally and by multi-select Menu items |
 | ↳ `RadioIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally by `Radio` |
 | ↳ `ToggleIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — track + thumb, used internally by `Toggle` |
@@ -100,6 +100,13 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `Modal` | Planned |
 | `Tooltips` | Planned |
 | `Accordion` | Planned |
+
+### Utilities
+
+| Export | Notes |
+|---|---|
+| `DirectionProvider` | React context provider — sets `dir` on `document.documentElement` and exposes direction to the tree via context |
+| `useDirection` | Hook returning `'ltr' \| 'rtl'`; returns `'ltr'` safely outside provider |
 
 ## Accessibility
 
@@ -171,6 +178,9 @@ design-system/
     │   │   └── Tag/
     │   └── Navigation/
     │       └── Menu/
+    ├── utilities/
+    │   ├── DirectionProvider.tsx  ← RTL/LTR context + DOM sync
+    │   └── useDirection.ts        ← hook for reading direction in components
     └── tokens/
         ├── figma/          ← Figma JSON exports (source of truth)
         └── generated/      ← CSS custom properties + TS constants
