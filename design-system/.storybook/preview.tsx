@@ -1,8 +1,11 @@
 import type { Preview } from '@storybook/react-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import React from 'react';
 import '../src/tokens/generated/tokens.css';
 import './preview.css';
 import { fontFamilies } from '../src/tokens/generated/fonts';
+import { DirectionProvider } from '../src/utilities';
+import type { Direction } from '../src/utilities';
 
 // ─── Font load check ──────────────────────────────────────────────────────────
 //
@@ -150,13 +153,13 @@ const preview: Preview = {
       },
       defaultTheme: 'Light',
     }),
-    (_Story, context) => {
-      // Sync Storybook toolbar → document.documentElement.dir so [dir="rtl"]
-      // CSS selectors and logical properties work. In app usage, DirectionProvider
-      // handles this — the toolbar is a Storybook-only shortcut.
-      const dir = (context.globals['direction'] as string) ?? 'ltr';
-      document.documentElement.dir = dir;
-      return _Story();
+    (Story, context) => {
+      const dir = ((context.globals['direction'] as string) ?? 'ltr') as Direction;
+      return (
+        <DirectionProvider dir={dir}>
+          <Story />
+        </DirectionProvider>
+      );
     },
   ],
   parameters: {

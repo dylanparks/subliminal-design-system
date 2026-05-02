@@ -33,17 +33,12 @@ const meta: Meta<typeof ToggleIndicator> = {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' } },
     },
-    error: {
-      control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
-    },
   },
   args: {
     checked:  false,
     size:     'large',
     onMedia:  false,
     disabled: false,
-    error:    false,
   },
 };
 
