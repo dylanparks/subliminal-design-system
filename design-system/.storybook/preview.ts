@@ -155,11 +155,7 @@ const preview: Preview = {
     }),
     (Story, context) => {
       const dir = ((context.globals['direction'] as string) ?? 'ltr') as Direction;
-      return (
-        <DirectionProvider dir={dir}>
-          <Story />
-        </DirectionProvider>
-      );
+      return React.createElement(DirectionProvider, { dir }, React.createElement(Story));
     },
   ],
   parameters: {
