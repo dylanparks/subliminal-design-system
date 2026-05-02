@@ -31,11 +31,6 @@ const meta: Meta<typeof Toggle> = {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' } },
     },
-    error: {
-      control: 'boolean',
-      description: 'Error state — red track and label styling.',
-      table: { defaultValue: { summary: 'false' } },
-    },
     size: {
       control: 'select',
       options: ['large', 'medium'],
@@ -54,7 +49,6 @@ const meta: Meta<typeof Toggle> = {
     label:          'Example label',
     defaultChecked: false,
     disabled:       false,
-    error:          false,
     size:           'large',
   },
 };
@@ -88,10 +82,5 @@ export const Disabled: Story = {
 
 export const DisabledOn: Story = {
   args: { disabled: true, defaultChecked: true },
-  render: uncontrolled,
-};
-
-export const Error: Story = {
-  args: { error: true },
   render: uncontrolled,
 };

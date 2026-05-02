@@ -114,28 +114,6 @@
   background-color: var(--sds-interactive-secondary-filled-content-disabled);
 }
 
-/* ─── Error ──────────────────────────────────────────────────────────────────── */
-
-/* Off error — hollow with red border and red thumb */
-.sds-toggle-indicator--error:not(.sds-toggle-indicator--checked) {
-  border-color: var(--sds-interactive-negative-hollow-stroke-inactive-default);
-  background-color: var(--sds-interactive-negative-hollow-background-inactive-default);
-}
-
-.sds-toggle-indicator--error:not(.sds-toggle-indicator--checked) .sds-toggle-indicator__thumb {
-  background-color: var(--sds-interactive-negative-hollow-content-inactive-default);
-}
-
-/* On error — filled red with white thumb */
-.sds-toggle-indicator--error.sds-toggle-indicator--checked {
-  border-color: transparent;
-  background-color: var(--sds-interactive-negative-filled-background-default);
-}
-
-.sds-toggle-indicator--error.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
-  background-color: var(--sds-interactive-negative-filled-content-default);
-}
-
 /* ─── On Media ───────────────────────────────────────────────────────────────── */
 
 .sds-toggle-indicator--on-media:not(.sds-toggle-indicator--checked) {

@@ -151,7 +151,11 @@ const preview: Preview = {
       defaultTheme: 'Light',
     }),
     (_Story, context) => {
-      document.documentElement.dir = (context.globals['direction'] as string) ?? 'ltr';
+      // Sync Storybook toolbar → document.documentElement.dir so [dir="rtl"]
+      // CSS selectors and logical properties work. In app usage, DirectionProvider
+      // handles this — the toolbar is a Storybook-only shortcut.
+      const dir = (context.globals['direction'] as string) ?? 'ltr';
+      document.documentElement.dir = dir;
       return _Story();
     },
   ],

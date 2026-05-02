@@ -230,7 +230,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 4px;
+  margin-inline-start: 4px;
   color: var(--sds-interactive-fields-content-default);
   cursor: pointer;
   transition: color 120ms ease;
@@ -304,6 +304,10 @@
   opacity: 0;
   transform: scale(0.97);
   transform-origin: top left;
+}
+
+[dir="rtl"] .sds-timepicker__popover {
+  transform-origin: top right;
 }
 
 .sds-timepicker__popover--ready {

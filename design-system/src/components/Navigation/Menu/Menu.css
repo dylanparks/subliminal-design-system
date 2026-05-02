@@ -310,14 +310,14 @@
 /*
  * Configure items use `cursor: grab` across the entire row.
  * The toggle zone overrides this with `cursor: pointer` for its own hit area.
- * padding-right: 0 — the toggle zone provides the right padding instead, so
- * the zone's clickable area extends flush to the item's right edge.
+ * padding-inline-end: 0 — the toggle zone provides the end-side padding instead,
+ * so the zone's clickable area extends flush to the item's inline-end edge.
  * position: relative — scopes the drop-indicator pseudo-elements.
  */
 .sds-menu-item--configure {
   position: relative;
   cursor: grab;
-  padding-right: 0;
+  padding-inline-end: 0;
 }
 
 /* Drop indicator line — shown via data-drop-position set by internal drag handlers */

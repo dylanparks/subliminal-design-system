@@ -233,7 +233,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 4px;
+  margin-inline-start: 4px;
   color: var(--sds-interactive-fields-content-default);
   cursor: pointer;
   transition: color 120ms ease;
@@ -328,6 +328,10 @@
   transform-origin: top left;
 }
 
+[dir="rtl"] .sds-datepicker__popover {
+  transform-origin: top right;
+}
+
 /* Reveal + entrance animation once position is confirmed */
 .sds-datepicker__popover--ready {
   visibility: visible;
@@ -418,23 +422,23 @@
   background-color: var(--sds-interactive-secondary-hollow-background-hover);
 }
 
-/* Left half pill for range start */
+/* Inline-end half pill for range start — extends toward subsequent in-range cells */
 .sds-datepicker__day-cell--range-start::after {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
-  right: 0;
+  inset-inline-end: 0;
   width: 50%;
   background-color: var(--sds-interactive-secondary-hollow-background-hover);
   pointer-events: none;
 }
 
-/* Right half pill for range end */
+/* Inline-start half pill for range end — connects to preceding in-range cells */
 .sds-datepicker__day-cell--range-end::after {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 50%;
   background-color: var(--sds-interactive-secondary-hollow-background-hover);
   pointer-events: none;

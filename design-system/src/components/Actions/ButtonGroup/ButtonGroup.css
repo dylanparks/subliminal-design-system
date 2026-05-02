@@ -49,39 +49,39 @@
 /* ─── First / last radius ────────────────────────────────────────────────────── */
 
 .sds-button-group--xsmall .sds-button-group__item:first-child {
-  border-top-left-radius: var(--sds-shape-border-radius-xsmall);
-  border-bottom-left-radius: var(--sds-shape-border-radius-xsmall);
+  border-start-start-radius: var(--sds-shape-border-radius-xsmall);
+  border-end-start-radius:   var(--sds-shape-border-radius-xsmall);
 }
 .sds-button-group--xsmall .sds-button-group__item:last-child {
-  border-top-right-radius: var(--sds-shape-border-radius-xsmall);
-  border-bottom-right-radius: var(--sds-shape-border-radius-xsmall);
+  border-start-end-radius: var(--sds-shape-border-radius-xsmall);
+  border-end-end-radius:   var(--sds-shape-border-radius-xsmall);
 }
 
 .sds-button-group--small .sds-button-group__item:first-child {
-  border-top-left-radius: var(--sds-shape-border-radius-small);
-  border-bottom-left-radius: var(--sds-shape-border-radius-small);
+  border-start-start-radius: var(--sds-shape-border-radius-small);
+  border-end-start-radius:   var(--sds-shape-border-radius-small);
 }
 .sds-button-group--small .sds-button-group__item:last-child {
-  border-top-right-radius: var(--sds-shape-border-radius-small);
-  border-bottom-right-radius: var(--sds-shape-border-radius-small);
+  border-start-end-radius: var(--sds-shape-border-radius-small);
+  border-end-end-radius:   var(--sds-shape-border-radius-small);
 }
 
 .sds-button-group--medium .sds-button-group__item:first-child {
-  border-top-left-radius: var(--sds-shape-border-radius-medium);
-  border-bottom-left-radius: var(--sds-shape-border-radius-medium);
+  border-start-start-radius: var(--sds-shape-border-radius-medium);
+  border-end-start-radius:   var(--sds-shape-border-radius-medium);
 }
 .sds-button-group--medium .sds-button-group__item:last-child {
-  border-top-right-radius: var(--sds-shape-border-radius-medium);
-  border-bottom-right-radius: var(--sds-shape-border-radius-medium);
+  border-start-end-radius: var(--sds-shape-border-radius-medium);
+  border-end-end-radius:   var(--sds-shape-border-radius-medium);
 }
 
 .sds-button-group--large .sds-button-group__item:first-child {
-  border-top-left-radius: var(--sds-shape-border-radius-large);
-  border-bottom-left-radius: var(--sds-shape-border-radius-large);
+  border-start-start-radius: var(--sds-shape-border-radius-large);
+  border-end-start-radius:   var(--sds-shape-border-radius-large);
 }
 .sds-button-group--large .sds-button-group__item:last-child {
-  border-top-right-radius: var(--sds-shape-border-radius-large);
-  border-bottom-right-radius: var(--sds-shape-border-radius-large);
+  border-start-end-radius: var(--sds-shape-border-radius-large);
+  border-end-end-radius:   var(--sds-shape-border-radius-large);
 }
 
 /* ─── Active (selected) state ────────────────────────────────────────────────── */

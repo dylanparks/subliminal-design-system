@@ -314,7 +314,7 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  margin-left: 4px;
+  margin-inline-start: 4px;
   color: var(--sds-interactive-fields-content-default);
   background: none;
   border: none;

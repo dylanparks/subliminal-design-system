@@ -16,8 +16,6 @@ export interface ToggleIndicatorProps {
   onMedia?: boolean;
   /** Renders the disabled visual appearance */
   disabled?: boolean;
-  /** Renders the error visual appearance */
-  error?: boolean;
   /** Additional className forwarded to the track element */
   className?: string;
 }
@@ -37,7 +35,6 @@ export function ToggleIndicator({
   size = 'large',
   onMedia = false,
   disabled = false,
-  error = false,
   className,
 }: ToggleIndicatorProps) {
   const classes = [
@@ -46,7 +43,6 @@ export function ToggleIndicator({
     checked           && 'sds-toggle-indicator--checked',
     onMedia           && 'sds-toggle-indicator--on-media',
     disabled          && 'sds-toggle-indicator--disabled',
-    error             && 'sds-toggle-indicator--error',
     className,
   ]
     .filter(Boolean)

@@ -36,8 +36,6 @@ export interface ToggleProps {
   onChange?: (checked: boolean) => void;
   /** Prevents interaction */
   disabled?: boolean;
-  /** Renders error styling on the indicator and label */
-  error?: boolean;
   /**
    * Marks the toggle as required for form validation.
    * Forwarded to the underlying `<input>` element.
@@ -75,7 +73,6 @@ export function Toggle({
   defaultChecked = false,
   onChange,
   disabled = false,
-  error = false,
   required = false,
   size = 'large',
   id,
@@ -108,7 +105,6 @@ export function Toggle({
     'sds-toggle',
     size === 'medium' && 'sds-toggle--medium',
     disabled          && 'sds-toggle--disabled',
-    error             && 'sds-toggle--error',
     className,
   ]
     .filter(Boolean)
@@ -140,7 +136,6 @@ export function Toggle({
           checked={resolvedChecked}
           size={size}
           disabled={disabled}
-          error={error}
         />
       </span>
 
