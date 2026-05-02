@@ -32,6 +32,9 @@ export interface RatingInputProps {
 
 // ─── Star icons ───────────────────────────────────────────────────────────────
 
+// Material Symbols (Rounded) star path — 24dp optical grid.
+const STAR_PATH = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
+
 function StarFilledIcon() {
   return (
     <svg
@@ -42,10 +45,7 @@ function StarFilledIcon() {
       aria-hidden="true"
       focusable="false"
     >
-      <path
-        d="M12 2.5L14.2 8.9L21 9.1L15.6 13.2L17.6 19.7L12 15.8L6.4 19.7L8.4 13.2L3 9.1L9.8 8.9Z"
-        fill="currentColor"
-      />
+      <path d={STAR_PATH} fill="currentColor" />
     </svg>
   );
 }
@@ -62,9 +62,10 @@ function StarOutlineIcon() {
       focusable="false"
     >
       <path
-        d="M12 2.5L14.2 8.9L21 9.1L15.6 13.2L17.6 19.7L12 15.8L6.4 19.7L8.4 13.2L3 9.1L9.8 8.9Z"
+        d={STAR_PATH}
         stroke="currentColor"
         strokeWidth="1.5"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>
