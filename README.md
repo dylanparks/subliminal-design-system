@@ -65,7 +65,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | ↳ `CheckboxIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally and by multi-select Menu items |
 | ↳ `RadioIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally by `Radio` |
 | ↳ `ToggleIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — track + thumb, used internally by `Toggle` |
-| `Rating Input` | Planned | |
+| `RatingInput` | ✓ | Star rating — radio group with hover preview, focus ring, controlled/uncontrolled, WCAG AA |
 | `Slider` | Planned | |
 
 ### Navigation
@@ -123,6 +123,7 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - `CheckboxGroup`: `role="group"` + `aria-labelledby` wired to label slot via `useId()`; group value state cascades to items via React context; parent checkbox derives indeterminate state from child values
 - `RadioGroup`: `role="radiogroup"` + `aria-labelledby`; arrow-key navigation handled natively by browser when all radios share the same auto-generated `name` attribute
 - `Toggle`: `<input type="checkbox" role="switch">` for switch semantics + form participation; `aria-checked` mirrors resolved checked state; same Chrome `:focus-visible` mousedown guard as Checkbox
+- `RatingInput`: `role="radiogroup"` container with one `<input type="radio">` per star; each announces "N out of max stars"; browser handles arrow-key navigation natively; hover-preview fills stars up to cursor position; `data-mouse-focus` guard suppresses Chrome's `:focus-visible` on click
 - `ProgressBar`: `role="progressbar"` + `aria-valuemin/max/now/text`; omits `aria-valuenow` when indeterminate; `aria-valuetext` reads "Loading…" for indeterminate
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
@@ -172,6 +173,7 @@ design-system/
     │   │   ├── Checkbox/           ← Checkbox, CheckboxGroup
     │   │   ├── Radio/              ← Radio, RadioGroup
     │   │   ├── Toggle/             ← Toggle
+    │   │   ├── RatingInput/        ← RatingInput
     │   │   └── InputIndicators/    ← CheckboxIndicator, RadioIndicator, ToggleIndicator (utility)
     │   ├── DataDisplay/
     │   │   ├── ProgressBar/

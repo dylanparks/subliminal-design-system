@@ -1,0 +1,141 @@
+/* RatingInput — Subliminal Design System
+ * Inputs/RatingInput
+ *
+ * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
+ *         --sds-effects-focus, --sds-shape-border-radius-round, --sds-typography-*,
+ *         --sds-neutral-content-*
+ *
+ * Structure:
+ *   .sds-rating-input            → root container
+ *   .sds-rating-input__label     → visible group label text
+ *   .sds-rating-input__stars     → flex row of star labels (role="radiogroup")
+ *   .sds-rating-input__star-label → <label> wrapping each radio + star icon
+ *   .sds-rating-input__radio     → visually hidden <input type="radio">
+ *   .sds-rating-input__star-icon → 24×24 star SVG wrapper
+ *
+ * State modifiers:
+ *   .sds-rating-input--disabled              → whole component disabled
+ *   .sds-rating-input__stars--hovering       → a star is being hovered (preview mode)
+ *   .sds-rating-input__star-label--filled    → this star is within the display value
+ *
+ * Focus ring uses :has(:focus-visible) + [data-mouse-focus] guard (same as Toggle)
+ * to suppress the ring on mouse click in Chrome.
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-rating-input {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ─── Group label ────────────────────────────────────────────────────────────── */
+
+.sds-rating-input__label {
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-medium);
+  line-height:    var(--sds-typography-line-height-subtitle-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-medium);
+  color: var(--sds-neutral-content-primary);
+}
+
+/* ─── Stars row ──────────────────────────────────────────────────────────────── */
+
+.sds-rating-input__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── Star label (click target + focus scope) ────────────────────────────────── */
+
+.sds-rating-input__star-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--sds-shape-border-radius-round, 999px);
+}
+
+/* ─── Visually hidden radio ──────────────────────────────────────────────────── */
+
+.sds-rating-input__radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Star icon ──────────────────────────────────────────────────────────────── */
+
+.sds-rating-input__star-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--sds-shape-border-radius-round, 999px);
+  color: var(--sds-interactive-secondary-hollow-stroke-default);
+  transition: color 120ms ease, box-shadow 120ms ease;
+}
+
+/* ─── Filled state (selected or hover-preview) ───────────────────────────────── */
+
+.sds-rating-input__star-label--filled .sds-rating-input__star-icon {
+  color: var(--sds-interactive-secondary-filled-background-default);
+}
+
+/* When the group is in hover-preview mode, shift filled stars to hover color */
+.sds-rating-input__stars--hovering .sds-rating-input__star-label--filled .sds-rating-input__star-icon {
+  color: var(--sds-interactive-secondary-filled-background-hover);
+}
+
+/* ─── Pressed (active) state ─────────────────────────────────────────────────── */
+
+.sds-rating-input:not(.sds-rating-input--disabled) .sds-rating-input__star-label:active .sds-rating-input__star-icon {
+  color: var(--sds-interactive-secondary-filled-background-active);
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────────────── */
+
+/*
+ * :not([data-mouse-focus]) guards against Chrome always firing :focus-visible
+ * on radio inputs clicked with a mouse. The label sets data-mouse-focus on
+ * mousedown and removes it in a setTimeout(0), exactly as Toggle does.
+ */
+.sds-rating-input__star-label:not([data-mouse-focus]):has(.sds-rating-input__radio:focus-visible) .sds-rating-input__star-icon {
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+/* ─── Disabled state ─────────────────────────────────────────────────────────── */
+
+.sds-rating-input--disabled {
+  pointer-events: none;
+  position: relative;
+  opacity: 0.45;
+}
+
+/* Restore cursor: not-allowed over the component while pointer-events are off */
+.sds-rating-input--disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+/* ─── RTL ────────────────────────────────────────────────────────────────────── */
+
+/*
+ * Star ratings conventionally read left-to-right in all locales (1 at the
+ * inline-start edge). The flex row is not reversed in RTL — the logical
+ * order matches the visual order regardless of document direction.
+ */
