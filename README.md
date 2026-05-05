@@ -52,6 +52,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `DatePicker` | ✓ | Date / range / month / year modes, Floating UI positioning, WCAG AA |
 | `TimePicker` | ✓ | 12 h / 24 h, configurable minute intervals (1·5·10·15·30), WCAG AA |
 | `FileUpload` | ✓ | Drop zone + `FileUploadItem` — drag-and-drop, click-to-browse, MIME/size validation, progress |
+| `Combobox` | ✓ | Filterable select — WAI-ARIA combobox pattern, keyboard navigation, WCAG AA |
 
 ### Inputs
 
@@ -73,7 +74,6 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | Component | Status | Notes |
 |---|---|---|
 | `Menu` | ✓ | Portal-rendered, WAI-ARIA menu pattern — action, single-select, multi-select, configure |
-| `Combobox` | Planned | Filterable select (WAI-ARIA combobox pattern) |
 | `Tabs` | ✓ | WAI-ARIA Tabs — label / icon / icon-only, static variant, keyboard nav (Arrow / Home / End), controlled + uncontrolled, WCAG AA |
 | `Breadcrumbs` | ✓ | WAI-ARIA nav landmark — `<a>` / `<button>` ancestor links, `aria-current="page"` on last item, overflow collapse with `maxItems`, static variant, WCAG AA |
 
@@ -84,7 +84,6 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `ProgressBar` | ✓ | Determinate + indeterminate (animated sweep), error/success states, optional label + value |
 | `Tag` | ✓ | Semantic label — 6 types, solid/outline fill styles, large/small sizes, optional icon |
 | `Avatar` | ✓ | Circular avatar — photo / initials / icon fallback chain, 3 sizes, WCAG AA |
-| `Profile` | Planned | Avatar + label + support content |
 
 ### Table
 
