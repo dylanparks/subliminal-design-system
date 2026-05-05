@@ -21,6 +21,7 @@
   --sds-neutral-background-default: #ffffff; /** The default background color for the app. */
   --sds-neutral-background-offset: #f2f5fa; /** An offset color for the app, for example, used to distinguish between sections of content blocks. */
   --sds-neutral-background-subtle: #e1e6f0; /** An even larger distinguishing background color offset from the default app's background color. */
+  --sds-neutral-background-elevated: #ffffff;
   --sds-neutral-stroke-default: #e1e6f0; /** Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements. */
   --sds-interactive-primary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-hover: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
@@ -166,10 +167,15 @@
   --sds-status-informative-stroke-default: #12caf2; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
   --sds-status-informative-background-default: #e1faff; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
   --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
-  --sds-effects-shadowdefault: #050609; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-shadowdefault: rgba(2, 2, 2, 0.1); /** Color used for elevation drop shadow effects only. */
   --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
   --sds-effects-focus: #b6c1d6; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
+  --sds-effects-values-elevated-blur: 16;
+  --sds-effects-values-elevated-spread: 2;
+  --sds-effects-values-elevated-y: 4;
+  --sds-effects-values-elevated-x: 0;
   --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
+  --sds-accents-solid-primaryweak: #f0f2ff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-solid-secondary: #040506; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-gradient-primarystart: #1871f8; /** Color variable only to be used a color stop for gradient styles. */
   --sds-accents-gradient-primaryend: #8707c3; /** Color variable only to be used a color stop for gradient styles. */
@@ -208,15 +214,8 @@
   --sds-effect-interactive-element-disabled-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
   --sds-effect-interactive-element-error-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
   --sds-effect-interactive-element-success-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-hover-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-active-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-focus-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-disabled-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-error-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-card-success-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-interactive-popover-default-box-shadow: 0px 8px 25px 1px rgba(0, 0, 0, 0.1);
-  --sds-effect-interactive-popover-default-filter: drop-shadow(0px 8px 25px rgba(0, 0, 0, 0.1));
+  --sds-effect-interactive-element-elevated-box-shadow: 0px 4px 16px 2px rgba(2, 2, 2, 0.1);
+  --sds-effect-interactive-element-elevated-filter: drop-shadow(0px 4px 16px rgba(2, 2, 2, 0.1));
   --sds-effect-static-element-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
   --sds-effect-static-card-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
@@ -350,6 +349,7 @@
   --sds-neutral-background-default: #040506; /** The default background color for the app. */
   --sds-neutral-background-offset: #191926; /** An offset color for the app, for example, used to distinguish between sections of content blocks. */
   --sds-neutral-background-subtle: #27273a; /** An even larger distinguishing background color offset from the default app's background color. */
+  --sds-neutral-background-elevated: #151a24;
   --sds-neutral-stroke-default: #151a24; /** Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements. */
   --sds-interactive-primary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-hover: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
@@ -391,10 +391,10 @@
   --sds-interactive-secondary-hollow-background-hover: rgba(255, 255, 255, 0.05); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
   --sds-interactive-secondary-hollow-background-active: rgba(255, 255, 255, 0.1); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
   --sds-interactive-secondary-hollow-background-disabled: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. */
-  --sds-interactive-secondary-hollow-background-inactive-default: #080808; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
-  --sds-interactive-secondary-hollow-background-inactive-hover: #0a0b10; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
-  --sds-interactive-secondary-hollow-background-inactive-active: #151a24; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
-  --sds-interactive-secondary-hollow-background-inactive-disabled: #151a24; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-default: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-hover: rgba(255, 255, 255, 0.05); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-active: rgba(255, 255, 255, 0.1); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-disabled: rgba(255, 255, 255, 0); /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
   --sds-interactive-secondary-hollow-stroke-default: rgba(255, 255, 255, 0.2); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-hover: rgba(255, 255, 255, 0.3); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-active: rgba(255, 255, 255, 0.4); /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
@@ -476,7 +476,7 @@
   --sds-interactive-fields-background-disabled: #151a24; /** Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens. */
   --sds-interactive-fields-background-error: #2d0608; /** Background color applied to input-based elements when they enter a validation error state, indicating that the field's value is invalid or a required response was not provided. Must be used alongside a clear non-color error indicator (such as an error message or icon) and should be paired with Interactive/Fields/Stroke/Error for optimal accessibility, though the stroke is not strictly required if sufficient alternative error signaling is present. */
   --sds-interactive-fields-background-success: #041b0f; /** Background color applied to input-based elements when they have passed validation or their value has been actively confirmed as valid by the system (such as a username availability check or a matched password confirmation field). Must be used alongside a clear non-color success indicator such as a success message or icon, and should be paired with Interactive/Fields/Stroke/Success for optimal visual clarity. */
-  --sds-interactive-fields-stroke-default: #232b3b; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
+  --sds-interactive-fields-stroke-default: #151a24; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-hover: #374257; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-active: #ffffff; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
   --sds-interactive-fields-stroke-disabled: #151a24; /** Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines. */
@@ -495,10 +495,15 @@
   --sds-status-informative-stroke-default: #008caa; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
   --sds-status-informative-background-default: #003945; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
   --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
-  --sds-effects-shadowdefault: #050609; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-shadowdefault: #232b3b; /** Color used for elevation drop shadow effects only. */
   --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
   --sds-effects-focus: #374257; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
+  --sds-effects-values-elevated-blur: 0;
+  --sds-effects-values-elevated-spread: 2;
+  --sds-effects-values-elevated-y: 0;
+  --sds-effects-values-elevated-x: 0;
   --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
+  --sds-accents-solid-primaryweak: #000f60; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-solid-secondary: #040506; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-gradient-primarystart: #1871f8; /** Color variable only to be used a color stop for gradient styles. */
   --sds-accents-gradient-primaryend: #8707c3; /** Color variable only to be used a color stop for gradient styles. */

@@ -22,7 +22,7 @@ import { ToggleIndicator } from '../../Inputs/InputIndicators/ToggleIndicator';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type MenuType = 'single-select' | 'multi-select' | 'configure';
+export type MenuType = 'action' | 'single-select' | 'multi-select' | 'configure';
 
 export type MenuSuffixType = 'tag' | 'text' | 'icon';
 
@@ -40,6 +40,7 @@ export interface MenuProps {
   onClose: () => void;
   /**
    * The interaction model for all items in this menu.
+   * - 'action':        items trigger one-shot actions; no selection state; menu closes on activation.
    * - 'single-select': items show a checkmark when selected (radio-style); auto-closes on selection.
    * - 'multi-select':  items show checkboxes; menu stays open after each selection.
    * - 'configure':     items have a drag handle for reordering and an optional toggle switch.
@@ -135,7 +136,7 @@ function SingleSelectCheckmark({ selected }: { selected: boolean }) {
 function MenuItemSuffixView({ suffix }: { suffix: MenuSuffix }) {
   if (suffix.type === 'tag') {
     return (
-      <span className="sds-menu-item__suffix sds-menu-item__suffix--tag" aria-hidden="true">
+      <span className="sds-menu-item__suffix sds-menu-item__suffix--tag">
         {suffix.label}
       </span>
     );
@@ -452,18 +453,20 @@ export function MenuItem({
   const { menuType, onClose } = useContext(MenuContext);
   const labelId = useId();
 
+  const isAction       = menuType === 'action';
   const isSingleSelect = menuType === 'single-select';
   const isMultiSelect  = menuType === 'multi-select';
   const isConfigure    = menuType === 'configure';
 
   // WAI-ARIA role:
-  //   menuitemradio   — single-select (mutually exclusive, aria-checked indicates state)
+  //   menuitemradio    — single-select (mutually exclusive, aria-checked indicates state)
   //   menuitemcheckbox — multi-select (independent, aria-checked indicates state)
-  //   menuitem        — configure (drag + toggle; selection not communicated via role)
+  //   menuitem         — action / configure (no selection semantics)
   const role = isSingleSelect ? 'menuitemradio' : isMultiSelect ? 'menuitemcheckbox' : 'menuitem';
 
   const rootClasses = [
     'sds-menu-item',
+    isAction                        && 'sds-menu-item--action',
     isConfigure                     && 'sds-menu-item--configure',
     selected && !(isConfigure && !toggleable) && 'sds-menu-item--selected',
     disabled                        && 'sds-menu-item--disabled',
@@ -475,18 +478,17 @@ export function MenuItem({
   function handleClick() {
     if (disabled) return;
     onClick?.();
-    // single-select: auto-close (WAI-ARIA Menu Button pattern)
+    // action and single-select: auto-close (WAI-ARIA Menu Button pattern)
     // multi-select and configure: stay open
-    if (isSingleSelect) onClose();
+    if (isAction || isSingleSelect) onClose();
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLLIElement>) {
     if (disabled) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      // In configure mode, Space/Enter activates the toggle (drag is pointer-only)
       onClick?.();
-      if (isSingleSelect) onClose();
+      if (isAction || isSingleSelect) onClose();
     }
   }
 
@@ -528,7 +530,7 @@ export function MenuItem({
     <li
       role={role}
       // aria-checked communicates selection to screen readers for radio/checkbox roles
-      aria-checked={!isConfigure ? selected : undefined}
+      aria-checked={!isConfigure && !isAction ? selected : undefined}
       aria-disabled={disabled ? true : undefined}
       tabIndex={disabled ? undefined : -1}
       className={rootClasses}

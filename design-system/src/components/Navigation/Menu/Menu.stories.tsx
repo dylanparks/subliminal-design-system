@@ -15,14 +15,14 @@ const meta: Meta<typeof Menu> = {
     docs: {
       description: {
         component:
-          'A floating menu anchored to a trigger element. Implements the WAI-ARIA Menu pattern with full keyboard navigation, focus management, and WCAG AA compliance.\n\n- **single-select**: items show a checkmark when selected; menu auto-closes on activation.\n- **multi-select**: items show checkboxes; menu stays open after each selection.\n- **configure**: items have a drag handle for reordering and an optional toggle switch.',
+          'A floating menu anchored to a trigger element. Implements the WAI-ARIA Menu pattern with full keyboard navigation, focus management, and WCAG AA compliance.\n\n- **action**: items trigger one-shot commands; no selection state; menu closes on activation.\n- **single-select**: items show a checkmark when selected; menu auto-closes on activation.\n- **multi-select**: items show checkboxes; menu stays open after each selection.\n- **configure**: items have a drag handle for reordering and an optional toggle switch.',
       },
     },
   },
   argTypes: {
     type: {
       control: 'select',
-      options: ['single-select', 'multi-select', 'configure'],
+      options: ['action', 'single-select', 'multi-select', 'configure'],
       description: 'The interaction model for all items in this menu.',
       table: { defaultValue: { summary: 'single-select' } },
     },
@@ -96,6 +96,77 @@ function resolveSuffix(item: typeof ITEMS[0], suffixType: ItemControls['suffixTy
   if (suffixType === 'icon') return { type: 'icon' };
   return undefined;
 }
+
+// ─── Action ───────────────────────────────────────────────────────────────────
+
+type ActionArgs = React.ComponentProps<typeof Menu> & ItemControls;
+
+export const Action: StoryObj<ActionArgs> = {
+  args: {
+    type:         'action',
+    showIcons:    true,
+    suffixType:   'none',
+    showDisabled: true,
+  },
+  argTypes: itemArgTypes,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: /actions/i }));
+    await waitFor(() =>
+      expect(document.querySelector('[role="menu"]')).toBeInTheDocument()
+    );
+  },
+  parameters: {
+    chromatic: { delay: 300 },
+    docs: {
+      description: {
+        story:
+          '`type="action"` — items fire one-shot commands with no persistent selection state. The menu closes after any item is activated. Items have no leading indicator column, so they use a wider inline-start padding (16 px) to maintain visual rhythm.',
+      },
+    },
+  },
+  render: ({ showIcons, suffixType, showDisabled, ...menuArgs }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [open, setOpen] = useState(false);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [last, setLast] = useState<string | null>(null);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const anchorRef       = useRef<HTMLButtonElement>(null);
+
+    return (
+      <>
+        <button
+          ref={anchorRef}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          onClick={() => setOpen(v => !v)}
+          style={{ padding: '8px 16px', cursor: 'pointer' }}
+        >
+          Actions {last && `(last: ${last})`}
+        </button>
+
+        <Menu {...menuArgs} open={open} anchorEl={anchorRef.current} onClose={() => setOpen(false)}>
+          {ITEMS.map(item => (
+            <MenuItem
+              key={item.id}
+              icon={showIcons ? item.icon : undefined}
+              suffix={resolveSuffix(item, suffixType)}
+              onClick={() => setLast(item.label)}
+            >
+              {item.label}
+            </MenuItem>
+          ))}
+          {showDisabled && (
+            <>
+              <MenuDivider />
+              <MenuItem disabled>Unavailable action</MenuItem>
+            </>
+          )}
+        </Menu>
+      </>
+    );
+  },
+};
 
 // ─── Default (single-select) ──────────────────────────────────────────────────
 

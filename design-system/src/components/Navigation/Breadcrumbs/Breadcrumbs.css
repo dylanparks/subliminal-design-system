@@ -1,0 +1,172 @@
+/* Breadcrumbs — Subliminal Design System
+ * Navigation/Breadcrumbs
+ *
+ * Tokens: --sds-interactive-secondary-hollow-content-*,
+ *         --sds-interactive-secondary-hollow-background-*,
+ *         --sds-interactive-secondary-hollow-stroke-*,
+ *         --sds-interactive-static-hollow-content-*,
+ *         --sds-interactive-static-hollow-background-*,
+ *         --sds-interactive-static-hollow-stroke-*,
+ *         --sds-neutral-content-secondary,
+ *         --sds-neutral-content-static-secondary,
+ *         --sds-shape-border-radius-xsmall,
+ *         --sds-typography-*
+ *
+ * Structure:
+ *   .sds-breadcrumbs          → <nav> root
+ *   .sds-breadcrumbs__list    → <ol> flex row
+ *   .sds-breadcrumbs__item    → <li> crumb wrapper
+ *   .sds-breadcrumbs__link    → <a> or <button> — clickable ancestor crumb
+ *   .sds-breadcrumbs__current → <span> — current page (non-interactive)
+ *   .sds-breadcrumbs__separator → <li aria-hidden> — chevron between crumbs
+ *   .sds-breadcrumbs__overflow  → <button> — collapsed items trigger
+ *
+ * Modifier:
+ *   .sds-breadcrumbs--static  → white palette for dark/gradient surfaces
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs {
+  display: contents; /* transparent wrapper — layout lives on the list */
+}
+
+/* ─── List ───────────────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 40px;
+}
+
+/* ─── Item ───────────────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  position: relative; /* anchor for overflow menu */
+}
+
+/* ─── Separator ──────────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs__separator {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* ─── Active link ────────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs__link {
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+  font-size: var(--sds-typography-font-size-body-interactive-medium);
+  line-height: var(--sds-typography-line-height-body-interactive-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  white-space: nowrap;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: color 120ms ease;
+}
+
+.sds-breadcrumbs__link:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+  text-decoration: underline;
+}
+
+.sds-breadcrumbs__link:focus-visible {
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--sds-interactive-primary-hollow-content-default);
+}
+
+/* ─── Current page ───────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs__current {
+  font-family: var(--sds-typography-font-family-body-content);
+  font-weight: var(--sds-typography-font-weight-body-content);
+  font-size: var(--sds-typography-font-size-body-content-medium);
+  line-height: var(--sds-typography-line-height-body-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  color: var(--sds-neutral-content-secondary);
+  white-space: nowrap;
+}
+
+/* ─── Overflow button ────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs__overflow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  border-radius: var(--sds-shape-border-radius-xsmall);
+  background: var(--sds-interactive-secondary-hollow-background-default);
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.sds-breadcrumbs__overflow:hover {
+  background: var(--sds-interactive-secondary-hollow-background-hover);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-hover);
+}
+
+.sds-breadcrumbs__overflow:active {
+  background: var(--sds-interactive-secondary-hollow-background-active);
+  border-color: var(--sds-interactive-secondary-hollow-stroke-active);
+}
+
+.sds-breadcrumbs__overflow:focus-visible {
+  box-shadow: 0 0 0 2px var(--sds-interactive-primary-hollow-content-default);
+}
+
+/* ─── Static variant ─────────────────────────────────────────────────────────── */
+
+.sds-breadcrumbs--static .sds-breadcrumbs__link {
+  color: var(--sds-interactive-static-hollow-content-default);
+}
+
+.sds-breadcrumbs--static .sds-breadcrumbs__link:hover {
+  color: var(--sds-interactive-static-hollow-content-hover);
+}
+
+.sds-breadcrumbs--static .sds-breadcrumbs__current {
+  color: var(--sds-neutral-content-static-secondary);
+}
+
+.sds-breadcrumbs--static .sds-breadcrumbs__separator {
+  color: var(--sds-neutral-content-static-secondary);
+}
+
+.sds-breadcrumbs--static .sds-breadcrumbs__overflow {
+  border-color: var(--sds-interactive-static-hollow-stroke-default);
+  background: var(--sds-interactive-static-hollow-background-default);
+  color: var(--sds-interactive-static-hollow-content-default);
+}
+
+.sds-breadcrumbs--static .sds-breadcrumbs__overflow:hover {
+  background: var(--sds-interactive-static-hollow-background-hover);
+  border-color: var(--sds-interactive-static-hollow-stroke-hover);
+}
+
+.sds-breadcrumbs--static .sds-breadcrumbs__overflow:active {
+  background: var(--sds-interactive-static-hollow-background-active);
+  border-color: var(--sds-interactive-static-hollow-stroke-active);
+}

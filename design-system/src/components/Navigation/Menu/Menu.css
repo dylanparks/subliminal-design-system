@@ -4,7 +4,7 @@
  * Tokens: --sds-neutral-background-*, --sds-neutral-stroke-*, --sds-neutral-content-*,
  *         --sds-interactive-fields-background-*, --sds-interactive-fields-content-*,
  *         --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
- *         --sds-effects-focus, --sds-effect-interactive-popover-default-box-shadow,
+ *         --sds-effects-focus, --sds-effects-shadowdefault, --sds-effects-values-elevated-*,
  *         --sds-shape-border-radius-*, --sds-typography-*
  *
  * Subcomponents:
@@ -37,10 +37,15 @@
   min-width: 220px;
   display: flex;
   flex-direction: row;
-  background-color: var(--sds-neutral-background-default);
+  background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
-  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
+  box-shadow:
+    calc(var(--sds-effects-values-elevated-x) * 1px)
+    calc(var(--sds-effects-values-elevated-y) * 1px)
+    calc(var(--sds-effects-values-elevated-blur) * 1px)
+    calc(var(--sds-effects-values-elevated-spread) * 1px)
+    var(--sds-effects-shadowdefault);
   overflow: hidden;
   box-sizing: border-box;
 
@@ -303,6 +308,18 @@
 
 .sds-menu-item__checkmark--selected {
   color: var(--sds-interactive-fields-content-default);
+}
+
+/* ─── Action — no leading indicator ─────────────────────────────────────────── */
+
+/*
+ * Action items have no leading indicator column (no checkmark, checkbox, or drag
+ * handle), so they get extra inline-start padding to match the visual rhythm of
+ * the other item types. Other types start at 8px and then have a 20px indicator
+ * + 4px gap; action items skip the indicator and use 16px instead.
+ */
+.sds-menu-item--action {
+  padding-inline-start: 16px;
 }
 
 /* ─── Configure — drag handle ────────────────────────────────────────────────── */

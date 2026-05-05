@@ -1,0 +1,238 @@
+/* Slider — Subliminal Design System
+ * Inputs/Slider
+ *
+ * Tokens: --sds-interactive-primary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
+ *         --sds-interactive-fields-stroke-*, --sds-effects-focus,
+ *         --sds-neutral-content-*, --sds-neutral-background-*,
+ *         --sds-shape-border-radius-*, --sds-typography-*
+ *
+ * Structure:
+ *   .sds-slider              → root flex column
+ *   .sds-slider__header      → flex row: label + value input(s)
+ *   .sds-slider__label       → group label text
+ *   .sds-slider__inputs      → flex row of value input(s)
+ *   .sds-slider__input       → content-hugging numeric text input
+ *   .sds-slider__input-sep   → "–" separator in range mode
+ *   .sds-slider__track-area  → position context for track + thumbs (44px min-height)
+ *   .sds-slider__track       → 4px bar
+ *   .sds-slider__fill        → primary-colored fill segment
+ *   .sds-slider__thumb       → 16px draggable circle (role="slider")
+ *   .sds-slider__thumb::after → 44×44 touch target (WCAG 2.5.8)
+ *   .sds-slider__tooltip     → transient value bubble (showValue=false)
+ *
+ * State modifiers:
+ *   .sds-slider--range       → two-thumb mode
+ *   .sds-slider--disabled    → whole component disabled
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-slider {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────────── */
+
+.sds-slider__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 20px;
+}
+
+/* ─── Label ──────────────────────────────────────────────────────────────────── */
+
+.sds-slider__label {
+  font-family:    var(--sds-typography-font-family-subtitle);
+  font-weight:    var(--sds-typography-font-weight-subtitle);
+  font-size:      var(--sds-typography-font-size-subtitle-medium);
+  line-height:    var(--sds-typography-line-height-subtitle-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-subtitle-medium);
+  color: var(--sds-neutral-content-primary);
+}
+
+/* ─── Value inputs ───────────────────────────────────────────────────────────── */
+
+.sds-slider__inputs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.sds-slider__input {
+  font-family:    var(--sds-typography-font-family-body-interactive);
+  font-weight:    var(--sds-typography-font-weight-body-interactive);
+  font-size:      var(--sds-typography-font-size-body-interactive-medium);
+  line-height:    var(--sds-typography-line-height-body-interactive-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+  color: var(--sds-neutral-content-primary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  text-align: center;
+  padding: 0;
+  cursor: text;
+  transition: border-color 120ms ease;
+  /* width driven by HTML `size` attribute — content-hugging */
+}
+
+.sds-slider__input:hover:not(:disabled):not(:focus) {
+  border-bottom-color: var(--sds-interactive-fields-stroke-hover);
+}
+
+.sds-slider__input:focus {
+  border-bottom-color: var(--sds-interactive-fields-stroke-active);
+}
+
+.sds-slider__input-sep {
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-size:   var(--sds-typography-font-size-body-interactive-medium);
+  color: var(--sds-neutral-content-secondary);
+  user-select: none;
+}
+
+/* ─── Track area ─────────────────────────────────────────────────────────────── */
+
+.sds-slider__track-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  /* Touch target: thumb ::after { inset: -10px } gives 36×36 on the 16px thumb */
+}
+
+/* ─── Track bar ──────────────────────────────────────────────────────────────── */
+
+.sds-slider__track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--sds-interactive-secondary-hollow-stroke-inactive-default);
+  overflow: visible;
+}
+
+/* ─── Fill ───────────────────────────────────────────────────────────────────── */
+
+.sds-slider__fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  transition: background-color 120ms ease;
+  pointer-events: none;
+}
+
+/* ─── Thumb ──────────────────────────────────────────────────────────────────── */
+
+.sds-slider__thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* left set by JS via inline style */
+
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--sds-interactive-primary-filled-background-default);
+  border: 2px solid var(--sds-interactive-primary-filled-background-default);
+
+  cursor: grab;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+
+  /* Lift active drag thumb above sibling in range mode */
+  z-index: 2;
+}
+
+/* 36×36 touch target: 16px thumb + 10px each side = 36px */
+.sds-slider__thumb::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+}
+
+.sds-slider__thumb:hover {
+  background-color: var(--sds-interactive-primary-filled-background-hover);
+  border-color: var(--sds-interactive-primary-filled-background-hover);
+}
+
+.sds-slider__thumb:active {
+  background-color: var(--sds-interactive-primary-filled-background-active);
+  border-color: var(--sds-interactive-primary-filled-background-active);
+  cursor: grabbing;
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────────────── */
+
+.sds-slider__thumb:focus-visible {
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+/* ─── Tooltip ────────────────────────────────────────────────────────────────── */
+
+.sds-slider__tooltip {
+  position: absolute;
+  /*
+   * Vertically: center of track-area is at 50%. Thumb top is at ~(50% - 8px).
+   * bottom: calc(50% + 20px) puts tooltip bottom 4px above thumb visual top.
+   */
+  bottom: calc(50% + 20px);
+  transform: translateX(-50%);
+
+  background-color: var(--sds-neutral-content-primary);
+  color: var(--sds-neutral-background-default);
+  border-radius: var(--sds-shape-border-radius-small, 4px);
+
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+
+  padding: 2px 6px;
+  white-space: nowrap;
+  pointer-events: none;
+
+  animation: sds-tooltip-in 100ms ease both;
+}
+
+@keyframes sds-tooltip-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ─── Disabled state ─────────────────────────────────────────────────────────── */
+
+.sds-slider--disabled {
+  pointer-events: none;
+  position: relative;
+  opacity: 0.45;
+}
+
+/* Restore cursor: not-allowed without re-enabling pointer events on children */
+.sds-slider--disabled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+/* ─── RTL ────────────────────────────────────────────────────────────────────── */
+
+/*
+ * All directional positioning (thumb left%, fill left%) is computed in JS
+ * via toLeftPct() which accounts for dir. No additional CSS is needed for RTL.
+ * thumb transform: translate(-50%, -50%) always centers from the left edge ✓
+ */

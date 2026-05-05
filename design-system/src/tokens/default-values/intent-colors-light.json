@@ -59,6 +59,10 @@
         "$value": "{global-colors.Neutrals.Steel.100}",
         "$type": "color",
         "$description": "An even larger distinguishing background color offset from the default app's background color."
+      },
+      "Elevated": {
+        "$value": "{global-colors.Neutrals.White}",
+        "$type": "color"
       }
     },
     "Stroke": {
@@ -917,7 +921,7 @@
       "$description": "Used as the background behind popover display components such as modals."
     },
     "ShadowDefault": {
-      "$value": "#050609",
+      "$value": "{global-colors.Transparent.Dark.100}",
       "$type": "color",
       "$description": "Color used for elevation drop shadow effects only."
     },
@@ -930,12 +934,35 @@
       "$value": "{global-colors.Neutrals.Steel.300}",
       "$type": "color",
       "$description": "Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens."
+    },
+    "Values": {
+      "Elevated Blur": {
+        "$value": 16,
+        "$type": "number"
+      },
+      "Elevated Spread": {
+        "$value": 2,
+        "$type": "number"
+      },
+      "Elevated Y": {
+        "$value": 4,
+        "$type": "number"
+      },
+      "Elevated X": {
+        "$value": 0,
+        "$type": "number"
+      }
     }
   },
   "Accents": {
     "Solid": {
       "Primary": {
         "$value": "{global-colors.Colors.Indigo.600}",
+        "$type": "color",
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only."
+      },
+      "PrimaryWeak": {
+        "$value": "{global-colors.Colors.Indigo.50}",
         "$type": "color",
         "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only."
       },

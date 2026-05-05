@@ -59,6 +59,10 @@
         "$value": "{global-colors.Neutrals.Slate.800}",
         "$type": "color",
         "$description": "An even larger distinguishing background color offset from the default app's background color."
+      },
+      "Elevated": {
+        "$value": "{global-colors.Neutrals.Steel.900}",
+        "$type": "color"
       }
     },
     "Stroke": {
@@ -301,22 +305,22 @@
           },
           "Inactive": {
             "Default": {
-              "$value": "{global-colors.Neutrals.Ash.975}",
+              "$value": "{global-colors.Transparent.Light.0}",
               "$type": "color",
               "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
             },
             "Hover": {
-              "$value": "{global-colors.Neutrals.Steel.950}",
+              "$value": "{global-colors.Transparent.Light.50}",
               "$type": "color",
               "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
             },
             "Active": {
-              "$value": "{global-colors.Neutrals.Steel.900}",
+              "$value": "{global-colors.Transparent.Light.100}",
               "$type": "color",
               "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
             },
             "Disabled": {
-              "$value": "{global-colors.Neutrals.Steel.900}",
+              "$value": "{global-colors.Transparent.Light.0}",
               "$type": "color",
               "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
             }
@@ -784,7 +788,7 @@
       },
       "Stroke": {
         "Default": {
-          "$value": "{global-colors.Neutrals.Steel.800}",
+          "$value": "{global-colors.Neutrals.Steel.900}",
           "$type": "color",
           "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines."
         },
@@ -917,7 +921,7 @@
       "$description": "Used as the background behind popover display components such as modals."
     },
     "ShadowDefault": {
-      "$value": "#050609",
+      "$value": "{global-colors.Neutrals.Steel.800}",
       "$type": "color",
       "$description": "Color used for elevation drop shadow effects only."
     },
@@ -930,12 +934,35 @@
       "$value": "{global-colors.Neutrals.Steel.700}",
       "$type": "color",
       "$description": "Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens."
+    },
+    "Values": {
+      "Elevated Blur": {
+        "$value": 0,
+        "$type": "number"
+      },
+      "Elevated Spread": {
+        "$value": 2,
+        "$type": "number"
+      },
+      "Elevated Y": {
+        "$value": 0,
+        "$type": "number"
+      },
+      "Elevated X": {
+        "$value": 0,
+        "$type": "number"
+      }
     }
   },
   "Accents": {
     "Solid": {
       "Primary": {
         "$value": "{global-colors.Colors.Indigo.600}",
+        "$type": "color",
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only."
+      },
+      "PrimaryWeak": {
+        "$value": "{global-colors.Colors.Indigo.900}",
         "$type": "color",
         "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only."
       },

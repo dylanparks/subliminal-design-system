@@ -66,16 +66,16 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | ↳ `RadioIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — used internally by `Radio` |
 | ↳ `ToggleIndicator` | ✓ | Visual sub-component (`InputIndicators/`) — track + thumb, used internally by `Toggle` |
 | `RatingInput` | ✓ | Star rating — radio group with hover preview, focus ring, controlled/uncontrolled, WCAG AA |
-| `Slider` | Planned | |
+| `Slider` | ✓ | Draggable range control — single + range mode, `div[role="slider"]`, APG keyboard (Arrow/Shift+Arrow/Home/End/PageUp/PageDown), RTL-aware, `formatOptions` (Intl.NumberFormat) + `getValueText`, tooltip on `showValue=false`, WCAG AA |
 
 ### Navigation
 
 | Component | Status | Notes |
 |---|---|---|
-| `Menu` | ✓ | Portal-rendered, WAI-ARIA menu pattern, single + multi-select |
+| `Menu` | ✓ | Portal-rendered, WAI-ARIA menu pattern — action, single-select, multi-select, configure |
 | `Combobox` | Planned | Filterable select (WAI-ARIA combobox pattern) |
-| `Tabs` | Planned | |
-| `Breadcrumbs` | Planned | |
+| `Tabs` | ✓ | WAI-ARIA Tabs — label / icon / icon-only, static variant, keyboard nav (Arrow / Home / End), controlled + uncontrolled, WCAG AA |
+| `Breadcrumbs` | ✓ | WAI-ARIA nav landmark — `<a>` / `<button>` ancestor links, `aria-current="page"` on last item, overflow collapse with `maxItems`, static variant, WCAG AA |
 
 ### Data Display
 
@@ -83,7 +83,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 |---|---|---|
 | `ProgressBar` | ✓ | Determinate + indeterminate (animated sweep), error/success states, optional label + value |
 | `Tag` | ✓ | Semantic label — 6 types, solid/outline fill styles, large/small sizes, optional icon |
-| `Avatar` | Planned | |
+| `Avatar` | ✓ | Circular avatar — photo / initials / icon fallback chain, 3 sizes, WCAG AA |
 | `Profile` | Planned | Avatar + label + support content |
 
 ### Table
@@ -124,6 +124,10 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - `RadioGroup`: `role="radiogroup"` + `aria-labelledby`; arrow-key navigation handled natively by browser when all radios share the same auto-generated `name` attribute
 - `Toggle`: `<input type="checkbox" role="switch">` for switch semantics + form participation; `aria-checked` mirrors resolved checked state; same Chrome `:focus-visible` mousedown guard as Checkbox
 - `RatingInput`: `role="radiogroup"` container with one `<input type="radio">` per star; each announces "N out of max stars"; browser handles arrow-key navigation natively; hover-preview fills stars up to cursor position; `data-mouse-focus` guard suppresses Chrome's `:focus-visible` on click
+- `Slider`: each thumb is `div[role="slider"]` with `aria-valuemin/max/now/valuetext`; range mode constrains each thumb's `aria-valuemin/max` to the other thumb's value ± step; keyboard: Arrow ±step, Shift+Arrow ±largeStep, Home/End, PageUp/PageDown; horizontal arrows are RTL-aware (Left in RTL = increase); touch target 44×44 via `::after { inset: -14px }` on 16px thumb (WCAG 2.5.8); `aria-valuetext` driven by `getValueText` → `formatOptions` → raw number
+- `Breadcrumbs`: `<nav aria-label>` landmark with `<ol>` list; ancestor crumbs are `<a>` (href) or `<button>` (onClick); last item has `aria-current="page"`; chevron separators are `aria-hidden`; overflow button has `aria-expanded` + `aria-haspopup="menu"`, reveals collapsed items via action Menu
+- `Tabs`: WAI-ARIA Tabs pattern — `role="tablist"`, `role="tab"` with `aria-selected` + `aria-controls`, `role="tabpanel"` with `aria-labelledby`; roving tabindex (only selected tab is in the tab sequence); Arrow Left/Right navigates between tabs, Home/End jump to first/last, disabled tabs skipped; automatic activation model (activates on focus change)
+- `Avatar`: `role="img"` on the root with `aria-label` defaulting to `name`; pass `aria-hidden` when decorative inside a labeled container; fallback layer is `aria-hidden` so only the outer label is announced
 - `ProgressBar`: `role="progressbar"` + `aria-valuemin/max/now/text`; omits `aria-valuenow` when indeterminate; `aria-valuetext` reads "Loading…" for indeterminate
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available

@@ -238,6 +238,17 @@ export function StarFilledIcon(props: IconProps) {
   );
 }
 
+// ─── People ───────────────────────────────────────────────────────────────────
+
+/** person — avatar fallback silhouette */
+export function PersonIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z" />
+    </Icon>
+  );
+}
+
 // ─── Story / placeholder icons ────────────────────────────────────────────────
 // Used in Storybook stories only — not part of production component API.
 
@@ -264,6 +275,15 @@ export function UploadIcon(props: IconProps) {
   return (
     <Icon {...props}>
       <path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
+    </Icon>
+  );
+}
+
+/** more_vert — overflow / context menu trigger */
+export function MoreVerticalIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z" />
     </Icon>
   );
 }

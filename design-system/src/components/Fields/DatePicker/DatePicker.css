@@ -313,10 +313,15 @@
 .sds-datepicker__popover {
   position: fixed;
   z-index: 1300;
-  background-color: var(--sds-neutral-background-default);
+  background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
-  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
+  box-shadow:
+    calc(var(--sds-effects-values-elevated-x) * 1px)
+    calc(var(--sds-effects-values-elevated-y) * 1px)
+    calc(var(--sds-effects-values-elevated-blur) * 1px)
+    calc(var(--sds-effects-values-elevated-spread) * 1px)
+    var(--sds-effects-shadowdefault);
   padding: 24px;
   box-sizing: border-box;
   outline: none;

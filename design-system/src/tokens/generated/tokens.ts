@@ -19,6 +19,7 @@ export const tokens = {
       default: "var(--sds-neutral-background-default)",
       offset: "var(--sds-neutral-background-offset)",
       subtle: "var(--sds-neutral-background-subtle)",
+      elevated: "var(--sds-neutral-background-elevated)",
     },
     stroke: {
       default: "var(--sds-neutral-stroke-default)",
@@ -298,10 +299,17 @@ export const tokens = {
     shadowdefault: "var(--sds-effects-shadowdefault)",
     shadowcallout: "var(--sds-effects-shadowcallout)",
     focus: "var(--sds-effects-focus)",
+    values: {
+      "elevated-blur": "var(--sds-effects-values-elevated-blur)",
+      "elevated-spread": "var(--sds-effects-values-elevated-spread)",
+      "elevated-y": "var(--sds-effects-values-elevated-y)",
+      "elevated-x": "var(--sds-effects-values-elevated-x)",
+    },
   },
   accents: {
     solid: {
       primary: "var(--sds-accents-solid-primary)",
+      primaryweak: "var(--sds-accents-solid-primaryweak)",
       secondary: "var(--sds-accents-solid-secondary)",
     },
     gradient: {
@@ -504,34 +512,9 @@ export const effectTokens = {
       Success: {
         boxShadow: "var(--sds-effect-interactive-element-success-box-shadow)",
       },
-    },
-    Card: {
-      Default: {
-        boxShadow: "var(--sds-effect-interactive-card-default-box-shadow)",
-      },
-      Hover: {
-        boxShadow: "var(--sds-effect-interactive-card-hover-box-shadow)",
-      },
-      Active: {
-        boxShadow: "var(--sds-effect-interactive-card-active-box-shadow)",
-      },
-      Focus: {
-        boxShadow: "var(--sds-effect-interactive-card-focus-box-shadow)",
-      },
-      Disabled: {
-        boxShadow: "var(--sds-effect-interactive-card-disabled-box-shadow)",
-      },
-      Error: {
-        boxShadow: "var(--sds-effect-interactive-card-error-box-shadow)",
-      },
-      Success: {
-        boxShadow: "var(--sds-effect-interactive-card-success-box-shadow)",
-      },
-    },
-    Popover: {
-      Default: {
-        boxShadow: "var(--sds-effect-interactive-popover-default-box-shadow)",
-        filter: "var(--sds-effect-interactive-popover-default-filter)",
+      Elevated: {
+        boxShadow: "var(--sds-effect-interactive-element-elevated-box-shadow)",
+        filter: "var(--sds-effect-interactive-element-elevated-filter)",
       },
     },
   },

@@ -1,0 +1,202 @@
+/* Tabs — Subliminal Design System
+ * Navigation/Tabs
+ *
+ * Tokens: --sds-interactive-secondary-hollow-content-*,
+ *         --sds-interactive-secondary-hollow-background-inactive-hover,
+ *         --sds-interactive-static-hollow-content-*,
+ *         --sds-interactive-static-hollow-background-inactive-hover,
+ *         --sds-interactive-static-hollow-stroke-default,
+ *         --sds-neutral-stroke-default,
+ *         --sds-shape-border-radius-xsmall,
+ *         --sds-typography-*
+ *
+ * Structure:
+ *   .sds-tabs             → root flex-column container
+ *   .sds-tab-list         → tab buttons row (role="tablist")
+ *   .sds-tab              → individual tab button (role="tab")
+ *   .sds-tab__content     → icon + label column
+ *   .sds-tab__icon        → icon slot (aria-hidden)
+ *   .sds-tab__label       → text label
+ *   .sds-tab__indicator   → 2 px bottom active indicator
+ *   .sds-tab-panel        → panel content (role="tabpanel")
+ *
+ * Modifiers:
+ *   .sds-tab--active      → selected tab
+ *   .sds-tab--disabled    → non-interactive tab
+ *   .sds-tab--with-icon   → icon + label (12 px top padding, 20 px icon)
+ *   .sds-tab--icon-only   → icon without label (24 px icon)
+ *   .sds-tab--static      → white palette for dark/gradient surfaces
+ *   .sds-tab-list--static → static-variant separator color
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Tab List ───────────────────────────────────────────────────────────────── */
+
+.sds-tab-list {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  border-bottom: 1px solid var(--sds-neutral-stroke-default);
+}
+
+.sds-tab-list--static {
+  border-bottom-color: var(--sds-interactive-static-hollow-stroke-default);
+}
+
+/* ─── Tab ────────────────────────────────────────────────────────────────────── */
+
+.sds-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+  padding-inline: 8px;
+  border: none;
+  background: transparent;
+  border-radius: var(--sds-shape-border-radius-xsmall) var(--sds-shape-border-radius-xsmall) 0 0;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+/* Icon + label needs more top padding to balance the taller tab */
+.sds-tab--with-icon {
+  padding-top: 12px;
+}
+
+/* ─── Content ────────────────────────────────────────────────────────────────── */
+
+.sds-tab__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sds-tab--with-icon .sds-tab__content {
+  gap: 4px;
+}
+
+/* ─── Icon ───────────────────────────────────────────────────────────────────── */
+
+.sds-tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.sds-tab--icon-only .sds-tab__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ─── Label ──────────────────────────────────────────────────────────────────── */
+
+.sds-tab__label {
+  font-family: var(--sds-typography-font-family-body-interactive);
+  font-weight: var(--sds-typography-font-weight-body-interactive);
+  font-size: var(--sds-typography-font-size-body-interactive-small);
+  line-height: var(--sds-typography-line-height-body-interactive-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ─── Indicator ──────────────────────────────────────────────────────────────── */
+
+/* 2 px bar sitting 1 px below the tab — overlaps the 1 px tablist border */
+.sds-tab__indicator {
+  width: 100%;
+  height: 2px;
+  flex-shrink: 0;
+  margin-bottom: -1px;
+  border-radius: 1px 1px 0 0;
+  background-color: transparent;
+  transition: background-color 120ms ease;
+}
+
+/* ─── Colors — standard ──────────────────────────────────────────────────────── */
+
+.sds-tab {
+  color: var(--sds-interactive-secondary-hollow-content-inactive-default);
+}
+
+.sds-tab:hover:not(:disabled) {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+  color: var(--sds-interactive-secondary-hollow-content-inactive-hover);
+}
+
+.sds-tab--active {
+  color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-tab--active:hover:not(:disabled) {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-tab--active .sds-tab__indicator {
+  background-color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-tab:disabled,
+.sds-tab--disabled {
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sds-tab:focus-visible {
+  box-shadow: 0 0 0 2px var(--sds-interactive-primary-hollow-content-default);
+}
+
+/* ─── Colors — static ────────────────────────────────────────────────────────── */
+
+.sds-tab--static {
+  color: var(--sds-interactive-static-hollow-content-inactive-default);
+}
+
+.sds-tab--static:hover:not(:disabled) {
+  background-color: var(--sds-interactive-static-hollow-background-inactive-hover);
+  color: var(--sds-interactive-static-hollow-content-inactive-hover);
+}
+
+.sds-tab--static.sds-tab--active {
+  color: var(--sds-interactive-static-hollow-content-default);
+}
+
+.sds-tab--static.sds-tab--active:hover:not(:disabled) {
+  color: var(--sds-interactive-static-hollow-content-hover);
+}
+
+.sds-tab--static.sds-tab--active .sds-tab__indicator {
+  background-color: var(--sds-interactive-static-hollow-content-default);
+}
+
+.sds-tab--static:disabled,
+.sds-tab--static.sds-tab--disabled {
+  color: var(--sds-interactive-static-hollow-content-disabled);
+}
+
+/* ─── Tab Panel ──────────────────────────────────────────────────────────────── */
+
+.sds-tab-panel {
+  outline: none;
+}
+
+.sds-tab-panel[hidden] {
+  display: none;
+}

@@ -371,10 +371,15 @@
   padding: 8px 0;
   min-width: 220px;
   max-height: 300px;
-  background-color: var(--sds-neutral-background-default);
+  background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
-  box-shadow: var(--sds-effect-interactive-popover-default-box-shadow);
+  box-shadow:
+    calc(var(--sds-effects-values-elevated-x) * 1px)
+    calc(var(--sds-effects-values-elevated-y) * 1px)
+    calc(var(--sds-effects-values-elevated-blur) * 1px)
+    calc(var(--sds-effects-values-elevated-spread) * 1px)
+    var(--sds-effects-shadowdefault);
   box-sizing: border-box;
   overflow-y: auto;
   overscroll-behavior: contain;
