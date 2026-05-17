@@ -593,9 +593,9 @@ export function TimePicker({
           <div className="sds-timepicker__inner">
             {/* Floating label — aria-hidden because the accessible name is on
                 the button itself */}
-            <span className="sds-timepicker__label" aria-hidden="true">{label}</span>
+            <span className="sds-timepicker__label sds-text--body-content-medium" aria-hidden="true">{label}</span>
             {/* Value text — hidden (max-height:0) until --filled */}
-            <span className="sds-timepicker__value" aria-hidden="true">
+            <span className="sds-timepicker__value sds-text--body-content-medium" aria-hidden="true">
               {formatTime(currentValue, format, showSeconds)}
             </span>
           </div>
@@ -653,7 +653,7 @@ export function TimePicker({
             <div className="sds-timepicker__column" ref={hourColRef}>
               {showLabels && (
                 <div
-                  className="sds-timepicker__column-label"
+                  className="sds-timepicker__column-label sds-text--subtitle-small"
                   id={`${fieldId}-hour-label`}
                   aria-hidden="true"
                 >
@@ -730,7 +730,7 @@ export function TimePicker({
                 <div className="sds-timepicker__column" ref={minuteColRef}>
                   {showLabels && (
                     <div
-                      className="sds-timepicker__column-label"
+                      className="sds-timepicker__column-label sds-text--subtitle-small"
                       id={`${fieldId}-minute-label`}
                       aria-hidden="true"
                     >
@@ -809,7 +809,7 @@ export function TimePicker({
                 <div className="sds-timepicker__column" ref={secondColRef}>
                   {showLabels && (
                     <div
-                      className="sds-timepicker__column-label"
+                      className="sds-timepicker__column-label sds-text--subtitle-small"
                       id={`${fieldId}-second-label`}
                       aria-hidden="true"
                     >
@@ -891,7 +891,7 @@ export function TimePicker({
                 >
                   {showLabels && (
                     <div
-                      className="sds-timepicker__column-label"
+                      className="sds-timepicker__column-label sds-text--subtitle-small"
                       id={`${fieldId}-period-label`}
                       aria-hidden="true"
                     >
@@ -966,7 +966,7 @@ export function TimePicker({
         <div id={supportId} className="sds-timepicker__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-timepicker__message">{message}</p>
+          <p className="sds-timepicker__message sds-text--body-content-small">{message}</p>
         </div>
       )}
 

@@ -194,12 +194,12 @@ export function SelectField({
         <div className="sds-select-field__inner">
           {/* Visual floating label — aria-hidden because accessible name comes
               from aria-label on the button */}
-          <span className="sds-select-field__label" aria-hidden="true">
+          <span className="sds-select-field__label sds-text--body-content-medium" aria-hidden="true">
             {label}
           </span>
 
           {/* Selected value — hidden (max-height: 0) until --filled */}
-          <span className="sds-select-field__value" aria-hidden="true">
+          <span className="sds-select-field__value sds-text--body-content-medium" aria-hidden="true">
             {selectedOption?.label ?? ''}
           </span>
         </div>
@@ -234,7 +234,7 @@ export function SelectField({
         <div id={supportId} className="sds-select-field__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-select-field__message">{message}</p>
+          <p className="sds-select-field__message sds-text--body-content-small">{message}</p>
         </div>
       )}
 

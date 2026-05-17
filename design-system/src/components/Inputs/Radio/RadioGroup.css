@@ -1,7 +1,8 @@
 /* RadioGroup — Subliminal Design System
  * Inputs/Radio/RadioGroup
  *
- * Tokens: --sds-status-error-content-default, --sds-typography-*
+ * Tokens: --sds-status-error-content-default
+ * Typography: .sds-text--body-content-small (error message)
  *
  * Structure:
  *   .sds-radio-group              → root container (role="radiogroup")
@@ -44,12 +45,6 @@
   gap: 4px;
   margin-bottom: 12px;
   color: var(--sds-status-error-content-default);
-
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
 }
 
 .sds-radio-group__error-icon {

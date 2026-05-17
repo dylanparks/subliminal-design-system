@@ -129,9 +129,9 @@ describe('Button', () => {
     expect(children[1]).toHaveClass('sds-button__label');
   });
 
-  it('renders icon after label when iconPosition is right', () => {
+  it('renders icon after label when iconPosition is end', () => {
     render(
-      <Button label="Test" icon={<svg data-testid="icon" />} iconPosition="right" />
+      <Button label="Test" icon={<svg data-testid="icon" />} iconPosition="end" />
     );
     const btn = screen.getByRole('button');
     const children = btn.querySelectorAll('.sds-button__icon, .sds-button__label');

@@ -1,0 +1,29 @@
+/* Divider — Subliminal Design System
+ * Enhancers/Divider/Divider
+ *
+ * Tokens: --sds-neutral-stroke-default, --sds-neutral-stroke-static-subtle
+ *
+ * Structure:
+ *   .sds-divider             → root (role="separator")
+ *   .sds-divider--vertical   → 1px wide, full height
+ *   .sds-divider--static     → white-palette for dark/gradient surfaces
+ */
+
+.sds-divider {
+  display:          block;
+  flex-shrink:      0;
+  width:            100%;
+  height:           1px;
+  background-color: var(--sds-neutral-stroke-default);
+  border:           none;
+  margin:           0;
+}
+
+.sds-divider--vertical {
+  width:  1px;
+  height: 100%;
+}
+
+.sds-divider--static {
+  background-color: var(--sds-neutral-stroke-static-subtle);
+}

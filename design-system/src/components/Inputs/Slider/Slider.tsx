@@ -316,7 +316,7 @@ export function Slider(props: SliderProps) {
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <div className="sds-slider__header">
         {label && (
-          <span id={labelId} className="sds-slider__label">{label}</span>
+          <span id={labelId} className="sds-slider__label sds-text--subtitle-medium">{label}</span>
         )}
 
         {showValue && (
@@ -324,7 +324,7 @@ export function Slider(props: SliderProps) {
             <input
               type="text"
               inputMode="numeric"
-              className="sds-slider__input"
+              className="sds-slider__input sds-text--body-interactive-medium"
               value={bufStart}
               size={Math.max(1, bufStart.length)}
               disabled={disabled}
@@ -340,11 +340,11 @@ export function Slider(props: SliderProps) {
             />
             {props.range && (
               <>
-                <span className="sds-slider__input-sep" aria-hidden="true">–</span>
+                <span className="sds-slider__input-sep sds-text--body-interactive-medium" aria-hidden="true">–</span>
                 <input
                   type="text"
                   inputMode="numeric"
-                  className="sds-slider__input"
+                  className="sds-slider__input sds-text--body-interactive-medium"
                   value={bufEnd}
                   size={Math.max(1, bufEnd.length)}
                   disabled={disabled}
@@ -425,7 +425,7 @@ export function Slider(props: SliderProps) {
         {/* Tooltip (showValue=false only) */}
         {!showValue && tooltipThumb !== null && (
           <div
-            className="sds-slider__tooltip"
+            className="sds-slider__tooltip sds-text--body-content-small"
             role="tooltip"
             style={{ left: `${toLeftPct(tooltipValue)}%` }}
           >

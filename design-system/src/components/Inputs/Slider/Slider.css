@@ -4,7 +4,9 @@
  * Tokens: --sds-interactive-primary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
  *         --sds-interactive-fields-stroke-*, --sds-effects-focus,
  *         --sds-neutral-content-*, --sds-neutral-background-*,
- *         --sds-shape-border-radius-*, --sds-typography-*
+ *         --sds-shape-border-radius-*
+ * Typography: sds-text--subtitle-medium (label), sds-text--body-interactive-medium (input, sep),
+ *             sds-text--body-content-small (tooltip)
  *
  * Structure:
  *   .sds-slider              → root flex column
@@ -47,11 +49,6 @@
 /* ─── Label ──────────────────────────────────────────────────────────────────── */
 
 .sds-slider__label {
-  font-family:    var(--sds-typography-font-family-subtitle);
-  font-weight:    var(--sds-typography-font-weight-subtitle);
-  font-size:      var(--sds-typography-font-size-subtitle-medium);
-  line-height:    var(--sds-typography-line-height-subtitle-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-subtitle-medium);
   color: var(--sds-neutral-content-primary);
 }
 
@@ -65,11 +62,6 @@
 }
 
 .sds-slider__input {
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-medium);
-  line-height:    var(--sds-typography-line-height-body-interactive-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
   color: var(--sds-neutral-content-primary);
   background: transparent;
   border: none;
@@ -91,8 +83,6 @@
 }
 
 .sds-slider__input-sep {
-  font-family: var(--sds-typography-font-family-body-interactive);
-  font-size:   var(--sds-typography-font-size-body-interactive-medium);
   color: var(--sds-neutral-content-secondary);
   user-select: none;
 }
@@ -193,12 +183,6 @@
   background-color: var(--sds-neutral-content-primary);
   color: var(--sds-neutral-background-default);
   border-radius: var(--sds-shape-border-radius-small, 4px);
-
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
 
   padding: 2px 6px;
   white-space: nowrap;

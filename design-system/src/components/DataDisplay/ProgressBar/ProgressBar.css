@@ -3,7 +3,8 @@
  *
  * Tokens: --sds-neutral-background-subtle, --sds-accents-solid-primary,
  *         --sds-status-error-content-default, --sds-status-success-content-default,
- *         --sds-neutral-content-tertiary, --sds-typography-*
+ *         --sds-neutral-content-tertiary
+ * Typography: .sds-text--subtitle-small (label), .sds-text--body-content-small (value, message-text)
  *
  * Structure:
  *   .sds-progress-bar              → root wrapper
@@ -34,22 +35,12 @@
 }
 
 .sds-progress-bar__label {
-  font-family:    var(--sds-typography-font-family-subtitle);
-  font-weight:    var(--sds-typography-font-weight-subtitle);
-  font-size:      var(--sds-typography-font-size-subtitle-small);
-  line-height:    var(--sds-typography-line-height-subtitle-small);
-  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
   color:          var(--sds-neutral-content-tertiary);
   flex: 1 0 0;
   min-width: 0;
 }
 
 .sds-progress-bar__value {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color:          var(--sds-neutral-content-tertiary);
   flex-shrink:    0;
   white-space:    nowrap;
@@ -190,9 +181,4 @@
   flex: 1 0 0;
   min-width: 0;
   margin: 0;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
 }

@@ -79,8 +79,8 @@ export function FileUploadItem({
 
       <div className="sds-file-upload-item__body">
         <div className="sds-file-upload-item__label-group">
-          <span className="sds-file-upload-item__name" title={file.name}>{file.name}</span>
-          <span className="sds-file-upload-item__size">{formatFileSize(file.size)}</span>
+          <span className="sds-file-upload-item__name sds-text--subtitle-small" title={file.name}>{file.name}</span>
+          <span className="sds-file-upload-item__size sds-text--body-content-small">{formatFileSize(file.size)}</span>
         </div>
 
         {progress !== undefined && !isError && !isSuccess && (
@@ -90,7 +90,7 @@ export function FileUploadItem({
         {isError && errorMessage && (
           <div className="sds-file-upload-item__error-message">
             <ErrorIcon size={14} />
-            <span className="sds-file-upload-item__error-text">{errorMessage}</span>
+            <span className="sds-file-upload-item__error-text sds-text--body-content-xsmall">{errorMessage}</span>
           </div>
         )}
       </div>

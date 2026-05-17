@@ -1,7 +1,8 @@
 /* FileUploadItem — Subliminal Design System
  * Fields/FileUpload/FileUploadItem
  *
- * Tokens: --sds-neutral-content-*, --sds-status-error-*, --sds-typography-*
+ * Tokens: --sds-neutral-content-*, --sds-status-error-*
+ * Typography: .sds-text--subtitle-small (name), .sds-text--body-content-small (size), .sds-text--body-content-xsmall (error-text)
  *
  * Structure:
  *   .sds-file-upload-item              → flat flex-row wrapper (no card)
@@ -56,11 +57,6 @@
 }
 
 .sds-file-upload-item__name {
-  font-family:    var(--sds-typography-font-family-subtitle);
-  font-weight:    var(--sds-typography-font-weight-subtitle);
-  font-size:      var(--sds-typography-font-size-subtitle-small);
-  line-height:    var(--sds-typography-line-height-subtitle-small);
-  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
   color:          var(--sds-neutral-content-primary);
   flex: 1;
   min-width: 0;
@@ -70,11 +66,6 @@
 }
 
 .sds-file-upload-item__size {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color:          var(--sds-neutral-content-tertiary);
   flex-shrink:    0;
   white-space:    nowrap;
@@ -94,10 +85,3 @@
   margin-top: calc((var(--sds-typography-line-height-body-content-xsmall) - 14px) / 2);
 }
 
-.sds-file-upload-item__error-text {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-xsmall);
-  line-height:    var(--sds-typography-line-height-body-content-xsmall);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
-}

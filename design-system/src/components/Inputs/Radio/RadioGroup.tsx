@@ -137,7 +137,7 @@ export function RadioGroup({
         )}
 
         {error && errorMessage && (
-          <div className="sds-radio-group__error-message" role="alert">
+          <div className="sds-radio-group__error-message sds-text--body-content-small" role="alert">
             <span className="sds-radio-group__error-icon" aria-hidden="true">
               <ErrorIcon size={16} />
             </span>

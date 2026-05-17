@@ -70,6 +70,22 @@
         "$value": "{global-colors.Neutrals.Steel.900}",
         "$type": "color",
         "$description": "Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements."
+      },
+      "Elevated": {
+        "$value": "{global-colors.Neutrals.Steel.800}",
+        "$type": "color"
+      },
+      "Static": {
+        "Default": {
+          "$value": "{global-colors.Transparent.Light.975}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Transparent.Light.300}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        }
       }
     }
   },
@@ -827,6 +843,10 @@
           "$value": "{global-colors.Colors.Red.300}",
           "$type": "color",
           "$description": "A general-use error state for text or icon content."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Red.500}",
+          "$type": "color"
         }
       },
       "Background": {
@@ -847,9 +867,13 @@
     "Success": {
       "Content": {
         "Default": {
-          "$value": "{global-colors.Colors.Emerald.400}",
+          "$value": "{global-colors.Colors.Emerald.300}",
           "$type": "color",
           "$description": "Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback"
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Emerald.400}",
+          "$type": "color"
         }
       },
       "Stroke": {
@@ -873,6 +897,10 @@
           "$value": "{global-colors.Colors.Yellow.200}",
           "$type": "color",
           "$description": "Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Yellow.200}",
+          "$type": "color"
         }
       },
       "Stroke": {
@@ -892,10 +920,14 @@
     },
     "Informative": {
       "Content": {
-        "Defaut": {
-          "$value": "{global-colors.Colors.Sky.500}",
+        "Default": {
+          "$value": "{global-colors.Colors.Sky.300}",
           "$type": "color",
           "$description": "Used for text or icon content that represents an informational state."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Sky.400}",
+          "$type": "color"
         }
       },
       "Stroke": {
@@ -921,7 +953,7 @@
       "$description": "Used as the background behind popover display components such as modals."
     },
     "ShadowDefault": {
-      "$value": "{global-colors.Neutrals.Steel.800}",
+      "$value": "{global-colors.Transparent.Dark.0}",
       "$type": "color",
       "$description": "Color used for elevation drop shadow effects only."
     },
@@ -931,7 +963,7 @@
       "$description": "Color used for elevation drop shadow effects only."
     },
     "Focus": {
-      "$value": "{global-colors.Neutrals.Steel.700}",
+      "$value": "{global-colors.Neutrals.Steel.500}",
       "$type": "color",
       "$description": "Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens."
     },
@@ -941,7 +973,7 @@
         "$type": "number"
       },
       "Elevated Spread": {
-        "$value": 2,
+        "$value": 0,
         "$type": "number"
       },
       "Elevated Y": {

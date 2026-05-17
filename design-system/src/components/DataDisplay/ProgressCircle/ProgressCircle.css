@@ -1,0 +1,113 @@
+/* ProgressCircle — Subliminal Design System
+ * DataDisplay/ProgressCircle/ProgressCircle
+ *
+ * Tokens: --sds-neutral-background-subtle, --sds-accents-solid-primary,
+ *         --sds-neutral-stroke-static-subtle, --sds-neutral-content-static-primary
+ *
+ * Structure:
+ *   .sds-progress-circle                → root div (role="progressbar")
+ *   .sds-progress-circle__svg           → SVG container, rotated -90° so arc starts at top
+ *   .sds-progress-circle__track         → full background ring
+ *   .sds-progress-circle__indicator     → foreground arc (pathLength=100 for normalized dash math)
+ *
+ * Indeterminate: --indeterminate modifier runs two simultaneous animations —
+ *   sds-circle-rotate spins the SVG, sds-circle-dash oscillates the arc length.
+ *   The combination creates a continuous organic sweeping motion.
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-progress-circle {
+  display:     inline-flex;
+  flex-shrink: 0;
+}
+
+/* ─── SVG ────────────────────────────────────────────────────────────────────── */
+
+/* Rotate -90° so the arc origin sits at 12 o'clock instead of 3 o'clock */
+.sds-progress-circle__svg {
+  transform:        rotate(-90deg);
+  transform-origin: center;
+  overflow:         visible;
+}
+
+/* ─── Track ──────────────────────────────────────────────────────────────────── */
+
+.sds-progress-circle__track {
+  stroke: var(--sds-neutral-background-subtle);
+}
+
+/* ─── Indicator ──────────────────────────────────────────────────────────────── */
+
+.sds-progress-circle__indicator {
+  stroke:            var(--sds-accents-solid-primary);
+  stroke-dashoffset: 0;
+  transition:        stroke-dasharray 200ms ease;
+}
+
+/* ─── Static variant ──────────────────────────────────────────────────────────── */
+
+.sds-progress-circle--static .sds-progress-circle__track {
+  stroke: var(--sds-neutral-stroke-static-subtle);
+}
+
+.sds-progress-circle--static .sds-progress-circle__indicator {
+  stroke: var(--sds-neutral-content-static-primary);
+}
+
+/* ─── Indeterminate animations ───────────────────────────────────────────────── */
+
+/*
+ * sds-circle-rotate: spins the SVG container continuously.
+ * Starts at -90° (12 o'clock) so the first visible frame looks natural.
+ *
+ * sds-circle-dash: oscillates the arc length between a stub (1/100) and a long
+ * arc (75/100) while simultaneously advancing the dashoffset, making the arc
+ * appear to grow, travel forward, then contract — giving the sweeping effect.
+ *
+ * Running both at the same speed with different easings creates a phase offset
+ * between rotation and length, so the animation never looks repetitive.
+ */
+@keyframes sds-circle-rotate {
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(270deg); }
+}
+
+@keyframes sds-circle-dash {
+  0%   { stroke-dasharray: 1 100;  stroke-dashoffset: 0; }
+  50%  { stroke-dasharray: 75 100; stroke-dashoffset: -25; }
+  100% { stroke-dasharray: 75 100; stroke-dashoffset: -100; }
+}
+
+.sds-progress-circle--indeterminate .sds-progress-circle__svg {
+  animation: sds-circle-rotate 1.4s linear infinite;
+}
+
+.sds-progress-circle--indeterminate .sds-progress-circle__indicator {
+  animation:  sds-circle-dash 1.4s ease-in-out infinite;
+  transition: none;
+}
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────────── */
+
+/*
+ * Pause rotation; show a fixed partial arc that pulses opacity instead.
+ * Communicates "still loading" without triggering vestibular discomfort.
+ */
+@keyframes sds-circle-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sds-progress-circle--indeterminate .sds-progress-circle__svg {
+    animation:  none;
+    transform:  rotate(-90deg);
+  }
+
+  .sds-progress-circle--indeterminate .sds-progress-circle__indicator {
+    animation:         sds-circle-pulse 1.5s ease-in-out infinite;
+    stroke-dasharray:  50 100;
+    stroke-dashoffset: 0;
+  }
+}

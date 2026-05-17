@@ -231,7 +231,7 @@ export function TextField({
 
       {/* External label — medium size only */}
       {isExternalLabel && (
-        <label htmlFor={inputId} className="sds-text-field__label sds-text-field__label--external">
+        <label htmlFor={inputId} className="sds-text-field__label sds-text-field__label--external sds-text--body-content-medium">
           {label}
         </label>
       )}
@@ -247,7 +247,7 @@ export function TextField({
 
         <div className="sds-text-field__inner">
           {!isExternalLabel && (
-            <label htmlFor={inputId} className="sds-text-field__label">
+            <label htmlFor={inputId} className="sds-text-field__label sds-text--body-content-medium">
               {label}
             </label>
           )}
@@ -264,7 +264,7 @@ export function TextField({
             aria-label={ariaLabel}
             aria-describedby={describedByParts.length ? describedByParts.join(' ') : undefined}
             aria-invalid={showError ? true : undefined}
-            className="sds-text-field__input"
+            className="sds-text-field__input sds-text--body-content-medium"
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
@@ -295,7 +295,7 @@ export function TextField({
             <>
               {showError   && <ErrorIcon size={16} />}
               {showSuccess && <SuccessIcon size={16} />}
-              <p className="sds-text-field__message">{message}</p>
+              <p className="sds-text-field__message sds-text--body-content-small">{message}</p>
             </>
           )}
 
@@ -303,6 +303,7 @@ export function TextField({
             <span
               className={[
                 'sds-text-field__char-count',
+                'sds-text--body-content-small',
                 charCountState === 'at'   && 'sds-text-field__char-count--at',
                 charCountState === 'over' && 'sds-text-field__char-count--over',
               ].filter(Boolean).join(' ')}

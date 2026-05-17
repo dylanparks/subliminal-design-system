@@ -94,7 +94,7 @@ export function RatingInput({
       id={id}
     >
       {label && (
-        <span id={labelId} className="sds-rating-input__label">
+        <span id={labelId} className="sds-rating-input__label sds-text--subtitle-medium">
           {label}
         </span>
       )}

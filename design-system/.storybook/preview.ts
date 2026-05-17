@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import React from 'react';
 import '../src/tokens/generated/tokens.css';
+import '../src/tokens/generated/typography.css';
 import './preview.css';
 import { fontFamilies } from '../src/tokens/generated/fonts';
 import { DirectionProvider } from '../src/utilities';
@@ -159,6 +160,11 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    options: {
+      storySort: {
+        order: ['Actions', 'Fields', 'Inputs', 'DataDisplay', 'Navigation', 'Enhancers', 'Utility'],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

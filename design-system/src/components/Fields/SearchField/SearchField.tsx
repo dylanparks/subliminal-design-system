@@ -331,7 +331,7 @@ export function SearchField({
           )}
 
           <div className="sds-search-field__inner">
-            <label htmlFor={inputId} className="sds-search-field__label">
+            <label htmlFor={inputId} className="sds-search-field__label sds-text--body-content-medium">
               {label}
             </label>
 
@@ -360,7 +360,7 @@ export function SearchField({
                 value={isControlled ? value : internalValue}
                 placeholder={placeholder}
                 disabled={disabled}
-                className="sds-search-field__input"
+                className="sds-search-field__input sds-text--body-content-medium"
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 onFocus={handleFocus}
@@ -382,7 +382,7 @@ export function SearchField({
                 aria-label={ariaLabel}
                 aria-describedby={showMessage ? messageId : undefined}
                 aria-invalid={showError ? true : undefined}
-                className="sds-search-field__input"
+                className="sds-search-field__input sds-text--body-content-medium"
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               />
@@ -472,7 +472,7 @@ export function SearchField({
         <div id={messageId} className="sds-search-field__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-search-field__message">{message}</p>
+          <p className="sds-search-field__message sds-text--body-content-small">{message}</p>
         </div>
       )}
 

@@ -180,7 +180,7 @@ export function Tab({ value, children, icon, disabled, className }: TabProps) {
           <span className="sds-tab__icon" aria-hidden="true">{icon}</span>
         )}
         {hasLabel && (
-          <span className="sds-tab__label">{children}</span>
+          <span className="sds-tab__label sds-text--body-interactive-small">{children}</span>
         )}
       </span>
       <span className="sds-tab__indicator" aria-hidden="true" />

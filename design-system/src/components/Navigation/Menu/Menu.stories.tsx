@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { Menu, MenuItem, MenuDivider } from './Menu';
 import type { MenuSuffix } from './Menu';
-import { DiamondIcon, StarIcon, SettingsIcon } from '../../../icons';
+import { CircleIcon } from '../../../icons';
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
@@ -85,9 +85,9 @@ const itemArgTypes = {
 // ─── Shared item data ─────────────────────────────────────────────────────────
 
 const ITEMS = [
-  { id: 'profile',    label: 'Profile',    icon: <DiamondIcon />,  tagLabel: '57', shortcut: '⌘P' },
-  { id: 'favourites', label: 'Favourites', icon: <StarIcon />,     tagLabel: '3',  shortcut: '⌘F' },
-  { id: 'settings',   label: 'Settings',   icon: <SettingsIcon />, tagLabel: '12', shortcut: '⌘,' },
+  { id: 'profile',    label: 'Profile',    icon: <CircleIcon />,  tagLabel: '57', shortcut: '⌘P' },
+  { id: 'favourites', label: 'Favourites', icon: <CircleIcon />,     tagLabel: '3',  shortcut: '⌘F' },
+  { id: 'settings',   label: 'Settings',   icon: <CircleIcon />, tagLabel: '12', shortcut: '⌘,' },
 ];
 
 function resolveSuffix(item: typeof ITEMS[0], suffixType: ItemControls['suffixType']): MenuSuffix | undefined {
@@ -344,10 +344,10 @@ export const Configure: StoryObj<ConfigureArgs> = {
     const anchorRef       = useRef<HTMLButtonElement>(null);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [items, setItems] = useState([
-      { id: 'diamonds',   label: 'Diamonds',   icon: <DiamondIcon />,  enabled: true  },
-      { id: 'favourites', label: 'Favourites', icon: <StarIcon />,     enabled: true  },
-      { id: 'settings',   label: 'Settings',   icon: <SettingsIcon />, enabled: false },
-      { id: 'messages',   label: 'Messages',   icon: <DiamondIcon />,  enabled: true  },
+      { id: 'diamonds',   label: 'Diamonds',   icon: <CircleIcon />,  enabled: true  },
+      { id: 'favourites', label: 'Favourites', icon: <CircleIcon />,     enabled: true  },
+      { id: 'settings',   label: 'Settings',   icon: <CircleIcon />, enabled: false },
+      { id: 'messages',   label: 'Messages',   icon: <CircleIcon />,  enabled: true  },
     ]);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks

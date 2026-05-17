@@ -3,8 +3,8 @@
  *
  * Tokens: --sds-interactive-fields-background-*, --sds-interactive-fields-stroke-*,
  *         --sds-interactive-fields-content-*, --sds-status-error-*,
- *         --sds-effects-focus, --sds-shape-border-radius-xlarge,
- *         --sds-typography-*
+ *         --sds-effects-focus, --sds-shape-border-radius-xlarge
+ * Typography: .sds-text--subtitle-medium (prompt-title), .sds-text--body-content-small (hint, error-message)
  *
  * Structure:
  *   .sds-file-upload             → root wrapper
@@ -105,11 +105,6 @@
 }
 
 .sds-file-upload__prompt-title {
-  font-family:    var(--sds-typography-font-family-subtitle);
-  font-weight:    var(--sds-typography-font-weight-subtitle);
-  font-size:      var(--sds-typography-font-size-subtitle-medium);
-  line-height:    var(--sds-typography-line-height-subtitle-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-subtitle-medium);
   color:          var(--sds-neutral-content-primary);
   text-align:     center;
   white-space:    nowrap;
@@ -119,15 +114,6 @@
 
 .sds-file-upload__footer {
   padding: 0 2px;
-}
-
-.sds-file-upload__hint,
-.sds-file-upload__error-message {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
 }
 
 .sds-file-upload__hint {

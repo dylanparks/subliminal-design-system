@@ -189,7 +189,7 @@ export function FileUpload({
           <div className="sds-file-upload__prompt">
             <div className="sds-file-upload__prompt-upload-section">
               <UploadIcon size={36} className="sds-file-upload__prompt-icon" />
-              <span className="sds-file-upload__prompt-title">Drag & Drop your file</span>
+              <span className="sds-file-upload__prompt-title sds-text--subtitle-medium">Drag & Drop your file</span>
             </div>
             <Button
               variant="primary"
@@ -204,8 +204,8 @@ export function FileUpload({
 
       {showFooter && (
         <div className="sds-file-upload__footer">
-          {errorMessage && <span className="sds-file-upload__error-message">{errorMessage}</span>}
-          {!errorMessage && hint && <span className="sds-file-upload__hint">{hint}</span>}
+          {errorMessage && <span className="sds-file-upload__error-message sds-text--body-content-small">{errorMessage}</span>}
+          {!errorMessage && hint && <span className="sds-file-upload__hint sds-text--body-content-small">{hint}</span>}
         </div>
       )}
     </div>

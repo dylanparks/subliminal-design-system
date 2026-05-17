@@ -1,7 +1,8 @@
 /* Button — Subliminal Design System
  * Tokens: --sds-interactive-*, --sds-interactive-static-*,
  *         --sds-interactive-negative-*, --sds-effects-*,
- *         --sds-shape-border-radius-*, --sds-typography-*
+ *         --sds-shape-border-radius-*
+ * Typography: sds-text--body-interactive-{small|medium|large|huge}
  */
 
 /* ─── Base ─────────────────────────────────────────────────────────────────── */
@@ -13,8 +14,6 @@
   gap: 8px;
   border: none;
   cursor: pointer;
-  font-family: var(--sds-typography-font-family-body-interactive);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
   text-decoration: none;
   white-space: nowrap;
   outline: none;
@@ -50,9 +49,6 @@
 .sds-button--xsmall {
   height: var(--sds-spacing-size-xsmall);
   padding: 0 12px;
-  font-size: var(--sds-typography-font-size-body-interactive-small);
-  line-height: var(--sds-typography-line-height-body-interactive-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
   border-radius: var(--sds-shape-border-radius-xsmall);
   gap: 6px;
 }
@@ -65,9 +61,6 @@
 .sds-button--small {
   height: var(--sds-spacing-size-small);
   padding: 0 16px;
-  font-size: var(--sds-typography-font-size-body-interactive-medium);
-  line-height: var(--sds-typography-line-height-body-interactive-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
   border-radius: var(--sds-shape-border-radius-small);
   gap: 8px;
 }
@@ -80,9 +73,6 @@
 .sds-button--medium {
   height: var(--sds-spacing-size-medium);
   padding: 0 20px;
-  font-size: var(--sds-typography-font-size-body-interactive-large);
-  line-height: var(--sds-typography-line-height-body-interactive-large);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
   border-radius: var(--sds-shape-border-radius-medium);
   gap: 8px;
 }
@@ -95,9 +85,6 @@
 .sds-button--large {
   height: var(--sds-spacing-size-large);
   padding: 0 24px;
-  font-size: var(--sds-typography-font-size-body-interactive-huge);
-  line-height: var(--sds-typography-line-height-body-interactive-huge);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-huge);
   border-radius: var(--sds-shape-border-radius-large);
   gap: 10px;
 }
@@ -105,6 +92,14 @@
 .sds-button--large .sds-button__icon {
   width: 24px;
   height: 24px;
+}
+
+/* ─── Icon-only ─────────────────────────────────────────────────────────────── */
+
+/* Square: remove horizontal padding and let aspect-ratio match width to height */
+.sds-button--icon-only:not([class*="-ghost"]) {
+  padding-inline: 0;
+  aspect-ratio: 1;
 }
 
 /* ─── Ghost (shared) ────────────────────────────────────────────────────────── */

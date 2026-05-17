@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { within, userEvent, expect } from 'storybook/test';
+import { within, userEvent, expect, screen, waitFor } from 'storybook/test';
 import { Breadcrumbs } from './Breadcrumbs';
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
@@ -124,10 +124,12 @@ export const WithOverflow: Story = {
     const overflowBtn = canvas.getByRole('button', { name: 'Show hidden breadcrumbs' });
     await expect(overflowBtn).toBeInTheDocument();
     await userEvent.click(overflowBtn);
-    // Menu items for collapsed crumbs should appear
-    await expect(canvas.getByRole('menuitem', { name: 'Home' })).toBeVisible();
-    await expect(canvas.getByRole('menuitem', { name: 'Shop' })).toBeVisible();
-    await expect(canvas.getByRole('menuitem', { name: 'Electronics' })).toBeVisible();
+    // Menu is portal-rendered outside canvasElement — use screen + waitFor for CSS transitions
+    await waitFor(() => {
+      expect(screen.getByRole('menuitem', { name: 'Home' })).toBeVisible();
+      expect(screen.getByRole('menuitem', { name: 'Shop' })).toBeVisible();
+      expect(screen.getByRole('menuitem', { name: 'Electronics' })).toBeVisible();
+    });
   },
 };
 

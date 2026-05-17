@@ -7,8 +7,9 @@
  *         --sds-interactive-static-hollow-background-inactive-hover,
  *         --sds-interactive-static-hollow-stroke-default,
  *         --sds-neutral-stroke-default,
- *         --sds-shape-border-radius-xsmall,
- *         --sds-typography-*
+ *         --sds-effects-focus,
+ *         --sds-shape-border-radius-xsmall
+ * Typography: .sds-text--body-interactive-small (tab label)
  *
  * Structure:
  *   .sds-tabs             → root flex-column container
@@ -107,11 +108,6 @@
 /* ─── Label ──────────────────────────────────────────────────────────────────── */
 
 .sds-tab__label {
-  font-family: var(--sds-typography-font-family-body-interactive);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
-  font-size: var(--sds-typography-font-size-body-interactive-small);
-  line-height: var(--sds-typography-line-height-body-interactive-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
   white-space: nowrap;
   text-align: center;
 }
@@ -160,7 +156,7 @@
 }
 
 .sds-tab:focus-visible {
-  box-shadow: 0 0 0 2px var(--sds-interactive-primary-hollow-content-default);
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
 }
 
 /* ─── Colors — static ────────────────────────────────────────────────────────── */

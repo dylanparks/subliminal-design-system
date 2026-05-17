@@ -342,8 +342,8 @@ describe('ButtonGroup', () => {
     expect(children[1]).toHaveClass('sds-button-group__label');
   });
 
-  it('renders icon after label when iconPosition is right', () => {
-    const iconItems = [{ value: 'x', label: 'Bold', icon: <svg data-testid="icon" />, iconPosition: 'right' as const }];
+  it('renders icon after label when iconPosition is end', () => {
+    const iconItems = [{ value: 'x', label: 'Bold', icon: <svg data-testid="icon" />, iconPosition: 'end' as const }];
     render(<ButtonGroup items={iconItems} aria-label="Format" />);
     const btn = screen.getByRole('radio');
     const children = btn.querySelectorAll('.sds-button-group__icon, .sds-button-group__label');

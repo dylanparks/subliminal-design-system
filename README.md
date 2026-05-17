@@ -76,14 +76,18 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `Menu` | ✓ | Portal-rendered, WAI-ARIA menu pattern — action, single-select, multi-select, configure |
 | `Tabs` | ✓ | WAI-ARIA Tabs — label / icon / icon-only, static variant, keyboard nav (Arrow / Home / End), controlled + uncontrolled, WCAG AA |
 | `Breadcrumbs` | ✓ | WAI-ARIA nav landmark — `<a>` / `<button>` ancestor links, `aria-current="page"` on last item, overflow collapse with `maxItems`, static variant, WCAG AA |
+| `Pagination` | ✓ | `<nav>` landmark — default (numbered tabs + ellipsis) + compact ("X of Y") variants, controlled/uncontrolled, configurable `siblingCount` + `boundaryCount`, WCAG AA |
 
 ### Data Display
 
 | Component | Status | Notes |
 |---|---|---|
 | `ProgressBar` | ✓ | Determinate + indeterminate (animated sweep), error/success states, optional label + value |
+| `ProgressCircle` | ✓ | Circular progress — determinate arc + indeterminate sweeping animation, 4 sizes, static variant, WCAG AA |
 | `Tag` | ✓ | Semantic label — 6 types, solid/outline fill styles, large/small sizes, optional icon |
 | `Avatar` | ✓ | Circular avatar — photo / initials / icon fallback chain, 3 sizes, WCAG AA |
+| `StatusLight` | Planned | |
+| `Badge` | Planned | |
 
 ### Table
 
@@ -93,19 +97,27 @@ Design tokens originate in Figma as variable collections and flow through Style 
 
 ### Surfaces
 
-| Component | Status |
-|---|---|
-| `Notification` | Planned |
-| `Modal` | Planned |
-| `Tooltips` | Planned |
-| `Accordion` | Planned |
+| Component | Status | Notes |
+|---|---|---|
+| `Notification` | ✓ | Inline status banner — informational / success / warning / error, stacked + inline layouts, optional title, description, actions, dismiss, WCAG AA (`role="alert"` for error/warning, `role="status"` for info/success) |
+| `Modal` | Planned | |
+| `Accordion` | Planned | |
+| `Popover` | Planned | |
 
-### Utilities
+### Enhancers
 
-| Export | Notes |
-|---|---|
-| `DirectionProvider` | React context provider — sets `dir` on `document.documentElement` and exposes direction to the tree via context |
-| `useDirection` | Hook returning `'ltr' \| 'rtl'`; returns `'ltr'` safely outside provider |
+| Component | Status | Notes |
+|---|---|---|
+| `Tooltip` | ✓ | Portal-rendered floating label — hover (600ms delay) + focus triggers, Escape to dismiss, Floating UI auto-flip/shift, SVG caret with seamless popup junction, WCAG 1.4.13 hoverable zone, `disableTooltip` on icon-only `Button`, WCAG AA |
+| `Divider` | ✓ | Horizontal + vertical 1px separator — `role="separator"` with `aria-orientation`, static variant, WCAG AA |
+| `HintDot` | Planned | |
+
+### Utility
+
+| Export | Status | Notes |
+|---|---|---|
+| `DirectionProvider` | ✓ | React context provider — sets `dir` on `document.documentElement` and exposes direction to the tree via context |
+| `useDirection` | ✓ | Hook returning `'ltr' \| 'rtl'`; returns `'ltr'` safely outside provider |
 
 ## Accessibility
 
@@ -125,9 +137,13 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - `RatingInput`: `role="radiogroup"` container with one `<input type="radio">` per star; each announces "N out of max stars"; browser handles arrow-key navigation natively; hover-preview fills stars up to cursor position; `data-mouse-focus` guard suppresses Chrome's `:focus-visible` on click
 - `Slider`: each thumb is `div[role="slider"]` with `aria-valuemin/max/now/valuetext`; range mode constrains each thumb's `aria-valuemin/max` to the other thumb's value ± step; keyboard: Arrow ±step, Shift+Arrow ±largeStep, Home/End, PageUp/PageDown; horizontal arrows are RTL-aware (Left in RTL = increase); touch target 44×44 via `::after { inset: -14px }` on 16px thumb (WCAG 2.5.8); `aria-valuetext` driven by `getValueText` → `formatOptions` → raw number
 - `Breadcrumbs`: `<nav aria-label>` landmark with `<ol>` list; ancestor crumbs are `<a>` (href) or `<button>` (onClick); last item has `aria-current="page"`; chevron separators are `aria-hidden`; overflow button has `aria-expanded` + `aria-haspopup="menu"`, reveals collapsed items via action Menu
+- `Pagination`: `<nav aria-label>` landmark; page buttons have `aria-label="Page N"` + `aria-current="page"` on selected; prev/next carry descriptive `aria-label`; compact label is `aria-live="polite" aria-atomic="true"`; prev/next are `disabled` at boundaries (not just visually hidden)
 - `Tabs`: WAI-ARIA Tabs pattern — `role="tablist"`, `role="tab"` with `aria-selected` + `aria-controls`, `role="tabpanel"` with `aria-labelledby`; roving tabindex (only selected tab is in the tab sequence); Arrow Left/Right navigates between tabs, Home/End jump to first/last, disabled tabs skipped; automatic activation model (activates on focus change)
 - `Avatar`: `role="img"` on the root with `aria-label` defaulting to `name`; pass `aria-hidden` when decorative inside a labeled container; fallback layer is `aria-hidden` so only the outer label is announced
 - `ProgressBar`: `role="progressbar"` + `aria-valuemin/max/now/text`; omits `aria-valuenow` when indeterminate; `aria-valuetext` reads "Loading…" for indeterminate
+- `ProgressCircle`: `role="progressbar"` with same ARIA pattern as ProgressBar; SVG is `aria-hidden`; defaults `aria-label` to "Loading" in indeterminate state; `prefers-reduced-motion` replaces the sweeping animation with a slow opacity pulse on a fixed 50% arc
+- `Divider`: `div[role="separator"]` with `aria-orientation="horizontal|vertical"`; decorative use — wrap in `aria-hidden` if purely visual
+- `Tooltip`: `role="tooltip"` linked to trigger via `aria-describedby` (injected onto the child element via `cloneElement`); opens on hover (600ms delay) and focus (immediate); closes on `mouseleave`, `blur`, and `Escape`; `disabled` prop suppresses entirely; icon-only `Button` auto-wraps with tooltip using `label` as content — opt out with `disableTooltip`; hover-only tooltips are not accessible to touch/mobile users — use Popover for important content
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
 
@@ -180,9 +196,19 @@ design-system/
     │   │   └── InputIndicators/    ← CheckboxIndicator, RadioIndicator, ToggleIndicator (utility)
     │   ├── DataDisplay/
     │   │   ├── ProgressBar/
-    │   │   └── Tag/
-    │   └── Navigation/
-    │       └── Menu/
+    │   │   ├── ProgressCircle/
+    │   │   ├── Tag/
+    │   │   └── Avatar/
+    │   ├── Navigation/
+    │   │   ├── Menu/
+    │   │   ├── Tabs/
+    │   │   ├── Breadcrumbs/
+    │   │   └── Pagination/
+    │   ├── Surfaces/
+    │   │   └── Notification/
+    │   └── Enhancers/
+    │       ├── Tooltip/
+    │       └── Divider/
     ├── utilities/
     │   ├── DirectionProvider.tsx  ← RTL/LTR context + DOM sync
     │   └── useDirection.ts        ← hook for reading direction in components

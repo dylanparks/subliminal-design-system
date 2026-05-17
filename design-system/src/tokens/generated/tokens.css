@@ -23,6 +23,9 @@
   --sds-neutral-background-subtle: #e1e6f0; /** An even larger distinguishing background color offset from the default app's background color. */
   --sds-neutral-background-elevated: #ffffff;
   --sds-neutral-stroke-default: #e1e6f0; /** Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements. */
+  --sds-neutral-stroke-elevated: #e1e6f0;
+  --sds-neutral-stroke-static-default: rgba(255, 255, 255, 0.98); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-neutral-stroke-static-subtle: rgba(255, 255, 255, 0.3); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
   --sds-interactive-primary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-hover: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-active: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
@@ -66,7 +69,7 @@
   --sds-interactive-secondary-hollow-background-inactive-default: #ffffff; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
   --sds-interactive-secondary-hollow-background-inactive-hover: #f2f5fa; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
   --sds-interactive-secondary-hollow-background-inactive-active: #e1e6f0; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
-  --sds-interactive-secondary-hollow-background-inactive-disabled: #e1e6f0; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
+  --sds-interactive-secondary-hollow-background-inactive-disabled: #ffffff; /** A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive. */
   --sds-interactive-secondary-hollow-stroke-default: #e1e6f0; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-hover: #d3dbeb; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
   --sds-interactive-secondary-hollow-stroke-active: #b6c1d6; /** Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. */
@@ -155,21 +158,25 @@
   --sds-interactive-fields-stroke-error: #b21a21; /** Border or outline color applied to input-based elements in a validation error state to visually reinforce that the field requires attention or correction. Strongly recommended to be used alongside Interactive/Fields/Background/Error and a non-color error indicator (such as an error message or icon); while WCAG AA does not require this stroke if sufficient alternative error signaling is present, including it at 3:1 contrast against adjacent colors is best practice for users with low vision. */
   --sds-interactive-fields-stroke-success: #0c6a3b; /** Border or outline color applied to input-based elements to reinforce that the field's value has been validated or confirmed as acceptable. Strongly recommended alongside Interactive/Fields/Background/Success; any accompanying success message text or icon should use Status/Success/Content/Default rather than a fields-specific content token, as non-interactive status content within and around field components is handled by the Status token family. */
   --sds-status-error-content-default: #b21a21; /** A general-use error state for text or icon content. */
+  --sds-status-error-content-subtle: #df2029;
   --sds-status-error-background-default: #fce9ea; /** A conditionally error state background used for elements using status-error-content variables. */
   --sds-status-error-stroke-default: #b21a21; /** A conditionally error state border color used for elements using status-error-content variables. */
   --sds-status-success-content-default: #0c6a3b; /** Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback */
+  --sds-status-success-content-subtle: #0f854a;
   --sds-status-success-stroke-default: #0c6a3b; /** A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs). */
   --sds-status-success-background-default: #e7f9f0; /** A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis. */
   --sds-status-warning-content-default: #5c4d00; /** Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices. */
+  --sds-status-warning-content-subtle: #9e8400;
   --sds-status-warning-stroke-default: #e2c432; /** A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders). */
   --sds-status-warning-background-default: #f8f3dd; /** A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators. */
-  --sds-status-informative-content-defaut: #005b6f; /** Used for text or icon content that represents an informational state. */
+  --sds-status-informative-content-default: #005b6f; /** Used for text or icon content that represents an informational state. */
+  --sds-status-informative-content-subtle: #008caa;
   --sds-status-informative-stroke-default: #12caf2; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
   --sds-status-informative-background-default: #e1faff; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
   --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
   --sds-effects-shadowdefault: rgba(2, 2, 2, 0.1); /** Color used for elevation drop shadow effects only. */
   --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
-  --sds-effects-focus: #b6c1d6; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
+  --sds-effects-focus: #8f9fbf; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
   --sds-effects-values-elevated-blur: 16;
   --sds-effects-values-elevated-spread: 2;
   --sds-effects-values-elevated-y: 4;
@@ -351,6 +358,9 @@
   --sds-neutral-background-subtle: #27273a; /** An even larger distinguishing background color offset from the default app's background color. */
   --sds-neutral-background-elevated: #151a24;
   --sds-neutral-stroke-default: #151a24; /** Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements. */
+  --sds-neutral-stroke-elevated: #232b3b;
+  --sds-neutral-stroke-static-default: rgba(255, 255, 255, 0.98); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
+  --sds-neutral-stroke-static-subtle: rgba(255, 255, 255, 0.3); /** Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction. */
   --sds-interactive-primary-filled-content-default: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-hover: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
   --sds-interactive-primary-filled-content-active: #ffffff; /** Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used. */
@@ -483,23 +493,27 @@
   --sds-interactive-fields-stroke-error: #e54d54; /** Border or outline color applied to input-based elements in a validation error state to visually reinforce that the field requires attention or correction. Strongly recommended to be used alongside Interactive/Fields/Background/Error and a non-color error indicator (such as an error message or icon); while WCAG AA does not require this stroke if sufficient alternative error signaling is present, including it at 3:1 contrast against adjacent colors is best practice for users with low vision. */
   --sds-interactive-fields-stroke-success: #1ab266; /** Border or outline color applied to input-based elements to reinforce that the field's value has been validated or confirmed as acceptable. Strongly recommended alongside Interactive/Fields/Background/Success; any accompanying success message text or icon should use Status/Success/Content/Default rather than a fields-specific content token, as non-interactive status content within and around field components is handled by the Status token family. */
   --sds-status-error-content-default: #ec797f; /** A general-use error state for text or icon content. */
+  --sds-status-error-content-subtle: #df2029;
   --sds-status-error-background-default: #590d11; /** A conditionally error state background used for elements using status-error-content variables. */
   --sds-status-error-stroke-default: #e54d54; /** A conditionally error state border color used for elements using status-error-content variables. */
-  --sds-status-success-content-default: #1ab266; /** Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback */
+  --sds-status-success-content-default: #43d08a; /** Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback */
+  --sds-status-success-content-subtle: #1ab266;
   --sds-status-success-stroke-default: #1ab266; /** A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs). */
   --sds-status-success-background-default: #08361f; /** A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis. */
   --sds-status-warning-content-default: #e2c432; /** Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices. */
+  --sds-status-warning-content-subtle: #e2c432;
   --sds-status-warning-stroke-default: #e2c432; /** A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders). */
   --sds-status-warning-background-default: #2e2600; /** A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators. */
-  --sds-status-informative-content-defaut: #00b3da; /** Used for text or icon content that represents an informational state. */
+  --sds-status-informative-content-default: #40ddff; /** Used for text or icon content that represents an informational state. */
+  --sds-status-informative-content-subtle: #12caf2;
   --sds-status-informative-stroke-default: #008caa; /** An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames). */
   --sds-status-informative-background-default: #003945; /** An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints. */
   --sds-effects-overlaysolid: rgba(2, 2, 2, 0.6); /** Used as the background behind popover display components such as modals. */
-  --sds-effects-shadowdefault: #232b3b; /** Color used for elevation drop shadow effects only. */
+  --sds-effects-shadowdefault: rgba(2, 2, 2, 0); /** Color used for elevation drop shadow effects only. */
   --sds-effects-shadowcallout: #050609; /** Color used for elevation drop shadow effects only. */
-  --sds-effects-focus: #374257; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
+  --sds-effects-focus: #6f7e9e; /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
   --sds-effects-values-elevated-blur: 0;
-  --sds-effects-values-elevated-spread: 2;
+  --sds-effects-values-elevated-spread: 0;
   --sds-effects-values-elevated-y: 0;
   --sds-effects-values-elevated-x: 0;
   --sds-accents-solid-primary: #3e5cff; /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */

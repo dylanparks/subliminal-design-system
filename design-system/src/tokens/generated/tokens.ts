@@ -23,6 +23,11 @@ export const tokens = {
     },
     stroke: {
       default: "var(--sds-neutral-stroke-default)",
+      elevated: "var(--sds-neutral-stroke-elevated)",
+      static: {
+        default: "var(--sds-neutral-stroke-static-default)",
+        subtle: "var(--sds-neutral-stroke-static-subtle)",
+      },
     },
   },
   interactive: {
@@ -252,6 +257,7 @@ export const tokens = {
     error: {
       content: {
         default: "var(--sds-status-error-content-default)",
+        subtle: "var(--sds-status-error-content-subtle)",
       },
       background: {
         default: "var(--sds-status-error-background-default)",
@@ -263,6 +269,7 @@ export const tokens = {
     success: {
       content: {
         default: "var(--sds-status-success-content-default)",
+        subtle: "var(--sds-status-success-content-subtle)",
       },
       stroke: {
         default: "var(--sds-status-success-stroke-default)",
@@ -274,6 +281,7 @@ export const tokens = {
     warning: {
       content: {
         default: "var(--sds-status-warning-content-default)",
+        subtle: "var(--sds-status-warning-content-subtle)",
       },
       stroke: {
         default: "var(--sds-status-warning-stroke-default)",
@@ -284,7 +292,8 @@ export const tokens = {
     },
     informative: {
       content: {
-        defaut: "var(--sds-status-informative-content-defaut)",
+        default: "var(--sds-status-informative-content-default)",
+        subtle: "var(--sds-status-informative-content-subtle)",
       },
       stroke: {
         default: "var(--sds-status-informative-stroke-default)",

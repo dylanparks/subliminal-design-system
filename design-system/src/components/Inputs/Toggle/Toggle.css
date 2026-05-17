@@ -2,7 +2,9 @@
  * Inputs/Toggle/Toggle
  *
  * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
- *         --sds-effects-focus, --sds-typography-*
+ *         --sds-effects-focus, --sds-typography-line-height-*
+ * Typography utility classes: .sds-text--body-content-medium (label),
+ *                              .sds-text--body-content-small (description)
  *
  * Structure:
  *   .sds-toggle                → root <label>
@@ -65,24 +67,12 @@
 
 /* ─── Default label + description ────────────────────────────────────────────── */
 
-.sds-toggle__label,
-.sds-toggle__description {
-  font-family: var(--sds-typography-font-family-body-content);
-  font-weight: var(--sds-typography-font-weight-body-content);
-}
-
 .sds-toggle__label {
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
-  color:          var(--sds-neutral-content-primary);
+  color: var(--sds-neutral-content-primary);
 }
 
 .sds-toggle__description {
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
-  color:          var(--sds-neutral-content-tertiary);
+  color: var(--sds-neutral-content-tertiary);
 }
 
 .sds-toggle--medium .sds-toggle__label {

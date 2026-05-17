@@ -191,7 +191,7 @@ function CalendarHeader({ title, prevLabel, nextLabel, onPrev, onNext }: Calenda
         aria-label={prevLabel}
         onClick={onPrev}
       />
-      <span className="sds-datepicker__header-title">{title}</span>
+      <span className="sds-datepicker__header-title sds-text--body-interactive-large">{title}</span>
       <Button
         variant="secondary"
         fillStyle="ghost"
@@ -248,7 +248,7 @@ function DayGridPanel({
       <thead>
         <tr className="sds-datepicker__weekdays">
           {WEEKDAYS.map(d => (
-            <th key={d} scope="col" className="sds-datepicker__weekday" abbr={d}>{d}</th>
+            <th key={d} scope="col" className="sds-datepicker__weekday sds-text--body-content-small" abbr={d}>{d}</th>
           ))}
         </tr>
       </thead>
@@ -770,16 +770,16 @@ export function DatePicker({
           onClick={() => isOpen ? closePopover() : openPopover()}
         >
           <div className="sds-datepicker__inner">
-            <span className="sds-datepicker__label" aria-hidden="true">{label}</span>
+            <span className="sds-datepicker__label sds-text--body-content-medium" aria-hidden="true">{label}</span>
             {/* Value — always in DOM, visibility via CSS on --filled */}
             {mode === 'range' ? (
-              <div className="sds-datepicker__value sds-datepicker__value--range" aria-hidden="true">
-                <span className="sds-datepicker__range-date">{formatDate(currentStart)}</span>
+              <div className="sds-datepicker__value sds-datepicker__value--range sds-text--body-content-medium" aria-hidden="true">
+                <span className="sds-datepicker__range-date sds-text--body-content-medium">{formatDate(currentStart)}</span>
                 <span className="sds-datepicker__range-sep" aria-hidden="true"><ArrowForwardIcon size={14} /></span>
-                <span className="sds-datepicker__range-date">{formatDate(currentEnd)}</span>
+                <span className="sds-datepicker__range-date sds-text--body-content-medium">{formatDate(currentEnd)}</span>
               </div>
             ) : (
-              <span className="sds-datepicker__value" aria-hidden="true">{triggerLabel()}</span>
+              <span className="sds-datepicker__value sds-text--body-content-medium" aria-hidden="true">{triggerLabel()}</span>
             )}
           </div>
         </button>
@@ -830,7 +830,7 @@ export function DatePicker({
         <div id={supportId} className="sds-datepicker__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-datepicker__message">{message}</p>
+          <p className="sds-datepicker__message sds-text--body-content-small">{message}</p>
         </div>
       )}
 

@@ -225,7 +225,7 @@ export function TextArea({
             (acting as a visual placeholder). Transitions to small text above
             the content on focus or fill via CSS focus-within / --filled.
           */}
-          <label htmlFor={textareaId} className="sds-text-area__label">
+          <label htmlFor={textareaId} className="sds-text-area__label sds-text--body-content-medium">
             {label}
           </label>
 
@@ -246,7 +246,7 @@ export function TextArea({
             aria-label={ariaLabel}
             aria-describedby={describedByParts.length ? describedByParts.join(' ') : undefined}
             aria-invalid={showError ? true : undefined}
-            className="sds-text-area__textarea"
+            className="sds-text-area__textarea sds-text--body-content-medium"
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             onFocus={handleFocus}
@@ -281,7 +281,7 @@ export function TextArea({
             <>
               {showError   && <ErrorIcon size={16} />}
               {showSuccess && <SuccessIcon size={16} />}
-              <p className="sds-text-area__message">{message}</p>
+              <p className="sds-text-area__message sds-text--body-content-small">{message}</p>
             </>
           )}
 
@@ -289,6 +289,7 @@ export function TextArea({
             <span
               className={[
                 'sds-text-area__char-count',
+                'sds-text--body-content-small',
                 charCountState === 'at'   && 'sds-text-area__char-count--at',
                 charCountState === 'over' && 'sds-text-area__char-count--over',
               ].filter(Boolean).join(' ')}

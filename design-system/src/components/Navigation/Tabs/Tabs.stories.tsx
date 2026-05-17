@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { userEvent, within, expect } from 'storybook/test';
 import { Tabs, TabList, Tab, TabPanel } from './Tabs';
-import { DiamondIcon, StarIcon, SettingsIcon, InfoIcon } from '../../../icons';
+import { CircleIcon } from '../../../icons';
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
@@ -98,10 +98,10 @@ export const WithIcons: Story = {
   render: () => (
     <Tabs defaultValue="overview">
       <TabList aria-label="Product sections">
-        <Tab value="overview" icon={<InfoIcon size={20} />}>Overview</Tab>
-        <Tab value="specs"    icon={<DiamondIcon size={20} />}>Specs</Tab>
-        <Tab value="reviews"  icon={<StarIcon size={20} />}>Reviews</Tab>
-        <Tab value="support"  icon={<SettingsIcon size={20} />}>Support</Tab>
+        <Tab value="overview" icon={<CircleIcon size={20} />}>Overview</Tab>
+        <Tab value="specs"    icon={<CircleIcon size={20} />}>Specs</Tab>
+        <Tab value="reviews"  icon={<CircleIcon size={20} />}>Reviews</Tab>
+        <Tab value="support"  icon={<CircleIcon size={20} />}>Support</Tab>
       </TabList>
       <TabPanel value="overview">
         <p style={{ marginTop: 16, color: 'var(--sds-neutral-content-primary)' }}>Overview panel content.</p>
@@ -131,10 +131,10 @@ export const IconOnly: Story = {
   render: () => (
     <Tabs defaultValue="overview">
       <TabList aria-label="Product sections">
-        <Tab value="overview" icon={<InfoIcon size={24} />} />
-        <Tab value="specs"    icon={<DiamondIcon size={24} />} />
-        <Tab value="reviews"  icon={<StarIcon size={24} />} />
-        <Tab value="support"  icon={<SettingsIcon size={24} />} />
+        <Tab value="overview" icon={<CircleIcon size={24} />} />
+        <Tab value="specs"    icon={<CircleIcon size={24} />} />
+        <Tab value="reviews"  icon={<CircleIcon size={24} />} />
+        <Tab value="support"  icon={<CircleIcon size={24} />} />
       </TabList>
       <TabPanel value="overview">
         <p style={{ marginTop: 16, color: 'var(--sds-neutral-content-primary)' }}>Overview panel content.</p>
@@ -344,10 +344,10 @@ export const AllVariants: Story = {
           <p style={labelStyle}>Label + icon</p>
           <Tabs defaultValue="a">
             <TabList aria-label="Label and icon">
-              <Tab value="a" icon={<InfoIcon size={20} />}>Overview</Tab>
-              <Tab value="b" icon={<DiamondIcon size={20} />}>Specs</Tab>
-              <Tab value="c" icon={<StarIcon size={20} />}>Reviews</Tab>
-              <Tab value="d" icon={<SettingsIcon size={20} />} disabled>Disabled</Tab>
+              <Tab value="a" icon={<CircleIcon size={20} />}>Overview</Tab>
+              <Tab value="b" icon={<CircleIcon size={20} />}>Specs</Tab>
+              <Tab value="c" icon={<CircleIcon size={20} />}>Reviews</Tab>
+              <Tab value="d" icon={<CircleIcon size={20} />} disabled>Disabled</Tab>
             </TabList>
           </Tabs>
         </div>
@@ -356,10 +356,10 @@ export const AllVariants: Story = {
           <p style={labelStyle}>Icon only</p>
           <Tabs defaultValue="a">
             <TabList aria-label="Icon only">
-              <Tab value="a" icon={<InfoIcon size={24} />} />
-              <Tab value="b" icon={<DiamondIcon size={24} />} />
-              <Tab value="c" icon={<StarIcon size={24} />} />
-              <Tab value="d" icon={<SettingsIcon size={24} />} disabled />
+              <Tab value="a" icon={<CircleIcon size={24} />} />
+              <Tab value="b" icon={<CircleIcon size={24} />} />
+              <Tab value="c" icon={<CircleIcon size={24} />} />
+              <Tab value="d" icon={<CircleIcon size={24} />} disabled />
             </TabList>
           </Tabs>
         </div>

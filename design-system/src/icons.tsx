@@ -252,6 +252,15 @@ export function PersonIcon(props: IconProps) {
 // ─── Story / placeholder icons ────────────────────────────────────────────────
 // Used in Storybook stories only — not part of production component API.
 
+/** circle — generic story placeholder icon (Material Symbols Rounded, outlined) */
+export function CircleIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z" />
+    </Icon>
+  );
+}
+
 /** diamond — story placeholder icon */
 export function DiamondIcon(props: IconProps) {
   return (
@@ -284,6 +293,14 @@ export function MoreVerticalIcon(props: IconProps) {
   return (
     <Icon {...props}>
       <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z" />
+    </Icon>
+  );
+}
+
+export function MoreHorizontalIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
     </Icon>
   );
 }

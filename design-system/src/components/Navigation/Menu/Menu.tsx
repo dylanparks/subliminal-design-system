@@ -136,14 +136,14 @@ function SingleSelectCheckmark({ selected }: { selected: boolean }) {
 function MenuItemSuffixView({ suffix }: { suffix: MenuSuffix }) {
   if (suffix.type === 'tag') {
     return (
-      <span className="sds-menu-item__suffix sds-menu-item__suffix--tag">
+      <span className="sds-menu-item__suffix sds-menu-item__suffix--tag sds-text--subtitle-small">
         {suffix.label}
       </span>
     );
   }
   if (suffix.type === 'text') {
     return (
-      <span className="sds-menu-item__suffix sds-menu-item__suffix--text" aria-hidden="true">
+      <span className="sds-menu-item__suffix sds-menu-item__suffix--text sds-text--body-content-small" aria-hidden="true">
         {suffix.label}
       </span>
     );

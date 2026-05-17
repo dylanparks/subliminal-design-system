@@ -9,8 +9,8 @@
  *         --sds-interactive-static-hollow-stroke-*,
  *         --sds-neutral-content-secondary,
  *         --sds-neutral-content-static-secondary,
- *         --sds-shape-border-radius-xsmall,
- *         --sds-typography-*
+ *         --sds-shape-border-radius-xsmall
+ * Typography: .sds-text--body-interactive-medium (link), .sds-text--body-content-medium (current)
  *
  * Structure:
  *   .sds-breadcrumbs          → <nav> root
@@ -63,11 +63,6 @@
 /* ─── Active link ────────────────────────────────────────────────────────────── */
 
 .sds-breadcrumbs__link {
-  font-family: var(--sds-typography-font-family-body-interactive);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
-  font-size: var(--sds-typography-font-size-body-interactive-medium);
-  line-height: var(--sds-typography-line-height-body-interactive-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
   color: var(--sds-interactive-secondary-hollow-content-default);
   white-space: nowrap;
   text-decoration: none;
@@ -92,11 +87,6 @@
 /* ─── Current page ───────────────────────────────────────────────────────────── */
 
 .sds-breadcrumbs__current {
-  font-family: var(--sds-typography-font-family-body-content);
-  font-weight: var(--sds-typography-font-weight-body-content);
-  font-size: var(--sds-typography-font-size-body-content-medium);
-  line-height: var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-neutral-content-secondary);
   white-space: nowrap;
 }

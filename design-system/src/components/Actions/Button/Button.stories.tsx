@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from './Button';
+import { CircleIcon } from '../../../icons';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -19,7 +20,7 @@ const meta: Meta<typeof Button> = {
     },
     disabled: { control: 'boolean' },
     showLabel: { control: 'boolean' },
-    iconPosition: { control: 'select', options: ['left', 'right'] },
+    iconPosition: { control: 'select', options: ['start', 'end'] },
   },
   args: {
     label: 'Button',
@@ -34,4 +35,18 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+const PlaceholderIcon = () => <CircleIcon />;
+
 export const Default: Story = {};
+
+export const WithIcon: Story = {
+  args: { icon: <PlaceholderIcon /> },
+};
+
+export const WithIconEnd: Story = {
+  args: { icon: <PlaceholderIcon />, iconPosition: 'end' },
+};
+
+export const IconOnly: Story = {
+  args: { icon: <PlaceholderIcon />, showLabel: false },
+};

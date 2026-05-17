@@ -3,11 +3,11 @@
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
  *         --sds-effects-*, --sds-shape-border-radius-*,
- *         --sds-typography-font-family-body-content,
- *         --sds-typography-font-weight-body-content,
  *         --sds-typography-font-size-body-content-{small|medium},
  *         --sds-typography-line-height-body-content-{small|medium},
  *         --sds-typography-letter-spacing-body-content-{small|medium}
+ * Typography: sds-text--body-content-medium (label, input)
+ *             sds-text--body-content-small  (message)
  *
  * Sizes:
  *   large  → 64px height · border-radius-large  (16px)
@@ -174,11 +174,6 @@
   left: 0;
   right: 0;
   transform: translateY(-50%);
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color:          var(--sds-interactive-fields-content-suggested);
   white-space: nowrap;
   overflow: hidden;
@@ -215,11 +210,6 @@
 /* ─── Input ─────────────────────────────────────────────────────────────────── */
 
 .sds-search-field__input {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color:          var(--sds-interactive-fields-content-default);
   background: transparent;
   border: none;
@@ -335,11 +325,6 @@
 
 .sds-search-field__message {
   margin: 0;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color:          var(--sds-neutral-content-tertiary);
 }
 

@@ -104,7 +104,7 @@ export function Stepper({
       {orientation === 'vertical' ? incrementBtn : decrementBtn}
 
       {showValue && (
-        <span className="sds-stepper__value" data-value={inputBuffer}>
+        <span className="sds-stepper__value sds-text--body-interactive-medium" data-value={inputBuffer}>
           <input
             className="sds-stepper__value-input"
             type="text"

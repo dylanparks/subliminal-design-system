@@ -185,9 +185,9 @@ export function Radio({
         <span className="sds-radio__label-slot">
           {children ?? (
             <>
-              <span className="sds-radio__label">{label}</span>
+              <span className="sds-radio__label sds-text--body-content-medium">{label}</span>
               {description && (
-                <span className="sds-radio__description">{description}</span>
+                <span className="sds-radio__description sds-text--body-content-small">{description}</span>
               )}
             </>
           )}

@@ -2,7 +2,8 @@
  * DataDisplay/Tag
  *
  * Tokens: --sds-interactive-primary-hollow-*, --sds-status-*, --sds-neutral-*,
- *         --sds-shape-border-radius-*, --sds-typography-*
+ *         --sds-shape-border-radius-*
+ * Typography: .sds-text--subtitle-small (root label)
  *
  * Sizes:
  *   large → padding 4px 8px · border-radius-small (10px) · icon 20×20px
@@ -22,12 +23,6 @@
   overflow: hidden;
   white-space: nowrap;
   flex-shrink: 0;
-
-  font-family:    var(--sds-typography-font-family-subtitle);
-  font-weight:    var(--sds-typography-font-weight-subtitle);
-  font-size:      var(--sds-typography-font-size-subtitle-small);
-  line-height:    var(--sds-typography-line-height-subtitle-small);
-  letter-spacing: var(--sds-typography-letter-spacing-subtitle-small);
 
   background-color: var(--_sds-tag-bg, transparent);
   color:            var(--_sds-tag-color);
@@ -105,7 +100,7 @@
 
 .sds-tag--solid.sds-tag--informational {
   --_sds-tag-bg:    var(--sds-status-informative-background-default);
-  --_sds-tag-color: var(--sds-status-informative-content-defaut);
+  --_sds-tag-color: var(--sds-status-informative-content-default);
 }
 
 .sds-tag--solid.sds-tag--neutral {
@@ -137,7 +132,7 @@
 
 .sds-tag--outline.sds-tag--informational {
   --_sds-tag-border: var(--sds-status-informative-stroke-default);
-  --_sds-tag-color:  var(--sds-status-informative-content-defaut);
+  --_sds-tag-color:  var(--sds-status-informative-content-default);
 }
 
 .sds-tag--outline.sds-tag--neutral {

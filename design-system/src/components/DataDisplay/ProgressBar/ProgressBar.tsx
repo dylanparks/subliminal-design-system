@@ -70,12 +70,12 @@ export function ProgressBar({
     >
       {(label || showValue) && (
         <div className="sds-progress-bar__header">
-          {label     && <span className="sds-progress-bar__label">{label}</span>}
+          {label     && <span className="sds-progress-bar__label sds-text--subtitle-small">{label}</span>}
           {showValue && !isIndeterminate && (
-            <span className="sds-progress-bar__value">{percent}%</span>
+            <span className="sds-progress-bar__value sds-text--body-content-small">{percent}%</span>
           )}
           {showValue && isIndeterminate && (
-            <span className="sds-progress-bar__value">Processing…</span>
+            <span className="sds-progress-bar__value sds-text--body-content-small">Processing…</span>
           )}
         </div>
       )}
@@ -91,7 +91,7 @@ export function ProgressBar({
         <div className="sds-progress-bar__message">
           {error   && <ErrorIcon   size={16} />}
           {success && <SuccessIcon size={16} />}
-          <p className="sds-progress-bar__message-text">{validationMessage}</p>
+          <p className="sds-progress-bar__message-text sds-text--body-content-small">{validationMessage}</p>
         </div>
       )}
     </div>

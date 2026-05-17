@@ -70,6 +70,22 @@
         "$value": "{global-colors.Neutrals.Steel.100}",
         "$type": "color",
         "$description": "Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements."
+      },
+      "Elevated": {
+        "$value": "{global-colors.Neutrals.Steel.100}",
+        "$type": "color"
+      },
+      "Static": {
+        "Default": {
+          "$value": "{global-colors.Transparent.Light.975}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Transparent.Light.300}",
+          "$type": "color",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction."
+        }
       }
     }
   },
@@ -320,7 +336,7 @@
               "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
             },
             "Disabled": {
-              "$value": "{global-colors.Neutrals.Steel.100}",
+              "$value": "{global-colors.Neutrals.White}",
               "$type": "color",
               "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive."
             }
@@ -827,6 +843,10 @@
           "$value": "{global-colors.Colors.Red.600}",
           "$type": "color",
           "$description": "A general-use error state for text or icon content."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Red.500}",
+          "$type": "color"
         }
       },
       "Background": {
@@ -850,6 +870,10 @@
           "$value": "{global-colors.Colors.Emerald.600}",
           "$type": "color",
           "$description": "Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback"
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Emerald.500}",
+          "$type": "color"
         }
       },
       "Stroke": {
@@ -873,6 +897,10 @@
           "$value": "{global-colors.Colors.Yellow.600}",
           "$type": "color",
           "$description": "Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Yellow.400}",
+          "$type": "color"
         }
       },
       "Stroke": {
@@ -892,10 +920,14 @@
     },
     "Informative": {
       "Content": {
-        "Defaut": {
+        "Default": {
           "$value": "{global-colors.Colors.Sky.700}",
           "$type": "color",
           "$description": "Used for text or icon content that represents an informational state."
+        },
+        "Subtle": {
+          "$value": "{global-colors.Colors.Sky.600}",
+          "$type": "color"
         }
       },
       "Stroke": {
@@ -931,7 +963,7 @@
       "$description": "Color used for elevation drop shadow effects only."
     },
     "Focus": {
-      "$value": "{global-colors.Neutrals.Steel.300}",
+      "$value": "{global-colors.Neutrals.Steel.400}",
       "$type": "color",
       "$description": "Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens."
     },

@@ -133,13 +133,13 @@ function CrumbItem({ item, isCurrent, isLast }: CrumbItemProps) {
     <>
       <li className="sds-breadcrumbs__item">
         {isCurrent ? (
-          <span className="sds-breadcrumbs__current" aria-current="page">
+          <span className="sds-breadcrumbs__current sds-text--body-content-medium" aria-current="page">
             {item.label}
           </span>
         ) : item.href ? (
           <a
             href={item.href}
-            className="sds-breadcrumbs__link"
+            className="sds-breadcrumbs__link sds-text--body-interactive-medium"
             onClick={item.onClick}
           >
             {item.label}
@@ -147,7 +147,7 @@ function CrumbItem({ item, isCurrent, isLast }: CrumbItemProps) {
         ) : (
           <button
             type="button"
-            className="sds-breadcrumbs__link"
+            className="sds-breadcrumbs__link sds-text--body-interactive-medium"
             onClick={item.onClick}
           >
             {item.label}

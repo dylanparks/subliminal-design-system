@@ -265,7 +265,7 @@ export function PhoneField({
           <span className="sds-phone-field__country-flag" aria-hidden="true">
             <Flag code={getFlagCode(selectedCountry.code) as Flags} size={flagSize} hasBorderRadius />
           </span>
-          <span className="sds-phone-field__country-dial" aria-hidden="true">
+          <span className="sds-phone-field__country-dial sds-text--body-content-medium" aria-hidden="true">
             {selectedCountry.dialCode}
           </span>
           <span className="sds-phone-field__country-chevron" aria-hidden="true">
@@ -282,7 +282,7 @@ export function PhoneField({
             {/* Floating label — identical mechanism to TextField large/medium */}
             <label
               htmlFor={`${fieldId}-input`}
-              className="sds-phone-field__label"
+              className="sds-phone-field__label sds-text--body-content-medium"
             >
               {label}
             </label>
@@ -300,7 +300,7 @@ export function PhoneField({
               aria-label={ariaLabel}
               aria-invalid={showError ? true : undefined}
               aria-describedby={[supportId, dialHintId].join(' ')}
-              className="sds-phone-field__input"
+              className="sds-phone-field__input sds-text--body-content-medium"
               dir="ltr"
               onChange={handlePhoneChange}
               onKeyDown={handlePhoneKeyDown}
@@ -356,7 +356,7 @@ export function PhoneField({
         <div id={supportId} className="sds-phone-field__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-phone-field__message">{message}</p>
+          <p className="sds-phone-field__message sds-text--body-content-small">{message}</p>
         </div>
       )}
 

@@ -5,7 +5,7 @@ import { useDirection } from './useDirection';
 import type { Direction } from './DirectionProvider';
 
 const meta: Meta = {
-  title: 'Utilities/DirectionProvider',
+  title: 'Utility/DirectionProvider',
   parameters: {
     layout: 'padded',
     docs: {

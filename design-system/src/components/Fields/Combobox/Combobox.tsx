@@ -318,7 +318,7 @@ export function Combobox({
     ref:          inputRef,
     id:           inputId,
     type:         'text' as const,
-    className:    'sds-combobox__input',
+    className:    'sds-combobox__input sds-text--body-content-medium',
     // WAI-ARIA Combobox pattern (APG 1.2)
     role:                  'combobox'  as const,
     'aria-expanded':       isOpen,
@@ -353,7 +353,7 @@ export function Combobox({
 
       {/* Small size: label sits above the wrapper */}
       {size === 'small' && (
-        <label htmlFor={inputId} className="sds-combobox__label-above">
+        <label htmlFor={inputId} className="sds-combobox__label-above sds-text--body-content-small">
           {label}
         </label>
       )}
@@ -379,7 +379,7 @@ export function Combobox({
               It does not need aria-hidden — the htmlFor/id association is
               intentional and correct per WCAG SC 1.3.1.
             */}
-            <label htmlFor={inputId} className="sds-combobox__label">
+            <label htmlFor={inputId} className="sds-combobox__label sds-text--body-content-medium">
               {label}
             </label>
             <input {...inputProps} aria-label={ariaLabel} />
@@ -443,7 +443,7 @@ export function Combobox({
              * aria-live="polite" ensures screen readers announce when the
              * filter produces no results (WCAG SC 4.1.3).
              */
-            <div className="sds-combobox__no-options" aria-live="polite">
+            <div className="sds-combobox__no-options sds-text--body-content-medium" aria-live="polite">
               No options found
             </div>
           ) : (
@@ -492,7 +492,7 @@ export function Combobox({
         <div id={supportId} className="sds-combobox__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-combobox__message">{message}</p>
+          <p className="sds-combobox__message sds-text--body-content-small">{message}</p>
         </div>
       )}
 

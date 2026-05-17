@@ -41,6 +41,7 @@ export function Tag({
 }: TagProps) {
   const rootClasses = [
     'sds-tag',
+    'sds-text--subtitle-small',
     `sds-tag--${size}`,
     `sds-tag--${fillStyle}`,
     `sds-tag--${type}`,

@@ -87,7 +87,11 @@ export function Avatar({
       {/* Fallback — always rendered beneath the image */}
       <span className="sds-avatar__fallback" aria-hidden="true">
         {hasInitials ? (
-          <span className="sds-avatar__initials">{resolvedInitials}</span>
+          <span className={[
+            'sds-avatar__initials',
+            size === 'medium' && 'sds-text--body-interactive-small',
+            size === 'large'  && 'sds-text--body-interactive-medium',
+          ].filter(Boolean).join(' ')}>{resolvedInitials}</span>
         ) : (
           <PersonIcon size={ICON_SIZE[size]} className="sds-avatar__icon" />
         )}

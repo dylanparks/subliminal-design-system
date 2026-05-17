@@ -141,7 +141,7 @@ export function CheckboxGroup({
         )}
 
         {error && errorMessage && (
-          <div className="sds-checkbox-group__error-message" role="alert">
+          <div className="sds-checkbox-group__error-message sds-text--body-content-small" role="alert">
             <span className="sds-checkbox-group__error-icon" aria-hidden="true">
               <ErrorIcon size={16} />
             </span>

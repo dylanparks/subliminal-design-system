@@ -3,7 +3,12 @@
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
  *         --sds-effects-focus, --sds-shape-border-radius-*,
- *         --sds-spacing-size-*, --sds-typography-*
+ *         --sds-spacing-size-*,
+ *         --sds-typography-font-size-body-content-{small|medium},
+ *         --sds-typography-line-height-body-content-{small|medium},
+ *         --sds-typography-letter-spacing-body-content-{small|medium}
+ * Typography: sds-text--body-content-medium (label, value)
+ *             sds-text--body-content-small  (message)
  *
  * Sizes:
  *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
@@ -145,11 +150,6 @@
 /* ─── Label ─────────────────────────────────────────────────────────────────── */
 
 .sds-select-field__label {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-suggested);
   white-space: nowrap;
   overflow: hidden;
@@ -196,11 +196,6 @@
 /* ─── Selected value text ────────────────────────────────────────────────────── */
 
 .sds-select-field__value {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-default);
   white-space: nowrap;
   overflow: hidden;
@@ -281,11 +276,6 @@
   flex: 1 0 0;
   min-width: 0;
   margin: 0;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-neutral-content-tertiary);
 }
 

@@ -2,8 +2,9 @@
  * Inputs/RatingInput
  *
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
- *         --sds-effects-focus, --sds-shape-border-radius-round, --sds-typography-*,
+ *         --sds-effects-focus, --sds-shape-border-radius-round,
  *         --sds-neutral-content-*
+ * Typography: .sds-text--subtitle-medium (group label)
  *
  * Structure:
  *   .sds-rating-input            → root container
@@ -33,11 +34,6 @@
 /* ─── Group label ────────────────────────────────────────────────────────────── */
 
 .sds-rating-input__label {
-  font-family:    var(--sds-typography-font-family-subtitle);
-  font-weight:    var(--sds-typography-font-weight-subtitle);
-  font-size:      var(--sds-typography-font-size-subtitle-medium);
-  line-height:    var(--sds-typography-line-height-subtitle-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-subtitle-medium);
   color: var(--sds-neutral-content-primary);
 }
 

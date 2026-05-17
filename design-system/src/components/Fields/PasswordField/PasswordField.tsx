@@ -170,7 +170,7 @@ export function PasswordField({
 
       {/* External label — small size only */}
       {isExternalLabel && (
-        <label htmlFor={inputId} className="sds-password-field__label sds-password-field__label--external">
+        <label htmlFor={inputId} className="sds-password-field__label sds-password-field__label--external sds-text--body-content-medium">
           {label}
         </label>
       )}
@@ -182,7 +182,7 @@ export function PasswordField({
       >
         <div className="sds-password-field__inner">
           {!isExternalLabel && (
-            <label htmlFor={inputId} className="sds-password-field__label">
+            <label htmlFor={inputId} className="sds-password-field__label sds-text--body-content-medium">
               {label}
             </label>
           )}
@@ -199,7 +199,7 @@ export function PasswordField({
             aria-label={ariaLabel}
             aria-describedby={describedBy}
             aria-invalid={showError ? true : undefined}
-            className="sds-password-field__input"
+            className="sds-password-field__input sds-text--body-content-medium"
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
@@ -239,7 +239,7 @@ export function PasswordField({
         <div id={`${inputId}-support`} className="sds-password-field__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-password-field__message">{message}</p>
+          <p className="sds-password-field__message sds-text--body-content-small">{message}</p>
         </div>
       )}
     </div>

@@ -4,7 +4,8 @@
  * Tokens: --sds-neutral-background-subtle, --sds-neutral-content-secondary,
  *         --sds-neutral-content-static-primary,
  *         --sds-accents-gradient-primarystart, --sds-accents-gradient-primaryend,
- *         --sds-shape-border-radius-round, --sds-typography-*
+ *         --sds-shape-border-radius-round
+ * Typography: sds-text--body-interactive-small (medium), sds-text--body-interactive-medium (large)
  *
  * Structure:
  *   .sds-avatar              → circular root (role="img")
@@ -71,16 +72,11 @@
 /* ─── Initials ───────────────────────────────────────────────────────────────── */
 
 .sds-avatar__initials {
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
   line-height: 1;
   color: var(--sds-neutral-content-static-primary);
 }
 
-.sds-avatar--small  .sds-avatar__initials { font-size: 11px; }
-.sds-avatar--medium .sds-avatar__initials { font-size: var(--sds-typography-font-size-body-interactive-small); }
-.sds-avatar--large  .sds-avatar__initials { font-size: var(--sds-typography-font-size-body-interactive-medium); }
+.sds-avatar--small .sds-avatar__initials { font-size: 11px; }
 
 /* ─── Icon fallback ──────────────────────────────────────────────────────────── */
 

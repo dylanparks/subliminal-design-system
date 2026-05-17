@@ -4,6 +4,15 @@
  * Modes: date · range · month · year
  * Sizes: large (64px) · medium (56px)
  *
+ * Typography: sds-text--body-content-medium    (label, value, range-date)
+ *             sds-text--body-interactive-large (header-title)
+ *             sds-text--body-content-small     (weekday, message)
+ *             body-content-small declared directly on .sds-datepicker__day-btn
+ *             and .sds-datepicker__grid-btn (all:unset cancels utility classes)
+ * Selected day/grid overrides differ by weight + letter-spacing only:
+ *   font-weight:    var(--sds-typography-font-weight-body-interactive)
+ *   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small)
+ *
  * State      CSS mechanism
  * ─────────────────────────────────────────────────────────────────
  * hover      :hover on wrapper (scoped: not disabled, not open)
@@ -121,11 +130,6 @@
 /* ─── Floating label ─────────────────────────────────────────── */
 
 .sds-datepicker__label {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-suggested);
   white-space: nowrap;
   overflow: hidden;
@@ -170,11 +174,6 @@
  */
 
 .sds-datepicker__value {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-default);
   white-space: nowrap;
   overflow: hidden;
@@ -205,11 +204,6 @@
 }
 
 .sds-datepicker__range-date {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-default);
   white-space: nowrap;
 }
@@ -377,11 +371,6 @@
 .sds-datepicker__header-title {
   flex: 1;
   text-align: center;
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-large);
-  line-height:    var(--sds-typography-line-height-body-interactive-large);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
   color: var(--sds-neutral-content-primary);
   white-space: nowrap;
   cursor: default;
@@ -403,11 +392,6 @@
   padding: 0;
   text-align: center;
   vertical-align: middle;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-neutral-content-tertiary);
 }
 
@@ -456,6 +440,12 @@
 
 .sds-datepicker__day-btn {
   all: unset;
+  /* Typography — explicit after all:unset (utility classes are cancelled by the reset) */
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  line-height:    1; /* intentional: centres the digit in the 32×32 button */
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   position: relative;
   z-index: 1;
   display: flex;
@@ -466,12 +456,6 @@
   height: 32px;
   border-radius: var(--sds-shape-border-radius-round);
   box-sizing: border-box;
-  /* Default: Body/Content/Small */
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    1;
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-interactive-secondary-hollow-content-default);
   cursor: pointer;
   transition: background-color 100ms ease, color 100ms ease;
@@ -501,8 +485,8 @@
 .sds-datepicker__day-btn--today {
   background-color: var(--sds-interactive-primary-hollow-background-active);
   color: var(--sds-interactive-primary-hollow-content-default);
-  font-family: var(--sds-typography-font-family-body-interactive);
   font-weight: var(--sds-typography-font-weight-body-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
 }
 
 /*
@@ -513,8 +497,8 @@
 .sds-datepicker__day-btn--active {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-family: var(--sds-typography-font-family-body-interactive);
   font-weight: var(--sds-typography-font-weight-body-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
 }
 
 /*
@@ -525,8 +509,8 @@
 .sds-datepicker__day-btn--range-end {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-family: var(--sds-typography-font-family-body-interactive);
   font-weight: var(--sds-typography-font-weight-body-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
 }
 
 /* Disabled days (outside-month inherit the --outside colour above) */
@@ -552,17 +536,18 @@
 
 .sds-datepicker__grid-btn {
   all: unset;
+  /* Typography — explicit after all:unset */
+  font-family:    var(--sds-typography-font-family-body-content);
+  font-size:      var(--sds-typography-font-size-body-content-small);
+  font-weight:    var(--sds-typography-font-weight-body-content);
+  line-height:    var(--sds-typography-line-height-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   box-sizing: border-box;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-interactive-secondary-hollow-content-default);
   border-radius: var(--sds-shape-border-radius-round);
   cursor: pointer;
@@ -591,10 +576,7 @@
 .sds-datepicker__grid-cell[aria-selected='true'] .sds-datepicker__grid-btn {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-family:    var(--sds-typography-font-family-body-interactive);
   font-weight:    var(--sds-typography-font-weight-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-small);
-  line-height:    var(--sds-typography-line-height-body-interactive-small);
   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
   padding: 12px 16px;
   border-radius: var(--sds-shape-border-radius-round);
@@ -635,11 +617,6 @@
   flex: 1 0 0;
   min-width: 0;
   margin: 0;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-neutral-content-tertiary);
 }
 

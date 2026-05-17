@@ -221,9 +221,9 @@ export function Checkbox({
         <span className="sds-checkbox__label-slot">
           {children ?? (
             <>
-              <span className="sds-checkbox__label">{label}</span>
+              <span className="sds-checkbox__label sds-text--body-content-medium">{label}</span>
               {description && (
-                <span className="sds-checkbox__description">{description}</span>
+                <span className="sds-checkbox__description sds-text--body-content-small">{description}</span>
               )}
             </>
           )}

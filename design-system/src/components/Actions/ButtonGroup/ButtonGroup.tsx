@@ -8,7 +8,7 @@ export interface ButtonGroupItem {
   value: string;
   label?: string;
   icon?: ReactNode;
-  iconPosition?: 'left' | 'right';
+  iconPosition?: 'start' | 'end';
   disabled?: boolean;
 }
 
@@ -22,6 +22,13 @@ export interface ButtonGroupProps {
   className?: string;
   'aria-label'?: string;
 }
+
+const sizeTypographyClass: Record<ButtonGroupSize, string> = {
+  xsmall: 'sds-text--body-interactive-small',
+  small:  'sds-text--body-interactive-medium',
+  medium: 'sds-text--body-interactive-large',
+  large:  'sds-text--body-interactive-huge',
+};
 
 export function ButtonGroup({
   items,
@@ -116,13 +123,14 @@ export function ButtonGroup({
             tabIndex={getTabIndex(item, index)}
             className={[
               'sds-button-group__item',
+              sizeTypographyClass[size],
               isActive && 'sds-button-group__item--active',
             ]
               .filter(Boolean)
               .join(' ')}
             onClick={() => handleSelect(item.value)}
           >
-            {hasIcon && item.iconPosition !== 'right' && (
+            {hasIcon && item.iconPosition !== 'end' && (
               <span className="sds-button-group__icon" aria-hidden="true">
                 {item.icon}
               </span>
@@ -130,7 +138,7 @@ export function ButtonGroup({
             {hasLabel && (
               <span className="sds-button-group__label">{item.label}</span>
             )}
-            {hasIcon && item.iconPosition === 'right' && (
+            {hasIcon && item.iconPosition === 'end' && (
               <span className="sds-button-group__icon" aria-hidden="true">
                 {item.icon}
               </span>

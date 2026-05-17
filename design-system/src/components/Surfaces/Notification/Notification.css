@@ -1,0 +1,115 @@
+/* Notification — Subliminal Design System
+ * Surfaces/Notification/Notification
+ *
+ * Tokens: --sds-status-*, --sds-neutral-content-*, --sds-effects-focus
+ * Typography: .sds-text--subtitle-small (title), .sds-text--body-content-small (description)
+ *
+ * Structure:
+ *   .sds-notification              → root (role="alert"|"status")
+ *   .sds-notification--{status}    → informational / success / warning / error
+ *   .sds-notification--stacked     → icon-top-aligned, actions inside body
+ *   .sds-notification--inline      → icon-center-aligned, actions outside body
+ *   .sds-notification__icon        → 20px status icon
+ *   .sds-notification__body        → flex column (title + description + actions)
+ *   .sds-notification__title       → status-colored subtitle text
+ *   .sds-notification__description → secondary neutral body text
+ *   .sds-notification__actions     → action button row
+ *   .sds-notification__dismiss     → icon-only close button
+ */
+
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+
+.sds-notification {
+  display:        flex;
+  flex-direction: row;
+  gap:            8px;
+  padding:        12px;
+  border-radius:  16px;
+}
+
+/* ─── Layouts ──────────────────────────────────────────────────────────────── */
+
+.sds-notification--stacked { align-items: flex-start; }
+.sds-notification--inline  { align-items: center; }
+
+/* ─── Status backgrounds ───────────────────────────────────────────────────── */
+
+.sds-notification--informational { background-color: var(--sds-status-informative-background-default); }
+.sds-notification--success       { background-color: var(--sds-status-success-background-default); }
+.sds-notification--warning       { background-color: var(--sds-status-warning-background-default); }
+.sds-notification--error         { background-color: var(--sds-status-error-background-default); }
+
+/* ─── Icon ─────────────────────────────────────────────────────────────────── */
+
+.sds-notification__icon {
+  display:     flex;
+  flex-shrink: 0;
+}
+
+.sds-notification--informational .sds-notification__icon { color: var(--sds-status-informative-content-default); }
+.sds-notification--success       .sds-notification__icon { color: var(--sds-status-success-content-default); }
+.sds-notification--warning       .sds-notification__icon { color: var(--sds-status-warning-content-default); }
+.sds-notification--error         .sds-notification__icon { color: var(--sds-status-error-content-default); }
+
+/* ─── Body ─────────────────────────────────────────────────────────────────── */
+
+.sds-notification__body {
+  display:        flex;
+  flex-direction: column;
+  flex:           1;
+  min-width:      0;
+  gap:            4px;
+}
+
+/* ─── Title ────────────────────────────────────────────────────────────────── */
+/* Typography set by .sds-text--subtitle-small on the element */
+
+.sds-notification--informational .sds-notification__title { color: var(--sds-status-informative-content-default); }
+.sds-notification--success       .sds-notification__title { color: var(--sds-status-success-content-default); }
+.sds-notification--warning       .sds-notification__title { color: var(--sds-status-warning-content-default); }
+.sds-notification--error         .sds-notification__title { color: var(--sds-status-error-content-default); }
+
+/* ─── Description ──────────────────────────────────────────────────────────── */
+/* Typography set by .sds-text--body-content-small on the element */
+
+.sds-notification__description {
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* ─── Actions ──────────────────────────────────────────────────────────────── */
+
+.sds-notification__actions {
+  display:     flex;
+  flex-wrap:   wrap;
+  gap:         8px;
+  margin-top:  4px;
+}
+
+.sds-notification--inline .sds-notification__actions {
+  flex-shrink: 0;
+  margin-top:  0;
+}
+
+/* ─── Dismiss button ───────────────────────────────────────────────────────── */
+
+.sds-notification__dismiss {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  width:           24px;
+  height:          24px;
+  background:      none;
+  border:          none;
+  border-radius:   var(--sds-shape-border-radius-xsmall);
+  padding:         0;
+  cursor:          pointer;
+  color:           var(--sds-neutral-content-secondary);
+  transition:      color 0.15s ease;
+}
+
+.sds-notification__dismiss:hover     { color: var(--sds-neutral-content-primary); }
+.sds-notification__dismiss:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}

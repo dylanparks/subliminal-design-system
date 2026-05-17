@@ -1,0 +1,107 @@
+/* Tooltip — Subliminal Design System
+ * Utility/Tooltip
+ *
+ * Typography: .sds-text--body-content-small (text)
+ *
+ * Matches Base UI's tooltip approach:
+ *   - Popup:  outline (not border) + box-shadow in light / outline-inset + no shadow in dark
+ *   - Caret:  inline SVG triangle — fill path covers background, stroke path covers only
+ *             the two outer sides (not the base), matching Base UI's ArrowFill /
+ *             ArrowOuterStroke pattern. Token-driven stroke adapts to light/dark automatically.
+ *
+ * Structure:
+ *   .sds-tooltip              → fixed-position outer wrapper — transitions only
+ *   .sds-tooltip__popup       → visible rounded container
+ *   .sds-tooltip__text        → Body/Content/Small text
+ *   .sds-tooltip__caret       → SVG element, positioned by Floating UI arrow middleware
+ *   .sds-tooltip__caret-fill  → triangle background fill
+ *   .sds-tooltip__caret-stroke → outer two-side stroke only
+ */
+
+/* ─── Outer wrapper ──────────────────────────────────────────────────────────── */
+
+.sds-tooltip {
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0;
+  transition:
+    opacity   150ms,
+    transform 150ms;
+}
+
+/* ── Directional enter offset ────────────────────────────────────────────────── */
+
+.sds-tooltip--top    { transform: translateY(4px);  }
+.sds-tooltip--bottom { transform: translateY(-4px); }
+.sds-tooltip--left   { transform: translateX(4px);  }
+.sds-tooltip--right  { transform: translateX(-4px); }
+
+.sds-tooltip--visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ─── Popup container ────────────────────────────────────────────────────────── */
+
+.sds-tooltip__popup {
+  position: relative;
+  pointer-events: auto;
+  background-color: var(--sds-neutral-background-elevated);
+  border-radius:    var(--sds-shape-border-radius-xsmall);
+  padding:          8px 12px;
+
+  /* Outer stroke — token resolves to #e1e6f0 (light) / #232b3b (dark) */
+  outline:          1px solid var(--sds-neutral-stroke-elevated);
+
+  /* Depth shadow — light mode only (invisible against dark backgrounds) */
+  box-shadow:       var(--sds-effect-interactive-element-elevated-box-shadow);
+}
+
+/* Dark mode: inset the outline and drop the shadow (matches Base UI pattern) */
+.dark .sds-tooltip__popup {
+  outline-offset: -1px;
+  box-shadow:     none;
+}
+
+/* ─── Text ───────────────────────────────────────────────────────────────────── */
+
+.sds-tooltip__text {
+  display:        block;
+  max-width:      250px;
+  white-space:    normal;
+  color:          var(--sds-neutral-content-primary);
+}
+
+/* ─── Hover bridge ───────────────────────────────────────────────────────────── */
+/* Transparent pseudo-element extending the popup's hover zone across the full   */
+/* gap between popup and trigger (offset 8px + caret height 6px = 14px).        */
+/* Eliminates stuttering when the mouse moves through the gap beside the caret.  */
+
+.sds-tooltip__popup::after {
+  content: '';
+  position: absolute;
+}
+
+.sds-tooltip--top    .sds-tooltip__popup::after { bottom: -14px; left: 0; right: 0; height: 14px; }
+.sds-tooltip--bottom .sds-tooltip__popup::after { top:    -14px; left: 0; right: 0; height: 14px; }
+.sds-tooltip--left   .sds-tooltip__popup::after { right:  -14px; top:  0; bottom: 0; width:  14px; }
+.sds-tooltip--right  .sds-tooltip__popup::after { left:   -14px; top:  0; bottom: 0; width:  14px; }
+
+/* ─── Caret ──────────────────────────────────────────────────────────────────── */
+
+.sds-tooltip__caret {
+  position: absolute;
+  overflow: visible;
+}
+
+.sds-tooltip__caret-fill {
+  fill: var(--sds-neutral-background-elevated);
+}
+
+.sds-tooltip__caret-stroke {
+  fill:             none;
+  stroke:           var(--sds-neutral-stroke-elevated);
+  stroke-width:     1;
+  stroke-linejoin:  round;
+  stroke-linecap:   round;
+}

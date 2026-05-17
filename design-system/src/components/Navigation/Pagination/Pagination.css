@@ -1,0 +1,162 @@
+/* Pagination — Subliminal Design System
+ * Navigation/Pagination
+ *
+ * Tokens: --sds-interactive-secondary-hollow-*,
+ *         --sds-effects-focus,
+ *         --sds-neutral-content-secondary,
+ *         --sds-shape-border-radius-xsmall
+ * Typography: .sds-text--body-interactive-small (page-btn), .sds-text--body-content-medium (compact-label)
+ *
+ * Structure:
+ *   .sds-pagination              → <nav> root — flex row
+ *   .sds-pagination__nav-btn     → prev/next chevron button
+ *   .sds-pagination__list        → <ol> page tabs
+ *   .sds-pagination__page-btn    → individual page number button
+ *   .sds-pagination__indicator   → 2 px bottom selected indicator
+ *   .sds-pagination__ellipsis    → non-interactive ellipsis item
+ *   .sds-pagination__compact-label → "X of Y" text (compact variant)
+ *
+ * Variant:
+ *   .sds-pagination--compact     → hides list, shows compact label
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── Nav buttons (prev / next) — ghost variant ──────────────────────────────── */
+
+.sds-pagination__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border: none;
+  border-radius: var(--sds-shape-border-radius-xsmall);
+  background: transparent;
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  transition: color 120ms ease;
+}
+
+.sds-pagination__nav-btn:hover:not(:disabled) {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-pagination__nav-btn:active:not(:disabled) {
+  color: var(--sds-interactive-secondary-hollow-content-active);
+}
+
+.sds-pagination__nav-btn:focus-visible {
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+.sds-pagination__nav-btn:disabled {
+  color: var(--sds-interactive-secondary-hollow-content-disabled);
+  cursor: not-allowed;
+}
+
+/* ─── Page list ──────────────────────────────────────────────────────────────── */
+
+.sds-pagination__list {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Page button ────────────────────────────────────────────────────────────── */
+
+.sds-pagination__page-btn {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border: none;
+  border-radius: var(--sds-shape-border-radius-xsmall) var(--sds-shape-border-radius-xsmall) 0 0;
+  background: transparent;
+  color: var(--sds-interactive-secondary-hollow-content-inactive-default);
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.sds-pagination__page-btn:hover {
+  background-color: var(--sds-interactive-secondary-hollow-background-inactive-hover);
+  color: var(--sds-interactive-secondary-hollow-content-inactive-hover);
+}
+
+.sds-pagination__page-btn--selected {
+  color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+.sds-pagination__page-btn--selected:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-pagination__page-btn:focus-visible {
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+/* ─── Page inner (number + indicator column, shrinks to text width) ──────────── */
+
+.sds-pagination__page-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ─── Selected indicator ─────────────────────────────────────────────────────── */
+
+.sds-pagination__indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  min-width: 16px;
+  height: 2px;
+  border-radius: 1px 1px 0 0;
+  background-color: transparent;
+  transition: background-color 120ms ease;
+}
+
+.sds-pagination__page-btn--selected .sds-pagination__indicator {
+  background-color: var(--sds-interactive-secondary-hollow-content-default);
+}
+
+/* ─── Ellipsis ───────────────────────────────────────────────────────────────── */
+
+.sds-pagination__ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* ─── Compact label ──────────────────────────────────────────────────────────── */
+
+.sds-pagination__compact-label {
+  color: var(--sds-interactive-secondary-hollow-content-default);
+  padding-inline: 8px;
+  white-space: nowrap;
+}

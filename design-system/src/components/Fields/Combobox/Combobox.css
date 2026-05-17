@@ -3,7 +3,12 @@
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
  *         --sds-effects-focus, --sds-effects-shadowdefault, --sds-effects-values-elevated-*,
- *         --sds-shape-border-radius-*, --sds-spacing-size-*, --sds-typography-*
+ *         --sds-shape-border-radius-*, --sds-spacing-size-*,
+ *         --sds-typography-font-size-body-content-{small|medium},
+ *         --sds-typography-line-height-body-content-{small|medium},
+ *         --sds-typography-letter-spacing-body-content-{small|medium}
+ * Typography: sds-text--body-content-small  (label-above, message)
+ *             sds-text--body-content-medium (floating label, input, no-options)
  *
  * Sizes:
  *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
@@ -119,11 +124,6 @@
 /* ─── Label (above wrapper — small size only) ────────────────────────────── */
 
 .sds-combobox__label-above {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-interactive-fields-content-suggested);
   width: 100%;
   cursor: text;
@@ -159,11 +159,6 @@
 /* ─── Floating label (large / medium) ───────────────────────────────────── */
 
 .sds-combobox__label {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-suggested);
   white-space: nowrap;
   overflow: hidden;
@@ -212,11 +207,6 @@
 /* ─── Input ──────────────────────────────────────────────────────────────── */
 
 .sds-combobox__input {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-default);
   background: transparent;
   border: none;
@@ -384,11 +374,6 @@
 
 .sds-combobox__no-options {
   padding: 12px 16px;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
   color: var(--sds-interactive-fields-content-suggested);
   text-align: center;
 }
@@ -423,11 +408,6 @@
   flex: 1 0 0;
   min-width: 0;
   margin: 0;
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
   color: var(--sds-neutral-content-tertiary);
 }
 
