@@ -1,0 +1,56 @@
+/* StatusLight — Subliminal Design System
+ * Enhancers/StatusLight
+ *
+ * Structure:
+ *   .sds-status-light              → inline wrapper (position: relative)
+ *   .sds-status-light__dot         → 16×16 colored dot (position: absolute)
+ *   .sds-status-light__dot--{variant}  → color per variant
+ *   .sds-status-light__dot--{position} → corner placement (logical properties)
+ */
+
+/* ─── Wrapper ─────────────────────────────────────────────────────────────────
+ * inline-flex so the wrapper hugs the child; relative so the dot anchors to it.
+ * isolation: isolate keeps the dot's z-index scoped to this stacking context.
+ */
+
+.sds-status-light {
+  position:  relative;
+  display:   inline-flex;
+  isolation: isolate;
+}
+
+/* ─── Dot ─────────────────────────────────────────────────────────────────────
+ * 16×16px circle with a 2px white ring (box-shadow) so it reads clearly
+ * against any background color of the child element.
+ */
+
+.sds-status-light__dot {
+  position:      absolute;
+  width:         16px;
+  height:        16px;
+  border-radius: 50%;
+  box-shadow:    0 0 0 2px var(--sds-neutral-background-elevated);
+  z-index:       1;
+}
+
+/* ─── Corner positions ────────────────────────────────────────────────────────
+ * Dot center sits 4px outside the child edge, giving a visible overlap.
+ * inset-inline-start/end + top/bottom = logical, RTL-aware.
+ */
+
+.sds-status-light__dot--top-start    { top: -4px; inset-inline-start: -4px; }
+.sds-status-light__dot--top-end      { top: -4px; inset-inline-end:   -4px; }
+.sds-status-light__dot--bottom-start { bottom: -4px; inset-inline-start: -4px; }
+.sds-status-light__dot--bottom-end   { bottom: -4px; inset-inline-end:   -4px; }
+
+/* ─── Variant colors ──────────────────────────────────────────────────────────
+ * Use content-default tokens for the dot fill — consistent with how Notification
+ * colors its status icons.
+ */
+
+.sds-status-light__dot--default     { background-color: var(--sds-neutral-content-subtle); }
+.sds-status-light__dot--error       { background-color: var(--sds-status-error-content-default); }
+.sds-status-light__dot--success     { background-color: var(--sds-status-success-content-default); }
+.sds-status-light__dot--warning     { background-color: var(--sds-status-warning-content-subtle); }
+.sds-status-light__dot--informative { background-color: var(--sds-status-informative-content-default); }
+.sds-status-light__dot--disabled    { background-color: var(--sds-neutral-stroke-elevated); }
