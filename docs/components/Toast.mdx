@@ -1,0 +1,40 @@
+---
+title: Toast
+category: Surfaces
+sourcePath: design-system/src/components/Surfaces/Toast/Toast.tsx
+storiesPath: design-system/src/components/Surfaces/Toast/Toast.stories.tsx
+status: stub
+---
+
+# Toast
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+>
+> Toast is a provider/hook pattern, not a plain component — mount `ToastProvider` once near the
+> root of the app, then trigger toasts imperatively from anywhere via the `useToast()` hook
+> (`add`, `dismiss`, `dismissAll`), passing `ToastOptions`. There is no direct `<Toast />` JSX
+> element to render, so the Props table below documents `ToastProviderProps` and `ToastOptions`
+> rather than a renderable component.
+
+**Storybook:** `Surfaces/Toast`
+
+## Props
+
+### ToastProviderProps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | App content the provider wraps |
+| `position` | `'bottom-end' \| 'bottom-center' \| 'bottom-start' \| 'top-end' \| 'top-center' \| 'top-start'` | `'bottom-end'` | Screen corner/edge where toasts appear |
+
+### ToastOptions (passed to `useToast().add(...)`)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `ReactNode` | — | Short heading — required |
+| `description` | `ReactNode` | — | Supporting text below the title |
+| `duration` | `number` | `5000` | Milliseconds before auto-dismissing. Pass `0` to persist indefinitely |
+| `showCloseButton` | `boolean` | `true` | Show the × dismiss button |
+| `actions` | `ToastAction[]` | — | Up to 2 action buttons. Clicking any action also dismisses the toast. Each action has `label`, optional `onClick`, `variant` (`'filled'` default for first, `'hollow'` for subsequent), and `icon` |

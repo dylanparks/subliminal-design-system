@@ -1,0 +1,27 @@
+---
+title: Avatar
+category: DataDisplay
+sourcePath: design-system/src/components/DataDisplay/Avatar/Avatar.tsx
+storiesPath: design-system/src/components/DataDisplay/Avatar/Avatar.stories.tsx
+status: stub
+---
+
+# Avatar
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `DataDisplay/Avatar`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | — | Image source URL |
+| `name` | `string` | — | Full name — derives initials (first + last initial) and is the accessible label |
+| `initials` | `string` | — | Explicit initials override — at most 2 characters are rendered |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Size variant: small = 32px, medium = 48px (matches Figma spec), large = 64px |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `aria-label` | `string` | — | Accessible label for the avatar; defaults to `name`, then `'Avatar'` if neither is provided. Pass `aria-hidden` instead when the avatar is purely decorative inside a component that already provides a visible label |
+| `aria-hidden` | `true` | — | Hides the avatar from assistive technology when purely decorative |

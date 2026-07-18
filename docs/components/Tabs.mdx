@@ -1,0 +1,58 @@
+---
+title: Tabs
+category: Navigation
+sourcePath: design-system/src/components/Navigation/Tabs/Tabs.tsx
+storiesPath: design-system/src/components/Navigation/Tabs/Tabs.stories.tsx
+status: stub
+---
+
+# Tabs
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+>
+> `Tabs.tsx` exports four public components — `Tabs`, `TabList`, `Tab`, and `TabPanel` — each
+> with its own Props table below.
+
+**Storybook:** `Navigation/Tabs`
+
+## Props
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Controlled active tab value |
+| `defaultValue` | `string` | `''` | Initial active tab value for uncontrolled usage |
+| `onChange` | `(value: string) => void` | — | Called when the active tab changes |
+| `children` | `ReactNode` | — | `TabList` and `TabPanel` elements |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `propStatic` | `boolean` | `false` | Static variant — for use on dark or gradient backgrounds; switches the color palette to white-based interactive tokens |
+
+### TabList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | `Tab` elements |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `aria-label` | `string` | — | Accessible name for the tab list |
+| `aria-labelledby` | `string` | — | Alternative to `aria-label` — ID of an element that labels the tab list |
+
+### Tab
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Unique value that identifies this tab and its associated panel |
+| `children` | `ReactNode` | — | Tab label text |
+| `icon` | `ReactNode` | — | Optional leading icon (above the label when both are present) |
+| `disabled` | `boolean` | — | Disables the tab |
+| `className` | `string` | — | Additional className forwarded to the tab element |
+
+### TabPanel
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Must match the `value` of the corresponding `Tab` |
+| `children` | `ReactNode` | — | Panel content |
+| `className` | `string` | — | Additional className forwarded to the panel element |

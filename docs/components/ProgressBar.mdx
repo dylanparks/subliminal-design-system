@@ -1,0 +1,30 @@
+---
+title: ProgressBar
+category: DataDisplay
+sourcePath: design-system/src/components/DataDisplay/ProgressBar/ProgressBar.tsx
+storiesPath: design-system/src/components/DataDisplay/ProgressBar/ProgressBar.stories.tsx
+status: stub
+---
+
+# ProgressBar
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `DataDisplay/ProgressBar`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number \| null` | — | Current progress value. Pass `null` for indeterminate state (animated sweep) |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `label` | `string` | — | Visible label above the bar |
+| `showValue` | `boolean` | `false` | Shows the numeric percentage to the right of the label |
+| `error` | `boolean` | `false` | Error state — red fill |
+| `success` | `boolean` | `false` | Success state — green fill |
+| `validationMessage` | `string` | — | Validation message shown below the bar (only visible when error or success) |
+| `aria-label` | `string` | — | Accessible name for the progressbar — does not render visually |
+| `className` | `string` | — | Additional className forwarded to the root element |

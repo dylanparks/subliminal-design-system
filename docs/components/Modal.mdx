@@ -1,0 +1,35 @@
+---
+title: Modal
+category: Surfaces
+sourcePath: design-system/src/components/Surfaces/Modal/Modal.tsx
+storiesPath: design-system/src/components/Surfaces/Modal/Modal.stories.tsx
+status: stub
+---
+
+# Modal
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Surfaces/Modal`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | — | Whether the modal is open |
+| `onClose` | `() => void` | — | Called when the modal should close |
+| `title` | `string` | — | Modal heading |
+| `description` | `string` | — | Supporting text below the title |
+| `children` | `ReactNode` | — | Custom body content |
+| `primaryAction` | `ModalAction` | — | Primary footer button (`label` + `onClick`) |
+| `secondaryAction` | `ModalAction` | — | Secondary footer button (`label` + `onClick`) |
+| `actions` | `ReactNode` | — | Override slot for the action buttons area. When provided, renders instead of the default primaryAction/secondaryAction buttons — use when you need custom button variants, sizes, counts, or layout |
+| `imageSrc` | `string` | — | Image URL — enables the image-header variant |
+| `imageAlt` | `string` | `''` | Alt text for the header image |
+| `imagePosition` | `string` | `'center'` | CSS object-position for the header image (e.g. `'center top'`, `'50% 20%'`) |
+| `size` | `'medium' \| 'small'` | `'medium'` | Modal width |
+| `dismissable` | `boolean` | `true` | When false the X button, backdrop click, and ESC key are all disabled — use for forced confirmations |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `id` | `string` | — | Forwarded to the root element |

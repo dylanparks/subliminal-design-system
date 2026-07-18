@@ -1,0 +1,32 @@
+---
+title: Popover
+category: Surfaces
+sourcePath: design-system/src/components/Surfaces/Popover/Popover.tsx
+storiesPath: design-system/src/components/Surfaces/Popover/Popover.stories.tsx
+status: stub
+---
+
+# Popover
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Surfaces/Popover`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `ReactNode` | — | Short header — rendered as subtitle/medium |
+| `description` | `ReactNode` | — | Supporting text — rendered as body-content/small |
+| `content` | `ReactNode` | — | Custom content slot — overrides title + description layout |
+| `children` | `ReactElement` | — | Single interactive element that triggers the popover. Must accept a ref |
+| `side` | `'top' \| 'bottom' \| 'start' \| 'end'` | `'top'` | Preferred side relative to the trigger. Flips when space is insufficient. `start`/`end` are direction-aware (LTR: left/right; RTL: right/left) |
+| `openOnHover` | `boolean` | `false` | Also open on hover / focus, not just click |
+| `open` | `boolean` | — | Controlled open state |
+| `defaultOpen` | `boolean` | `false` | Initial open state for uncontrolled usage |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when the open state changes |
+| `showCloseButton` | `boolean` | `true` | Show the × close button |
+| `disabled` | `boolean` | `false` | Suppress the popover entirely |
+| `className` | `string` | — | Additional className forwarded to the root element |

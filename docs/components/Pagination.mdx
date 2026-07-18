@@ -1,0 +1,29 @@
+---
+title: Pagination
+category: Navigation
+sourcePath: design-system/src/components/Navigation/Pagination/Pagination.tsx
+storiesPath: design-system/src/components/Navigation/Pagination/Pagination.stories.tsx
+status: stub
+---
+
+# Pagination
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Navigation/Pagination`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `count` | `number` | — | Total number of pages |
+| `page` | `number` | — | Controlled current page (1-based). When provided, `onChange` must update it externally |
+| `defaultPage` | `number` | `1` | Starting page for uncontrolled mode |
+| `onChange` | `(page: number) => void` | — | Called when the user navigates to a different page |
+| `variant` | `'default' \| 'compact'` | `'default'` | `default` renders numbered page tabs with ellipsis; `compact` renders "X of Y" text between prev/next buttons |
+| `siblingCount` | `number` | `1` | Number of sibling page tabs on each side of the current page |
+| `boundaryCount` | `number` | `1` | Number of boundary page tabs at each end |
+| `aria-label` | `string` | `'Pagination'` | Accessible label for the nav landmark |
+| `className` | `string` | — | Additional className forwarded to the root element |

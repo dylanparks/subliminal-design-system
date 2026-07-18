@@ -1,0 +1,59 @@
+---
+title: Menu
+category: Navigation
+sourcePath: design-system/src/components/Navigation/Menu/Menu.tsx
+storiesPath: design-system/src/components/Navigation/Menu/Menu.stories.tsx
+status: stub
+---
+
+# Menu
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+>
+> `Menu.tsx` exports three public components — `Menu`, `MenuItem`, and `MenuDivider` — each
+> with its own Props table below.
+
+**Storybook:** `Navigation/Menu`
+
+## Props
+
+### Menu
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | — | Whether the menu is open |
+| `anchorEl` | `HTMLElement \| null` | — | The element the menu is anchored to |
+| `onClose` | `() => void` | — | Called when the menu should close (outside click, Escape, backdrop tap) |
+| `type` | `'action' \| 'single-select' \| 'multi-select' \| 'configure'` | `'single-select'` | The interaction model for all items in this menu: `action` items trigger one-shot actions and close the menu; `single-select` shows a checkmark on the selected item and auto-closes; `multi-select` shows checkboxes and stays open; `configure` items have a drag handle for reordering and an optional toggle switch |
+| `children` | `ReactNode` | — | Menu content — typically `MenuItem` and `MenuDivider` elements |
+| `className` | `string` | — | Additional className forwarded to the menu container element |
+| `aria-label` | `string` | — | Accessible name for the menu (use when there is no visible heading) |
+| `aria-labelledby` | `string` | — | ID of a visible element that names this menu |
+| `maxHeight` | `number` | `360` | Maximum height in px before the list becomes scrollable |
+| `width` | `number` | — | Explicit width in px for the menu container; useful when the menu should match the width of its anchor (e.g. SelectField) |
+
+### MenuItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | Label text rendered inside the item |
+| `onClick` | `() => void` | — | Called when the item is activated (click, keyboard activation, or the toggle switch in `configure` mode) |
+| `selected` | `boolean` | `false` | Marks the item as selected/active — shows a checkmark (single-select), filled checkbox (multi-select), or the toggle in the on state (configure), and renders the label in semibold |
+| `disabled` | `boolean` | `false` | Prevents interaction and removes the item from the keyboard focus sequence |
+| `icon` | `ReactNode` | — | Optional leading icon (16–24px ReactNode, e.g. an inline SVG) |
+| `suffix` | `MenuSuffix` | — | Optional trailing suffix (tag count, keyboard shortcut, or submenu chevron) |
+| `className` | `string` | — | Additional className forwarded to the list item element |
+| `toggleable` | `boolean` | `true` | Whether to show the toggle switch (configure mode only) |
+| `onDragStart` | `(e: DragEvent<HTMLLIElement>) => void` | — | Drag handler — wire up to implement reordering (configure mode only) |
+| `onDragEnd` | `(e: DragEvent<HTMLLIElement>) => void` | — | Drag handler (configure mode only) |
+| `onDragOver` | `(e: DragEvent<HTMLLIElement>) => void` | — | Drag handler (configure mode only) |
+| `onDragLeave` | `(e: DragEvent<HTMLLIElement>) => void` | — | Drag handler (configure mode only) |
+| `onDrop` | `(e: DragEvent<HTMLLIElement>) => void` | — | Drag handler (configure mode only) |
+
+### MenuDivider
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional className forwarded to the divider element |

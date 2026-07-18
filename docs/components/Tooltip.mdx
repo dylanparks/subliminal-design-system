@@ -1,0 +1,25 @@
+---
+title: Tooltip
+category: Enhancers
+sourcePath: design-system/src/components/Enhancers/Tooltip/Tooltip.tsx
+storiesPath: design-system/src/components/Enhancers/Tooltip/Tooltip.stories.tsx
+status: stub
+---
+
+# Tooltip
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Enhancers/Tooltip`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `content` | `string` | — | Brief text label — one short phrase. Never use for critical information |
+| `children` | `ReactElement` | — | Single interactive element that triggers the tooltip. Must accept a ref |
+| `side` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Preferred side relative to the trigger. Flips automatically when there is insufficient space on the preferred side |
+| `delay` | `number` | `600` | Milliseconds to wait before opening on hover. Focus always opens immediately |
+| `disabled` | `boolean` | — | Suppress the tooltip entirely |

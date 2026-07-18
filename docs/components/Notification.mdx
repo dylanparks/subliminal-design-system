@@ -1,0 +1,29 @@
+---
+title: Notification
+category: Surfaces
+sourcePath: design-system/src/components/Surfaces/Notification/Notification.tsx
+storiesPath: design-system/src/components/Surfaces/Notification/Notification.stories.tsx
+status: stub
+---
+
+# Notification
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Surfaces/Notification`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Notification heading |
+| `description` | `string` | — | Supporting text below the title |
+| `status` | `'informational' \| 'success' \| 'warning' \| 'error'` | `'informational'` | Semantic status, drives icon and color |
+| `layout` | `'stacked' \| 'inline'` | `'stacked'` | Layout of content and actions |
+| `dismissable` | `boolean` | `false` | Shows a close button |
+| `onDismiss` | `() => void` | — | Called when the close button is activated |
+| `actions` | `[NotificationAction] \| [NotificationAction, NotificationAction]` | — | Up to 2 actions — first renders filled, second renders hollow. Each action has a `label` and `onClick` |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `id` | `string` | — | Forwarded to the root element |

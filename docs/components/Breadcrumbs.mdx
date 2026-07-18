@@ -1,0 +1,25 @@
+---
+title: Breadcrumbs
+category: Navigation
+sourcePath: design-system/src/components/Navigation/Breadcrumbs/Breadcrumbs.tsx
+storiesPath: design-system/src/components/Navigation/Breadcrumbs/Breadcrumbs.stories.tsx
+status: stub
+---
+
+# Breadcrumbs
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Navigation/Breadcrumbs`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `BreadcrumbItem[]` | — | Ordered list of crumbs — the last entry is always the current page (non-interactive). Each item has a `label`, optional `href` (renders an `<a>` when provided, otherwise a `<button>`), and optional `onClick` |
+| `maxItems` | `number` | — | Maximum number of items to display before collapsing the middle items into an overflow button. When `items.length > maxItems`, all items except the last three (two links + current page) are hidden inside the overflow dropdown. Omit to always show all items |
+| `propStatic` | `boolean` | `false` | Static variant — for use on dark or gradient backgrounds; switches the color palette to white-based tokens |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `aria-label` | `string` | `'Breadcrumb'` | Accessible name for the breadcrumb navigation landmark |
