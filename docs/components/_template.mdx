@@ -1,0 +1,73 @@
+---
+title: ComponentName
+category: Actions | Fields | Inputs | Navigation | DataDisplay | Surfaces | Enhancers
+sourcePath: design-system/src/components/{Category}/{ComponentName}/{ComponentName}.tsx
+status: stable | planned
+---
+
+{/*
+  TEMPLATE — copy this file to docs/components/{ComponentName}.mdx and fill in every section.
+  Delete this comment block in the copy. Keep section headings and order identical across all
+  component docs so the future Astro docs site (Phase 4) can render them with one shared layout.
+
+  Source of truth for every section is the component's own code — read the .tsx, .css, and
+  .stories.tsx before writing anything here. Don't describe behavior the code doesn't have.
+*/}
+
+# ComponentName
+
+One or two sentences: what it is, when to reach for it.
+
+## Anatomy
+
+Plain-language breakdown of the DOM/visual structure (e.g. "container > icon slot > label").
+Note any subcomponents (e.g. compound components like Accordion's Item/Trigger/Panel).
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `propName` | `TypeName` | `default` | What it does |
+
+## Variants
+
+Enumerate every variant/fillStyle/size axis from the component's TypeScript union types, plus
+any states worth calling out (disabled, icon-only, loading, error, etc.). Use real prop values.
+
+## Token dependencies
+
+List the `--sds-*` CSS custom properties the component's stylesheet reads (copy from the CSS
+file's header comment plus a scan of the rules), grouped by purpose (color, shape, spacing,
+effects). Note the typography utility classes used, if any (`sds-text--{category}-{size}`).
+
+## Do / Don't
+
+- ✅ Do: ...
+- 🚫 Don't: ...
+
+## Accessibility
+
+Keyboard interactions, ARIA roles/attributes actually implemented, focus behavior, WCAG level
+targeted. Pull directly from the component's `.test.tsx` a11y assertions and the `.tsx` ARIA
+wiring — don't invent behavior that isn't implemented.
+
+## Usage in Figma
+
+How to find and configure the component in the Subliminal Figma library, and how its variant
+properties map to the props above. Note whether Code Connect is wired up yet.
+
+## Usage in code
+
+```tsx
+import { ComponentName } from 'subliminal-design-system';
+
+<ComponentName /* representative real props */ />
+```
+
+Note the install command and any required peer setup (e.g. `ThemeProvider`, `DirectionProvider`)
+only if the component actually needs it.
+
+## Usage with Claude
+
+One or two sentences on invoking the `subliminal-skill` skill when asking Claude to build UI
+with this component, so intent-token references stay correct automatically.

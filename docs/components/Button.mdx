@@ -1,0 +1,127 @@
+---
+title: Button
+category: Actions
+sourcePath: design-system/src/components/Actions/Button/Button.tsx
+status: stable
+---
+
+# Button
+
+A clickable action trigger. Supports four semantic variants, three fill styles, four sizes, and
+an optional icon (leading, trailing, or icon-only with an automatic tooltip).
+
+## Anatomy
+
+A single `<button>` element containing, in DOM order:
+
+1. **Icon slot** (`.sds-button__icon`, `aria-hidden="true"`) — rendered first when `iconPosition="start"` (default).
+2. **Label slot** (`.sds-button__label`) — the `label` text, present when `showLabel` is `true` (default) and `label` is provided.
+3. **Icon slot** again — rendered last when `iconPosition="end"`.
+
+When the button is icon-only (an icon is provided and the label is hidden or absent) and a
+`label` exists, the `<button>` is wrapped in a [`Tooltip`](../../design-system/src/components/Enhancers/Tooltip/Tooltip.tsx) that shows `label` as its content, unless `disableTooltip` is set.
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `'primary' \| 'secondary' \| 'static' \| 'negative'` | `'primary'` | Semantic color role |
+| `fillStyle` | `'filled' \| 'hollow' \| 'ghost'` | `'filled'` | Visual emphasis level |
+| `size` | `'xsmall' \| 'small' \| 'medium' \| 'large'` | `'small'` | Height, padding, icon size, and typography scale |
+| `label` | `string` | — | Button text; also used as the accessible name for icon-only buttons and as tooltip content |
+| `showLabel` | `boolean` | `true` | Set `false` to render icon-only (label still used for `aria-label`/tooltip) |
+| `icon` | `ReactNode` | — | Icon element rendered in `.sds-button__icon` |
+| `iconPosition` | `'start' \| 'end'` | `'start'` | Which side of the label the icon renders on |
+| `disabled` | `boolean` | `false` | Disables the native button and applies `aria-disabled` |
+| `onClick` | `MouseEventHandler<HTMLButtonElement>` | — | Click handler |
+| `className` | `string` | — | Additional class names, appended after SDS classes |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button `type` |
+| `aria-label` | `string` | — | Explicit accessible name; overrides the icon-only auto `aria-label` |
+| `disableTooltip` | `boolean` | `false` | Opt out of the automatic tooltip on icon-only buttons |
+
+## Variants
+
+- **Variant × fill style** (12 combinations): `primary`, `secondary`, `static`, `negative` — each in `filled`, `hollow`, `ghost`.
+- **Size** (4): `xsmall`, `small`, `medium`, `large` — each maps to its own height (`--sds-spacing-size-*`), border radius (`--sds-shape-border-radius-*`), icon size, and typography class.
+- **Icon placement**: leading (default) or trailing via `iconPosition`.
+- **Icon-only**: set `icon` and `showLabel={false}` — the button becomes square (`aspect-ratio: 1`, no horizontal padding) except in `ghost` fill style, which stays content-sized and padding-less regardless.
+- **Disabled**: native `disabled` + `aria-disabled="true"`; each variant/fill style has its own disabled background/content/stroke tokens.
+
+## Token dependencies
+
+**Color** — per `{variant}-{fillStyle}` combination, at `default`/`hover`/`active`/`disabled` states:
+- `--sds-interactive-primary-{filled,hollow}-{background,content,stroke}-{default,hover,active,disabled}`
+- `--sds-interactive-secondary-{filled,hollow}-{background,content,stroke}-{default,hover,active,disabled}`
+- `--sds-interactive-static-{filled,hollow}-{background,content,stroke}-{default,hover,active,disabled}`
+- `--sds-interactive-negative-{filled,hollow}-{background,content,stroke}-{default,hover,active,disabled}`
+- `ghost` fill style reuses the corresponding `hollow` **content** tokens only (no background/stroke — ghost is transparent and padding-less).
+
+**Effects** — `--sds-effects-focus` (the `focus-visible` box-shadow ring, all variants).
+
+**Shape** — `--sds-shape-border-radius-{xsmall,small,medium,large}` (one per size).
+
+**Spacing** — `--sds-spacing-size-{xsmall,small,medium,large}` (button height, one per size).
+
+**Typography** — utility classes, one per size: `sds-text--body-interactive-{small,medium,large,huge}` (xsmall→small, small→medium, medium→large, large→huge).
+
+## Do / Don't
+
+- ✅ Do pass a `label` even on icon-only buttons — it drives both the accessible name and the tooltip.
+- ✅ Do reserve `filled` for the primary action in a given context, `hollow` for secondary emphasis, and `ghost` for low-emphasis/tertiary actions.
+- ✅ Do use `variant="negative"` only for destructive actions (delete, remove, revoke).
+- 🚫 Don't set `disableTooltip` on an icon-only button unless the accessible name is already conveyed some other way (e.g. adjacent visible text via `aria-labelledby` upstream) — without it, sighted mouse users lose all affordance for what the button does.
+- 🚫 Don't override `.sds-button` colors with custom CSS — switch `variant`/`fillStyle` instead so disabled/hover/active/focus states stay correct together.
+- 🚫 Don't put interactive elements (links, other buttons) inside `icon`— the icon slot is `aria-hidden`.
+
+## Accessibility
+
+- Native `<button>` — Enter and Space activate it via standard browser behavior (verified in `Button.test.tsx`).
+- `disabled` sets both the native `disabled` attribute (removes it from the tab order, blocks `onClick`) and `aria-disabled="true"`.
+- Accessible name resolution order: explicit `aria-label` prop → (if icon-only) `label` → otherwise the visible label text itself.
+- Icons are marked `aria-hidden="true"` so screen readers announce only the label/aria-label, never icon markup.
+- Icon-only buttons get an automatic `Tooltip` (hover + focus triggers, inherits `Tooltip`'s WCAG 1.4.13 hoverable-zone behavior) so the action is discoverable visually, not just via accessible name.
+- `focus-visible` renders a 4px `box-shadow` ring using `--sds-effects-focus` — visible for keyboard focus, suppressed for mouse-only interaction per native `:focus-visible` semantics.
+- Target: WCAG AA.
+
+## Usage in Figma
+
+Find `Button` under the **Actions** section of the Subliminal Figma library. Component
+properties map directly to the props above — set the `Variant`, `Fill Style`, and `Size`
+properties, and toggle the icon slot on/off to match `icon`/`showLabel`/`iconPosition`. Because
+every fill style pulls from the same intent tokens as the shipped component, a theme change
+applied in Figma (via SDS Relay) and re-exported through `npm run build:tokens` will restyle this
+component identically in both places.
+
+Figma Code Connect is not wired up for this component yet — until then, treat the Figma instance
+and the React component as kept in sync by convention (matching variant names/props), not by
+tooling. 🧑 **Needs Dylan:** share the direct Figma library link so it can be linked from here.
+
+## Usage in code
+
+```tsx
+import { Button } from 'subliminal-design-system';
+
+<Button label="Save changes" variant="primary" fillStyle="filled" />
+
+<Button
+  label="Delete"
+  variant="negative"
+  fillStyle="hollow"
+  icon={<TrashIcon />}
+  showLabel={false}
+/>
+```
+
+> **Note:** the package isn't published to npm yet (see Phase 2, `docs/PROJECT_PLAN.md`). Until
+> then, import `Button` from its source path within this repo:
+> `design-system/src/components/Actions/Button/Button`.
+
+No provider is required — `Button` has no dependency on `ThemeProvider` or `DirectionProvider`
+beyond the ambient `--sds-*` CSS variables already present on `:root`/`.dark`.
+
+## Usage with Claude
+
+Invoke the `subliminal-skill` skill when asking Claude to build or modify UI involving `Button`
+(or any component). It carries the fully resolved intent-token chain for both light and dark
+mode, so Claude reaches for the correct `--sds-interactive-*` variable per variant/fill
+style/state instead of guessing or hardcoding a color.
