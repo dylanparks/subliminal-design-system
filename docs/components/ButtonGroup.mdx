@@ -1,0 +1,28 @@
+---
+title: ButtonGroup
+category: Actions
+sourcePath: design-system/src/components/Actions/ButtonGroup/ButtonGroup.tsx
+storiesPath: design-system/src/components/Actions/ButtonGroup/ButtonGroup.stories.tsx
+status: stub
+---
+
+# ButtonGroup
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Actions/ButtonGroup`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `ButtonGroupItem[]` | — | The buttons to render, each with a `value`, optional `label`, `icon`, `iconPosition`, and `disabled` |
+| `mode` | `'single' \| 'multi'` | `'single'` | Whether one or multiple items can be selected at a time |
+| `size` | `'xsmall' \| 'small' \| 'medium' \| 'large'` | `'small'` | Height, padding, icon size, and typography scale |
+| `value` | `string[]` | — | Controlled selected item value(s) |
+| `defaultValue` | `string[]` | `[]` | Uncontrolled initial selected item value(s) |
+| `onChange` | `(value: string[]) => void` | — | Called with the updated selection when an item is toggled |
+| `className` | `string` | — | Additional class names, appended after SDS classes |
+| `aria-label` | `string` | — | Accessible name for the group |

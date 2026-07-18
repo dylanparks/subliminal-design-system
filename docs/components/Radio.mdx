@@ -1,0 +1,37 @@
+---
+title: Radio
+category: Inputs
+sourcePath: design-system/src/components/Inputs/Radio/Radio.tsx
+storiesPath: design-system/src/components/Inputs/Radio/RadioGroup.stories.tsx
+status: stub
+---
+
+# Radio
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+>
+> `Radio` has no dedicated `.stories.tsx` of its own — it's demonstrated via the `RadioGroup`
+> story (`RadioGroup.stories.tsx`), which renders `Radio` items as children.
+
+**Storybook:** `Inputs/RadioGroup` (Radio has no dedicated story; see note above)
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Primary label text. Renders with default SDS typography and error/disabled styling. Ignored when `children` is provided |
+| `description` | `string` | — | Optional secondary description below the label. Only rendered when `label` is used (not `children`) |
+| `children` | `ReactNode` | — | Free content slot — overrides `label`/`description` when provided. Accepts any non-interactive content: custom layouts, icons, rich text, etc. |
+| `checked` | `boolean` | — | Checked state (controlled standalone mode). Omit when inside a RadioGroup — the group manages selection via `value` |
+| `defaultChecked` | `boolean` | `false` | Initial checked state for standalone uncontrolled mode. Ignored when `checked` is provided or when inside a RadioGroup |
+| `onChange` | `(checked: boolean) => void` | — | Called when this radio is selected |
+| `disabled` | `boolean` | — | Prevents interaction. When inside a RadioGroup, the group's `disabled` prop takes precedence unless this is explicitly set to `false` |
+| `error` | `boolean` | `false` | Renders error styling on the indicator and label |
+| `required` | `boolean` | — | Marks this radio as required for form validation. Prefer setting `required` on the RadioGroup instead |
+| `size` | `'medium' \| 'large'` | `'large'` | Visual size |
+| `id` | `string` | — | Forwarded to the underlying `<input>` element |
+| `name` | `string` | — | `name` attribute for the underlying input. Shared automatically when inside a RadioGroup — only set this for standalone use |
+| `value` | `string` | — | Identifies this radio within a RadioGroup's selected value. Required when used inside a RadioGroup |
+| `className` | `string` | — | Additional className forwarded to the root `<label>` element |

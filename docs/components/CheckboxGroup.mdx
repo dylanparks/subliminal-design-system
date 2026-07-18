@@ -1,0 +1,31 @@
+---
+title: CheckboxGroup
+category: Inputs
+sourcePath: design-system/src/components/Inputs/Checkbox/CheckboxGroup.tsx
+storiesPath: design-system/src/components/Inputs/Checkbox/CheckboxGroup.stories.tsx
+status: stub
+---
+
+# CheckboxGroup
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Inputs/CheckboxGroup`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `ReactNode` | — | Open label slot. Accepts any content — text, descriptions, hint icons, tooltip triggers, contextual help buttons, or custom inline layouts. The slot receives an `id` and is wired to the group root via `aria-labelledby` |
+| `children` | `ReactNode` | — | CheckboxItem children to render in the group |
+| `value` | `string[]` | — | Controlled selected values — array of CheckboxItem `value` strings. Omit to use uncontrolled mode with `defaultValue` |
+| `defaultValue` | `string[]` | `[]` | Initial selected values for uncontrolled mode |
+| `onValueChange` | `(value: string[]) => void` | — | Called with the updated value array whenever any item is toggled |
+| `disabled` | `boolean` | `false` | Disables all CheckboxItems in the group |
+| `allValues` | `string[]` | `[]` | All item values in the group. Required to enable parent checkbox auto-wiring: a CheckboxItem with `parent` inside this group will automatically derive its checked and indeterminate states from this list |
+| `error` | `boolean` | `false` | Whether the group is in an error state |
+| `errorMessage` | `string` | — | Validation message shown below the group label when `error` is true |
+| `size` | `'medium' \| 'large'` | `'large'` | Controls vertical gap between items |
+| `className` | `string` | — | Additional className forwarded to the root element |

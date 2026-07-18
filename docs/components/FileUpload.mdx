@@ -1,0 +1,36 @@
+---
+title: FileUpload
+category: Fields
+sourcePath: design-system/src/components/Fields/FileUpload/FileUpload.tsx
+storiesPath: design-system/src/components/Fields/FileUpload/FileUpload.stories.tsx
+status: stub
+---
+
+# FileUpload
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+>
+> Prop types (`FileError`, `FileRejection`) are defined in
+> `design-system/src/components/Fields/FileUpload/FileUpload.types.ts`. `FileUploadItem.tsx` in
+> the same folder is an internal subcomponent and is not documented separately.
+
+**Storybook:** `Fields/FileUpload`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `accept` | `string` | — | Accepted MIME types or file extensions (e.g. `"image/*,.pdf"`) |
+| `multiple` | `boolean` | `false` | Allow selecting more than one file |
+| `maxSize` | `number` | — | Maximum file size in bytes |
+| `minSize` | `number` | — | Minimum file size in bytes |
+| `maxFiles` | `number` | — | Maximum number of files accepted |
+| `disabled` | `boolean` | `false` | Prevents interaction |
+| `error` | `boolean` | `false` | Error state — red border |
+| `errorMessage` | `string` | — | Error message shown below the drop zone |
+| `hint` | `string` | — | Hint text shown below the drop zone |
+| `onDropAccepted` | `(files: File[]) => void` | — | Called with files that passed all validation rules |
+| `onDropRejected` | `(rejections: FileRejection[]) => void` | — | Called with files that failed validation, each paired with their errors |
+| `children` | `ReactNode` | — | Drop zone content — defaults to built-in prompt if omitted |

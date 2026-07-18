@@ -1,0 +1,42 @@
+---
+title: TimePicker
+category: Fields
+sourcePath: design-system/src/components/Fields/TimePicker/TimePicker.tsx
+storiesPath: design-system/src/components/Fields/TimePicker/TimePicker.stories.tsx
+status: stub
+---
+
+# TimePicker
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Fields/TimePicker`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | `'Time'` | Floating label shown inside the field |
+| `value` | `TimeValue \| null` | — | Controlled value — hour is 0–23, minute is 0–59, second is 0–59 |
+| `defaultValue` | `TimeValue \| null` | — | Uncontrolled default value |
+| `onChange` | `(value: TimeValue \| null) => void` | — | Called whenever the user changes hour, minute, second, or period; receives `null` when cleared |
+| `format` | `'12h' \| '24h'` | `'12h'` | `'12h'` shows Hour / Minute / AM·PM columns · `'24h'` shows Hour / Minute |
+| `hourStep` | `1 \| 2 \| 3 \| 4 \| 6 \| 8 \| 12` | `1` | Hour column step — must evenly divide 12 and 24 |
+| `minuteStep` | `1 \| 5 \| 10 \| 15 \| 30` | `5` | Minute column step |
+| `secondStep` | `1 \| 5 \| 10 \| 15 \| 30` | falls back to `minuteStep` | Second column step |
+| `disabledTime` | `(value: TimeValue \| null) => DisabledTime` | — | Returns sets of disabled hours/minutes/seconds given the current value |
+| `allowClear` | `boolean` | `true` | Show a clear button when the field has a value |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when the popover opens or closes |
+| `size` | `'large' \| 'medium'` | `'large'` | Visual height: large = 64px · medium = 56px |
+| `showLabels` | `boolean` | `true` | Show column header labels (Hour / Minute / Second / AM·PM) |
+| `showMinutes` | `boolean` | `true` | Show the minute column |
+| `showSeconds` | `boolean` | `false` | Show the seconds column |
+| `disabled` | `boolean` | `false` | Disables all interaction |
+| `error` | `boolean` | `false` | Error treatment — takes priority over success |
+| `success` | `boolean` | `false` | Success treatment |
+| `message` | `string` | — | Helper / validation message shown below the field |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `name` | `string` | — | Hidden input name for form submission (value is HH:MM or HH:MM:SS in 24h) |
+| `aria-label` | `string` | — | Accessible label override (falls back to label prop) |

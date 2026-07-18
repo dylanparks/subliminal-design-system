@@ -1,0 +1,183 @@
+---
+title: DatePicker
+category: Fields
+sourcePath: design-system/src/components/Fields/DatePicker/DatePicker.tsx
+storiesPath: design-system/src/components/Fields/DatePicker/DatePicker.stories.tsx
+status: stable
+---
+
+# DatePicker
+
+A field that opens a calendar popover for picking a date. Four structurally distinct **modes** —
+`date` (single day), `range` (start–end, two calendars), `month`, `year` — each rendering a
+different popover panel, not just a different prop value on the same layout.
+
+## Anatomy
+
+```
+<div class="sds-datepicker">
+  <div class="sds-datepicker__wrapper">
+    <button class="sds-datepicker__trigger">        — label + formatted value (mode-dependent format)
+    <button class="sds-datepicker__clear">           — optional (allowClear && !disabled)
+    <span class="sds-datepicker__icon">              — calendar glyph, also toggles the popover
+  </div>
+
+  {open → portal to document.body}
+    <div class="sds-datepicker__backdrop">           — click-outside-to-close
+    <div role="dialog" aria-modal="true">             — positioned via Floating UI (flip/shift)
+      {mode === 'date'}   → one CalendarHeader + DayGridPanel
+      {mode === 'range'}  → two CalendarHeader + DayGridPanel pairs (current + next month), divider between
+      {mode === 'month'}  → one CalendarHeader (year title) + 3×4 month grid
+      {mode === 'year'}   → one CalendarHeader (12-year block title) + 3×4 year grid
+
+  <div class="sds-datepicker__support">              — optional error/success icon + message
+  <span role="status" aria-live="polite">            — visually hidden, announces selections
+</div>
+```
+
+`CalendarHeader` (prev/next nav) is shared across all four modes and is itself built from two
+`Button` instances (`variant="secondary" fillStyle="ghost" size="xsmall"`) — DatePicker composes
+another SDS component internally, not just tokens.
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `mode` | `'date' \| 'range' \| 'month' \| 'year'` | `'date'` | Which panel renders in the popover |
+| `label` | `string` | `'Date'` | Floating label; also the trigger's base accessible name |
+| `value` | `CalendarDate \| null` | — | Controlled value (`date`/`month`/`year` modes) |
+| `defaultValue` | `CalendarDate \| null` | — | Uncontrolled initial value (`date`/`month`/`year` modes) |
+| `startValue` | `CalendarDate \| null` | — | Controlled range start (`range` mode) |
+| `endValue` | `CalendarDate \| null` | — | Controlled range end (`range` mode) |
+| `defaultStartValue` | `CalendarDate \| null` | — | Uncontrolled initial range start |
+| `defaultEndValue` | `CalendarDate \| null` | — | Uncontrolled initial range end |
+| `onChange` | `(value: CalendarDate \| null) => void` | — | Fires on select/clear (`date`/`month`/`year` modes) |
+| `onRangeChange` | `(start, end: CalendarDate \| null) => void` | — | Fires on each half of a range pick, and on clear |
+| `size` | `'large' \| 'medium'` | `'large'` | Trigger height (64px / 56px) |
+| `disabled` | `boolean` | `false` | Disables the trigger and clear button |
+| `error` | `boolean` | `false` | Error treatment (suppressed if `disabled`) |
+| `success` | `boolean` | `false` | Success treatment (suppressed if `disabled` or `error`) |
+| `message` | `string` | — | Helper/validation text shown below the field |
+| `allowClear` | `boolean` | `true` | Show the clear button once a value exists |
+| `className` | `string` | — | Additional root class name |
+
+`CalendarDate` (exported type): `{ year: number; month: number /* 1–12 */; day: number }` — a
+plain, timezone-free date.
+
+## Variants
+
+**Structural, not prop-driven:** `mode` changes which panel component renders — this isn't a
+matrix cell, it's effectively four different widgets sharing one trigger shell. Reuse named
+stories directly rather than trying to spread `mode` over a generic template.
+
+**Story-based examples** — reuse these `DatePicker.stories.tsx` exports directly:
+
+| Story export | Demonstrates |
+|---|---|
+| `Default` | `mode="date"` — single grid, pinned `defaultValue` (2026-04-11) for deterministic snapshots |
+| `Range` | `mode="range"` — two grids, both `defaultStartValue`/`defaultEndValue` filled |
+| `RangeEmpty` | `mode="range"` — only `defaultStartValue` set: the *mid-selection* state (picking the end date) |
+| `Month` | `mode="month"` — 3×4 month grid for one year |
+| `Year` | `mode="year"` — 3×4 grid over a 12-year block |
+| `Error` | `error` + `message`, filled value |
+| `Success` | `success` + `message`, filled value |
+
+**Live-preview caveat for Phase 4:** every story above uses a Storybook `play` function that
+clicks the trigger open (`userEvent.click(...)`) before the snapshot — there is no `open` /
+`defaultOpen` prop. A static `args`-spread render (the approach used for `Button`/`Accordion`)
+only shows the **closed trigger**. To show the calendar popover itself, the docs site's
+`<ComponentPreview>` needs to replicate the same open-on-mount interaction (or add a documented
+test-only prop), not just import `args`.
+
+**Matrix examples** — the prop-driven axes:
+- `size` — `large`, `medium` (2 cells), held steady at `mode="date"`, closed trigger.
+- `error` / `success` / `disabled` (booleans) — can matrix over the **closed trigger** state from `Default`'s base args; open-popover variants of these still need the `play`-style interaction above.
+
+**No story yet:** a dedicated `Disabled` example (only reachable via the Storybook controls
+panel today, not a named export).
+
+## Token dependencies
+
+**Color (field chrome)** — `--sds-interactive-fields-background-{default,hover,active,disabled}`, `--sds-interactive-fields-content-{default,suggested}`, `--sds-interactive-fields-stroke-{default,hover,active,disabled}`.
+
+**Color (selection)** — `--sds-interactive-primary-filled-background-default` (selected day), `--sds-interactive-primary-hollow-{background-active,content-default}` (range endpoints), `--sds-interactive-secondary-hollow-{background-hover,content-default,content-hover,content-inactive-default}` (grid cell hover, nav — shared with `Button`'s ghost fill style used by `CalendarHeader`).
+
+**Status** — `--sds-status-error-{background,content,stroke}-default`, `--sds-status-success-{background,content,stroke}-default`.
+
+**Neutral** — `--sds-neutral-background-elevated` (popover surface), `--sds-neutral-content-{primary,tertiary}`, `--sds-neutral-content-static-primary`.
+
+**Effects** — `--sds-effects-focus` (focus ring), `--sds-effects-shadowdefault` + `--sds-effects-values-elevated-{blur,spread,x,y}` (popover elevation shadow).
+
+**Shape** — `--sds-shape-border-radius-{large,medium,round}`.
+
+**Spacing** — `--sds-spacing-size-{large,medium}` (trigger height per size).
+
+**Typography** — utility classes `sds-text--body-content-medium` (label/value/range text), `sds-text--body-interactive-large` (header title), `sds-text--body-content-small` (weekday labels, message). Day/grid cell buttons declare typography custom properties **directly** (`--sds-typography-font-family-body-content`, `-font-size-body-content-small`, `-font-weight-{body-content,body-interactive}`, `-letter-spacing-{body-content-small,body-interactive-small}`, `-line-height-{body-content-medium,body-content-small}`) rather than a utility class, because they reset with `all: unset` first — a utility class can't survive that reset at equal specificity (same pattern documented in `Menu.css`).
+
+**Icons** — `CalendarIcon`, `CloseIcon`, `ChevronLeftIcon`, `ChevronRightIcon`, `ArrowForwardIcon`, `SuccessIcon`, `ErrorIcon` (all from the shared `icons` module).
+
+## Do / Don't
+
+- ✅ Do pin `defaultValue`/`defaultStartValue` in demos and tests that need deterministic output — the component itself defaults the calendar view to "today" when no value exists.
+- ✅ Do use `range` mode's `onRangeChange` to read both dates on every call — it fires once with `(start, null)` after the first click and again with `(start, end)` after the second, so a consumer that only reads `end` will miss the in-progress state.
+- 🚫 Don't expect `Tab` to cycle focus within the open popover — it's a custom `<div role="dialog">`, not the native `<dialog>` element `Modal` uses, and its keydown handler treats `Tab` as **close**, not as a focus-trap boundary.
+- 🚫 Don't rely on the clear button being keyboard-reachable via `Tab` — see Accessibility below.
+
+## Accessibility
+
+- Trigger: native `<button>`, `aria-haspopup="dialog"`, `aria-expanded`, `aria-label` set to `"{label}: {formatted value}"` when filled or just `{label}` when empty; `aria-describedby` points at the support message when one is shown.
+- Trigger keyboard: `Enter` / `Space` / `ArrowDown` / `ArrowUp` open the popover when closed; `Escape` closes it when open.
+- Popover: `role="dialog"` `aria-modal="true"` `aria-label={label}`, positioned via Floating UI (`flip`/`shift`, `autoUpdate` on scroll/resize).
+- Calendar grids use `role="grid"` with a descriptive `aria-label` (e.g. `"April 2026"`, `"Months of 2026"`, `"Years 2020 to 2031"`) and a **roving tabindex** pattern: only the currently focused cell has `tabIndex={0}`, every other cell is `-1`. `ArrowUp/Down/Left/Right` move the roving focus (day grid: ±1 day horizontally, ±7 vertically; month/year grids: ±1/±3 for a 4-column layout), `Enter`/`Space` selects the focused cell, `Tab` closes the popover. **No `Home`/`End`/`PageUp`/`PageDown`** support, unlike `Slider`'s or `Accordion`'s keyboard sets.
+- Selections are announced to assistive tech via a visually-hidden `role="status" aria-live="polite"` element (e.g. *"Apr 11, 2026 selected."*, *"Mar 10, 2026 to Mar 22, 2026 selected."*) — necessary because the popover closes immediately on selection, before a screen reader could otherwise inspect the trigger's updated value.
+- **Clear button gap:** `.sds-datepicker__clear` has `tabIndex={-1}`, same as `TextField`'s clear button — but `TextField` documents `Escape` as "a keyboard-accessible alternative to the clear button" (see `TextField.tsx`). DatePicker has no equivalent: `Escape` only closes the popover, it never clears the value. As implemented, clearing a `DatePicker` is **mouse/pointer-only**.
+- **No Vitest test file** — unlike every other component in this batch, `DatePicker` has no `DatePicker.test.tsx`. Its only automated coverage is the Storybook `play` functions listed under Variants (interaction smoke tests + Chromatic visual snapshots), which don't assert ARIA attributes or keyboard behavior the way a Testing Library suite would.
+- Target: WCAG AA (aspirational for this component given the two gaps above — flagging rather than asserting).
+
+## Usage in Figma
+
+Find `DatePicker` under the **Fields** section of the Subliminal Figma library. The `mode`
+property (`date`/`range`/`month`/`year`) and `size` property map directly to the props above.
+Because the four modes are structurally different popover layouts in code, expect the Figma
+component to likewise ship as separate variant artboards per mode rather than one flexible frame.
+Figma Code Connect is not wired up for this component yet. 🧑 **Needs Dylan:** share the direct
+Figma library link, and confirm whether Figma models the four modes as one component's variants
+or as separate components.
+
+## Usage in code
+
+```tsx
+import { DatePicker } from 'subliminal-design-system';
+import { useState } from 'react';
+
+// Single date
+<DatePicker label="Date" defaultValue={{ year: 2026, month: 4, day: 11 }} />
+
+// Range, controlled
+const [start, setStart] = useState<CalendarDate | null>(null);
+const [end, setEnd]     = useState<CalendarDate | null>(null);
+
+<DatePicker
+  mode="range"
+  label="Date range"
+  startValue={start}
+  endValue={end}
+  onRangeChange={(s, e) => { setStart(s); setEnd(e); }}
+/>
+```
+
+> **Note:** the package isn't published to npm yet (see Phase 2, `docs/PROJECT_PLAN.md`). Until
+> then, import from `design-system/src/components/Fields/DatePicker/DatePicker`.
+
+No provider is required. `DatePicker` renders its popover via `createPortal(..., document.body)`
+and positions it with `@floating-ui/dom` — no `DirectionProvider` dependency was found in the
+source, so RTL behavior for the popover placement/arrow-key directions should be verified
+manually before relying on it (flagged here rather than assumed).
+
+## Usage with Claude
+
+Invoke the `subliminal-skill` skill when asking Claude to build or modify UI involving
+`DatePicker`. Given the gaps noted above (no test file, clear button has no keyboard path, RTL
+unverified), if you ask Claude to extend this component, explicitly ask it to check those areas
+rather than assuming they're already solid — this doc reflects the code as it exists today, not
+a fully-hardened target state.

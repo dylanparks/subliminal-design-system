@@ -1,0 +1,169 @@
+---
+title: Accordion
+category: Surfaces
+sourcePath: design-system/src/components/Surfaces/Accordion/Accordion.tsx
+storiesPath: design-system/src/components/Surfaces/Accordion/Accordion.stories.tsx
+status: stable
+---
+
+# Accordion
+
+A vertically stacked set of collapsible disclosure panels. Compound component — `Accordion`
+provides shared state via context; `AccordionItem`, `AccordionTrigger`, and `AccordionPanel`
+consume it. Single-open (default) or multiple-open, controlled or uncontrolled.
+
+## Anatomy
+
+Four components used together, always in this nesting:
+
+```
+<Accordion>                 — root; owns open-state via React context, no visible chrome itself
+  <AccordionItem value="…"> — one collapsible row; reads/writes open-state via context
+    <AccordionTrigger>      — the clickable <button> header (optional leading icon + title + chevron)
+    <AccordionPanel>        — the collapsible content region (role="region")
+  </AccordionItem>
+  …more items…
+</Accordion>
+```
+
+`AccordionTrigger` and `AccordionPanel` throw if rendered outside an `AccordionItem`; `AccordionItem`
+and its children throw if rendered outside an `Accordion` — the compound API has no standalone
+pieces.
+
+## Props
+
+**`Accordion`**
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string \| string[]` | — | Controlled open item(s) |
+| `defaultValue` | `string \| string[]` | — | Initial open item(s), uncontrolled |
+| `onChange` | `(value: string[]) => void` | — | Fires with the full open-values array on every toggle |
+| `multiple` | `boolean` | `false` | Allow more than one item open at once |
+| `size` | `'small' \| 'medium'` | `'small'` | Applied to all items |
+| `children` | `ReactNode` | — | One or more `AccordionItem` |
+| `className` | `string` | — | Additional root class name |
+
+**`AccordionItem`**
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Required, unique identifier used in `Accordion`'s open-state array |
+| `disabled` | `boolean` | `false` | Disables this item's trigger; excluded from arrow-key navigation |
+| `children` | `ReactNode` | — | An `AccordionTrigger` + `AccordionPanel` pair |
+| `className` | `string` | — | Additional item class name |
+
+**`AccordionTrigger`**
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | `ReactNode` | — | Optional leading icon (16px small / 20px medium), `aria-hidden` |
+| `children` | `ReactNode` | — | Title content — any non-interactive node |
+| `className` | `string` | — | Additional trigger class name |
+
+**`AccordionPanel`**
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | Panel content |
+| `className` | `string` | — | Additional panel class name |
+
+## Variants
+
+**Compound-component caveat:** unlike a single-element component (e.g. `Button`), Accordion's
+rendered examples can't be produced by spreading one `args` object onto one element — every
+example is a full composition of `Accordion` + `AccordionItem` + `AccordionTrigger` +
+`AccordionPanel`. Phase 4 should reuse each story's whole `render` function output (or replicate
+its composition), not just its `args`.
+
+**Story-based examples** — reuse these `Accordion.stories.tsx` exports directly:
+
+| Story export | Demonstrates |
+|---|---|
+| `Default` (`name: 'Default / Small'`) | `size="small"`, single-open, 4 items, last one `disabled` |
+| `Large` (`name: 'Default / Large'`) | `size="medium"`, otherwise identical to `Default` |
+| `Multiple` | `multiple` mode — two items open simultaneously via `defaultValue={['item-1','item-2']}` |
+| `NoIcon` | Triggers with no leading icon |
+| `Controlled` | External `value`/`onChange` — a live "Open: …" readout above the accordion |
+| `RichTitle` | Non-text content inside `AccordionTrigger` (icon + label + inline badge) |
+| `Playground` | `size`/`multiple` wired to Storybook controls for ad hoc exploration |
+
+**Matrix examples** — the one true prop-driven axis:
+- `size` — `small`, `medium` (2 cells) — held steady: single-open, one item expanded, icon present.
+
+**States** (not separate stories — CSS/context-driven, one item at a time): `closed` (default),
+`open` (`aria-expanded="true"`, chevron rotated 180°, panel grid-row animates `0fr → 1fr`),
+`disabled` (dimmed content color, `pointer-events: none`), `hover`/`active`/`focus-visible` on
+the trigger.
+
+## Token dependencies
+
+**Color** — `--sds-interactive-secondary-hollow-content-{default,disabled}` (trigger text),
+`--sds-interactive-secondary-hollow-background-{hover,active}` (item background, applied via
+`:has(.sds-accordion-trigger:hover)` / `:active` — the whole card fills, not just the button),
+`--sds-neutral-content-secondary` (panel content text).
+
+**Effects** — `--sds-effects-focus` (trigger `focus-visible` ring).
+
+**Shape** — `--sds-shape-border-radius-medium` (item corners, shared by both sizes).
+
+**Typography** — utility classes: `sds-text--subtitle-{medium,large}` (trigger title, small/medium
+size) and `sds-text--body-content-{small,medium}` (panel content, small/medium size).
+
+**No spacing tokens** — padding and gaps are hand-tuned pixel values (`8px`/`12px`/`16px`), not
+`--sds-spacing-*` variables, unlike `Button`.
+
+## Do / Don't
+
+- ✅ Do give every `AccordionItem` a stable, unique `value` — it's the identity used in the open-state array and in `onChange`.
+- ✅ Do use `multiple` for independent, unrelated panels (e.g. FAQ lists); leave it `false` (default) when only one panel should be visible at a time (e.g. a single-answer wizard).
+- ✅ Do keep `AccordionTrigger` content non-interactive — it's rendered as the label of a `<button>`; nesting another button/link inside it produces invalid, inaccessible markup.
+- 🚫 Don't render `AccordionTrigger`/`AccordionPanel` outside `AccordionItem`, or `AccordionItem` outside `Accordion` — every sub-component throws immediately if its required context is missing.
+- 🚫 Don't rely on panel content being unmounted while closed — `AccordionPanel`'s children stay in the DOM (animated via `grid-template-rows`, not `display:none`), so don't put expensive mount-only side effects inside it expecting them to pause on close.
+
+## Accessibility
+
+- `AccordionTrigger` is a native `<button>` with `aria-expanded` and `aria-controls` pointing at its `AccordionPanel`'s `id`.
+- `AccordionPanel` has `role="region"` and `aria-labelledby` pointing back at its trigger's `id` — verified in `Accordion.test.tsx` (`getByRole('region', { name: 'Alpha' })`).
+- Arrow-key navigation across all triggers in one `Accordion`: `ArrowDown`/`ArrowUp` move focus to the next/previous **enabled** trigger (wrapping at the ends), `Home`/`End` jump to the first/last enabled trigger. Disabled items are excluded from this cycle.
+- Disabled items get the native `disabled` attribute on their trigger (removed from tab order, `pointer-events: none` in CSS as a second guard).
+- `focus-visible` renders a 4px `box-shadow` ring via `--sds-effects-focus`.
+- Target: WCAG AA.
+
+## Usage in Figma
+
+Find `Accordion` under the **Surfaces** section of the Subliminal Figma library. The `small`/
+`medium` size property maps to `size`; toggling the leading-icon slot maps to whether
+`AccordionTrigger` receives an `icon`. Figma has no direct equivalent of the `multiple` /
+controlled-vs-uncontrolled behavior — those are code-only concerns with no visual difference to
+represent in a static design file. Figma Code Connect is not wired up for this component yet.
+🧑 **Needs Dylan:** share the direct Figma library link.
+
+## Usage in code
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionPanel } from 'subliminal-design-system';
+
+<Accordion defaultValue="shipping">
+  <AccordionItem value="shipping">
+    <AccordionTrigger icon={<TruckIcon />}>Shipping policy</AccordionTrigger>
+    <AccordionPanel>Orders ship within 2 business days.</AccordionPanel>
+  </AccordionItem>
+  <AccordionItem value="returns">
+    <AccordionTrigger icon={<ReturnIcon />}>Return policy</AccordionTrigger>
+    <AccordionPanel>Returns accepted within 30 days of delivery.</AccordionPanel>
+  </AccordionItem>
+</Accordion>
+```
+
+> **Note:** the package isn't published to npm yet (see Phase 2, `docs/PROJECT_PLAN.md`). Until
+> then, import from `design-system/src/components/Surfaces/Accordion/Accordion`.
+
+No provider is required — all state is local `Accordion` context, scoped to one instance.
+
+## Usage with Claude
+
+Invoke the `subliminal-skill` skill when asking Claude to build or modify UI involving
+`Accordion`. Because this is a compound component, also point Claude at this doc's **Anatomy**
+section (or `Accordion.tsx` directly) if you need a custom trigger/panel arrangement — the
+context-based API means sub-components can't be used standalone or reordered arbitrarily.

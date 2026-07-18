@@ -1,0 +1,38 @@
+---
+title: SearchField
+category: Fields
+sourcePath: design-system/src/components/Fields/SearchField/SearchField.tsx
+storiesPath: design-system/src/components/Fields/SearchField/SearchField.stories.tsx
+status: stub
+---
+
+# SearchField
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Fields/SearchField`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | `'Search'` | Floating label shown inside the field |
+| `placeholder` | `string` | `'Search…'` | Placeholder text shown when focused and field is empty |
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Uncontrolled default value |
+| `onChange` | `(value: string) => void` | — | Called on every keystroke with the new string value |
+| `onSearch` | `(value: string) => void` | — | Called when the user submits the search (Enter key) |
+| `size` | `'large' \| 'medium'` | `'large'` | Visual height: large = 64px · medium = 56px |
+| `type` | `'standard' \| 'autocomplete'` | `'standard'` | `standard` is a plain `type="search"` input; `autocomplete` is a combobox with a suggestion listbox (`type="text"` + `role="combobox"`, since `type="search"` has an implied role of `searchbox` that cannot be overridden) |
+| `suggestions` | `string[]` | `[]` | Suggestions to display in autocomplete mode; the consumer is responsible for filtering |
+| `onSuggestionSelect` | `(value: string) => void` | — | Called when the user selects a suggestion |
+| `showIcon` | `boolean` | `true` | Show the leading search icon |
+| `disabled` | `boolean` | `false` | Disables the field |
+| `error` | `boolean` | `false` | Shows error treatment — takes priority over success |
+| `success` | `boolean` | `false` | Shows success treatment |
+| `message` | `string` | — | Helper / validation message shown below the field |
+| `name` | `string` | — | HTML input name attribute |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `aria-label` | `string` | — | Accessible label override (falls back to label prop) |

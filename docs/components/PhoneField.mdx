@@ -1,0 +1,33 @@
+---
+title: PhoneField
+category: Fields
+sourcePath: design-system/src/components/Fields/PhoneField/PhoneField.tsx
+storiesPath: design-system/src/components/Fields/PhoneField/PhoneField.stories.tsx
+status: stub
+---
+
+# PhoneField
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Fields/PhoneField`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | `'Phone number'` | Floating label shown inside the phone input section |
+| `value` | `string` | `''` | Controlled value — raw digit string (no dial code, no formatting characters) |
+| `defaultValue` | `string` | `''` | Uncontrolled default value — raw digit string |
+| `defaultCountry` | `string` | — | ISO 3166-1 alpha-2 code for the default country; when omitted, the device timezone is used to detect the country |
+| `onChange` | `(digits: string, country: Country, e164?: string) => void` | — | Called on every keystroke and on country change; `digits` is the raw digit string, `country` is the currently selected `Country` object |
+| `size` | `'large' \| 'medium'` | `'large'` | Visual height: large = 64px · medium = 56px |
+| `disabled` | `boolean` | `false` | Disables all interaction |
+| `error` | `boolean` | `false` | Shows error treatment — takes priority over success |
+| `success` | `boolean` | `false` | Shows success treatment |
+| `message` | `string` | — | Helper / validation message shown below the field |
+| `name` | `string` | — | HTML input name attribute |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `aria-label` | `string` | — | Accessible label override (falls back to label prop) |

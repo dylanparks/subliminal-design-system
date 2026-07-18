@@ -1,0 +1,33 @@
+---
+title: Toggle
+category: Inputs
+sourcePath: design-system/src/components/Inputs/Toggle/Toggle.tsx
+storiesPath: design-system/src/components/Inputs/Toggle/Toggle.stories.tsx
+status: stub
+---
+
+# Toggle
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Inputs/Toggle`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Primary label text. Renders with default SDS typography and error/disabled styling. Ignored when `children` is provided |
+| `description` | `string` | — | Optional secondary description below the label. Only rendered when `label` is used (not `children`) |
+| `children` | `ReactNode` | — | Free content slot — overrides `label`/`description` when provided. Accepts any non-interactive content: custom layouts, icons, rich text, etc. |
+| `checked` | `boolean` | — | Controlled on/off state. Omit to use uncontrolled mode with `defaultChecked` |
+| `defaultChecked` | `boolean` | `false` | Initial on/off state for uncontrolled mode |
+| `onChange` | `(checked: boolean) => void` | — | Called when the toggle is switched on or off |
+| `disabled` | `boolean` | `false` | Prevents interaction |
+| `required` | `boolean` | `false` | Marks the toggle as required for form validation. Forwarded to the underlying `<input>` element |
+| `size` | `'medium' \| 'large'` | `'large'` | Visual size |
+| `id` | `string` | — | Forwarded to the underlying `<input>` element |
+| `name` | `string` | — | Forwarded to the underlying `<input>` element (for form submission) |
+| `value` | `string` | `'on'` | Value submitted with the form when the toggle is on |
+| `className` | `string` | — | Additional className forwarded to the root `<label>` element |

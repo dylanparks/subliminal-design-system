@@ -1,0 +1,36 @@
+---
+title: Checkbox
+category: Inputs
+sourcePath: design-system/src/components/Inputs/Checkbox/Checkbox.tsx
+storiesPath: design-system/src/components/Inputs/Checkbox/Checkbox.stories.tsx
+status: stub
+---
+
+# Checkbox
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Inputs/Checkbox`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Primary label text. Renders with default SDS typography and error/disabled styling. Ignored when `children` is provided |
+| `description` | `string` | — | Optional secondary description below the label. Only rendered when `label` is used (not `children`) |
+| `children` | `ReactNode` | — | Free content slot — overrides `label`/`description` when provided. Accepts any non-interactive content: custom layouts, icons, rich text, etc. |
+| `checked` | `boolean` | — | Checked state (controlled mode). Omit to use uncontrolled mode with `defaultChecked`, or let a parent CheckboxGroup manage checked state via `value` |
+| `defaultChecked` | `boolean` | `false` | Initial checked state for uncontrolled mode. Ignored when `checked` is provided or when inside a CheckboxGroup |
+| `indeterminate` | `boolean` | `false` | Indeterminate state — visually shows a dash rather than a checkmark. Takes visual precedence over `checked` when both are true. Automatically computed when `parent` is used inside a CheckboxGroup with `allValues` |
+| `onChange` | `(checked: boolean) => void` | — | Called when the user toggles the checkbox |
+| `disabled` | `boolean` | — | Prevents interaction. When inside a CheckboxGroup, the group's `disabled` prop takes precedence unless this is explicitly set to `false` |
+| `error` | `boolean` | `false` | Renders error styling on the indicator and label |
+| `required` | `boolean` | `false` | Marks this checkbox as required for form validation. Forwarded to the underlying `<input>` element |
+| `parent` | `boolean` | `false` | Designates this checkbox as a parent controller for a group. Inside a CheckboxGroup with `allValues`, automatically derives checked and indeterminate states and toggles all items on change |
+| `size` | `'medium' \| 'large'` | `'large'` | Visual size |
+| `id` | `string` | — | Forwarded to the underlying `<input>` element |
+| `name` | `string` | — | Forwarded to the underlying `<input>` element (for form submission) |
+| `value` | `string` | — | Value submitted with the form when checked. Inside a CheckboxGroup, identifies this item in the group's value array |
+| `className` | `string` | — | Additional className forwarded to the root `<label>` element |

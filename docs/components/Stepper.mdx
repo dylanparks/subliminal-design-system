@@ -1,0 +1,30 @@
+---
+title: Stepper
+category: Actions
+sourcePath: design-system/src/components/Actions/Stepper/Stepper.tsx
+storiesPath: design-system/src/components/Actions/Stepper/Stepper.stories.tsx
+status: stub
+---
+
+# Stepper
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Actions/Stepper`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | Current numeric value (controlled) |
+| `onChange` | `(value: number) => void` | — | Called with the updated value on increment/decrement/manual entry |
+| `min` | `number` | `0` | Minimum allowed value |
+| `max` | `number` | `Infinity` | Maximum allowed value |
+| `step` | `number` | `1` | Amount to increment/decrement per action |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the decrement/value/increment controls |
+| `showValue` | `boolean` | `true` | Whether the numeric value is displayed between the buttons |
+| `disabled` | `boolean` | `false` | Disables all controls |
+| `className` | `string` | — | Additional class names, appended after SDS classes |
+| `aria-label` | `string` | — | Accessible name for the control |

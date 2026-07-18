@@ -1,0 +1,32 @@
+---
+title: RadioGroup
+category: Inputs
+sourcePath: design-system/src/components/Inputs/Radio/RadioGroup.tsx
+storiesPath: design-system/src/components/Inputs/Radio/RadioGroup.stories.tsx
+status: stub
+---
+
+# RadioGroup
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Inputs/RadioGroup`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `ReactNode` | — | Open label slot. Accepts any content — text, descriptions, hint icons, tooltip triggers, contextual help buttons, or custom inline layouts. The slot receives an `id` and is wired to the group root via `aria-labelledby` |
+| `children` | `ReactNode` | — | Radio children to render in the group |
+| `value` | `string` | — | Controlled selected value — the `value` string of the selected Radio. Omit to use uncontrolled mode with `defaultValue` |
+| `defaultValue` | `string` | `''` | Initial selected value for uncontrolled mode |
+| `onValueChange` | `(value: string) => void` | — | Called with the new value whenever a radio is selected |
+| `disabled` | `boolean` | `false` | Disables all Radio items in the group |
+| `name` | `string` | auto-generated | Shared `name` attribute forwarded to all radio inputs. Required for native HTML form submission |
+| `required` | `boolean` | `false` | Marks a selection as required for form validation |
+| `error` | `boolean` | `false` | Whether the group is in an error state |
+| `errorMessage` | `string` | — | Validation message shown below the group label when `error` is true |
+| `size` | `'medium' \| 'large'` | `'large'` | Controls vertical gap between items |
+| `className` | `string` | — | Additional className forwarded to the root element |

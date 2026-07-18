@@ -1,0 +1,35 @@
+---
+title: TextField
+category: Fields
+sourcePath: design-system/src/components/Fields/TextField/TextField.tsx
+storiesPath: design-system/src/components/Fields/TextField/TextField.stories.tsx
+status: stub
+---
+
+# TextField
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Fields/TextField`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | `'Input label'` | Floating label shown inside the field (huge/large) or above it (medium) |
+| `placeholder` | `string` | `'Placeholder content'` | Placeholder text shown inside the input on medium size |
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Uncontrolled default value |
+| `onChange` | `(value: string) => void` | — | Called on every keystroke with the new string value |
+| `size` | `'large' \| 'medium' \| 'small'` | `'large'` | Visual height of the field: huge = 64px · large = 56px · medium = 48px |
+| `disabled` | `boolean` | `false` | Disables the field |
+| `error` | `boolean` | `false` | Shows error treatment — takes priority over success |
+| `success` | `boolean` | `false` | Shows success treatment |
+| `message` | `string` | — | Helper / validation message shown below the field |
+| `maxLength` | `number` | — | Maximum character count; enforces the limit on the native input and shows the live character counter below the field |
+| `name` | `string` | — | HTML input name attribute |
+| `type` | `string` | `'text'` | HTML input type (text, email, password, search, etc.) |
+| `className` | `string` | — | Additional className forwarded to the root element |
+| `aria-label` | `string` | — | Accessible label override (falls back to label prop) |

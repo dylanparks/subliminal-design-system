@@ -1,0 +1,31 @@
+---
+title: RatingInput
+category: Inputs
+sourcePath: design-system/src/components/Inputs/RatingInput/RatingInput.tsx
+storiesPath: design-system/src/components/Inputs/RatingInput/RatingInput.stories.tsx
+status: stub
+---
+
+# RatingInput
+
+> 📋 **Full documentation coming soon.** This page is a placeholder — props and a Storybook
+> link only. For anatomy, variants, token dependencies, accessibility notes, and Figma/code/
+> Claude usage guidance, check back after the docs site backfill (see `docs/PROJECT_PLAN.md`).
+
+**Storybook:** `Inputs/RatingInput`
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Visible group label rendered above the stars |
+| `aria-label` | `string` | — | Accessible name for the group when no visible `label` is provided; ignored when `label` is present |
+| `value` | `number \| null` | — | Controlled rating value (1–`max`). Pass `null` to show no selection. Omit entirely for uncontrolled mode |
+| `defaultValue` | `number` | — | Initial rating value for uncontrolled mode |
+| `onChange` | `(value: number) => void` | — | Called when the user selects a star |
+| `max` | `number` | `5` | Total number of stars |
+| `disabled` | `boolean` | `false` | Disables all interaction |
+| `required` | `boolean` | `false` | Marks the rating as required for form validation |
+| `name` | `string` | auto-generated | `name` attribute shared by the radio inputs |
+| `id` | `string` | — | Forwarded to the root element |
+| `className` | `string` | — | Additional className forwarded to the root element |
