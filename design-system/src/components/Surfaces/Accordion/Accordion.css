@@ -1,0 +1,186 @@
+/* Accordion — Subliminal Design System
+ * Surfaces/Accordion
+ *
+ * Tokens: --sds-interactive-secondary-hollow-content-*,
+ *         --sds-interactive-secondary-hollow-background-*,
+ *         --sds-neutral-content-secondary,
+ *         --sds-shape-border-radius-medium,
+ *         --sds-effects-focus
+ * Typography: .sds-text--subtitle-medium/large (trigger title),
+ *             .sds-text--body-content-small/medium (panel content)
+ *
+ * Structure:
+ *   .sds-accordion                      → root flex-column container
+ *   .sds-accordion-item                 → individual item card
+ *   .sds-accordion-item--small/medium   → size variants
+ *   .sds-accordion-item--open           → open state
+ *   .sds-accordion-item--disabled       → disabled state
+ *   .sds-accordion-trigger              → <button> — full-width header row
+ *   .sds-accordion-trigger__start       → icon + title cluster (flex: 1)
+ *   .sds-accordion-trigger__icon        → leading icon wrapper (sized per variant)
+ *   .sds-accordion-trigger__title       → title text
+ *   .sds-accordion-trigger__chevron     → rotating chevron wrapper
+ *   .sds-accordion-panel                → animated grid container (0fr → 1fr)
+ *   .sds-accordion-panel--open          → expanded panel
+ *   .sds-accordion-panel__inner         → overflow:hidden wrapper (required for grid animation)
+ *   .sds-accordion-panel__content       → visible content with padding
+ */
+
+/* ─── Root ───────────────────────────────────────────────────────────────────── */
+
+.sds-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ─── Item ───────────────────────────────────────────────────────────────────── */
+
+.sds-accordion-item {
+  position:      relative;
+  border-radius: var(--sds-shape-border-radius-medium);
+  overflow:      hidden;
+  background:    transparent;
+  transition:    background-color 120ms ease;
+}
+
+/* Hover/active — only when the trigger is being interacted with */
+.sds-accordion-item:has(.sds-accordion-trigger:hover:not(:disabled)) {
+  background: var(--sds-interactive-secondary-hollow-background-hover);
+}
+
+.sds-accordion-item:has(.sds-accordion-trigger:active:not(:disabled)) {
+  background: var(--sds-interactive-secondary-hollow-background-active);
+}
+
+/* ─── Trigger ────────────────────────────────────────────────────────────────── */
+
+.sds-accordion-trigger {
+  display:    flex;
+  align-items: center;
+  width:      100%;
+  gap:        8px;
+  border:     none;
+  background: transparent;
+  cursor:     pointer;
+  outline:    none;
+  text-align: left;
+  color:      var(--sds-interactive-secondary-hollow-content-default);
+  transition: color 120ms ease;
+}
+
+.sds-accordion-trigger:focus-visible {
+  box-shadow:    0 0 0 4px var(--sds-effects-focus);
+  border-radius: var(--sds-shape-border-radius-medium);
+}
+
+/* ─── Trigger — sizes ────────────────────────────────────────────────────────── */
+
+/* Closed: symmetric padding. Open: drop bottom padding — panel content provides it. */
+
+.sds-accordion-item--small .sds-accordion-trigger {
+  padding: 8px 12px;
+}
+
+.sds-accordion-item--small.sds-accordion-item--open .sds-accordion-trigger {
+  padding: 8px 12px 0;
+}
+
+.sds-accordion-item--medium .sds-accordion-trigger {
+  padding: 12px 16px;
+}
+
+.sds-accordion-item--medium.sds-accordion-item--open .sds-accordion-trigger {
+  padding: 12px 16px 0;
+}
+
+/* ─── Trigger — disabled ─────────────────────────────────────────────────────── */
+
+.sds-accordion-item--disabled .sds-accordion-trigger {
+  color:          var(--sds-interactive-secondary-hollow-content-disabled);
+  cursor:         not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Trigger start (icon + title) ──────────────────────────────────────────── */
+
+.sds-accordion-trigger__start {
+  display:     flex;
+  align-items: center;
+  gap:         4px;
+  flex:        1;
+  min-width:   0;
+}
+
+/* ─── Icon ───────────────────────────────────────────────────────────────────── */
+
+.sds-accordion-trigger__icon {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  overflow:        hidden;
+}
+
+.sds-accordion-item--small .sds-accordion-trigger__icon {
+  width:  16px;
+  height: 16px;
+}
+
+.sds-accordion-item--medium .sds-accordion-trigger__icon {
+  width:  20px;
+  height: 20px;
+}
+
+/* ─── Title ──────────────────────────────────────────────────────────────────── */
+
+.sds-accordion-trigger__title {
+  flex:      1;
+  min-width: 0;
+}
+
+/* ─── Chevron ────────────────────────────────────────────────────────────────── */
+
+.sds-accordion-trigger__chevron {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition:  transform 250ms ease;
+}
+
+.sds-accordion-item--open .sds-accordion-trigger__chevron {
+  transform: rotate(180deg);
+}
+
+/* ─── Panel ──────────────────────────────────────────────────────────────────── */
+
+/* grid-template-rows trick: 0fr collapses to zero height, 1fr expands to content height */
+.sds-accordion-panel {
+  display:            grid;
+  grid-template-rows: 0fr;
+  transition:         grid-template-rows 250ms ease;
+}
+
+.sds-accordion-panel--open {
+  grid-template-rows: 1fr;
+}
+
+/* overflow:hidden on inner is required for the 0fr collapse to work */
+.sds-accordion-panel__inner {
+  overflow: hidden;
+}
+
+/* ─── Panel content — sizes ──────────────────────────────────────────────────── */
+
+.sds-accordion-panel__content {
+  color: var(--sds-neutral-content-secondary);
+}
+
+/* 8px top = gap between trigger and content; bottom matches trigger top padding */
+.sds-accordion-item--small .sds-accordion-panel__content {
+  padding: 8px 12px 8px;
+}
+
+.sds-accordion-item--medium .sds-accordion-panel__content {
+  padding: 8px 16px 12px;
+}

@@ -1,4 +1,4 @@
-import { createContext, useContext, useId, useRef, useState } from 'react';
+import { createContext, useContext, useId, useLayoutEffect, useRef, useState } from 'react';
 import './Tabs.css';
 
 // ─── Context ──────────────────────────────────────────────────────────────────
@@ -100,8 +100,20 @@ export function TabList({
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
 }: TabListProps) {
-  const { propStatic } = useTabsContext();
+  const { propStatic, activeValue } = useTabsContext();
   const ref = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const list = ref.current;
+    if (!list) return;
+    const activeTab = list.querySelector<HTMLButtonElement>('[aria-selected="true"]');
+    if (activeTab) {
+      list.style.setProperty('--indicator-left', `${activeTab.offsetLeft}px`);
+      list.style.setProperty('--indicator-width', `${activeTab.offsetWidth}px`);
+    } else {
+      list.style.setProperty('--indicator-width', '0px');
+    }
+  }, [activeValue]);
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (!ref.current) return;
@@ -138,6 +150,7 @@ export function TabList({
       onKeyDown={handleKeyDown}
     >
       {children}
+      <span className="sds-tab-list__indicator" aria-hidden="true" />
     </div>
   );
 }
@@ -183,7 +196,6 @@ export function Tab({ value, children, icon, disabled, className }: TabProps) {
           <span className="sds-tab__label sds-text--body-interactive-small">{children}</span>
         )}
       </span>
-      <span className="sds-tab__indicator" aria-hidden="true" />
     </button>
   );
 }

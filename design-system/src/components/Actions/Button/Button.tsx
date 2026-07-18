@@ -1,4 +1,4 @@
-import { type ReactNode, type MouseEventHandler } from 'react';
+import { forwardRef, type ReactNode, type MouseEventHandler } from 'react';
 import { Tooltip } from '../../Enhancers/Tooltip/Tooltip';
 import './Button.css';
 
@@ -26,7 +26,7 @@ export interface ButtonProps {
   disableTooltip?: boolean;
 }
 
-export function Button({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({
   variant = 'primary',
   fillStyle = 'filled',
   size = 'small',
@@ -40,7 +40,7 @@ export function Button({
   type = 'button',
   'aria-label': ariaLabel,
   disableTooltip = false,
-}: ButtonProps) {
+}: ButtonProps, ref) {
   const hasIcon  = Boolean(icon);
   const hasLabel = showLabel && Boolean(label);
   const iconOnly = hasIcon && !hasLabel;
@@ -65,6 +65,7 @@ export function Button({
 
   const btn = (
     <button
+      ref={ref}
       type={type}
       className={classes}
       disabled={disabled}
@@ -91,4 +92,4 @@ export function Button({
   }
 
   return btn;
-}
+});

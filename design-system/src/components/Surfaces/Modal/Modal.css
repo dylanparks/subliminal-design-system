@@ -1,0 +1,208 @@
+/* Modal — Subliminal Design System
+ * Surfaces/Modal
+ *
+ * Tokens: --sds-neutral-background-elevated, --sds-neutral-stroke-elevated,
+ *         --sds-neutral-content-primary, --sds-neutral-content-secondary,
+ *         --sds-shape-border-radius-display-small, --sds-effects-*,
+ *         --sds-interactive-static-filled-*
+ * Typography: .sds-text--title-xsmall (title), .sds-text--body-content-medium (description)
+ *
+ * Structure:
+ *   .sds-modal-dialog             → <dialog> element (top-layer, focus trap, ESC, backdrop)
+ *   .sds-modal                    → white card container
+ *   .sds-modal--medium/small      → width variants (600px / 380px)
+ *   .sds-modal--image             → image-header variant
+ *   .sds-modal__image-wrapper     → full-width image container (relative, for abs dismiss)
+ *   .sds-modal__image             → header image
+ *   .sds-modal__inner             → padded flex column (header + content + actions)
+ *   .sds-modal__header            → title row with optional dismiss button
+ *   .sds-modal__heading           → title + description column
+ *   .sds-modal__title             → title text (sds-text--title-xsmall)
+ *   .sds-modal__description       → support text (sds-text--body-content-medium)
+ *   .sds-modal__content           → children slot
+ *   .sds-modal__actions           → action buttons row
+ *   .sds-modal__dismiss           → X icon close button
+ *   .sds-modal__dismiss--on-image → round static close button overlaid on image
+ */
+
+/* ─── Backdrop ──────────────────────────────────────────────────────────────── */
+
+.sds-modal-dialog {
+  margin:     auto;
+  padding:    0;
+  border:     none;
+  outline:    none;
+  background: transparent;
+  overflow:   visible;
+  max-width:  none;
+  /* Cap at viewport so the card never scrolls the page */
+  max-height: calc(100dvh - 48px);
+}
+
+.sds-modal-dialog::backdrop {
+  background: var(--sds-effects-overlaysolid);
+}
+
+/* ─── Card ──────────────────────────────────────────────────────────────────── */
+
+.sds-modal {
+  display:          flex;
+  flex-direction:   column;
+  max-height:       inherit;
+  background-color: var(--sds-neutral-background-elevated);
+  border:           1px solid var(--sds-neutral-stroke-elevated);
+  border-radius:    var(--sds-shape-border-radius-display-small);
+  box-shadow:       var(--sds-effect-interactive-element-elevated-box-shadow);
+  overflow:         hidden;
+}
+
+.sds-modal--medium { width: 600px; }
+.sds-modal--small  { width: 380px; }
+
+/* ─── Image variant ─────────────────────────────────────────────────────────── */
+
+.sds-modal__image-wrapper {
+  position:    relative;
+  width:       100%;
+  flex-shrink: 0;
+}
+
+.sds-modal__image {
+  display:    block;
+  width:      100%;
+  object-fit: cover;
+}
+
+.sds-modal--medium .sds-modal__image { height: 207px; }
+.sds-modal--small  .sds-modal__image { height: 200px; }
+
+/* ─── Inner ─────────────────────────────────────────────────────────────────── */
+
+.sds-modal__inner {
+  display:        flex;
+  flex-direction: column;
+  gap:            16px;
+  padding:        16px;
+}
+
+/* Image variant: image bleeds to edges, 16px gap between image and title */
+.sds-modal--image .sds-modal__inner {
+  padding-top: 16px;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────────── */
+
+.sds-modal__header {
+  display:     flex;
+  gap:         4px;
+  align-items: flex-start;
+}
+
+.sds-modal__heading {
+  display:        flex;
+  flex-direction: column;
+  gap:            4px;
+  flex:           1;
+  min-width:      0;
+}
+
+.sds-modal__title {
+  color:  var(--sds-neutral-content-primary);
+  margin: 0;
+}
+
+.sds-modal__description {
+  color:  var(--sds-neutral-content-secondary);
+  margin: 0;
+}
+
+/* ─── Content slot ──────────────────────────────────────────────────────────── */
+
+.sds-modal__content {
+  display:    flex;
+  flex:       1;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* ─── Actions ───────────────────────────────────────────────────────────────── */
+
+.sds-modal__actions {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       8px;
+}
+
+/* ─── Dismiss button ────────────────────────────────────────────────────────── */
+
+.sds-modal__dismiss {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  width:           24px;
+  height:          24px;
+  background:      none;
+  border:          none;
+  border-radius:   var(--sds-shape-border-radius-small);
+  padding:         0;
+  cursor:          pointer;
+  color:           var(--sds-neutral-content-secondary);
+  transition:      color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sds-modal__dismiss:hover { color: var(--sds-neutral-content-primary); }
+
+.sds-modal__dismiss:focus-visible {
+  outline:    none;
+  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+}
+
+/* Round dismiss overlaid on image */
+.sds-modal__dismiss--on-image {
+  position:         absolute;
+  top:              8px;
+  right:            8px;
+  width:            36px;
+  height:           36px;
+  border-radius:    var(--sds-shape-border-radius-round);
+  background-color: var(--sds-interactive-static-filled-background-default);
+  color:            var(--sds-interactive-static-filled-content-default);
+}
+
+.sds-modal__dismiss--on-image:hover {
+  background-color: var(--sds-interactive-static-filled-background-hover);
+}
+
+/* ─── Mobile — bottom sheet ─────────────────────────────────────────────────── */
+
+@media (max-width: 599px) {
+  .sds-modal-dialog {
+    inset:      auto 0 0 0;
+    margin:     0;
+    width:      100%;
+    max-height: 90dvh;
+  }
+
+  .sds-modal,
+  .sds-modal--medium,
+  .sds-modal--small {
+    width:         100%;
+    border-radius: var(--sds-shape-border-radius-display-small)
+                   var(--sds-shape-border-radius-display-small)
+                   0 0;
+  }
+
+  .sds-modal__actions {
+    flex-direction: column;
+  }
+
+  /* Scale down to small-size dimensions (48px / 10px radius / 0 16px padding) */
+  .sds-modal__actions .sds-button {
+    width:         100%;
+    height:        var(--sds-spacing-size-small);
+    padding:       0 16px;
+    border-radius: var(--sds-shape-border-radius-small);
+  }
+}

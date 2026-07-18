@@ -12,14 +12,14 @@
  * Typography: .sds-text--body-interactive-small (tab label)
  *
  * Structure:
- *   .sds-tabs             → root flex-column container
- *   .sds-tab-list         → tab buttons row (role="tablist")
- *   .sds-tab              → individual tab button (role="tab")
- *   .sds-tab__content     → icon + label column
- *   .sds-tab__icon        → icon slot (aria-hidden)
- *   .sds-tab__label       → text label
- *   .sds-tab__indicator   → 2 px bottom active indicator
- *   .sds-tab-panel        → panel content (role="tabpanel")
+ *   .sds-tabs                  → root flex-column container
+ *   .sds-tab-list              → tab buttons row (role="tablist"), position:relative
+ *   .sds-tab-list__indicator   → single sliding 2 px active indicator (absolute)
+ *   .sds-tab                   → individual tab button (role="tab")
+ *   .sds-tab__content          → icon + label column
+ *   .sds-tab__icon             → icon slot (aria-hidden)
+ *   .sds-tab__label            → text label
+ *   .sds-tab-panel             → panel content (role="tabpanel")
  *
  * Modifiers:
  *   .sds-tab--active      → selected tab
@@ -40,6 +40,7 @@
 /* ─── Tab List ───────────────────────────────────────────────────────────────── */
 
 .sds-tab-list {
+  position: relative;
   display: flex;
   align-items: stretch;
   gap: 4px;
@@ -57,9 +58,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
-  padding-top: 8px;
-  padding-inline: 8px;
+  padding: 8px;
   border: none;
   background: transparent;
   border-radius: var(--sds-shape-border-radius-xsmall) var(--sds-shape-border-radius-xsmall) 0 0;
@@ -112,17 +111,19 @@
   text-align: center;
 }
 
-/* ─── Indicator ──────────────────────────────────────────────────────────────── */
+/* ─── Sliding indicator ──────────────────────────────────────────────────────── */
 
-/* 2 px bar sitting 1 px below the tab — overlaps the 1 px tablist border */
-.sds-tab__indicator {
-  width: 100%;
-  height: 2px;
-  flex-shrink: 0;
-  margin-bottom: -1px;
-  border-radius: 1px 1px 0 0;
-  background-color: transparent;
-  transition: background-color 120ms ease;
+/* Single absolute bar that slides to the active tab via --indicator-left/width */
+.sds-tab-list__indicator {
+  position:         absolute;
+  bottom:           -1px;
+  left:             var(--indicator-left, 0px);
+  width:            var(--indicator-width, 0px);
+  height:           2px;
+  border-radius:    1px 1px 0 0;
+  background-color: var(--sds-interactive-secondary-hollow-content-default);
+  transition:       left 200ms ease, width 200ms ease;
+  pointer-events:   none;
 }
 
 /* ─── Colors — standard ──────────────────────────────────────────────────────── */
@@ -142,10 +143,6 @@
 
 .sds-tab--active:hover:not(:disabled) {
   color: var(--sds-interactive-secondary-hollow-content-hover);
-}
-
-.sds-tab--active .sds-tab__indicator {
-  background-color: var(--sds-interactive-secondary-hollow-content-default);
 }
 
 .sds-tab:disabled,
@@ -178,7 +175,7 @@
   color: var(--sds-interactive-static-hollow-content-hover);
 }
 
-.sds-tab--static.sds-tab--active .sds-tab__indicator {
+.sds-tab-list--static .sds-tab-list__indicator {
   background-color: var(--sds-interactive-static-hollow-content-default);
 }
 

@@ -1,0 +1,243 @@
+/* Toast — Subliminal Design System
+ * Surfaces/Toast
+ *
+ * Structure:
+ *   .sds-toast-region                  → fixed viewport anchor
+ *   .sds-toast-region--{position}      → 6 placement variants
+ *   .sds-toast-stack                   → relative container; sized by the front card
+ *   .sds-toast-stack--top / --bottom   → controls peek card direction
+ *   .sds-toast--front                  → the visible, interactive front card
+ *   .sds-toast--top / --bottom         → directional enter offset
+ *   .sds-toast--visible                → fully shown state (opacity + translate in)
+ *   .sds-toast--peek                   → absolute, card-shell depth indicator
+ *   .sds-toast--peek-1 / --peek-2      → stack levels 1 and 2
+ *   .sds-toast__card                   → visible card (background, border, shadow)
+ *   .sds-toast__header                 → title + dismiss button row
+ *   .sds-toast__title                  → sds-text--subtitle-medium
+ *   .sds-toast__close                  → × icon button
+ *   .sds-toast__description            → sds-text--body-content-small
+ *   .sds-toast__actions                → row of action buttons (up to 2)
+ */
+
+/* ─── Region ─────────────────────────────────────────────────────────────────── */
+
+.sds-toast-region {
+  position:       fixed;
+  z-index:        9900;
+  padding:        16px;
+  pointer-events: none;
+}
+
+/* Bottom positions */
+.sds-toast-region--bottom-end    { bottom: 0; inset-inline-end:   0; }
+.sds-toast-region--bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); }
+.sds-toast-region--bottom-start  { bottom: 0; inset-inline-start: 0; }
+
+/* Top positions */
+.sds-toast-region--top-end    { top: 0; inset-inline-end:   0; }
+.sds-toast-region--top-center { top: 0; left: 50%; transform: translateX(-50%); }
+.sds-toast-region--top-start  { top: 0; inset-inline-start: 0; }
+
+/* ─── Stack container ────────────────────────────────────────────────────────── */
+/*
+ * position: relative lets peek cards (absolute) anchor to this box.
+ * Sized by the in-flow FrontCard; padding reserves space for peek strips.
+ */
+
+.sds-toast-stack {
+  position:        relative;
+  pointer-events:  auto; /* must receive mouseenter/mouseleave for expand */
+  overflow:        visible;
+}
+
+/* ─── Expanded stack ─────────────────────────────────────────────────────────── */
+/*
+ * Hover or focus-within expands the stack into a full column.
+ * bottom-positioned: column grows upward (newest nearest viewport bottom).
+ * top-positioned:    column grows downward (newest nearest viewport top).
+ */
+
+.sds-toast-stack--expanded {
+  display:        flex;
+  flex-direction: column;
+  gap:            8px;
+}
+
+/* In expanded mode cards are in-flow flex items — remove collapsed z-index stacking */
+.sds-toast-stack--expanded .sds-toast--front {
+  position: relative;
+  z-index:  auto;
+}
+
+/* ─── Collapse exit animations ───────────────────────────────────────────────── */
+/*
+ * When collapsing, non-front cards slide toward the front card and fade out.
+ * The CSS transition on .sds-toast--front (200ms) drives the animation.
+ * After EXPAND_DURATION ms the expanded DOM is swapped for the collapsed DOM.
+ *
+ * Specificity here (0-4-0) beats .sds-toast--visible (0-1-0), so these
+ * overrides apply without !important.
+ *
+ * bottom-positioned: front = :last-child; older cards slide DOWN (positive Y).
+ * top-positioned:    front = :first-child; older cards slide UP (negative Y).
+ */
+
+.sds-toast-stack--bottom.sds-toast-stack--collapsing .sds-toast--front:not(:last-child) {
+  opacity:   0;
+  transform: translateY(8px);
+}
+
+.sds-toast-stack--top.sds-toast-stack--collapsing .sds-toast--front:not(:first-child) {
+  opacity:   0;
+  transform: translateY(-8px);
+}
+
+/* ─── Front card ─────────────────────────────────────────────────────────────── */
+
+.sds-toast--front {
+  position:       relative;
+  z-index:        3;
+  pointer-events: auto;
+  opacity:        0;
+  transition:
+    opacity   200ms ease,
+    transform 200ms ease;
+}
+
+.sds-toast--bottom { transform: translateY(8px);  }
+.sds-toast--top    { transform: translateY(-8px); }
+
+.sds-toast--visible {
+  opacity:   1;
+  transform: translateY(0);
+}
+
+/* ─── Peek cards ─────────────────────────────────────────────────────────────── */
+/*
+ * Rendered as absolute siblings inside .sds-toast-stack.
+ * Each peek card spans the full height of the stack (= front card height)
+ * and is shifted so only the far edge strip peeks out from beneath the front card.
+ */
+
+.sds-toast--peek {
+  position:       absolute;
+  top:            0;
+  left:           0;
+  right:          0;
+  height:         100%;
+  pointer-events: none;
+}
+
+/* -- Bottom stack (peek strips show ABOVE the front card, toward top of viewport) -- */
+
+.sds-toast-stack--bottom .sds-toast--peek-1 {
+  left:      8px;
+  right:     8px;
+  z-index:   2;
+  transform: translateY(-6px);
+}
+
+.sds-toast-stack--bottom .sds-toast--peek-2 {
+  left:      16px;
+  right:     16px;
+  z-index:   1;
+  transform: translateY(-12px);
+}
+
+/* -- Top stack (peek strips show BELOW the front card, toward bottom of viewport) -- */
+
+.sds-toast-stack--top .sds-toast--peek-1 {
+  left:      8px;
+  right:     8px;
+  z-index:   2;
+  transform: translateY(6px);
+}
+
+.sds-toast-stack--top .sds-toast--peek-2 {
+  left:      16px;
+  right:     16px;
+  z-index:   1;
+  transform: translateY(12px);
+}
+
+/* ─── Card ────────────────────────────────────────────────────────────────────── */
+
+.sds-toast__card {
+  width:          272px;
+  max-width:      320px;
+  padding:        16px;
+  display:        flex;
+  flex-direction: column;
+  gap:            8px;
+  background:     var(--sds-neutral-background-elevated);
+  outline:        1px solid var(--sds-neutral-stroke-elevated);
+  border-radius:  var(--sds-shape-border-radius-medium);
+  box-shadow:     var(--sds-effect-interactive-element-elevated-box-shadow);
+}
+
+/*
+ * Peek card shell: fill the narrower wrapper (overrides the fixed 272px width),
+ * match the front card height exactly so only the translateY offset strip peeks out.
+ */
+.sds-toast--peek .sds-toast__card {
+  width:     auto;
+  max-width: none;
+  height:    100%;
+  padding:   0;
+}
+
+/* ─── Header (title + close button) ──────────────────────────────────────────── */
+
+.sds-toast__header {
+  display:     flex;
+  gap:         4px;
+  align-items: flex-start;
+  width:       100%;
+}
+
+.sds-toast__title {
+  flex:       1 0 0;
+  min-width:  0;
+  color:      var(--sds-neutral-content-primary);
+  word-break: break-word;
+}
+
+.sds-toast__close {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  padding:         2px;
+  border:          none;
+  background:      transparent;
+  cursor:          pointer;
+  color:           var(--sds-interactive-secondary-hollow-content-default);
+  border-radius:   var(--sds-shape-border-radius-xxsmall);
+  transition:      color 120ms ease;
+  flex-shrink:     0;
+  outline:         none;
+  margin-top:      2px;
+}
+
+.sds-toast__close:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-toast__close:focus-visible {
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+/* ─── Description ─────────────────────────────────────────────────────────────── */
+
+.sds-toast__description {
+  color:      var(--sds-neutral-content-secondary);
+  word-break: break-word;
+  margin:     0;
+}
+
+/* ─── Actions ─────────────────────────────────────────────────────────────────── */
+
+.sds-toast__actions {
+  display:   flex;
+  gap:       8px;
+  flex-wrap: wrap;
+}

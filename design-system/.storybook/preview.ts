@@ -162,7 +162,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Actions', 'Fields', 'Inputs', 'DataDisplay', 'Navigation', 'Enhancers', 'Utility'],
+        order: ['Actions', 'Fields', 'Inputs', 'DataDisplay', 'Navigation', 'Surfaces', 'Enhancers', 'Utility'],
       },
     },
     controls: {

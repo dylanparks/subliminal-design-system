@@ -2,7 +2,7 @@
  * Surfaces/Notification/Notification
  *
  * Tokens: --sds-status-*, --sds-neutral-content-*, --sds-effects-focus
- * Typography: .sds-text--subtitle-small (title), .sds-text--body-content-small (description)
+ * Typography: .sds-text--subtitle-medium (title), .sds-text--body-content-medium (description)
  *
  * Structure:
  *   .sds-notification              → root (role="alert"|"status")
@@ -30,7 +30,7 @@
 /* ─── Layouts ──────────────────────────────────────────────────────────────── */
 
 .sds-notification--stacked { align-items: flex-start; }
-.sds-notification--inline  { align-items: center; }
+.sds-notification--inline  { align-items: center; gap: 16px; }
 
 /* ─── Status backgrounds ───────────────────────────────────────────────────── */
 
@@ -58,11 +58,11 @@
   flex-direction: column;
   flex:           1;
   min-width:      0;
-  gap:            4px;
+  gap:            8px;
 }
 
 /* ─── Title ────────────────────────────────────────────────────────────────── */
-/* Typography set by .sds-text--subtitle-small on the element */
+/* Typography set by .sds-text--subtitle-medium on the element */
 
 .sds-notification--informational .sds-notification__title { color: var(--sds-status-informative-content-default); }
 .sds-notification--success       .sds-notification__title { color: var(--sds-status-success-content-default); }
@@ -70,7 +70,7 @@
 .sds-notification--error         .sds-notification__title { color: var(--sds-status-error-content-default); }
 
 /* ─── Description ──────────────────────────────────────────────────────────── */
-/* Typography set by .sds-text--body-content-small on the element */
+/* Typography set by .sds-text--body-content-medium on the element */
 
 .sds-notification__description {
   color: var(--sds-neutral-content-secondary);
@@ -81,13 +81,11 @@
 .sds-notification__actions {
   display:     flex;
   flex-wrap:   wrap;
-  gap:         8px;
-  margin-top:  4px;
+  gap:         16px;
 }
 
 .sds-notification--inline .sds-notification__actions {
   flex-shrink: 0;
-  margin-top:  0;
 }
 
 /* ─── Dismiss button ───────────────────────────────────────────────────────── */

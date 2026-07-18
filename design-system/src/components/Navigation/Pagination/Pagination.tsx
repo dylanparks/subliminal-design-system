@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from '../../../icons';
 import { useDirection } from '../../../utilities/useDirection';
 import './Pagination.css';
@@ -110,6 +110,20 @@ export function Pagination({
   const isControlled = controlledPage !== undefined;
   const currentPage  = isControlled ? controlledPage : uncontrolledPage;
   const isRtl = useDirection() === 'rtl';
+  const listRef = useRef<HTMLOListElement>(null);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const selected = list.querySelector<HTMLButtonElement>('[aria-current="page"]');
+    const label = selected?.querySelector<HTMLSpanElement>('.sds-pagination__page-label') ?? null;
+    if (label) {
+      list.style.setProperty('--indicator-left', `${label.offsetLeft - 8}px`);
+      list.style.setProperty('--indicator-width', `${label.offsetWidth + 16}px`);
+    } else {
+      list.style.setProperty('--indicator-width', '0px');
+    }
+  }, [currentPage]);
   const PrevIcon = isRtl ? ChevronRightIcon : ChevronLeftIcon;
   const NextIcon = isRtl ? ChevronLeftIcon  : ChevronRightIcon;
 
@@ -143,7 +157,8 @@ export function Pagination({
 
       {/* ── Default: numbered tabs ──────────────────────────────────── */}
       {variant === 'default' && (
-        <ol className="sds-pagination__list" role="list">
+        <ol ref={listRef} className="sds-pagination__list" role="list">
+          <span className="sds-pagination__indicator" aria-hidden="true" />
           {getPageItems(count, currentPage, siblingCount, boundaryCount).map((item, idx) => {
             if (item === 'ellipsis-start' || item === 'ellipsis-end') {
               return (
@@ -166,10 +181,7 @@ export function Pagination({
                   aria-label={`Page ${item}`}
                   aria-current={isSelected ? 'page' : undefined}
                 >
-                  <span className="sds-pagination__page-inner">
-                    {item}
-                    <span className="sds-pagination__indicator" aria-hidden="true" />
-                  </span>
+                  <span className="sds-pagination__page-label">{item}</span>
                 </button>
               </li>
             );

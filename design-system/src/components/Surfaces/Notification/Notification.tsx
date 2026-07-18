@@ -88,9 +88,9 @@ export function Notification({
       </span>
 
       <div className="sds-notification__body">
-        <span className="sds-notification__title sds-text--subtitle-small">{title}</span>
+        <span className="sds-notification__title sds-text--subtitle-medium">{title}</span>
         {description && (
-          <span className="sds-notification__description sds-text--body-content-small">{description}</span>
+          <span className="sds-notification__description sds-text--body-content-medium">{description}</span>
         )}
         {layout === 'stacked' && actionButtons}
       </div>

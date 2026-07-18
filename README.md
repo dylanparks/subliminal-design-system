@@ -86,7 +86,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | `ProgressCircle` | ✓ | Circular progress — determinate arc + indeterminate sweeping animation, 4 sizes, static variant, WCAG AA |
 | `Tag` | ✓ | Semantic label — 6 types, solid/outline fill styles, large/small sizes, optional icon |
 | `Avatar` | ✓ | Circular avatar — photo / initials / icon fallback chain, 3 sizes, WCAG AA |
-| `StatusLight` | Planned | |
+| `StatusLight` | ✓ | Anchors a 16×16 colored dot to a corner of any element — 6 variants (default, error, success, warning, informative, disabled), 4 logical positions (top/bottom × start/end), white ring separator, accessible `aria-label` |
 | `Badge` | Planned | |
 
 ### Table
@@ -100,9 +100,10 @@ Design tokens originate in Figma as variable collections and flow through Style 
 | Component | Status | Notes |
 |---|---|---|
 | `Notification` | ✓ | Inline status banner — informational / success / warning / error, stacked + inline layouts, optional title, description, actions, dismiss, WCAG AA (`role="alert"` for error/warning, `role="status"` for info/success) |
-| `Modal` | Planned | |
-| `Accordion` | Planned | |
-| `Popover` | Planned | |
+| `Modal` | ✓ | Dialog overlay via native `<dialog>` + `showModal()` — medium/small widths, optional image header, description, children slot, primary + secondary actions, dismissable, responsive bottom-sheet on mobile, accessible via `aria-labelledby`/`aria-describedby` |
+| `Accordion` | ✓ | Compound component (`Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionPanel`) — `small`/`medium` sizes, optional leading icon, `multiple` mode, controlled/uncontrolled, per-item disabled, animated panel via `grid-template-rows`, full ARIA |
+| `Popover` | ✓ | Portal-rendered toggletip/hover popover — `top`/`bottom`/`start`/`end` placement with auto-flip/shift, SVG caret with seamless popup junction, `title` + `description` slots, custom `content` slot, optional close button, `openOnHover` mode, controlled/uncontrolled, Escape + outside-click dismiss, Floating UI auto-reposition, `role="dialog"` with `aria-labelledby`/`aria-describedby`, WCAG AA |
+| `Toast` | ✓ | Provider/context notification system — `ToastProvider` + `useToast` hook, 6 viewport positions (`top`/`bottom` × `start`/`center`/`end`), auto-dismiss (default 5 s, `duration=0` persists), hover-pause timer, optional description/close button/actions (up to 2), enter/exit CSS transitions, `createPortal` to `document.body`, `aria-live="polite"` region, WCAG AA |
 
 ### Enhancers
 
@@ -110,6 +111,7 @@ Design tokens originate in Figma as variable collections and flow through Style 
 |---|---|---|
 | `Tooltip` | ✓ | Portal-rendered floating label — hover (600ms delay) + focus triggers, Escape to dismiss, Floating UI auto-flip/shift, SVG caret with seamless popup junction, WCAG 1.4.13 hoverable zone, `disableTooltip` on icon-only `Button`, WCAG AA |
 | `Divider` | ✓ | Horizontal + vertical 1px separator — `role="separator"` with `aria-orientation`, static variant, WCAG AA |
+| `StatusLight` | ✓ | Anchors a 16×16 colored dot to a corner of any element — 6 variants (default, error, success, warning, informative, disabled), 4 logical positions (top/bottom × start/end), white ring separator, accessible `aria-label` |
 | `HintDot` | Planned | |
 
 ### Utility
@@ -144,6 +146,8 @@ All components target **WCAG 2.1 AA**. Patterns in use across the library:
 - `ProgressCircle`: `role="progressbar"` with same ARIA pattern as ProgressBar; SVG is `aria-hidden`; defaults `aria-label` to "Loading" in indeterminate state; `prefers-reduced-motion` replaces the sweeping animation with a slow opacity pulse on a fixed 50% arc
 - `Divider`: `div[role="separator"]` with `aria-orientation="horizontal|vertical"`; decorative use — wrap in `aria-hidden` if purely visual
 - `Tooltip`: `role="tooltip"` linked to trigger via `aria-describedby` (injected onto the child element via `cloneElement`); opens on hover (600ms delay) and focus (immediate); closes on `mouseleave`, `blur`, and `Escape`; `disabled` prop suppresses entirely; icon-only `Button` auto-wraps with tooltip using `label` as content — opt out with `disableTooltip`; hover-only tooltips are not accessible to touch/mobile users — use Popover for important content
+- `Popover`: `role="dialog"` portal rendered via `createPortal`; trigger receives `aria-expanded`, `aria-controls`, `aria-haspopup="dialog"` via `cloneElement`; popup is `aria-labelledby` the title and `aria-describedby` the description (when present); focus moves to first focusable element (close button or popup itself) on open; Escape closes and returns focus to trigger; outside `mousedown` also closes; Floating UI `autoUpdate` keeps position correct during scroll/resize; `start`/`end` sides are direction-aware via `useDirection()`
+- `Toast`: `createPortal` to `document.body`; region is `aria-live="polite" aria-relevant="additions" aria-atomic="false"` so screen readers announce new toasts without re-reading the stack; each card has `role="status"`; dismiss button has `aria-label="Dismiss"`; `duration=0` toasts are persistent and must be manually dismissed; hover pauses the auto-dismiss timer and resumes on mouse-leave; up to 2 action buttons dismiss the toast on click in addition to their own `onClick`
 - Minimum 44px touch targets on interactive list items (WCAG 2.5.8)
 - Icons are inline SVG with `aria-hidden="true"` — will be replaced by the icon library import when available
 
@@ -205,7 +209,11 @@ design-system/
     │   │   ├── Breadcrumbs/
     │   │   └── Pagination/
     │   ├── Surfaces/
-    │   │   └── Notification/
+    │   │   ├── Accordion/
+    │   │   ├── Modal/
+    │   │   ├── Notification/
+    │   │   ├── Popover/
+    │   │   └── Toast/
     │   └── Enhancers/
     │       ├── Tooltip/
     │       └── Divider/

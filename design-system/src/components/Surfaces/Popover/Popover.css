@@ -1,0 +1,140 @@
+/* Popover — Subliminal Design System
+ * Surfaces/Popover
+ *
+ * Tokens: --sds-neutral-background-elevated, --sds-neutral-stroke-elevated,
+ *         --sds-neutral-content-primary, --sds-neutral-content-secondary,
+ *         --sds-interactive-secondary-hollow-content-*,
+ *         --sds-shape-border-radius-xsmall,
+ *         --sds-effect-interactive-element-elevated-box-shadow
+ * Typography: .sds-text--subtitle-medium (title),
+ *             .sds-text--body-content-small (description)
+ *
+ * Structure:
+ *   .sds-popover                → fixed-position outer wrapper — opacity/transform transitions
+ *   .sds-popover--top/bottom/left/right → placement variants (directional enter offset)
+ *   .sds-popover--visible       → fully shown state
+ *   .sds-popover__popup         → visible card — bg, border, shadow, z-index: 1
+ *   .sds-popover__close         → × dismiss button (top-right)
+ *   .sds-popover__body          → title + description column
+ *   .sds-popover__title         → sds-text--subtitle-medium
+ *   .sds-popover__description   → sds-text--body-content-small
+ *   .sds-popover__caret         → SVG triangle caret (fill + stroke paths)
+ *
+ * Caret technique: SVG two-path approach (same as Tooltip).
+ * The popup has no explicit z-index, so DOM paint order applies: popup first, SVG last.
+ * The fill path extends 1px into the popup and covers the popup's outline at the junction.
+ * The stroke path draws only the two outer edges — not the base — leaving the junction
+ * borderless and visually seamless with the card.
+ */
+
+/* ─── Outer wrapper ──────────────────────────────────────────────────────────── */
+
+.sds-popover {
+  z-index:        9000;
+  opacity:        0;
+  pointer-events: none;
+  transition:
+    opacity   150ms ease,
+    transform 150ms ease;
+}
+
+/* Focus outline on the dialog when no focusable child exists */
+.sds-popover:focus-visible {
+  outline: none;
+}
+
+/* ── Directional enter offset ────────────────────────────────────────────────── */
+
+.sds-popover--top    { transform: translateY(4px);  }
+.sds-popover--bottom { transform: translateY(-4px); }
+.sds-popover--left   { transform: translateX(4px);  }
+.sds-popover--right  { transform: translateX(-4px); }
+
+.sds-popover--visible {
+  opacity:        1;
+  pointer-events: auto;
+  transform:      translate(0, 0);
+}
+
+/* ─── Popup card ─────────────────────────────────────────────────────────────── */
+
+.sds-popover__popup {
+  position:      relative;
+  width:         230px;
+  padding:       12px 16px;
+  border-radius: var(--sds-shape-border-radius-xsmall);
+  background:    var(--sds-neutral-background-elevated);
+  outline:       1px solid var(--sds-neutral-stroke-elevated);
+  box-shadow:    var(--sds-effect-interactive-element-elevated-box-shadow);
+}
+
+/* ─── Close button ───────────────────────────────────────────────────────────── */
+
+.sds-popover__close {
+  position:         absolute;
+  top:              8px;
+  inset-inline-end: 8px;
+  display:     flex;
+  align-items: center;
+  padding:     4px;
+  border:      none;
+  background:  transparent;
+  cursor:      pointer;
+  color:       var(--sds-interactive-secondary-hollow-content-default);
+  border-radius: var(--sds-shape-border-radius-xxsmall);
+  transition:  color 120ms ease;
+  outline:     none;
+}
+
+.sds-popover__close:hover {
+  color: var(--sds-interactive-secondary-hollow-content-hover);
+}
+
+.sds-popover__close:focus-visible {
+  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+}
+
+/* ─── Body (title + description) ─────────────────────────────────────────────── */
+
+.sds-popover__body {
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+  /* Leave room for close button when it's present */
+  padding-inline-end: 20px;
+}
+
+.sds-popover__title {
+  display: block;
+  color:   var(--sds-neutral-content-primary);
+}
+
+.sds-popover__description {
+  display: block;
+  color:   var(--sds-neutral-content-secondary);
+}
+
+/* When only a close button exists (no body), still fill the close button area */
+.sds-popover__popup:has(.sds-popover__close):not(:has(.sds-popover__body)) {
+  min-height: 36px;
+}
+
+/* ─── Caret ──────────────────────────────────────────────────────────────────── */
+
+.sds-popover__caret {
+  position: absolute;
+  overflow: visible;
+}
+
+.sds-popover__caret-fill {
+  fill: var(--sds-neutral-background-elevated);
+}
+
+.sds-popover__caret-stroke {
+  fill:             none;
+  stroke:           var(--sds-neutral-stroke-elevated);
+  stroke-width:     1;
+  stroke-linejoin:  round;
+  stroke-linecap:   round;
+}
+

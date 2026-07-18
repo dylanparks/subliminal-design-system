@@ -96,12 +96,12 @@ function caretPaths(side: Side, w: number, h: number): { fill: string; stroke: s
       stroke: `M0,${h} L${w / 2},0 L${w},${h}`,
     };
     case 'left':   return {
-      fill:   `M${w + 1},0 L${w + 1},${h} L0,${h / 2} Z`,
-      stroke: `M${w},0 L0,${h / 2} L${w},${h}`,
-    };
-    case 'right':  return {
       fill:   `M-1,0 L-1,${h} L${w},${h / 2} Z`,
       stroke: `M0,0 L${w},${h / 2} L0,${h}`,
+    };
+    case 'right':  return {
+      fill:   `M${w + 1},0 L${w + 1},${h} L0,${h / 2} Z`,
+      stroke: `M${w},0 L0,${h / 2} L${w},${h}`,
     };
   }
 }
