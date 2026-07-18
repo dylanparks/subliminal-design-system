@@ -2,6 +2,7 @@
 title: Button
 category: Actions
 sourcePath: design-system/src/components/Actions/Button/Button.tsx
+storiesPath: design-system/src/components/Actions/Button/Button.stories.tsx
 status: stable
 ---
 
@@ -41,11 +42,29 @@ When the button is icon-only (an icon is provided and the label is hidden or abs
 
 ## Variants
 
-- **Variant × fill style** (12 combinations): `primary`, `secondary`, `static`, `negative` — each in `filled`, `hollow`, `ghost`.
-- **Size** (4): `xsmall`, `small`, `medium`, `large` — each maps to its own height (`--sds-spacing-size-*`), border radius (`--sds-shape-border-radius-*`), icon size, and typography class.
-- **Icon placement**: leading (default) or trailing via `iconPosition`.
-- **Icon-only**: set `icon` and `showLabel={false}` — the button becomes square (`aspect-ratio: 1`, no horizontal padding) except in `ghost` fill style, which stays content-sized and padding-less regardless.
-- **Disabled**: native `disabled` + `aria-disabled="true"`; each variant/fill style has its own disabled background/content/stroke tokens.
+**Matrix examples** — rendered as live grids from `Button.stories.tsx`'s `meta.args` as the base
+(`label: 'Button'`, `size: 'small'`), overriding only the axis prop per cell. No story needed per
+cell — Phase 4 iterates the union values directly.
+
+| Axis | Values | Held steady |
+|---|---|---|
+| `variant` × `fillStyle` | `primary`, `secondary`, `static`, `negative` × `filled`, `hollow`, `ghost` (12 cells) | `size: 'small'`, default state |
+| `size` | `xsmall`, `small`, `medium`, `large` (4 cells) | `variant: 'primary'`, `fillStyle: 'filled'` |
+| state | `default`, `hover`, `active`, `focus-visible`, `disabled` | one row per `variant`×`fillStyle` cell above — no story needed, these are CSS pseudo-classes/props, not separate args |
+
+**Story-based examples** — reuse these `Button.stories.tsx` exports directly (`import { Default,
+WithIcon, WithIconEnd, IconOnly } from '.../Button.stories'`); don't re-declare their props here:
+
+| Story export | Demonstrates |
+|---|---|
+| `Default` | Base case: primary, filled, small, no icon |
+| `WithIcon` | Leading icon + label (`iconPosition` default `'start'`) |
+| `WithIconEnd` | Trailing icon + label (`iconPosition="end"`) |
+| `IconOnly` | Icon-only (`showLabel={false}`) — square aspect ratio, automatic tooltip, `aria-label` fallback to `label` |
+
+**No story yet** — add before Phase 4 needs a rendered example for it: a dedicated `Disabled`
+story (currently disabled is only reachable via the Storybook controls panel, not a named
+export).
 
 ## Token dependencies
 

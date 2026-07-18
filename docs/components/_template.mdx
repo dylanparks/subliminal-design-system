@@ -2,6 +2,7 @@
 title: ComponentName
 category: Actions | Fields | Inputs | Navigation | DataDisplay | Surfaces | Enhancers
 sourcePath: design-system/src/components/{Category}/{ComponentName}/{ComponentName}.tsx
+storiesPath: design-system/src/components/{Category}/{ComponentName}/{ComponentName}.stories.tsx
 status: stable | planned
 ---
 
@@ -31,8 +32,22 @@ Note any subcomponents (e.g. compound components like Accordion's Item/Trigger/P
 
 ## Variants
 
-Enumerate every variant/fillStyle/size axis from the component's TypeScript union types, plus
-any states worth calling out (disabled, icon-only, loading, error, etc.). Use real prop values.
+Don't hand-write prop combinations as prose — record what the future `<ComponentPreview>` island
+(Phase 4.1) should render them *from*, so it can reuse the component's own `.stories.tsx` (CSF
+`args`) instead of duplicating data. Two kinds of entries:
+
+**Matrix examples** — full cross products of union-typed props (e.g. `variant` × `fillStyle`).
+List each axis (prop name + its union values) and which other prop's base value holds steady
+(usually the story meta's default `args`). Phase 4 renders these as a live grid, one cell per
+combination, no story needed per cell.
+
+**Story-based examples** — named `.stories.tsx` exports that demonstrate a specific *behavior*,
+not just a prop combination (icon placement, loading, error, empty state, etc.). Table them as
+`Story export | Demonstrates`. Phase 4 imports each export's `args` directly
+(`import { StoryName } from '.../Component.stories'`) — never re-declare those props here.
+
+If a state worth showing has no story yet, say so explicitly (`No story yet — add one to
+Component.stories.tsx before Phase 4 needs it`) rather than describing it only in text.
 
 ## Token dependencies
 
