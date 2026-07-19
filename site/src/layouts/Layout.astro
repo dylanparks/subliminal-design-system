@@ -1,0 +1,65 @@
+---
+import 'subliminal-design-system/src/tokens/generated/tokens.css';
+import 'subliminal-design-system/src/tokens/generated/typography.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Subliminal Design System' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <script is:inline>
+      // Applies the stored/system theme before paint, so the page doesn't flash the wrong
+      // theme while ThemeToggle's island is still hydrating. Mirrors the resolution logic in
+      // design-system/src/theme/ThemeProvider.tsx (same 'sds-theme' localStorage key).
+      (function () {
+        try {
+          var stored = localStorage.getItem('sds-theme');
+          var theme = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+          var resolved = theme === 'system'
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : theme;
+          document.documentElement.classList.toggle('dark', resolved === 'dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--sds-neutral-background-default);
+    color: var(--sds-neutral-content-primary);
+  }
+
+  main {
+    flex: 1;
+  }
+</style>

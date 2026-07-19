@@ -1,0 +1,23 @@
+---
+import ThemeToggle from './ThemeToggle';
+---
+
+<header class="site-header">
+  <a href="/" class="site-header__brand sds-text--subtitle-large">Subliminal Design System</a>
+  <ThemeToggle client:load />
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--sds-neutral-background-offset);
+  }
+
+  .site-header__brand {
+    color: var(--sds-neutral-content-primary);
+    text-decoration: none;
+  }
+</style>

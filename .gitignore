@@ -2,3 +2,9 @@
 CLAUDE.local.md
 docs/PROJECT_PLAN.md
 docs/DECISIONS.md
+
+# Monorepo workspaces (root + site) — design-system/ has its own .gitignore
+/node_modules
+site/node_modules
+site/dist
+site/.astro

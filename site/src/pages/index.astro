@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Button } from 'subliminal-design-system/src/components/Actions/Button/Button';
+---
+
+<Layout title="Subliminal Design System">
+  <div class="scaffold-placeholder">
+    <h1 class="sds-text--title-large">Site scaffold</h1>
+    <p class="sds-text--body-content-medium">
+      This is Phase 3.0 — the Astro app boots, shares tokens/typography with
+      <code>design-system</code> via the npm workspace, and the header's theme toggle uses the
+      real <code>ThemeProvider</code>. The actual landing page is Phase 3.2.
+    </p>
+    <Button label="Real SDS Button, rendered live" variant="primary" fillStyle="filled" client:load />
+  </div>
+</Layout>
+
+<style>
+  .scaffold-placeholder {
+    max-width: 640px;
+    margin: 64px auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+</style>

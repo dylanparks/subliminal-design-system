@@ -40,3 +40,4 @@ All 30+ components migrated from per-rule `--sds-typography-*` token declaration
 ### Fixed
 - Combobox listbox options, TimePicker column items, and DatePicker calendar buttons were not applying the correct font family in portal-rendered contexts (appended to `document.body` outside any themed ancestor).
 - DatePicker year-mode grid buttons were missing the `body-content-small` typography scale.
+- `ThemeProvider` crashed on the server (`window is not defined`) whenever it resolved to the `'system'` theme during SSR — `getSystemTheme()` called `window.matchMedia` unconditionally instead of guarding for a non-browser environment the way `readStoredTheme()` already did. Found while integrating the Astro site (Phase 3), where `ThemeProvider` renders inside a server-rendered `client:load` island.

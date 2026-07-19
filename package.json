@@ -1,0 +1,8 @@
+{
+  "name": "subliminal-design-system-monorepo",
+  "private": true,
+  "workspaces": [
+    "design-system",
+    "site"
+  ]
+}
