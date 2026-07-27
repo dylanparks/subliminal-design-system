@@ -19,21 +19,7 @@ const { title, description = 'Subliminal Design System' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <script is:inline>
-      // Applies the stored/system theme before paint, so the page doesn't flash the wrong
-      // theme while ThemeToggle's island is still hydrating. Mirrors the resolution logic in
-      // design-system/src/theme/ThemeProvider.tsx (same 'sds-theme' localStorage key).
-      (function () {
-        try {
-          var stored = localStorage.getItem('sds-theme');
-          var theme = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
-          var resolved = theme === 'system'
-            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-            : theme;
-          document.documentElement.classList.toggle('dark', resolved === 'dark');
-        } catch (e) {}
-      })();
-    </script>
+    <script is:inline src="/theme-init.js"></script>
   </head>
   <body>
     <Header />

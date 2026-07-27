@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "csp-hashes": "node scripts/print-csp-hashes.mjs"
   },
   "dependencies": {
     "astro": "^7.1.1",
