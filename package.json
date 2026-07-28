@@ -4,5 +4,8 @@
   "workspaces": [
     "design-system",
     "site"
-  ]
+  ],
+  "scripts": {
+    "build:site": "npm run build:lib --workspace=design-system && npm run build --workspace=site"
+  }
 }

@@ -220,7 +220,7 @@ export function ToastProvider({ children, position = 'bottom-end' }: ToastProvid
   const [toasts,      setToasts]      = useState<ToastItem[]>([]);
   const [isExpanded,  setIsExpanded]  = useState(false);
   const [isCollapsing, setIsCollapsing] = useState(false);
-  const collapseTimer = useRef<ReturnType<typeof setTimeout>>();
+  const collapseTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const add = useCallback((options: ToastOptions): string => {
     const id = generateId();

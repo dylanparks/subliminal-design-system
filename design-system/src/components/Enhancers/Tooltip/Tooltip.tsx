@@ -120,8 +120,8 @@ export function Tooltip({
   const popupRef   = useRef<HTMLDivElement>(null);
   const caretRef   = useRef<SVGSVGElement>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
-  const openTimer  = useRef<ReturnType<typeof setTimeout>>();
-  const closeTimer = useRef<ReturnType<typeof setTimeout>>();
+  const openTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const [mounted,     setMounted]     = useState(false);
   const [visible,     setVisible]     = useState(false);

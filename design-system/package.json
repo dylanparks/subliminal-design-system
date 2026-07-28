@@ -2,17 +2,52 @@
   "name": "subliminal-design-system",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "description": "Accessible, themeable React components backed by a Figma-driven design token pipeline.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylanparks/subliminal-design-system.git",
+    "directory": "design-system"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "accessibility",
+    "design-tokens"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./typography.css": "./dist/typography.css",
+    "./package.json": "./package.json"
+  },
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
     "@material-symbols/svg-400": "^0.42.3",
     "adm-zip": "^0.5.16",
     "flagpack-core": "^2.1.0",
     "libphonenumber-js": "^1.12.40",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "react-flagpack": "^2.0.6",
     "style-dictionary": "^5.3.3",
     "web-vitals": "^2.1.4"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "bin": {
     "sds-build-tokens": "./build-tokens.mjs"
@@ -20,6 +55,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:lib": "vite build --config vite.lib.config.ts && node copy-lib-assets.mjs",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -44,6 +80,8 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.1",
     "@playwright/test": "^1.59.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",
     "@storybook/addon-links": "^10.3.5",
@@ -68,6 +106,7 @@
     "storybook": "^10.3.5",
     "typescript": "^5",
     "vite": "^6",
+    "vite-plugin-dts": "^5.0.3",
     "vitest": "^4.1.4"
   }
 }

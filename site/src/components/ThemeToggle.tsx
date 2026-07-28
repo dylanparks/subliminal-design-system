@@ -1,5 +1,4 @@
-import { ThemeProvider, useTheme } from 'subliminal-design-system/src/theme';
-import { Button } from 'subliminal-design-system/src/components/Actions/Button/Button';
+import { ThemeProvider, useTheme, Button } from 'subliminal-design-system';
 
 function ToggleButton() {
   const { resolvedTheme, toggleTheme } = useTheme();

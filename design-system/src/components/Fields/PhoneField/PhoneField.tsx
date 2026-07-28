@@ -257,8 +257,6 @@ export function PhoneField({
           aria-haspopup="menu"
           aria-controls={isMenuOpen ? `${fieldId}-menu` : undefined}
           aria-label={`Country: ${selectedCountry.name}, dial code ${selectedCountry.dialCode}. Press to change.`}
-          // Hints to autofill agents that this control captures a country.
-          autoComplete="country"
           disabled={disabled}
           onClick={() => setIsMenuOpen(prev => !prev)}
         >

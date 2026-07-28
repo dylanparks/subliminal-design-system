@@ -8,6 +8,24 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Added
 
+#### Library build (npm publish readiness)
+- `npm run build:lib` (Vite lib mode, `vite.lib.config.ts`) produces a real publishable package
+  in `design-system/dist/`: a single ESM bundle (`index.js`), rolled TypeScript declarations,
+  and three separate CSS files (`style.css` for component rules, `tokens.css`, `typography.css`).
+  `react`/`react-dom` and every other real dependency are externalized, not bundled.
+- New `package.json` `exports` map: `subliminal-design-system` (components + theme + utilities +
+  typed tokens), `subliminal-design-system/style.css`, `/tokens.css`, `/typography.css`.
+  `react`/`react-dom` moved from `dependencies` to `peerDependencies` (correct for a library —
+  prevents consumers from getting a duplicate React instance).
+- Package metadata: `license` (MIT), `repository`, `keywords`, `description`, `sideEffects: false`
+  (enables consumer-side tree-shaking), `files: ["dist"]`.
+- New `design-system/src/lib.ts` — the library's public entry point, distinct from the existing
+  CRA demo app entry (`src/index.tsx`), which is not included in the published package.
+- Root-level `npm run build:site` script — builds `design-system`'s library **before** `site`'s
+  build, now required since `site` consumes the real package exports instead of deep source
+  paths. **Deploy-affecting:** the Cloudflare Worker's dashboard Build command must change from
+  `npm run build -w site` to `npm run build:site`.
+
 #### New components
 - **Accordion** (`Surfaces/Accordion`) — collapsible disclosure component built with compound components (`Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionPanel`). Supports `small` and `large` sizes, optional leading icon per trigger, `multiple` prop for allowing multiple panels open simultaneously, controlled and uncontrolled modes, and per-item `disabled` state. Panel animates open/close via `grid-template-rows` (no JS height measurement). Full ARIA support: `aria-expanded`, `aria-controls`, `role="region"`, keyboard navigation (Arrow Up/Down, Home, End). Hover/active background fills the whole card via CSS `:has()`.
 - **Modal** (`Surfaces/Modal`) — dialog overlay using the native `<dialog>` element with `showModal()` for built-in focus trapping, ESC key handling, and top-layer rendering. Supports `medium` (600px) and `small` (380px) widths, optional image-header variant, optional description and children slot, up to 2 action buttons (primary filled + secondary hollow), and a dismissible close button. Responsive: bottom-sheet layout with stacked full-width actions on narrow viewports. Linked `aria-labelledby` / `aria-describedby` via `useId()` for accessible multi-instance support.
@@ -41,3 +59,4 @@ All 30+ components migrated from per-rule `--sds-typography-*` token declaration
 - Combobox listbox options, TimePicker column items, and DatePicker calendar buttons were not applying the correct font family in portal-rendered contexts (appended to `document.body` outside any themed ancestor).
 - DatePicker year-mode grid buttons were missing the `body-content-small` typography scale.
 - `ThemeProvider` crashed on the server (`window is not defined`) whenever it resolved to the `'system'` theme during SSR — `getSystemTheme()` called `window.matchMedia` unconditionally instead of guarding for a non-browser environment the way `readStoredTheme()` already did. Found while integrating the Astro site (Phase 3), where `ThemeProvider` renders inside a server-rendered `client:load` island.
+- `Tooltip` and `Toast` failed to type-check (`useRef<T>()` called with no initial value) under current `@types/react` — both now explicitly initialize with `undefined`. `PhoneField`'s country-selector `<button>` set an `autoComplete="country"` attribute that isn't valid on `<button>` elements and had no actual effect in any browser (autocomplete only applies to form input elements) — removed. Found while generating TypeScript declarations for the npm package build (Phase 2.0); these type errors would have failed the existing `npm run build` script too.
