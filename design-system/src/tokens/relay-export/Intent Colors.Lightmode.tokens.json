@@ -1,0 +1,5378 @@
+{
+  "Brand": {
+    "Background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16258",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26265",
+          "targetVariableName": "Neutrals/White",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Background-offset": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8274509906768799,
+          0.8588235378265381,
+          0.9215686321258545
+        ],
+        "alpha": 1,
+        "hex": "#D3DBEB"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:426:16261",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74:870",
+          "targetVariableName": "Neutrals/Steel/200",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Neutral": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 1,
+        "hex": "#040506"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16248",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26301",
+          "targetVariableName": "Neutrals/Steel/975",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Neutral-weak": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3176470696926117,
+          0.37254902720451355,
+          0.47843137383461
+        ],
+        "alpha": 1,
+        "hex": "#515F7A"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16249",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74:874",
+          "targetVariableName": "Neutrals/Steel/600",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Primary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.10196078568696976,
+          0.2235294133424759,
+          0.8705882430076599
+        ],
+        "alpha": 1,
+        "hex": "#1A39DE"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16246",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26132",
+          "targetVariableName": "Colors/Indigo/700",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Primary-foreground": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16256",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26265",
+          "targetVariableName": "Neutrals/White",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 1,
+        "hex": "#040506"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16247",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26301",
+          "targetVariableName": "Neutrals/Steel/975",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Secondary-foreground": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16257",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26265",
+          "targetVariableName": "Neutrals/White",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Negative": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6980392336845398,
+          0.10196078568696976,
+          0.12941177189350128
+        ],
+        "alpha": 1,
+        "hex": "#B21A21"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16252",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74:732",
+          "targetVariableName": "Colors/Red/600",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Negative-foreground": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:426:16259",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26265",
+          "targetVariableName": "Neutrals/White",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Warning": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.658823549747467,
+          0.27843138575553894,
+          0
+        ],
+        "alpha": 1,
+        "hex": "#A84700"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16253",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74:742",
+          "targetVariableName": "Colors/Orange/600",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Success": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0470588244497776,
+          0.4156862795352936,
+          0.23137255012989044
+        ],
+        "alpha": 1,
+        "hex": "#0C6A3B"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16254",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74:782",
+          "targetVariableName": "Colors/Emerald/600",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Informative": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0.5490196347236633,
+          0.6666666865348816
+        ],
+        "alpha": 1,
+        "hex": "#008CAA"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16255",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74:792",
+          "targetVariableName": "Colors/Sky/600",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Static": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16251",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26265",
+          "targetVariableName": "Neutrals/White",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Static-foreground": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 1,
+        "hex": "#040506"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:426:16260",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26301",
+          "targetVariableName": "Neutrals/Steel/975",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Shadow": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 1,
+        "hex": "#040506"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:426:16262",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26301",
+          "targetVariableName": "Neutrals/Steel/975",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    },
+    "Accent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.10196078568696976,
+          0.2235294133424759,
+          0.8705882430076599
+        ],
+        "alpha": 1,
+        "hex": "#1A39DE"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:425:16250",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:75:26132",
+          "targetVariableName": "Colors/Indigo/700",
+          "targetVariableSetId": "VariableCollectionId:1:28315",
+          "targetVariableSetName": "Global Values"
+        }
+      }
+    }
+  },
+  "Neutral": {
+    "Content": {
+      "Primary": {
+        "$type": "color",
+        "$value": "{Brand.Neutral}",
+        "$description": "Used for non-interactive text or other content (Text that does not change state)",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14465",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ]
+        }
+      },
+      "Secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.01568627543747425,
+            0.019607843831181526,
+            0.0235294122248888
+          ],
+          "alpha": 0.800000011920929,
+          "hex": "#040506"
+        },
+        "$description": "Used for non-interactive text or other content (Text that does not change state)",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14466",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableName": "Brand/Neutral"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 80
+            }
+          }
+        }
+      },
+      "Tertiary": {
+        "$type": "color",
+        "$value": "{Brand.Neutral-weak}",
+        "$description": "Used for non-interactive text or other content (Text that does not change state)",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14467",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ]
+        }
+      },
+      "Subtle": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3176470696926117,
+            0.37254902720451355,
+            0.47843137383461
+          ],
+          "alpha": 0.6000000238418579,
+          "hex": "#515F7A"
+        },
+        "$description": "Used for non-interactive text or other content (Text that does not change state)",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14468",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableName": "Brand/Neutral-weak"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 60
+            }
+          }
+        }
+      },
+      "Static": {
+        "Primary": {
+          "$type": "color",
+          "$value": "{Brand.Static}",
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14494",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
+        },
+        "Secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              1
+            ],
+            "alpha": 0.800000011920929,
+            "hex": "#FFFFFF"
+          },
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14495",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Static"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 80
+              }
+            }
+          }
+        },
+        "Tertiary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              1
+            ],
+            "alpha": 0.6000000238418579,
+            "hex": "#FFFFFF"
+          },
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14496",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Static"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 60
+              }
+            }
+          }
+        },
+        "Subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              1
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#FFFFFF"
+          },
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14498",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Static"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        }
+      }
+    },
+    "Background": {
+      "Default": {
+        "$type": "color",
+        "$value": "{Brand.Background}",
+        "$description": "The default background color for the app.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14471",
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ]
+        }
+      },
+      "Offset": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8274509906768799,
+            0.8588235378265381,
+            0.9215686321258545
+          ],
+          "alpha": 0.5,
+          "hex": "#D3DBEB"
+        },
+        "$description": "An offset color for the app, for example, used to distinguish between sections of content blocks.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14470",
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableName": "Brand/Background-offset"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 50
+            }
+          }
+        }
+      },
+      "Subtle": {
+        "$type": "color",
+        "$value": "{Brand.Background-offset}",
+        "$description": "An even larger distinguishing background color offset from the default app's background color.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7:14469",
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ]
+        }
+      },
+      "Elevated": {
+        "$type": "color",
+        "$value": "{Brand.Background}",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:395:14755",
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ]
+        }
+      }
+    },
+    "Stroke": {
+      "Default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3176470696926117,
+            0.37254902720451355,
+            0.47843137383461
+          ],
+          "alpha": 0.30000001192092896,
+          "hex": "#515F7A"
+        },
+        "$description": "Default non-interactive stroke color, primarily used on elements such as dividers or non-interactive card elements.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:93:25907",
+          "com.figma.scopes": [
+            "STROKE_COLOR"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableName": "Brand/Neutral-weak"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 30
+            }
+          }
+        }
+      },
+      "Elevated": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3176470696926117,
+            0.37254902720451355,
+            0.47843137383461
+          ],
+          "alpha": 0.5,
+          "hex": "#515F7A"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:409:16095",
+          "com.figma.scopes": [
+            "STROKE_COLOR"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableName": "Brand/Neutral-weak"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 50
+            }
+          }
+        }
+      },
+      "Static": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              1
+            ],
+            "alpha": 0.6000000238418579,
+            "hex": "#FFFFFF"
+          },
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:406:12811",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Static"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 60
+              }
+            }
+          }
+        },
+        "Subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              1
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#FFFFFF"
+          },
+          "$description": "Used for non-interactive text or icon content placed on top of media surfaces such as images, video, or accent backgrounds. Intended for elements that do not change state or respond to interaction.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:406:12812",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Static"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Interactive": {
+    "Primary": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Primary-foreground}",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25903",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": "{Brand.Primary-foreground}",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25905",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": "{Brand.Primary-foreground}",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25906",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.800000011920929,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being primary buttons. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25904",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary-foreground"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 80
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Primary}",
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14454",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.9300000071525574,
+              "hex": "#1A39DE"
+            },
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14453",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 93
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.8199999928474426,
+              "hex": "#1A39DE"
+            },
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14452",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 82
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#1A39DE"
+            },
+            "$description": "Primary-level action background, meant to exclusively be paired with primary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14455",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Primary}",
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25899",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.9300000071525574,
+              "hex": "#1A39DE"
+            },
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25898",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 93
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.8199999928474426,
+              "hex": "#1A39DE"
+            },
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25897",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 82
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#1A39DE"
+            },
+            "$description": "A primary-level interactive content used for higher-priority links or hollow primary-level actions. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25900",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.0010000000474974513,
+              "hex": "#FFFFFF"
+            },
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25940",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Background"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0.10000000149011612
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#1A39DE"
+            },
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14457",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 5
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.10000000149011612,
+              "hex": "#1A39DE"
+            },
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14456",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 10
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.0010000000474974513,
+              "hex": "#FFFFFF"
+            },
+            "$description": "A primary-level interactive background color ONLY to be used for elements utilizing primary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25941",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Background"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0.10000000149011612
+                }
+              }
+            }
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#1A39DE"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25929",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.4000000059604645,
+              "hex": "#1A39DE"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25942",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 40
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.5,
+              "hex": "#1A39DE"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25943",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 50
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.10196078568696976,
+                0.2235294133424759,
+                0.8705882430076599
+              ],
+              "alpha": 0.10000000149011612,
+              "hex": "#1A39DE"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize primary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a primary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25944",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Primary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Secondary": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Secondary-foreground}",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14464",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": "{Brand.Secondary-foreground}",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14463",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": "{Brand.Secondary-foreground}",
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14461",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.800000011920929,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used for text content or SVG elements ONLY on top of interactive filled backgrounds. An example being secondary buttons or toggle controls. For all elements using interactive filled content types, the correlating interactive filled background token must be used.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25945",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary-foreground"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 80
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Secondary}",
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14460",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.9300000071525574,
+              "hex": "#040506"
+            },
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14459",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 93
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.8199999928474426,
+              "hex": "#040506"
+            },
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14458",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 82
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#040506"
+            },
+            "$description": "Secondary-level action background, meant to exclusively be paired with secondary-filled-content colors.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14462",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Secondary}",
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25927",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.9300000071525574,
+              "hex": "#040506"
+            },
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25926",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 93
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.8199999928474426,
+              "hex": "#040506"
+            },
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25928",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 82
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#040506"
+            },
+            "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25925",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.6000000238418579,
+                "hex": "#040506"
+              },
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8699",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 60
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.699999988079071,
+                "hex": "#040506"
+              },
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8700",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 70
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.800000011920929,
+                "hex": "#040506"
+              },
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8701",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 80
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.20000000298023224,
+                "hex": "#040506"
+              },
+              "$description": "A secondary-level interactive content used for medium-priority links or hollow secondary-level actions ranging from buttons to checkboxes to tabs. Hollow interactive content types do not require a background or border element. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8702",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 20
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.0010000000474974513,
+              "hex": "#FFFFFF"
+            },
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25924",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Background"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0.10000000149011612
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#040506"
+            },
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25923",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 5
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.10000000149011612,
+              "hex": "#040506"
+            },
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25922",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 10
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.0010000000474974513,
+              "hex": "#FFFFFF"
+            },
+            "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25946",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Background"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0.10000000149011612
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.0010000000474974513,
+                "hex": "#FFFFFF"
+              },
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8845",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Background"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 0.10000000149011612
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.05000000074505806,
+                "hex": "#040506"
+              },
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8846",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 5
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.10000000149011612,
+                "hex": "#040506"
+              },
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8847",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 10
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": "{Brand.Background}",
+              "$description": "A secondary-level interactive background color ONLY to be used for elements utilizing secondary-hollow-content variables. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8848",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ]
+              }
+            }
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.20000000298023224,
+              "hex": "#040506"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25947",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 20
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#040506"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25948",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.4000000059604645,
+              "hex": "#040506"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25949",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 40
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#040506"
+            },
+            "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:93:25950",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Secondary"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 5
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.4000000059604645,
+                "hex": "#040506"
+              },
+              "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8849",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 40
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.5,
+                "hex": "#040506"
+              },
+              "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8850",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 50
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.6000000238418579,
+                "hex": "#040506"
+              },
+              "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8851",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 60
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.01568627543747425,
+                  0.019607843831181526,
+                  0.0235294122248888
+                ],
+                "alpha": 0.20000000298023224,
+                "hex": "#040506"
+              },
+              "$description": "Used as an optional border for interactive elements that utilize secondary-hollow-content tokens. Typically applied to buttons or controls that may need a visible outline, such as the border on a secondary-level hollow button. Examples of where inactive is used vs default secondary hollow are instances such as inactive checkbox/radio inputs or inactive tabs that utilize no background and optionally a stroke to convey that the action is inactive.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:153:8852",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Secondary"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 20
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Negative": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Negative-foreground}",
+            "$description": "Text or icon content color for negative-intent interactive elements with a filled background, such as destructive action controls. Must always be paired with Interactive/Negative/Filled/Background/Default.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13974",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": "{Brand.Negative-foreground}",
+            "$description": "Text or icon content color for a negative-intent filled interactive element in a hovered state. Must always be paired with Interactive/Negative/Filled/Background/Hover.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13975",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": "{Brand.Negative-foreground}",
+            "$description": "Text or icon content color for a negative-intent filled interactive element in a pressed or active state. Must always be paired with Interactive/Negative/Filled/Background/Active.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13976",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.5,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Text or icon content color for a negative-intent filled interactive element in a non-interactive disabled state. Must always be paired with Interactive/Negative/Filled/Background/Disabled.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13978",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative-foreground"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 50
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Negative}",
+            "$description": "Fill color for negative-intent interactive elements requiring a filled container, such as destructive or validation-critical action controls. Must always be paired with Interactive/Negative/Filled/Content/Default.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13982",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.8999999761581421,
+              "hex": "#B21A21"
+            },
+            "$description": "Fill color for a negative-intent filled interactive element in a hovered state. Must always be paired with Interactive/Negative/Filled/Content/Hover.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13984",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 90
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.800000011920929,
+              "hex": "#B21A21"
+            },
+            "$description": "Fill color for a negative-intent filled interactive element in a pressed or active state. Must always be paired with Interactive/Negative/Filled/Content/Active.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13985",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 80
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.20000000298023224,
+              "hex": "#B21A21"
+            },
+            "$description": "Fill color for a negative-intent filled interactive element in a non-interactive disabled state. Must always be paired with Interactive/Negative/Filled/Content/Disabled.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13986",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 20
+                }
+              }
+            }
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Negative}",
+            "$description": "Text or icon content color for negative-intent interactive elements using a hollow or ghost treatment, where a filled background is not required (such as destructive links, ghost actions, or validation-flagged selection controls). Background and stroke are optional and context-dependent.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13988",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.9300000071525574,
+              "hex": "#B21A21"
+            },
+            "$description": "Text or icon content color for a negative-intent hollow interactive element in a hovered state. Background and stroke pairings are optional depending on the component context.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13989",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 93
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.8199999928474426,
+              "hex": "#B21A21"
+            },
+            "$description": "Text or icon content color for a negative-intent hollow interactive element in a pressed or active state. Background and stroke pairings are optional depending on the component context.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13990",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 82
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#B21A21"
+            },
+            "$description": "Text or icon content color for a negative-intent hollow interactive element in a non-interactive disabled state. Background and stroke pairings are optional depending on the component context.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13991",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.6000000238418579,
+                "hex": "#B21A21"
+              },
+              "$description": "Text or icon content color for a negative-intent hollow interactive element in its inactive (non-chosen) state, such as an unselected selection control flagging a required unanswered option. Background and stroke are optional depending on the component context.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14006",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 60
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.699999988079071,
+                "hex": "#B21A21"
+              },
+              "$description": "Text or icon content color for a negative-intent hollow inactive interactive element being hovered. Background and stroke pairings are optional depending on the component context.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14007",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 70
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.800000011920929,
+                "hex": "#B21A21"
+              },
+              "$description": "Text or icon content color for a negative-intent hollow inactive interactive element being pressed. Background and stroke pairings are optional depending on the component context.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14008",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 80
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.30000001192092896,
+                "hex": "#B21A21"
+              },
+              "$description": "Text or icon content color for a negative-intent hollow inactive interactive element in a non-interactive disabled state. Background and stroke pairings are optional depending on the component context.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14009",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 30
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional background fill for negative-intent hollow interactive elements. Transparent by default; only apply when the component context requires a subtle surface behind the content (such as a hover wash on a ghost destructive action).",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13992",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional background fill for a negative-intent hollow interactive element in a hovered state. Only apply when the component context calls for a visible background on hover.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13993",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 5
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.10000000149011612,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional background fill for a negative-intent hollow interactive element in a pressed or active state. Only apply when the component context calls for a visible background on press.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13994",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 10
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional background fill for a negative-intent hollow interactive element in a disabled state. Transparent in most contexts; apply only when a background is required for the specific component.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13995",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional background fill for a negative-intent hollow interactive element in its inactive (non-chosen) state. Apply only when the component requires a visible surface to communicate the inactive negative condition (such as a flagged but unselected selection control).",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14010",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.05000000074505806,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional background fill for a negative-intent hollow inactive interactive element being hovered. Apply only when the component context requires a visible background on hover.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14011",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 5
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.10000000149011612,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional background fill for a negative-intent hollow inactive interactive element being pressed. Apply only when the component context requires a visible background on press.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14014",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 10
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional background fill for a negative-intent hollow inactive interactive element in a disabled state. Apply only when the component requires a surface even in a disabled condition.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14016",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.20000000298023224,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional border color for negative-intent hollow interactive elements. Apply only when the component requires a visible outline to communicate its negative intent, such as a hollow destructive action control with a border. Not required for ghost or link treatments.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13996",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 20
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional border color for a negative-intent hollow interactive element in a hovered state. Apply only when the component uses a visible outline treatment.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13997",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.4000000059604645,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional border color for a negative-intent hollow interactive element in a pressed or active state. Apply only when the component uses a visible outline treatment.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13998",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 40
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6980392336845398,
+                0.10196078568696976,
+                0.12941177189350128
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#B21A21"
+            },
+            "$description": "Optional border color for a negative-intent hollow interactive element in a disabled state. Apply only when the component uses a visible outline treatment.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:367:13999",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Negative"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 5
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.10000000149011612,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional border color for a negative-intent hollow interactive element in its inactive (non-chosen) state. Apply only when the component requires a visible outline to communicate the inactive negative condition, such as a flagged but unselected selection control with a border.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14012",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 10
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.20000000298023224,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional border color for a negative-intent hollow inactive interactive element being hovered. Apply only when the component uses a visible outline treatment.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14013",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 20
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.30000001192092896,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional border color for a negative-intent hollow inactive interactive element being pressed. Apply only when the component uses a visible outline treatment.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14015",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 30
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.6980392336845398,
+                  0.10196078568696976,
+                  0.12941177189350128
+                ],
+                "alpha": 0.05000000074505806,
+                "hex": "#B21A21"
+              },
+              "$description": "Optional border color for a negative-intent hollow inactive interactive element in a disabled state. Apply only when the component uses a visible outline treatment.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:367:14017",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Negative"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 5
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Static": {
+      "Filled": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Static-foreground}",
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14489",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.8999999761581421,
+              "hex": "#040506"
+            },
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14488",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static-foreground"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 90
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.800000011920929,
+              "hex": "#040506"
+            },
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14487",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static-foreground"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 80
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.01568627543747425,
+                0.019607843831181526,
+                0.0235294122248888
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#040506"
+            },
+            "$description": "Used for text or icon content on filled interactive elements placed over media surfaces. Designed to maintain legibility and contrast over complex backgrounds. Must be paired with onmedia-interactive-filled-background tokens.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:7:14491",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static-foreground"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Static}",
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10062",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.8999999761581421,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10063",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 90
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.800000011920929,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10064",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 80
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used as the background color for interactive elements placed on top of media surfaces such as images or accent gradients. Provides strong contrast and visual presence. Should be paired with onmedia-interactive-filled-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10065",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          }
+        }
+      },
+      "Hollow": {
+        "Content": {
+          "Default": {
+            "$type": "color",
+            "$value": "{Brand.Static}",
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10066",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ]
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.8999999761581421,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10067",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 90
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.800000011920929,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10068",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 80
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.30000001192092896,
+              "hex": "#FFFFFF"
+            },
+            "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10069",
+              "com.figma.scopes": [
+                "SHAPE_FILL",
+                "TEXT_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 30
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.6000000238418579,
+                "hex": "#FFFFFF"
+              },
+              "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:178:10221",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 60
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.699999988079071,
+                "hex": "#FFFFFF"
+              },
+              "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10475",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 70
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.800000011920929,
+                "hex": "#FFFFFF"
+              },
+              "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10476",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 80
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.30000001192092896,
+                "hex": "#FFFFFF"
+              },
+              "$description": "Used for text or icon content in hollow-style interactive elements placed on media. Typically used for subtle overlays or lightweight UI interactions. Paired with onmedia-interactive-hollow-background and onmedia-interactive-hollow-stroke if needed.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10477",
+                "com.figma.scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 30
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10070",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10071",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 5
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.10000000149011612,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10072",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 10
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:145:10073",
+              "com.figma.scopes": [
+                "FRAME_FILL"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 0
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:178:10222",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 0
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.10000000149011612,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10478",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 10
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.20000000298023224,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10479",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 20
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional background color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10480",
+                "com.figma.scopes": [
+                  "FRAME_FILL"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Stroke": {
+          "Default": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.5,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:150:8699",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 50
+                }
+              }
+            }
+          },
+          "Hover": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.6000000238418579,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:150:8700",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 60
+                }
+              }
+            }
+          },
+          "Active": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.699999988079071,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:150:8701",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 70
+                }
+              }
+            }
+          },
+          "Disabled": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "alpha": 0.10000000149011612,
+              "hex": "#FFFFFF"
+            },
+            "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:150:8702",
+              "com.figma.scopes": [
+                "STROKE_COLOR"
+              ],
+              "com.figma.composedColor": {
+                "colorArg": {
+                  "type": "alias",
+                  "alias": {
+                    "targetVariableName": "Brand/Static"
+                  }
+                },
+                "opacityArg": {
+                  "type": "number",
+                  "value": 10
+                }
+              }
+            }
+          },
+          "Inactive": {
+            "Default": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.6000000238418579,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:178:10223",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 60
+                  }
+                }
+              }
+            },
+            "Hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.699999988079071,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10481",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 70
+                  }
+                }
+              }
+            },
+            "Active": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.800000011920929,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10482",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 80
+                  }
+                }
+              }
+            },
+            "Disabled": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "alpha": 0.20000000298023224,
+                "hex": "#FFFFFF"
+              },
+              "$description": "An optional border color for elements utilizing onmedia-interactive-hollow-content.",
+              "$extensions": {
+                "com.figma.variableId": "VariableID:313:10483",
+                "com.figma.scopes": [
+                  "STROKE_COLOR"
+                ],
+                "com.figma.composedColor": {
+                  "colorArg": {
+                    "type": "alias",
+                    "alias": {
+                      "targetVariableName": "Brand/Static"
+                    }
+                  },
+                  "opacityArg": {
+                    "type": "number",
+                    "value": 20
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Fields": {
+      "Content": {
+        "Default": {
+          "$type": "color",
+          "$value": "{Brand.Neutral}",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25910",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ]
+          }
+        },
+        "Placeholder": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3176470696926117,
+              0.37254902720451355,
+              0.47843137383461
+            ],
+            "alpha": 0.699999988079071,
+            "hex": "#515F7A"
+          },
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25930",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Neutral-weak"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 70
+              }
+            }
+          }
+        },
+        "Suggested": {
+          "$type": "color",
+          "$value": "{Brand.Neutral-weak}",
+          "$description": "Used for text, icons, and indicators within input-based elements where users provide or edit information. Applies to components like text fields, checkboxes, radios, and date pickers. Not intended for use on buttons or non-input interactive elements.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25931",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ]
+          }
+        }
+      },
+      "Background": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8274509906768799,
+              0.8588235378265381,
+              0.9215686321258545
+            ],
+            "alpha": 0.6000000238418579,
+            "hex": "#D3DBEB"
+          },
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25932",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Background-offset"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 60
+              }
+            }
+          }
+        },
+        "Hover": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8274509906768799,
+              0.8588235378265381,
+              0.9215686321258545
+            ],
+            "alpha": 0.20000000298023224,
+            "hex": "#D3DBEB"
+          },
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25933",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Background-offset"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 20
+              }
+            }
+          }
+        },
+        "Active": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8274509906768799,
+              0.8588235378265381,
+              0.9215686321258545
+            ],
+            "alpha": 0,
+            "hex": "#D3DBEB"
+          },
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25934",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Background-offset"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 0
+              }
+            }
+          }
+        },
+        "Disabled": {
+          "$type": "color",
+          "$value": "{Brand.Background-offset}",
+          "$description": "Background color for input elements such as text fields, selects, multiselects, and date pickers. Designed for components where users input or customize data. Should not be used for action-based components like buttons or sliders. Only to be used for elements utilizing interactive-inputs-content tokens.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25935",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
+        },
+        "Error": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6980392336845398,
+              0.10196078568696976,
+              0.12941177189350128
+            ],
+            "alpha": 0.10000000149011612,
+            "hex": "#B21A21"
+          },
+          "$description": "Background color applied to input-based elements when they enter a validation error state, indicating that the field's value is invalid or a required response was not provided. Must be used alongside a clear non-color error indicator (such as an error message or icon) and should be paired with Interactive/Fields/Stroke/Error for optimal accessibility, though the stroke is not strictly required if sufficient alternative error signaling is present.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:367:14018",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Negative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 10
+              }
+            }
+          }
+        },
+        "Success": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0470588244497776,
+              0.4156862795352936,
+              0.23137255012989044
+            ],
+            "alpha": 0.10000000149011612,
+            "hex": "#0C6A3B"
+          },
+          "$description": "Background color applied to input-based elements when they have passed validation or their value has been actively confirmed as valid by the system (such as a username availability check or a matched password confirmation field). Must be used alongside a clear non-color success indicator such as a success message or icon, and should be paired with Interactive/Fields/Stroke/Success for optimal visual clarity.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:368:16630",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Success"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 10
+              }
+            }
+          }
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3176470696926117,
+              0.37254902720451355,
+              0.47843137383461
+            ],
+            "alpha": 0,
+            "hex": "#515F7A"
+          },
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25936",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Neutral-weak"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 0
+              }
+            }
+          }
+        },
+        "Hover": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3176470696926117,
+              0.37254902720451355,
+              0.47843137383461
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#515F7A"
+          },
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25937",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Neutral-weak"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        },
+        "Active": {
+          "$type": "color",
+          "$value": "{Brand.Neutral-weak}",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25938",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ]
+          }
+        },
+        "Disabled": {
+          "$type": "color",
+          "$value": "{Brand.Background-offset}",
+          "$description": "Used as a border or outline for input elements to indicate states like default, focus, or error. Intended for components such as form fields, checkboxes, radios, and toggles where users interact with their own data. Not for general UI element outlines.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:93:25939",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ]
+          }
+        },
+        "Error": {
+          "$type": "color",
+          "$value": "{Brand.Negative}",
+          "$description": "Border or outline color applied to input-based elements in a validation error state to visually reinforce that the field requires attention or correction. Strongly recommended to be used alongside Interactive/Fields/Background/Error and a non-color error indicator (such as an error message or icon); while WCAG AA does not require this stroke if sufficient alternative error signaling is present, including it at 3:1 contrast against adjacent colors is best practice for users with low vision.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:367:14019",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ]
+          }
+        },
+        "Success": {
+          "$type": "color",
+          "$value": "{Brand.Success}",
+          "$description": "Border or outline color applied to input-based elements to reinforce that the field's value has been validated or confirmed as acceptable. Strongly recommended alongside Interactive/Fields/Background/Success; any accompanying success message text or icon should use Status/Success/Content/Default rather than a fields-specific content token, as non-interactive status content within and around field components is handled by the Status token family.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:368:16631",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Status": {
+    "Error": {
+      "Content": {
+        "Default": {
+          "$type": "color",
+          "$value": "{Brand.Negative}",
+          "$description": "A general-use error state for text or icon content.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14481",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ]
+          }
+        },
+        "Subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6980392336845398,
+              0.10196078568696976,
+              0.12941177189350128
+            ],
+            "alpha": 0.800000011920929,
+            "hex": "#B21A21"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:409:15655",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Negative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 80
+              }
+            }
+          }
+        }
+      },
+      "Background": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6980392336845398,
+              0.10196078568696976,
+              0.12941177189350128
+            ],
+            "alpha": 0.10000000149011612,
+            "hex": "#B21A21"
+          },
+          "$description": "A conditionally error state background used for elements using status-error-content variables.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14483",
+            "com.figma.scopes": [
+              "FRAME_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Negative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 10
+              }
+            }
+          }
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6980392336845398,
+              0.10196078568696976,
+              0.12941177189350128
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#B21A21"
+          },
+          "$description": "A conditionally error state border color used for elements using status-error-content variables.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14482",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Negative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        }
+      }
+    },
+    "Success": {
+      "Content": {
+        "Default": {
+          "$type": "color",
+          "$value": "{Brand.Success}",
+          "$description": "Used for text or icon content that represents a success state. Suitable for confirmation messages, completed actions, or positive feedback",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14475",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ]
+          }
+        },
+        "Subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0470588244497776,
+              0.4156862795352936,
+              0.23137255012989044
+            ],
+            "alpha": 0.699999988079071,
+            "hex": "#0C6A3B"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:409:15656",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Success"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 70
+              }
+            }
+          }
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0470588244497776,
+              0.4156862795352936,
+              0.23137255012989044
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#0C6A3B"
+          },
+          "$description": "A success-state border color used for elements that employ status/success/content tokens. Applies to outlines or frames indicating positive feedback (e.g., success badges or focused success inputs).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14476",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Success"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        }
+      },
+      "Background": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0470588244497776,
+              0.4156862795352936,
+              0.23137255012989044
+            ],
+            "alpha": 0.10000000149011612,
+            "hex": "#0C6A3B"
+          },
+          "$description": "A success-state background color used for elements that employ status/success/content tokens. Should be applied to containers or surfaces (e.g., badges, notifications, cards) that need a positive-state emphasis.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14477",
+            "com.figma.scopes": [
+              "FRAME_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Success"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "Warning": {
+      "Content": {
+        "Default": {
+          "$type": "color",
+          "$value": "{Brand.Warning}",
+          "$description": "Used for text or icon content that represents a warning state. Suitable for cautionary prompts, validation alerts, or soft notices.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14478",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ]
+          }
+        },
+        "Subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.658823549747467,
+              0.27843138575553894,
+              0
+            ],
+            "alpha": 0.699999988079071,
+            "hex": "#A84700"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:409:15657",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Warning"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 70
+              }
+            }
+          }
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.658823549747467,
+              0.27843138575553894,
+              0
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#A84700"
+          },
+          "$description": "A warning-state border color used for elements that employ status/warning/content tokens. Ideal for outlining components that need a cautionary visual (e.g., warning inputs or alert borders).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14479",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Warning"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        }
+      },
+      "Background": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.658823549747467,
+              0.27843138575553894,
+              0
+            ],
+            "alpha": 0.10000000149011612,
+            "hex": "#A84700"
+          },
+          "$description": "A warning-state background color used for elements that employ status/warning/content tokens. Ideal for cautionary UI components like alerts, helper banners, or validation indicators.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14480",
+            "com.figma.scopes": [
+              "FRAME_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Warning"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "Informative": {
+      "Content": {
+        "Default": {
+          "$type": "color",
+          "$value": "{Brand.Informative}",
+          "$description": "Used for text or icon content that represents an informational state.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14472",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ]
+          }
+        },
+        "Subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5490196347236633,
+              0.6666666865348816
+            ],
+            "alpha": 0.699999988079071,
+            "hex": "#008CAA"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:409:15658",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Informative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 70
+              }
+            }
+          }
+        }
+      },
+      "Stroke": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5490196347236633,
+              0.6666666865348816
+            ],
+            "alpha": 0.30000001192092896,
+            "hex": "#008CAA"
+          },
+          "$description": "An informative-state border color used for elements that employ status/informative/content tokens. Suitable for outlining UI elements conveying non-critical information (e.g., info tooltips or note frames).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14473",
+            "com.figma.scopes": [
+              "STROKE_COLOR"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Informative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 30
+              }
+            }
+          }
+        }
+      },
+      "Background": {
+        "Default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5490196347236633,
+              0.6666666865348816
+            ],
+            "alpha": 0.10000000149011612,
+            "hex": "#008CAA"
+          },
+          "$description": "An informative-state background color used for elements that employ status/informative/content tokens. Best suited for non-critical information like tooltips, guidance panels, or read-only hints.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:7:14474",
+            "com.figma.scopes": [
+              "FRAME_FILL"
+            ],
+            "com.figma.composedColor": {
+              "colorArg": {
+                "type": "alias",
+                "alias": {
+                  "targetVariableName": "Brand/Informative"
+                }
+              },
+              "opacityArg": {
+                "type": "number",
+                "value": 10
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Effects": {
+    "OverlaySolid": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 0.4000000059604645,
+        "hex": "#040506"
+      },
+      "$description": "Used as the background behind popover display components such as modals.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7:14484",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "EFFECT_COLOR"
+        ],
+        "com.figma.composedColor": {
+          "colorArg": {
+            "type": "alias",
+            "alias": {
+              "targetVariableName": "Brand/Shadow"
+            }
+          },
+          "opacityArg": {
+            "type": "number",
+            "value": 40
+          }
+        }
+      }
+    },
+    "ShadowDefault": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 0.20000000298023224,
+        "hex": "#040506"
+      },
+      "$description": "Color used for elevation drop shadow effects only.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7:14485",
+        "com.figma.scopes": [
+          "EFFECT_COLOR"
+        ],
+        "com.figma.composedColor": {
+          "colorArg": {
+            "type": "alias",
+            "alias": {
+              "targetVariableName": "Brand/Shadow"
+            }
+          },
+          "opacityArg": {
+            "type": "number",
+            "value": 20
+          }
+        }
+      }
+    },
+    "ShadowCallout": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 0.30000001192092896,
+        "hex": "#040506"
+      },
+      "$description": "Color used for elevation drop shadow effects only.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7:14486",
+        "com.figma.scopes": [
+          "EFFECT_COLOR"
+        ],
+        "com.figma.composedColor": {
+          "colorArg": {
+            "type": "alias",
+            "alias": {
+              "targetVariableName": "Brand/Shadow"
+            }
+          },
+          "opacityArg": {
+            "type": "number",
+            "value": 30
+          }
+        }
+      }
+    },
+    "Focus": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.01568627543747425,
+          0.019607843831181526,
+          0.0235294122248888
+        ],
+        "alpha": 0.5,
+        "hex": "#040506"
+      },
+      "$description": "Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:96:23103",
+        "com.figma.scopes": [
+          "EFFECT_COLOR"
+        ],
+        "com.figma.composedColor": {
+          "colorArg": {
+            "type": "alias",
+            "alias": {
+              "targetVariableName": "Brand/Neutral"
+            }
+          },
+          "opacityArg": {
+            "type": "number",
+            "value": 50
+          }
+        }
+      }
+    },
+    "Values": {
+      "Elevated Blur": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:395:14760",
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ]
+        }
+      },
+      "Elevated Spread": {
+        "$type": "number",
+        "$value": 2,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:395:14762",
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ]
+        }
+      },
+      "Elevated Y": {
+        "$type": "number",
+        "$value": 4,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:395:14763",
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ]
+        }
+      },
+      "Elevated X": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:395:14764",
+          "com.figma.scopes": [
+            "EFFECT_FLOAT"
+          ]
+        }
+      }
+    }
+  },
+  "Accents": {
+    "Solid": {
+      "Primary": {
+        "$type": "color",
+        "$value": "{Brand.Accent}",
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:144:8888",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR",
+            "EFFECT_COLOR"
+          ]
+        }
+      },
+      "PrimaryWeak": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.10196078568696976,
+            0.2235294133424759,
+            0.8705882430076599
+          ],
+          "alpha": 0.10000000149011612,
+          "hex": "#1A39DE"
+        },
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:395:14767",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR",
+            "EFFECT_COLOR"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableName": "Brand/Accent"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 10
+            }
+          }
+        }
+      },
+      "Secondary": {
+        "$type": "color",
+        "$value": "{Brand.Neutral}",
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:126:15724",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Gradient": {
+      "PrimaryStart": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0941176488995552,
+            0.4431372582912445,
+            0.9725490212440491
+          ],
+          "alpha": 1,
+          "hex": "#1871F8"
+        },
+        "$description": "Color variable only to be used a color stop for gradient styles.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:75:26308",
+          "com.figma.scopes": [],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:28322",
+            "targetVariableName": "Colors/Cobalt/600",
+            "targetVariableSetId": "VariableCollectionId:1:28315",
+            "targetVariableSetName": "Global Values"
+          }
+        }
+      },
+      "PrimaryEnd": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.529411792755127,
+            0.027450980618596077,
+            0.7647058963775635
+          ],
+          "alpha": 1,
+          "hex": "#8707C3"
+        },
+        "$description": "Color variable only to be used a color stop for gradient styles.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:75:26309",
+          "com.figma.scopes": [],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:74:813",
+            "targetVariableName": "Colors/Purple/700",
+            "targetVariableSetId": "VariableCollectionId:1:28315",
+            "targetVariableSetName": "Global Values"
+          }
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Lightmode"
+  }
+}
