@@ -423,7 +423,12 @@ export function SearchField({
                 key={suggestion}
                 id={`${listboxId}-option-${index}`}
                 role="option"
-                aria-selected={suggestion === currentValue}
+                // aria-selected follows the active descendant (WAI-ARIA APG
+                // list-autocomplete; GOV.UK accessible-autocomplete), so AT
+                // announces the option under the keyboard as "selected". The
+                // committed value is already exposed as the input's value; its
+                // checkmark below is a visual-only (aria-hidden) affordance.
+                aria-selected={activeIndex === index}
                 className={[
                   'sds-menu-item',
                   suggestion === currentValue && 'sds-menu-item--selected',

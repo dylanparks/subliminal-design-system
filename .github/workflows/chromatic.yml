@@ -23,10 +23,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: design-system/package-lock.json
+          # npm workspaces: the root package-lock.json is the only lockfile.
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: design-system
         run: npm ci --legacy-peer-deps
 
       - name: Run Chromatic

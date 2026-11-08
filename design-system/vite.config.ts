@@ -1,33 +1,15 @@
 /// <reference types="vitest" />
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
 import path from 'path';
-import fs from 'fs';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
-
-// Serves react-flagpack's flag SVGs at /flags/{size}/{code}.svg for the dev server.
-const flagpackAssetsPlugin: Plugin = {
-  name: 'flagpack-assets',
-  configureServer(server) {
-    const flagsDir = resolve(__dirname, 'node_modules/react-flagpack/dist/flags');
-    server.middlewares.use('/flags', (req, res, next) => {
-      const filePath = resolve(flagsDir, (req.url ?? '').replace(/^\//, ''));
-      if (fs.existsSync(filePath)) {
-        res.setHeader('Content-Type', 'image/svg+xml');
-        res.end(fs.readFileSync(filePath));
-      } else {
-        next();
-      }
-    });
-  },
-};
+import { flagpackAlias } from './vite.flagpack';
 
 export default defineConfig({
-  plugins: [react(), flagpackAssetsPlugin],
-  optimizeDeps: {
-    include: ['react-flagpack'],
+  plugins: [react()],
+  resolve: {
+    alias: flagpackAlias,
   },
   test: {
     globals: true,

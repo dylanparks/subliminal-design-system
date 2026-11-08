@@ -452,7 +452,12 @@ export function Combobox({
                 key={option.value}
                 id={`${listboxId}-${option.value}`}
                 role="option"
-                aria-selected={option.value === currentValue}
+                // aria-selected follows the active descendant (WAI-ARIA APG
+                // editable combobox with list autocomplete), so AT announces
+                // the highlighted option as "selected". The committed value is
+                // exposed as the input's value; its checkmark below is a
+                // visual-only (aria-hidden) affordance.
+                aria-selected={index === activeIndex}
                 className={[
                   'sds-menu-item',
                   option.value === currentValue && 'sds-menu-item--selected',

@@ -8,10 +8,10 @@ import {
   useState,
 } from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore — react-flagpack ships as ESM with its own type definitions
-import Flag from 'react-flagpack';
+// Flag box styles (.flag.size-{l|m}, border, border-radius). The flag images themselves are
+// bundled via FlagImage, so the host app does not need to serve /flags.
 import 'react-flagpack/dist/style.css';
-import type { Flags } from 'flagpack-core';
+import { FlagImage } from './FlagImage';
 import { Menu, MenuItem } from '../../Navigation/Menu/Menu';
 import { KeyboardArrowDownIcon, CloseIcon, SuccessIcon, ErrorIcon } from '../../../icons';
 import {
@@ -227,7 +227,7 @@ export function PhoneField({
     .filter(Boolean)
     .join(' ');
 
-  // Flag sizes — react-flagpack: l=32x24px (button/large), m=20x15px (button/medium + menu items).
+  // Flag sizes — l=32x24px (button/large), m=20x15px (button/medium + menu items).
   const flagSize = size === 'large' ? 'l' : 'm';
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -261,7 +261,7 @@ export function PhoneField({
           onClick={() => setIsMenuOpen(prev => !prev)}
         >
           <span className="sds-phone-field__country-flag" aria-hidden="true">
-            <Flag code={getFlagCode(selectedCountry.code) as Flags} size={flagSize} hasBorderRadius />
+            <FlagImage code={getFlagCode(selectedCountry.code)} size={flagSize} />
           </span>
           <span className="sds-phone-field__country-dial sds-text--content-medium" aria-hidden="true">
             {selectedCountry.dialCode}
@@ -340,7 +340,7 @@ export function PhoneField({
           <MenuItem
             key={country.code}
             selected={country.code === selectedCountry.code}
-            icon={<Flag code={getFlagCode(country.code) as Flags} size="m" hasBorderRadius />}
+            icon={<FlagImage code={getFlagCode(country.code)} size="m" />}
             suffix={{ type: 'tag', label: country.dialCode }}
             onClick={() => handleCountrySelect(country)}
           >

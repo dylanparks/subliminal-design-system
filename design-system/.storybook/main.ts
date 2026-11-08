@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import type { InlineConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -16,20 +15,8 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
-  // Serve flagpack's flag images at /flags so Flag component can find them.
-  staticDirs: [
-    '../public',
-    { from: '../node_modules/react-flagpack/dist/flags', to: '/flags' },
-  ],
-  async viteFinal(config: InlineConfig) {
-    return {
-      ...config,
-      optimizeDeps: {
-        ...config.optimizeDeps,
-        include: [...(config.optimizeDeps?.include ?? []), 'react-flagpack'],
-      },
-    };
-  },
+  // PhoneField bundles its flag images (see FlagImage.tsx), so nothing is served at /flags.
+  staticDirs: ['../public'],
 };
 
 export default config;

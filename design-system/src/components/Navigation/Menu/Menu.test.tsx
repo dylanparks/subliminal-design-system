@@ -248,7 +248,7 @@ describe('MenuItem — configure mode', () => {
     renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     const item = screen.getByRole('menuitem');
-    expect(item.querySelector('.sds-menu-item__toggle')).toBeInTheDocument();
+    expect(within(item).getByRole('switch', { name: 'Item' })).toBeInTheDocument();
   });
 
   it('does not render a toggle switch when toggleable=false', async () => {
@@ -256,23 +256,21 @@ describe('MenuItem — configure mode', () => {
     renderMenu({ type: 'configure' }, <MenuItem toggleable={false}>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
     const item = screen.getByRole('menuitem');
-    expect(item.querySelector('.sds-menu-item__toggle')).not.toBeInTheDocument();
+    expect(within(item).queryByRole('switch')).not.toBeInTheDocument();
   });
 
   it('toggle has aria-checked=true when selected', async () => {
     const user = userEvent.setup();
     renderMenu({ type: 'configure' }, <MenuItem selected>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    const toggle = document.querySelector('.sds-menu-item__toggle')!;
-    expect(toggle).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('switch')).toHaveAttribute('aria-checked', 'true');
   });
 
   it('toggle has aria-checked=false when not selected', async () => {
     const user = userEvent.setup();
     renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    const toggle = document.querySelector('.sds-menu-item__toggle')!;
-    expect(toggle).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByRole('switch')).toHaveAttribute('aria-checked', 'false');
   });
 
   it('calls onClick when the toggle is clicked', async () => {
@@ -280,8 +278,7 @@ describe('MenuItem — configure mode', () => {
     const onClick = vi.fn();
     renderMenu({ type: 'configure' }, <MenuItem onClick={onClick}>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    const toggle = document.querySelector<HTMLElement>('.sds-menu-item__toggle')!;
-    await user.click(toggle);
+    await user.click(screen.getByRole('switch'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -289,8 +286,7 @@ describe('MenuItem — configure mode', () => {
     const user = userEvent.setup();
     renderMenu({ type: 'configure' }, <MenuItem>Item</MenuItem>);
     await user.click(screen.getByTestId('trigger'));
-    const toggle = document.querySelector<HTMLElement>('.sds-menu-item__toggle')!;
-    await user.click(toggle);
+    await user.click(screen.getByRole('switch'));
     expect(screen.getByRole('menu')).toBeInTheDocument();
   });
 
@@ -525,9 +521,11 @@ describe('Menu — focus management', () => {
   });
 });
 
-// ─── Backdrop / outside click ─────────────────────────────────────────────────
+// ─── Outside click ────────────────────────────────────────────────────────────
+// The menu has no click-capture backdrop: outside presses are detected by a
+// document-level pointerdown listener (see Menu.tsx "Close on outside pointerdown").
 
-describe('Menu — backdrop', () => {
+describe('Menu — outside click', () => {
   beforeEach(() => {
     vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
       top: 100, bottom: 132, left: 50, right: 150,
@@ -535,19 +533,19 @@ describe('Menu — backdrop', () => {
     });
   });
 
-  it('renders a backdrop overlay when open', async () => {
+  it('does not render a click-capture backdrop over the page', async () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    expect(document.querySelector('.sds-menu-backdrop')).toBeInTheDocument();
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+    expect(document.querySelector('.sds-menu-backdrop')).not.toBeInTheDocument();
   });
 
-  it('closes the menu when the backdrop is clicked', async () => {
+  it('closes the menu when the page outside the menu is clicked', async () => {
     const user = userEvent.setup();
     renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const backdrop = document.querySelector<HTMLElement>('.sds-menu-backdrop')!;
-    await user.click(backdrop);
+    await user.click(document.body);
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
   });
 });
@@ -590,15 +588,13 @@ describe('Menu — accessibility', () => {
     expect(screen.getByRole('menuitemradio')).toHaveAttribute('tabindex', '-1');
   });
 
-  it('hides the backdrop from assistive technology', async () => {
-    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
-      top: 100, bottom: 132, left: 50, right: 150,
-      width: 100, height: 32, x: 50, y: 100, toJSON: () => ({}),
-    });
+  it('portals only the menu container into document.body (no stray overlay for AT)', async () => {
     const user = userEvent.setup();
-    renderMenu();
+    const { container } = renderMenu();
     await user.click(screen.getByTestId('trigger'));
-    const backdrop = document.querySelector('.sds-menu-backdrop')!;
-    expect(backdrop).toHaveAttribute('aria-hidden', 'true');
+    const portaled = Array.from(document.body.children).filter(el => el !== container);
+    expect(portaled).toHaveLength(1);
+    expect(portaled[0]).toHaveClass('sds-menu');
+    expect(portaled[0]).toContainElement(screen.getByRole('menu'));
   });
 });
