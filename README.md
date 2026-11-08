@@ -6,28 +6,60 @@ A component library and design token pipeline built for product teams. Sublimina
 
 - **React 19** + **TypeScript**
 - **Vite** — dev server and build tool
-- **Style Dictionary v5** — transforms Figma variable exports into CSS custom properties and typed TypeScript constants
+- **Token pipeline** (`design-system/build-tokens.mjs`) — turns the Figma variable export into CSS custom properties and typed TypeScript constants
 - **Storybook 10** — component development environment and documentation
 - **Vitest** + **Testing Library** — unit and accessibility testing
 - **Chromatic** — visual regression testing
 
 ## Token Pipeline
 
-Design tokens originate in Figma as variable collections and flow through Style Dictionary into two outputs:
+Tokens live in Figma as four variable collections, exported with the **Subliminal Relay** plugin
+(≥ 0.5.0, "Download All (.zip)"):
 
-| Source (Figma JSON) | Contents |
-|---|---|
-| `Global Colors.json` | Raw color palette |
-| `Intent Colors.json` | Semantic color tokens (light + dark modes) |
-| `Typography.json` | Font size + line-height across 3 responsive breakpoints |
-| `Shape.json` | Border-radius scale |
-| `Breakpoint.json` | Viewport width + padding reference values |
+| Collection | Modes | What it holds |
+|---|---|---|
+| **Globals** | one | Primitives — colour ramps, font weights. Not emitted; Brand aliases into it. |
+| **Brand** | one | **The theme.** Light and dark colour palettes, radii, sizes, border thickness, font family / weight / letter-spacing. |
+| **Color mode** | Lightmode, Darkmode | Intent colours (`--sds-interactive-primary-filled-background-hover`, …), each defined as a Brand colour plus an opacity. |
+| **Breakpoint** | LG, MD, XS | Font sizes, line heights, viewport — one mode per screen size. |
 
-**Generated outputs** (in `design-system/src/tokens/generated/`):
-- `tokens.css` — CSS custom properties prefixed with `--sds-`
-- `tokens.ts` — Typed TypeScript constants
+`npm run build:tokens` reads `design-system/src/tokens/relay-export/` and writes
+`design-system/src/tokens/generated/`:
 
-**Designer workflow:** Export Figma JSON → drop into `design-system/src/tokens/figma/` → run `npm run build:tokens`.
+- `tokens.css` — `--sds-*` custom properties
+- `typography.css` — `.sds-text--{title|subtitle|content|interactive}-{size}` classes
+- `tokens.ts` — typed `var(--sds-…)` references; `fonts.ts` — font metadata
+
+CSS names are a mechanical translation of the Figma path (`Brand/Radius/Small` → `--sds-radius-small`),
+so a name in Figma predicts the name in code.
+
+**Intent colours are derived at runtime, not baked.** A hover state is
+`color-mix(in srgb, var(--sds-brand-light-primary) var(--sds-mix-…, 93%), transparent)`, so
+changing one Brand colour restyles every state built on it, with no rebuild.
+
+### Themes and modes
+
+- A **theme** is a whole Brand — every `--sds-brand-*` colour, plus radius, size, border and
+  typography values — with a name you choose. Override them on `:root`, or on any element with
+  `data-sds-theme="<name>"` to theme just that section.
+- A **mode** is a fixed axis every theme supports: light/dark. Set it with `data-sds-mode="light|dark"`
+  on any element, or with `ModeProvider` (which toggles `.dark` on `<html>`).
+
+Themes and modes nest freely. This relies on CSS `light-dark()` and `color-mix()`, so it needs
+browsers from mid-2024 onward (Chrome 123, Firefox 120, Safari 17.5).
+
+### Using your own tokens
+
+```bash
+npx sds-build-tokens --input ./subliminal-tokens.zip --output ./src/design-tokens
+```
+
+Then import the generated `tokens.css` and `typography.css` instead of the package's.
+
+**Designer workflow:** edit variables in Figma → export with Relay → replace the files in
+`design-system/src/tokens/relay-export/` → `npm run build:tokens`. The build fails, listing every
+problem, rather than guessing — e.g. an intent colour that doesn't derive from Brand, a translucent
+Brand colour, or a type style missing one of its five properties.
 
 ## Components
 
@@ -165,7 +197,7 @@ npm run storybook
 # Run tests
 npm test
 
-# Build design tokens from Figma exports
+# Build design tokens from the Relay export
 npm run build:tokens
 
 # Build Storybook for deployment
@@ -217,12 +249,15 @@ design-system/
     │   └── Enhancers/
     │       ├── Tooltip/
     │       └── Divider/
+    ├── mode/
+    │   ├── ModeProvider.tsx       ← light/dark/system mode + DOM sync
+    │   └── useMode.ts             ← hook for reading/setting the mode
     ├── utilities/
     │   ├── DirectionProvider.tsx  ← RTL/LTR context + DOM sync
     │   └── useDirection.ts        ← hook for reading direction in components
     └── tokens/
-        ├── figma/          ← Figma JSON exports (source of truth)
-        └── generated/      ← CSS custom properties + TS constants
+        ├── relay-export/   ← Figma variable export from Subliminal Relay (source of truth)
+        └── generated/      ← CSS custom properties, typography classes, TS constants
 ```
 
 Each component folder contains:

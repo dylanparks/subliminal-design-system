@@ -20,7 +20,11 @@
   ],
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "build-tokens.mjs",
+    "build-token-export.mjs",
+    "build-color-layer.mjs",
+    "build-scale-layer.mjs"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -42,7 +46,6 @@
     "flagpack-core": "^2.1.0",
     "libphonenumber-js": "^1.12.40",
     "react-flagpack": "^2.0.6",
-    "style-dictionary": "^5.3.3",
     "web-vitals": "^2.1.4"
   },
   "peerDependencies": {

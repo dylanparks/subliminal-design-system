@@ -7,7 +7,7 @@ const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 
 
 // Never bundle anything a consumer's own node_modules should provide — react/react-dom
 // (peerDependencies) and every real npm dependency (@floating-ui/dom, libphonenumber-js,
-// react-flagpack, flagpack-core, @material-symbols/svg-400, adm-zip, style-dictionary).
+// react-flagpack, flagpack-core, @material-symbols/svg-400, adm-zip).
 const external = [
   ...Object.keys(pkg.dependencies ?? {}),
   ...Object.keys(pkg.peerDependencies ?? {}),

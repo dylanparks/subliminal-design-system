@@ -89,6 +89,20 @@ shortest form, since developers type these).
 - `build-tokens.mjs` reads **only** the Brand-layer export now; the legacy files in
   `src/tokens/default-values/` are no longer used.
 
+#### Cutover: the Brand-layer export is the only token input (Phase T.2.3)
+- **`npx sds-build-tokens` now ships.** `package.json` `files` listed only `dist`, so the CLI's
+  entry point was missing from the published package. It now includes `build-tokens.mjs` and its
+  three modules. Verified by installing the packed tarball into an empty project and building from
+  a real Relay ZIP; the output is byte-identical to the repo's.
+- **`--output` is required when run from an installed package.** The default pointed inside the
+  package, so tokens would have been written into `node_modules` and wiped on the next install.
+  Without `--input` or a `subliminal-tokens*.zip` in the current directory, the CLI now explains how
+  to export instead of looking for files that don't ship.
+- Removed `src/tokens/default-values/` (the legacy 12-collection export, unused since T.2.2) and the
+  `style-dictionary` dependency (unused since T.2.1). That's 92 fewer packages for consumers to install.
+- README "Token Pipeline" section rewritten for the four collections, runtime derivation, themes
+  vs modes, and the consumer CLI.
+
 #### Token variables
 
 - `--sds-effects-focus` → `--sds-effects-focusring`

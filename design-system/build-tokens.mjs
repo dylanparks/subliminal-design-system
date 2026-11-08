@@ -14,12 +14,14 @@
  *     node build-tokens.mjs
  *     npm run build:tokens
  *
- *   In a consumer project (custom Relay-exported tokens):
- *     npx sds-build-tokens --input ./my-tokens --output ./src/design-tokens
+ *   In a consumer project (your own Relay export):
+ *     npx sds-build-tokens --input ./subliminal-tokens.zip --output ./src/design-tokens
  *
  *   Flags:
- *     --input  -i   A Relay export: a ZIP, or a directory of its files (required for consumers)
- *     --output -o   Directory for generated output files
+ *     --input  -i   A Relay export: a ZIP, or a directory of its files. Optional if exactly one
+ *                   subliminal-tokens*.zip sits in the current directory.
+ *     --output -o   Directory for generated output files. Required when run from an installed
+ *                   package, so tokens aren't written into node_modules.
  *
  * ─── Token input (export via Subliminal Relay ≥ 0.5.0, "Download All (.zip)") ─
  *
@@ -240,6 +242,17 @@ async function verifyGoogleFonts(families, url) {
 
 // ─── Main build ───────────────────────────────────────────────────────────────
 
+// Run from an installed package (npx sds-build-tokens) rather than from this repo. Its defaults
+// point inside this package — writing there would bury a consumer's tokens in node_modules, to be
+// wiped on the next install, and the repo's own export isn't shipped — so consumers must be explicit.
+const runFromInstall = __dirname.split(/[\\/]/).includes('node_modules');
+
+if (runFromInstall && !cliArgs.output) {
+  console.error('✖ sds-build-tokens: pass --output — where to write tokens.css, typography.css, tokens.ts and fonts.ts.');
+  console.error('    npx sds-build-tokens --input ./subliminal-tokens.zip --output ./src/design-tokens');
+  process.exit(1);
+}
+
 const outputDir = cliArgs.output
   ? resolve(process.cwd(), cliArgs.output)
   : join(__dirname, 'src', 'tokens', 'generated');
@@ -290,6 +303,11 @@ if (cliArgs.input) {
     for (const f of zipMatches) console.error(`    ${f}`);
     console.error('  Specify which one to use:');
     console.error(`    npx sds-build-tokens --input ./${zipMatches[0]}`);
+    process.exit(1);
+  } else if (runFromInstall) {
+    console.error(`✖ sds-build-tokens: no --input, and no subliminal-tokens*.zip in ${cwd}.`);
+    console.error('  Export from Figma with Subliminal Relay ("Download All (.zip)"), then:');
+    console.error('    npx sds-build-tokens --input ./subliminal-tokens.zip --output ./src/design-tokens');
     process.exit(1);
   } else {
     // No ZIP found — fall back to the DS repo's own export
