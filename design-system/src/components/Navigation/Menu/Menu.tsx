@@ -36,7 +36,7 @@ export interface MenuProps {
   open: boolean;
   /** The element the menu is anchored to */
   anchorEl: HTMLElement | null;
-  /** Called when the menu should close (outside click, Escape, backdrop tap) */
+  /** Called when the menu should close (outside pointerdown, Escape, Tab, item activation) */
   onClose: () => void;
   /**
    * The interaction model for all items in this menu.

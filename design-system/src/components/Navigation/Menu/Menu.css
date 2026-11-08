@@ -11,7 +11,6 @@
  *
  * Subcomponents:
  *   .sds-menu            → floating list container (portal-rendered, position: fixed)
- *   .sds-menu-backdrop   → transparent click-capture overlay
  *   .sds-menu-item       → individual option row
  *   .sds-checkbox-indicator    → multi-select checkbox indicator (from Inputs/CheckboxIndicator)
  *   .sds-menu-item__icon       → leading icon slot
