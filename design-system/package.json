@@ -39,9 +39,7 @@
     "@floating-ui/dom": "^1.7.6",
     "@material-symbols/svg-400": "^0.42.3",
     "adm-zip": "^0.5.16",
-    "flagpack-core": "^2.1.0",
     "libphonenumber-js": "^1.12.40",
-    "react-flagpack": "^2.0.6",
     "style-dictionary": "^5.3.3",
     "web-vitals": "^2.1.4"
   },
@@ -103,6 +101,7 @@
     "@vitest/coverage-v8": "^4.1.4",
     "chromatic": "^16.0.0",
     "jsdom": "^26",
+    "react-flagpack": "^2.0.6",
     "storybook": "^10.3.5",
     "typescript": "^5",
     "vite": "^6",
