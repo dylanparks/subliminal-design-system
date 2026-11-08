@@ -89,6 +89,19 @@ shortest form, since developers type these).
 - `build-tokens.mjs` reads **only** the Brand-layer export now; the legacy files in
   `src/tokens/default-values/` are no longer used.
 
+#### Sizes follow the reader's font-size setting: rem and em (Phase T.2.5)
+Figma stays in px; the build converts with a fixed rule (px ÷ 16), so names still map mechanically.
+
+- **rem:** font size, line height, letter-spacing, `--sds-size-*`, `--sds-radius-*`. Someone who sets
+  their browser to 20px text now gets 20px labels in 45px-tall controls, not 16px in 36px.
+- **px, deliberately:** border thickness (hairlines shouldn't scale to blurry fractions),
+  `--sds-radius-round` (999px only means "fully round"), and `--sds-viewport-*` (Figma frame sizes).
+- **Breakpoints are em, in range syntax** (`@media (width < 90em)`), which is exact where
+  `max-width: 1439px` was off by one. At a larger text setting the layout moves to the narrower
+  breakpoint sooner, so bigger text gets the room it needs.
+- **No visual change at default settings.** Every scale value computes to exactly the same px as
+  before, verified at all three breakpoint widths.
+
 #### Cutover: the Brand-layer export is the only token input (Phase T.2.3)
 - **`npx sds-build-tokens` now ships.** `package.json` `files` listed only `dist`, so the CLI's
   entry point was missing from the published package. It now includes `build-tokens.mjs` and its

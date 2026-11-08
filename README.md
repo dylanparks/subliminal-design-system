@@ -31,7 +31,8 @@ Tokens live in Figma as four variable collections, exported with the **Sublimina
 - `tokens.ts` — typed `var(--sds-…)` references; `fonts.ts` — font metadata
 
 CSS names are a mechanical translation of the Figma path (`Brand/Radius/Small` → `--sds-radius-small`),
-so a name in Figma predicts the name in code.
+so a name in Figma predicts the name in code. Figma's px become **rem** (÷ 16) for type, sizes and
+radii, so they follow the reader's browser font size. Border thickness stays px, and breakpoints are em.
 
 **Intent colours are derived at runtime, not baked.** A hover state is
 `color-mix(in srgb, var(--sds-brand-light-primary) var(--sds-mix-…, 93%), transparent)`, so

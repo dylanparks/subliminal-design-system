@@ -30,9 +30,32 @@ const FONT_FALLBACK = 'ui-sans-serif, system-ui, sans-serif';
 
 const cssName = (path) => `--sds-${path.map(segment).join('-')}`;
 
-/** Weights are unitless; every other number in these collections is a pixel length. */
+/**
+ * Figma works in px; CSS gets the unit that behaves best (Phase T.2.5):
+ *
+ *   unitless  font weights
+ *   rem       everything that should follow the reader's browser font-size setting — font size,
+ *             line height, letter-spacing, sizes, radii. With px, someone who sets their browser
+ *             to 20px text still gets 16px labels in 36px-tall buttons.
+ *   px        border thickness (hairlines shouldn't scale to blurry fractions), a radius of
+ *             ≥ 999 (it only means "fully round"), and Viewport values (Figma frame sizes, not UI).
+ *
+ * The conversion is a fixed rule — px ÷ 16, the browser default — so Figma's numbers still map
+ * mechanically: 36 → 2.25rem. At default settings every computed value is unchanged.
+ */
+const REM_BASE = 16;
 const isWeight = (path) => path.some((p) => /weight/i.test(p));
-const numberValue = (path, n) => (isWeight(path) ? String(tidy(n)) : `${tidy(n)}px`);
+const staysPx = (path, n) =>
+  path[0] === 'Border-thickness' || path[0] === 'Viewport' || (path[0] === 'Radius' && n >= 999);
+
+/** px ÷ 16, to 6 decimals: under 0.00001px of error, and none of Figma's float noise. */
+const rem = (n) => `${+(n / REM_BASE).toFixed(6)}rem`;
+
+function numberValue(path, n) {
+  if (isWeight(path)) return String(tidy(n));
+  if (staysPx(path, n)) return `${tidy(n)}px`;
+  return n === 0 ? '0' : rem(n);
+}
 
 const fontFamilyValue = (name) => `${/\s/.test(name) ? `"${name}"` : name}, ${FONT_FALLBACK}`;
 
@@ -162,14 +185,18 @@ export function buildScaleLayer(dir) {
   // Each narrower breakpoint overrides only what differs from the next-wider one. Diffing against
   // the next-wider mode (not the default) matters: at the narrowest width every @media block
   // applies, so a value that returns to the default must be restated or the middle one would win.
+  // Media queries use em, which follows the reader's browser font-size setting, and the range
+  // syntax `width < X`, which is exact where `max-width: X-1px` was off by one. At a 20px setting
+  // the layout switches to MD earlier (below 1800px instead of 1440px): the text is bigger, so the
+  // layout needs room sooner. That's the point of em breakpoints.
   for (let i = 1; i < modes.length; i++) {
-    const below = modes[i - 1].width - 1;
+    const below = +(modes[i - 1].width / REM_BASE).toFixed(6);
     const diff = [...modes[i].vars].filter(([name, { value }]) => modes[i - 1].vars.get(name)?.value !== value);
     if (diff.length === 0) continue;
     parts.push(
       '',
-      `/* ─── Breakpoint: ${modes[i].mode} (≤ ${below}px) */`,
-      `@media (max-width: ${below}px) {`,
+      `/* ─── Breakpoint: ${modes[i].mode} (narrower than ${modes[i - 1].width}px = ${below}em at default size) */`,
+      `@media (width < ${below}em) {`,
       block(':root', diff, '  '),
       '}',
     );
