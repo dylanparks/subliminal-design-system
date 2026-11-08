@@ -2,7 +2,7 @@
 // is not part of the published package (see the "files" field in package.json).
 //
 // Consumers also need:
-//   import 'subliminal-design-system/tokens.css';       — CSS variables (light + dark via .dark)
+//   import 'subliminal-design-system/tokens.css';       — CSS variables (Brand + both modes)
 //   import 'subliminal-design-system/typography.css';   — sds-text--{category}-{size} utility classes
 //   import 'subliminal-design-system/style.css';        — component styles (all .sds-* class rules)
 
@@ -61,8 +61,9 @@ export * from './components/Enhancers/Divider/Divider';
 export * from './components/Enhancers/StatusLight/StatusLight';
 export * from './components/Enhancers/Tooltip/Tooltip';
 
-// ─── Theme ──────────────────────────────────────────────────────────────────
-export * from './theme';
+// ─── Mode (light/dark) ──────────────────────────────────────────────────────
+// Themes — whole Brands — are CSS-only for now: data-sds-theme + --sds-brand-* variables.
+export * from './mode';
 
 // ─── Utilities ──────────────────────────────────────────────────────────────
 export * from './utilities';

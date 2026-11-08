@@ -1,5 +1,5 @@
 /* Story canvas background — uses the neutral primary background token so it
-   responds automatically to the Light / Dark theme toggle. */
+   responds automatically to the Light / Dark mode toggle. */
 body,
 #storybook-root {
   background-color: var(--sds-neutral-background-default);

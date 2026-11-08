@@ -21,7 +21,7 @@ export default defineConfig({
       include: [
         'src/lib.ts',
         'src/components/**/*.{ts,tsx}',
-        'src/theme/**/*.ts',
+        'src/mode/**/*.{ts,tsx}',
         'src/utilities/**/*.{ts,tsx}',
         'src/tokens/generated/tokens.ts',
       ],

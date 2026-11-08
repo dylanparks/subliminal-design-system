@@ -147,6 +147,8 @@ const preview: Preview = {
     direction: 'ltr',
   },
   decorators: [
+    // Mode switcher (light/dark). `@storybook/addon-themes` calls these "themes" in its API, and
+    // that name can't change, but in Subliminal's terms they are MODES. A theme is a whole Brand.
     withThemeByClassName({
       themes: {
         Light: '',
@@ -188,8 +190,8 @@ const preview: Preview = {
       test: 'todo'
     },
     chromatic: {
-      // Capture every story in both themes so visual diffs and a11y checks
-      // cover light and dark mode. Theme names must match withThemeByClassName keys.
+      // Capture every story in both modes so visual diffs and a11y checks cover light and dark.
+      // The `theme` key is addon-themes' global name; its values must match withThemeByClassName keys.
       modes: {
         light: { theme: 'Light' },
         dark:  { theme: 'Dark'  },

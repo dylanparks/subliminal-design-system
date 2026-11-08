@@ -320,7 +320,7 @@ export function buildColorLayer(dir) {
     '/* ─── Modes ─────────────────────────────────────────────────────────────────',
     ' * A mode only sets color-scheme, which light-dark() reads, and the few mode-dependent numbers.',
     ' * Both inherit, so the nearest marker wins: a light section works inside a dark page.',
-    ' * `.dark` is kept for compatibility with ThemeProvider; data-sds-mode is the general form.',
+    ' * `.dark` is what ModeProvider sets on <html>; data-sds-mode is the general form.',
     ' */',
     ':root, [data-sds-mode="light"] {',
     '  color-scheme: light;',

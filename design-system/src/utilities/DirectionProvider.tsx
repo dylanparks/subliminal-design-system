@@ -25,7 +25,7 @@ export interface DirectionProviderProps {
 /**
  * Sets the active text direction for the application.
  *
- * Mirrors the pattern of `ThemeProvider` — applies the `dir` attribute to
+ * Mirrors the pattern of `ModeProvider` — applies the `dir` attribute to
  * `document.documentElement` so that CSS `[dir="rtl"]` selectors and logical
  * properties (`padding-inline-start`, `text-align: start`, etc.) resolve
  * correctly throughout the component tree.

@@ -20,7 +20,7 @@ All notable changes to the Subliminal Design System are documented here.
   - **Theme** = a whole Brand, user-named. Put `data-sds-theme="<name>"` on any element and set
     `--sds-brand-*` (and optionally `--sds-mix-*`) on it; everything inside re-themes.
   - **Mode** = a fixed system axis (light/dark). Put `data-sds-mode="light|dark"` on any element.
-    `.dark` still works, as ThemeProvider uses it on `<html>`.
+    `.dark` still works; it is what ModeProvider sets on `<html>`.
 
   They nest freely: a theme on a dark page, dark inside a theme, a light section inside a dark page
   inside a theme. Intent tokens use CSS `light-dark()`, which resolves on the element using the
@@ -37,6 +37,24 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Removed / renamed (breaking)
 
+#### Theme vs Mode: names now follow the terminology
+A **theme** is a whole Brand (colours, typography, radii, borders) with a user-chosen name. A
+**mode** is a fixed system axis that every theme supports (light/dark). The provider that switches
+light/dark was named for themes, so it's been renamed to say what it does:
+
+| Before | After |
+| --- | --- |
+| `ThemeProvider` (prop `defaultTheme`) | `ModeProvider` (prop `defaultMode`) |
+| `useTheme()` → `{ theme, resolvedTheme, setTheme, toggleTheme }` | `useMode()` → `{ mode, resolvedMode, setMode, toggleMode }` |
+| types `Theme`, `ResolvedTheme`, `ThemeContextValue`; `ThemeContext` | `Mode`, `ResolvedMode`, `ModeContextValue`; `ModeContext` |
+| `src/theme/` | `src/mode/` |
+| localStorage key `sds-theme` | `sds-mode`. The old key is still read once and migrated, so a stored preference survives the rename. |
+
+Behaviour is unchanged: it still toggles `.dark` on `<html>`. On the site, `ThemeToggle` /
+`theme-init.js` are now `ModeToggle` / `mode-init.js`.
+
+#### Token variables
+
 - `--sds-effects-focus` → `--sds-effects-focusring`
 - `--sds-effects-shadowdefault` → `--sds-effects-dropshadow-elevated` (the 10% elevation shadow;
   `--sds-effects-dropshadow-default` is the 0% interactive-state shadow and is *not* a replacement)
@@ -52,7 +70,7 @@ All notable changes to the Subliminal Design System are documented here.
   in `design-system/dist/`: a single ESM bundle (`index.js`), rolled TypeScript declarations,
   and three separate CSS files (`style.css` for component rules, `tokens.css`, `typography.css`).
   `react`/`react-dom` and every other real dependency are externalized, not bundled.
-- New `package.json` `exports` map: `subliminal-design-system` (components + theme + utilities +
+- New `package.json` `exports` map: `subliminal-design-system` (components + mode + utilities +
   typed tokens), `subliminal-design-system/style.css`, `/tokens.css`, `/typography.css`.
   `react`/`react-dom` moved from `dependencies` to `peerDependencies` (correct for a library —
   prevents consumers from getting a duplicate React instance).
