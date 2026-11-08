@@ -3,7 +3,7 @@
  *
  * Tokens: --sds-interactive-fields-background-*, --sds-interactive-fields-stroke-*,
  *         --sds-interactive-fields-content-*, --sds-status-error-*,
- *         --sds-effects-focus, --sds-shape-border-radius-xlarge
+ *         --sds-effects-focusring, --sds-shape-border-radius-xlarge
  * Typography: .sds-text--subtitle-medium (prompt-title), .sds-text--body-content-small (hint, error-message)
  *
  * Structure:
@@ -51,7 +51,7 @@
 
 .sds-file-upload__zone:focus-visible,
 .sds-file-upload__zone[data-drag-over] {
-  box-shadow:   0 0 0 4px var(--sds-effects-focus);
+  box-shadow:   0 0 0 4px var(--sds-effects-focusring);
   border-color: var(--sds-interactive-fields-stroke-hover);
 }
 

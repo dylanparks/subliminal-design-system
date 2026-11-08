@@ -75,7 +75,7 @@ export).
 - `--sds-interactive-negative-{filled,hollow}-{background,content,stroke}-{default,hover,active,disabled}`
 - `ghost` fill style reuses the corresponding `hollow` **content** tokens only (no background/stroke — ghost is transparent and padding-less).
 
-**Effects** — `--sds-effects-focus` (the `focus-visible` box-shadow ring, all variants).
+**Effects** — `--sds-effects-focusring` (the `focus-visible` box-shadow ring, all variants).
 
 **Shape** — `--sds-shape-border-radius-{xsmall,small,medium,large}` (one per size).
 
@@ -99,7 +99,7 @@ export).
 - Accessible name resolution order: explicit `aria-label` prop → (if icon-only) `label` → otherwise the visible label text itself.
 - Icons are marked `aria-hidden="true"` so screen readers announce only the label/aria-label, never icon markup.
 - Icon-only buttons get an automatic `Tooltip` (hover + focus triggers, inherits `Tooltip`'s WCAG 1.4.13 hoverable-zone behavior) so the action is discoverable visually, not just via accessible name.
-- `focus-visible` renders a 4px `box-shadow` ring using `--sds-effects-focus` — visible for keyboard focus, suppressed for mouse-only interaction per native `:focus-visible` semantics.
+- `focus-visible` renders a 4px `box-shadow` ring using `--sds-effects-focusring` — visible for keyboard focus, suppressed for mouse-only interaction per native `:focus-visible` semantics.
 - Target: WCAG AA.
 
 ## Usage in Figma

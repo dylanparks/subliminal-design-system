@@ -6,6 +6,35 @@ All notable changes to the Subliminal Design System are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+#### Colour tokens derive from Brand at runtime (Phase T.2.1)
+- `tokens.css` now has a **Brand layer**: `--sds-brand-light-*` and `--sds-brand-dark-*`, both
+  palettes, mirroring the Figma Brand collection. Intent colours are no longer baked hex values;
+  they're formulas over Brand, e.g.
+  `color-mix(in srgb, var(--sds-brand-light-primary) var(--sds-mix-interactive-primary-filled-background-hover, 93%), transparent)`.
+  **Rebrand by overriding `--sds-brand-*`. No rebuild needed.**
+- Every composed state has an optional `--sds-mix-<token>` variable. Set one (e.g. `80%`) to
+  retune that state's opacity in both modes.
+- `.dark` redeclares every intent formula, so it works on a section of a light page as well as on
+  `<html>`.
+- `build-tokens.mjs` reads colours from a Brand-layer Relay export (≥ 0.5.0) and fails the build,
+  rather than guessing, if an intent colour doesn't derive from Brand, a Brand colour is
+  translucent, or a mode uses the other palette. Style Dictionary is no longer used for colours.
+- New `brandTokens` export in `tokens.ts` (typed `var(--sds-brand-…)` references).
+- **Visual change:** colours now follow the redesigned Figma file. 112 of the 169 pre-existing
+  light-mode intent tokens render differently, including the focus ring (`#8f9fbf` → `#7a8fff`).
+
+### Removed / renamed (breaking)
+
+- `--sds-effects-focus` → `--sds-effects-focusring`
+- `--sds-effects-shadowdefault` → `--sds-effects-dropshadow-elevated` (the 10% elevation shadow;
+  `--sds-effects-dropshadow-default` is the 0% interactive-state shadow and is *not* a replacement)
+- `--sds-effects-values-elevated-{blur,spread,x,y}` → `--sds-effects-elevated-elevated{blur,spread,x,y}`
+- `--sds-effects-shadowcallout` → `--sds-effects-dropshadow-callout` (now 30% Brand Shadow, was opaque)
+- `--sds-utility-transparent` removed (use `transparent`)
+- New: `--sds-effects-dropshadow-{default,hover,active,disabled}`
+
 ### Added
 
 #### Library build (npm publish readiness)

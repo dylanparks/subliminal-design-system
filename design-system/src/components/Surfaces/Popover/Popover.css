@@ -91,7 +91,7 @@
 }
 
 .sds-popover__close:focus-visible {
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 3px var(--sds-effects-focusring);
 }
 
 /* ─── Body (title + description) ─────────────────────────────────────────────── */

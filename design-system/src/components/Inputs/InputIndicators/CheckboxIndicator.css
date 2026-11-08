@@ -3,7 +3,7 @@
  *
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
  *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
- *         --sds-interactive-negative-filled-*, --sds-effects-focus,
+ *         --sds-interactive-negative-filled-*, --sds-effects-focusring,
  *         --sds-shape-border-radius-xxsmall
  *
  * This component is purely visual. Interactive states (hover, focus ring,
@@ -83,7 +83,7 @@
 /* ─── Focus ring (applied by parent via .sds-checkbox-indicator--focus-ring) ─── */
 
 .sds-checkbox-indicator--focus-ring {
-  box-shadow: 0 0 0 6px var(--sds-effects-focus);
+  box-shadow: 0 0 0 6px var(--sds-effects-focusring);
 }
 
 /* ─── Hover state (applied by parent context) ────────────────────────────────── */

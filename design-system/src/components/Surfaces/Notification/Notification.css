@@ -1,7 +1,7 @@
 /* Notification — Subliminal Design System
  * Surfaces/Notification/Notification
  *
- * Tokens: --sds-status-*, --sds-neutral-content-*, --sds-effects-focus
+ * Tokens: --sds-status-*, --sds-neutral-content-*, --sds-effects-focusring
  * Typography: .sds-text--subtitle-medium (title), .sds-text--body-content-medium (description)
  *
  * Structure:
@@ -109,5 +109,5 @@
 .sds-notification__dismiss:hover     { color: var(--sds-neutral-content-primary); }
 .sds-notification__dismiss:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
 }

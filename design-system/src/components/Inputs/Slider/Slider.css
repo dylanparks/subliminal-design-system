@@ -2,7 +2,7 @@
  * Inputs/Slider
  *
  * Tokens: --sds-interactive-primary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
- *         --sds-interactive-fields-stroke-*, --sds-effects-focus,
+ *         --sds-interactive-fields-stroke-*, --sds-effects-focusring,
  *         --sds-neutral-content-*, --sds-neutral-background-*,
  *         --sds-shape-border-radius-*
  * Typography: sds-text--subtitle-medium (label), sds-text--body-interactive-medium (input, sep),
@@ -166,7 +166,7 @@
 /* ─── Focus ring ─────────────────────────────────────────────────────────────── */
 
 .sds-slider__thumb:focus-visible {
-  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
 }
 
 /* ─── Tooltip ────────────────────────────────────────────────────────────────── */

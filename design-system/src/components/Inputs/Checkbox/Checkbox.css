@@ -2,7 +2,7 @@
  * Inputs/Checkbox/Checkbox
  *
  * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
- *         --sds-interactive-negative-*, --sds-effects-focus,
+ *         --sds-interactive-negative-*, --sds-effects-focusring,
  *         --sds-shape-border-radius-xxsmall, --sds-typography-line-height-*
  * Typography utility classes: .sds-text--body-content-medium (label),
  *                              .sds-text--body-content-small (description)
@@ -157,7 +157,7 @@
 /* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
 
 .sds-checkbox:not([data-mouse-focus]):has(.sds-checkbox__input:focus-visible) .sds-checkbox-indicator {
-  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
 }
 
 /* ─── Disabled state ─────────────────────────────────────────────────────────── */

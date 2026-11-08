@@ -4,7 +4,7 @@
  * Tokens: --sds-neutral-background-*, --sds-neutral-stroke-*, --sds-neutral-content-*,
  *         --sds-interactive-fields-background-*, --sds-interactive-fields-content-*,
  *         --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
- *         --sds-effects-focus, --sds-effects-shadowdefault, --sds-effects-values-elevated-*,
+ *         --sds-effects-focusring, --sds-effects-dropshadow-elevated, --sds-effects-elevated-elevated*,
  *         --sds-shape-border-radius-*
  * Typography: body-content-medium (item — declared on .sds-menu-item directly),
  *             sds-text--subtitle-small (suffix--tag), sds-text--body-content-small (suffix--text)
@@ -43,11 +43,11 @@
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-shape-border-radius-large);
   box-shadow:
-    calc(var(--sds-effects-values-elevated-x) * 1px)
-    calc(var(--sds-effects-values-elevated-y) * 1px)
-    calc(var(--sds-effects-values-elevated-blur) * 1px)
-    calc(var(--sds-effects-values-elevated-spread) * 1px)
-    var(--sds-effects-shadowdefault);
+    calc(var(--sds-effects-elevated-elevatedx) * 1px)
+    calc(var(--sds-effects-elevated-elevatedy) * 1px)
+    calc(var(--sds-effects-elevated-elevatedblur) * 1px)
+    calc(var(--sds-effects-elevated-elevatedspread) * 1px)
+    var(--sds-effects-dropshadow-elevated);
   overflow: hidden;
   box-sizing: border-box;
 
@@ -169,7 +169,7 @@
  * (:focus-visible) to avoid the ring on mouse/touch focus.
  */
 .sds-menu-item:focus-visible {
-  outline: 4px solid var(--sds-effects-focus);
+  outline: 4px solid var(--sds-effects-focusring);
   outline-offset: -4px;
   background-color: var(--sds-interactive-fields-background-hover);
 }
@@ -338,7 +338,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--sds-effects-focus);
+  background-color: var(--sds-effects-focusring);
   pointer-events: none;
   z-index: 1;
 }
@@ -386,6 +386,6 @@
 }
 
 .sds-menu-item__toggle-zone:focus-visible {
-  box-shadow: inset 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: inset 0 0 0 3px var(--sds-effects-focusring);
 }
 

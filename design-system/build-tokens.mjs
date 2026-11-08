@@ -20,11 +20,14 @@
  *     --input  -i   Directory containing Relay token JSON files (required for consumers)
  *     --output -o   Directory for generated output files
  *
- * ─── Required token files (export via Subliminal Relay) ──────────────────────
+ * ─── Token inputs (export via Subliminal Relay) ──────────────────────────────
  *
- *     global-colors.json       — raw color palette
- *     intent-colors-light.json — semantic colors, light mode
- *     intent-colors-dark.json  — semantic colors, dark mode
+ *   Colours — a Brand-layer export (Relay ≥ 0.5.0), see build-color-layer.mjs:
+ *     Brand.<mode>.tokens.json            — the brand file: Colors/Light/*, Colors/Dark/*
+ *     Color mode.<Light|Dark>.tokens.json — intent tokens, derived from Brand
+ *   Taken from --input when it holds one, else from src/tokens/relay-export/.
+ *
+ *   Everything else — legacy files, until Phase T.2.2 moves them to the Brand-layer export:
  *     typography-lg.json       — typography tokens, LG (default)
  *     typography-md.json       — typography tokens, MD breakpoint
  *     typography-xs.json       — typography tokens, XS breakpoint
@@ -34,12 +37,12 @@
  *     viewport-xs.json         — viewport reference values, XS
  */
 
-import StyleDictionary from 'style-dictionary';
 import { readFileSync, mkdirSync, writeFileSync, rmSync, existsSync, readdirSync } from 'fs';
 import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { parseArgs } from 'util';
 import AdmZip from 'adm-zip';
+import { buildColorLayer, hasBrandLayerExport } from './build-color-layer.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -54,36 +57,6 @@ const { values: cliArgs } = parseArgs({
 });
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-
-/**
- * Convert a Figma variable name to a Style Dictionary token path array.
- * "Colors/Cobalt/50"     → ["color", "cobalt", "50"]
- * "Neutrals/Ash/50"      → ["neutral", "ash", "50"]
- * "Transparent/Light/50" → ["transparent", "light", "50"]
- */
-function figmaNameToPath(name) {
-  const parts = name.split('/');
-  const prefixMap = { Colors: 'color', Neutrals: 'neutral', Transparent: 'transparent' };
-  const group = prefixMap[parts[0]] ?? parts[0].toLowerCase();
-  return [group, ...parts.slice(1).map((p) => p.toLowerCase())];
-}
-
-/** Convert a Figma aliasName like "Colors/Cobalt/800" to "{color.cobalt.800}". */
-function figmaNameToRef(aliasName) {
-  return `{${figmaNameToPath(aliasName).join('.')}}`;
-}
-
-/**
- * Convert a Relay W3C alias reference to a Style Dictionary reference.
- * "{global-colors.Colors.Cobalt.800}" → "{color.cobalt.800}"
- */
-function relayAliasToRef(aliasValue) {
-  const inner = aliasValue.slice(1, -1); // strip { }
-  const dotIndex = inner.indexOf('.');
-  if (dotIndex === -1) return aliasValue;
-  const varPath = inner.slice(dotIndex + 1).replace(/\./g, '/'); // e.g. "Colors/Cobalt/800"
-  return figmaNameToRef(varPath);
-}
 
 /** Set a value deep inside a nested object given an array path. */
 function setDeep(obj, path, value) {
@@ -145,51 +118,7 @@ function traverseW3C(obj, currentPath = [], results = []) {
 }
 
 // ─── W3C Token Parsers ────────────────────────────────────────────────────────
-
-/**
- * Parse a Relay global-colors.json (W3C format) into a Style Dictionary token tree.
- * Token paths follow the Figma group hierarchy: Colors/Cobalt/50 → color.cobalt.50
- */
-function parseRelayGlobalColors(filePath) {
-  const data = JSON.parse(readFileSync(filePath, 'utf8'));
-  const tokens = {};
-
-  for (const { path, value, type } of traverseW3C(data)) {
-    if (type !== 'color') continue;
-    const figmaName = path.join('/');        // "Colors/Cobalt/50"
-    const sdPath = figmaNameToPath(figmaName); // ["color", "cobalt", "50"]
-    setDeep(tokens, sdPath, { value, type: 'color' });
-  }
-
-  return tokens;
-}
-
-/**
- * Parse a Relay intent-colors.json (W3C format) into a Style Dictionary token tree.
- * Alias values like "{global-colors.Colors.Cobalt.800}" are converted to
- * Style Dictionary references "{color.cobalt.800}".
- */
-function parseRelayIntentTokens(filePath) {
-  const data = JSON.parse(readFileSync(filePath, 'utf8'));
-  const tokens = {};
-
-  for (const { path, value, description } of traverseW3C(data)) {
-    const sdPath = path.map((p) =>
-      p.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
-    );
-
-    const tokenValue =
-      typeof value === 'string' && value.startsWith('{') && value.endsWith('}')
-        ? relayAliasToRef(value)
-        : value;
-
-    const entry = { value: tokenValue, type: 'color' };
-    if (description) entry.comment = description;
-    setDeep(tokens, sdPath, entry);
-  }
-
-  return tokens;
-}
+// Colours are built by ./build-color-layer.mjs from the Brand-layer export.
 
 /**
  * Parse a Relay flat-token file (shape.json, viewport.json, typography*.json)
@@ -326,19 +255,7 @@ function extractFontMetadataW3C(filePath) {
   };
 }
 
-// ─── Style Dictionary custom format: TypeScript constants ─────────────────────
-
-function collectIntentTokens(obj, prefix, results = []) {
-  for (const [key, val] of Object.entries(obj)) {
-    const currentPath = [...prefix, key];
-    if (val && typeof val === 'object' && 'value' in val) {
-      results.push(currentPath);
-    } else if (val && typeof val === 'object') {
-      collectIntentTokens(val, currentPath, results);
-    }
-  }
-  return results;
-}
+// ─── TypeScript constants ─────────────────────────────────────────────────────
 
 function buildNestedObject(paths, valueFactory) {
   const root = {};
@@ -563,11 +480,15 @@ if (cliArgs.input) {
   }
 }
 
-// Guard: ensure relay token files exist before proceeding
+// Interim, Phase T.2.1 → T.2.3: colours come from the Brand-layer export (Globals / Brand /
+// Color mode / Breakpoint); everything else still comes from the legacy files until T.2.2.
+// A Brand-layer export passed via --input supplies the colours; otherwise the repo's own does.
+const colorDir = hasBrandLayerExport(relayDir)
+  ? relayDir
+  : join(__dirname, 'src', 'tokens', 'relay-export');
+
+// Guard: ensure the legacy (non-colour) token files exist before proceeding
 const requiredFiles = [
-  'global-colors.json',
-  'intent-colors-light.json',
-  'intent-colors-dark.json',
   'typography-lg.json',
   'typography-md.json',
   'typography-xs.json',
@@ -588,59 +509,16 @@ if (missing.length > 0) {
 mkdirSync(outputDir, { recursive: true });
 mkdirSync(tmpDir, { recursive: true });
 
-// ─── Color tokens (Style Dictionary) ──────────────────────────────────────────
+// ─── Color tokens ─────────────────────────────────────────────────────────────
+// Brand palettes plus intent formulas derived from them — see build-color-layer.mjs.
 
-const globalTokens = parseRelayGlobalColors(join(relayDir, 'global-colors.json'));
-const intentLightTokens = parseRelayIntentTokens(join(relayDir, 'intent-colors-light.json'));
-
-const intentDarkTokens = parseRelayIntentTokens(join(relayDir, 'intent-colors-dark.json'));
-
-writeFileSync(join(tmpDir, 'global.json'), JSON.stringify(globalTokens));
-writeFileSync(join(tmpDir, 'intent-light.json'), JSON.stringify(intentLightTokens));
-writeFileSync(join(tmpDir, 'intent-dark.json'), JSON.stringify(intentDarkTokens));
-
-
-const sdLight = new StyleDictionary({
-  source: [join(tmpDir, 'global.json'), join(tmpDir, 'intent-light.json')],
-  platforms: {
-    css: {
-      transformGroup: 'css',
-      prefix: 'sds',
-      buildPath: tmpDir + '/',
-      files: [
-        {
-          destination: 'light.css',
-          format: 'css/variables',
-          filter: (token) => !token.filePath.endsWith('global.json'),
-          options: { selector: ':root', outputReferences: false },
-        },
-      ],
-    },
-  },
-});
-
-await sdLight.buildAllPlatforms();
-
-const sdDark = new StyleDictionary({
-  source: [join(tmpDir, 'global.json'), join(tmpDir, 'intent-dark.json')],
-  platforms: {
-    css: {
-      transformGroup: 'css',
-      prefix: 'sds',
-      buildPath: tmpDir + '/',
-      files: [
-        {
-          destination: 'dark.css',
-          format: 'css/variables',
-          filter: (token) => !token.filePath.endsWith('global.json'),
-          options: { selector: '.dark', outputReferences: false },
-        },
-      ],
-    },
-  },
-});
-await sdDark.buildAllPlatforms();
-const darkCss = readFileSync(join(tmpDir, 'dark.css'), 'utf8');
+let colorLayer;
+try {
+  colorLayer = buildColorLayer(colorDir);
+} catch (err) {
+  console.error(`✖ sds-build-tokens: ${err.message}`);
+  process.exit(1);
+}
 
 // ─── Shape tokens ──────────────────────────────────────────────────────────────
 
@@ -712,8 +590,6 @@ if (fontVerification.networkError) {
 
 // ─── Merge all CSS outputs ─────────────────────────────────────────────────────
 
-const lightCss = readFileSync(join(tmpDir, 'light.css'), 'utf8');
-
 const parts = [
   '/* Generated by build-tokens.mjs — do not edit manually */',
   '/* Re-run: npm run build:tokens                         */',
@@ -725,8 +601,7 @@ const parts = [
         '',
       ]
     : []),
-  '/* ─── Colors (light) ──────────────────────────────────────────────────────── */',
-  lightCss.trim(),
+  colorLayer.css,
   '',
   '/* ─── Shape ───────────────────────────────────────────────────────────────── */',
   renderCssBlock(':root', shapeVars),
@@ -760,12 +635,7 @@ if (Object.keys(viewportXsDiff).length > 0 || Object.keys(typographyXsDiff).leng
   parts.push(renderMediaQuery(xsBreakpoint, { ...viewportXsDiff, ...typographyXsDiff }));
 }
 
-if (darkCss) {
-  parts.push('');
-  parts.push('/* ─── Colors (dark) ───────────────────────────────────────────────────────── */');
-  parts.push(darkCss.trim());
-  parts.push('');
-}
+parts.push('');
 
 writeFileSync(join(outputDir, 'tokens.css'), parts.join('\n'));
 
@@ -775,11 +645,16 @@ writeFileSync(join(outputDir, 'typography.css'), generateTypographyUtilities(typ
 
 // ─── Generate TypeScript constants ────────────────────────────────────────────
 
-const intentPaths = collectIntentTokens(intentLightTokens, []);
 const sdCssPrefix = 'sds';
 
-const colorNested = buildNestedObject(intentPaths, (path) => {
+// Components read these (the Color mode layer)…
+const colorNested = buildNestedObject(colorLayer.intentPaths, (path) => {
   return `var(${toCssVarName(sdCssPrefix, path)})`;
+});
+
+// …and themes write these (the Brand layer): brandTokens.light.primary → var(--sds-brand-light-primary)
+const brandNested = buildNestedObject(colorLayer.brandPaths, (path) => {
+  return `var(${toCssVarName(`${sdCssPrefix}-brand`, path)})`;
 });
 
 const shapeNested = flatVarsToNestedTs(shapeVars);
@@ -806,6 +681,12 @@ const tokensTs = [
   `export const tokens = ${objectToTs(colorNested)} as const;`,
   '',
   'export type Tokens = typeof tokens;',
+  '',
+  '/**',
+  ' * The Brand layer — both palettes. Theme by overriding these CSS variables; components',
+  ' * should read `tokens` (the Color mode layer), never these directly.',
+  ' */',
+  `export const brandTokens = ${objectToTs(brandNested)} as const;`,
   '',
   `export const shapeTokens = ${objectToTs(shapeNested)} as const;`,
   '',
@@ -849,6 +730,14 @@ writeFileSync(join(outputDir, 'fonts.ts'), fontsTs);
 rmSync(tmpDir, { recursive: true, force: true });
 if (zipExtractDir) rmSync(zipExtractDir, { recursive: true, force: true });
 
+{
+  const s = colorLayer.summary;
+  console.log(
+    `✓ colour layer — ${s.brandColors} Brand colours; ${s.composed} composed + ${s.aliases} aliased intent colours` +
+    `${s.fixed ? `, ${s.fixed} fixed to Globals` : ''}, ${s.numbers} numbers` +
+    `${s.skippedBooleans ? ` (${s.skippedBooleans} boolean flag not emitted)` : ''}`,
+  );
+}
 console.log('✓ tokens.css');
 console.log('✓ typography.css');
 console.log('✓ tokens.ts');

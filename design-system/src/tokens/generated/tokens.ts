@@ -259,11 +259,11 @@ export const tokens = {
         default: "var(--sds-status-error-content-default)",
         subtle: "var(--sds-status-error-content-subtle)",
       },
-      background: {
-        default: "var(--sds-status-error-background-default)",
-      },
       stroke: {
         default: "var(--sds-status-error-stroke-default)",
+      },
+      background: {
+        default: "var(--sds-status-error-background-default)",
       },
     },
     success: {
@@ -303,18 +303,6 @@ export const tokens = {
       },
     },
   },
-  effects: {
-    overlaysolid: "var(--sds-effects-overlaysolid)",
-    shadowdefault: "var(--sds-effects-shadowdefault)",
-    shadowcallout: "var(--sds-effects-shadowcallout)",
-    focus: "var(--sds-effects-focus)",
-    values: {
-      "elevated-blur": "var(--sds-effects-values-elevated-blur)",
-      "elevated-spread": "var(--sds-effects-values-elevated-spread)",
-      "elevated-y": "var(--sds-effects-values-elevated-y)",
-      "elevated-x": "var(--sds-effects-values-elevated-x)",
-    },
-  },
   accents: {
     solid: {
       primary: "var(--sds-accents-solid-primary)",
@@ -326,12 +314,88 @@ export const tokens = {
       primaryend: "var(--sds-accents-gradient-primaryend)",
     },
   },
-  utility: {
-    transparent: "var(--sds-utility-transparent)",
+  effects: {
+    overlaysolid: "var(--sds-effects-overlaysolid)",
+    focusring: "var(--sds-effects-focusring)",
+    dropshadow: {
+      default: "var(--sds-effects-dropshadow-default)",
+      hover: "var(--sds-effects-dropshadow-hover)",
+      active: "var(--sds-effects-dropshadow-active)",
+      disabled: "var(--sds-effects-dropshadow-disabled)",
+      elevated: "var(--sds-effects-dropshadow-elevated)",
+      callout: "var(--sds-effects-dropshadow-callout)",
+    },
+    elevated: {
+      elevatedblur: "var(--sds-effects-elevated-elevatedblur)",
+      elevatedspread: "var(--sds-effects-elevated-elevatedspread)",
+      elevatedy: "var(--sds-effects-elevated-elevatedy)",
+      elevatedx: "var(--sds-effects-elevated-elevatedx)",
+    },
   },
 } as const;
 
 export type Tokens = typeof tokens;
+
+/**
+ * The Brand layer — both palettes. Theme by overriding these CSS variables; components
+ * should read `tokens` (the Color mode layer), never these directly.
+ */
+export const brandTokens = {
+  light: {
+    background: "var(--sds-brand-light-background)",
+    "background-offset": "var(--sds-brand-light-background-offset)",
+    "background-subtle": "var(--sds-brand-light-background-subtle)",
+    primary: "var(--sds-brand-light-primary)",
+    "primary-background": "var(--sds-brand-light-primary-background)",
+    "primary-foreground": "var(--sds-brand-light-primary-foreground)",
+    secondary: "var(--sds-brand-light-secondary)",
+    "secondary-background": "var(--sds-brand-light-secondary-background)",
+    "secondary-foreground": "var(--sds-brand-light-secondary-foreground)",
+    neutral: "var(--sds-brand-light-neutral)",
+    "neutral-weak": "var(--sds-brand-light-neutral-weak)",
+    accent: "var(--sds-brand-light-accent)",
+    static: "var(--sds-brand-light-static)",
+    "static-foreground": "var(--sds-brand-light-static-foreground)",
+    negative: "var(--sds-brand-light-negative)",
+    "negative-background": "var(--sds-brand-light-negative-background)",
+    "negative-foreground": "var(--sds-brand-light-negative-foreground)",
+    warning: "var(--sds-brand-light-warning)",
+    "warning-background": "var(--sds-brand-light-warning-background)",
+    success: "var(--sds-brand-light-success)",
+    "success-background": "var(--sds-brand-light-success-background)",
+    informative: "var(--sds-brand-light-informative)",
+    "informative-background": "var(--sds-brand-light-informative-background)",
+    shadow: "var(--sds-brand-light-shadow)",
+    "focus-ring": "var(--sds-brand-light-focus-ring)",
+  },
+  dark: {
+    background: "var(--sds-brand-dark-background)",
+    "background-offset": "var(--sds-brand-dark-background-offset)",
+    "background-subtle": "var(--sds-brand-dark-background-subtle)",
+    primary: "var(--sds-brand-dark-primary)",
+    "primary-background": "var(--sds-brand-dark-primary-background)",
+    "primary-foreground": "var(--sds-brand-dark-primary-foreground)",
+    secondary: "var(--sds-brand-dark-secondary)",
+    "secondary-background": "var(--sds-brand-dark-secondary-background)",
+    "secondary-foreground": "var(--sds-brand-dark-secondary-foreground)",
+    neutral: "var(--sds-brand-dark-neutral)",
+    "neutral-weak": "var(--sds-brand-dark-neutral-weak)",
+    accent: "var(--sds-brand-dark-accent)",
+    static: "var(--sds-brand-dark-static)",
+    "static-foreground": "var(--sds-brand-dark-static-foreground)",
+    negative: "var(--sds-brand-dark-negative)",
+    "negative-background": "var(--sds-brand-dark-negative-background)",
+    "negative-foreground": "var(--sds-brand-dark-negative-foreground)",
+    warning: "var(--sds-brand-dark-warning)",
+    "warning-background": "var(--sds-brand-dark-warning-background)",
+    success: "var(--sds-brand-dark-success)",
+    "success-background": "var(--sds-brand-dark-success-background)",
+    informative: "var(--sds-brand-dark-informative)",
+    "informative-background": "var(--sds-brand-dark-informative-background)",
+    shadow: "var(--sds-brand-dark-shadow)",
+    "focus-ring": "var(--sds-brand-dark-focus-ring)",
+  },
+} as const;
 
 export const shapeTokens = {
   shape: {

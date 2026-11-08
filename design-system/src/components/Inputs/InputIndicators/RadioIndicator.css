@@ -4,7 +4,7 @@
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
  *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
  *         --sds-interactive-negative-filled-*, --sds-status-error-*,
- *         --sds-effects-focus
+ *         --sds-effects-focusring
  *
  * Circular outer ring; inner dot rendered via ::after when selected.
  * Interactive states are driven from the parent Radio component's CSS.

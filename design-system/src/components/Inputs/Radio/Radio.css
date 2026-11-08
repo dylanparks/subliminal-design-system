@@ -2,7 +2,7 @@
  * Inputs/Radio/Radio
  *
  * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
- *         --sds-interactive-negative-*, --sds-effects-focus,
+ *         --sds-interactive-negative-*, --sds-effects-focusring,
  *         --sds-typography-line-height-*
  * Typography utility classes: .sds-text--body-content-medium (label),
  *                              .sds-text--body-content-small (description)
@@ -151,7 +151,7 @@
 /* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
 
 .sds-radio:not([data-mouse-focus]):has(.sds-radio__input:focus-visible) .sds-radio-indicator {
-  box-shadow: 0 0 0 4px var(--sds-effects-focus);
+  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
 }
 
 /* ─── Disabled state ─────────────────────────────────────────────────────────── */

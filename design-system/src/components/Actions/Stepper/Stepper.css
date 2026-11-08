@@ -60,7 +60,7 @@
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
   border-color: var(--sds-interactive-secondary-hollow-stroke-default);
-  box-shadow: 0 0 0 3px var(--sds-effects-focus);
+  box-shadow: 0 0 0 3px var(--sds-effects-focusring);
 }
 
 .sds-stepper__button:disabled {
