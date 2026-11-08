@@ -1,16 +1,16 @@
 /* PhoneField — Subliminal Design System
  * Tokens: --sds-interactive-fields-*, --sds-interactive-secondary-filled-*,
  *         --sds-status-*, --sds-neutral-*, --sds-effects-*,
- *         --sds-shape-border-radius-*, --sds-spacing-size-*,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-medium (country-dial, label, input)
- *             sds-text--body-content-small  (message)
+ *         --sds-radius-*, --sds-size-*,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-medium (country-dial, label, input)
+ *             sds-text--content-small  (message)
  *
  * Sizes:
- *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
- *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *   large  → --sds-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-size-medium (56px) · border-radius-medium (12px)
  *
  * State     CSS mechanism
  * ──────────────────────────────────────────────────────────────────────────────
@@ -105,13 +105,13 @@
 /* ─── Sizes — wrapper ───────────────────────────────────────────────────────── */
 
 .sds-phone-field--large .sds-phone-field__wrapper {
-  height: var(--sds-spacing-size-large);   /* 64px */
-  border-radius: var(--sds-shape-border-radius-large);
+  height: var(--sds-size-large);   /* 64px */
+  border-radius: var(--sds-radius-large);
 }
 
 .sds-phone-field--medium .sds-phone-field__wrapper {
-  height: var(--sds-spacing-size-medium);  /* 56px */
-  border-radius: var(--sds-shape-border-radius-medium);
+  height: var(--sds-size-medium);  /* 56px */
+  border-radius: var(--sds-radius-medium);
 }
 
 /* ─── Country selector button ───────────────────────────────────────────────── */
@@ -255,18 +255,18 @@
 .sds-phone-field--large.sds-phone-field--menu-open .sds-phone-field__label {
   top: 10px;
   transform: translateY(0);
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float label up — large: when filled */
 .sds-phone-field--large.sds-phone-field--filled .sds-phone-field__label {
   top: 10px;
   transform: translateY(0);
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float label up — medium: when input is focused */
@@ -274,18 +274,18 @@
 .sds-phone-field--medium.sds-phone-field--menu-open .sds-phone-field__label {
   top: 6px;
   transform: translateY(0);
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float label up — medium: when filled */
 .sds-phone-field--medium.sds-phone-field--filled .sds-phone-field__label {
   top: 6px;
   transform: translateY(0);
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Phone input ────────────────────────────────────────────────────────────── */
@@ -324,14 +324,14 @@
 
 /* Reveal when phone input is focused */
 .sds-phone-field__wrapper:focus-within .sds-phone-field__input {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   overflow: visible;
   opacity: 1;
 }
 
 /* Reveal when filled */
 .sds-phone-field--filled .sds-phone-field__input {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   overflow: visible;
   opacity: 1;
 }
@@ -399,7 +399,7 @@
 /* Support icon — centers the 16px SVG within the text line-height */
 .sds-phone-field__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-phone-field--error .sds-phone-field__support {

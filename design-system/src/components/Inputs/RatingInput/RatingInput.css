@@ -2,7 +2,7 @@
  * Inputs/RatingInput
  *
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
- *         --sds-effects-focusring, --sds-shape-border-radius-round,
+ *         --sds-effects-focusring, --sds-radius-round,
  *         --sds-neutral-content-*
  * Typography: .sds-text--subtitle-medium (group label)
  *
@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: var(--sds-shape-border-radius-round, 999px);
+  border-radius: var(--sds-radius-round, 999px);
 }
 
 /* ─── Visually hidden radio ──────────────────────────────────────────────────── */
@@ -78,7 +78,7 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  border-radius: var(--sds-shape-border-radius-round, 999px);
+  border-radius: var(--sds-radius-round, 999px);
   color: var(--sds-interactive-secondary-hollow-stroke-inactive-default);
   transition: color 120ms ease, box-shadow 120ms ease;
 }

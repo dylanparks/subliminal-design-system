@@ -1,16 +1,16 @@
 /* TextField — Subliminal Design System
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-*, --sds-shape-border-radius-*, --sds-spacing-size-*,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-medium (label, input)
- *             sds-text--body-content-small  (message, char-count)
+ *         --sds-effects-*, --sds-radius-*, --sds-size-*,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-medium (label, input)
+ *             sds-text--content-small  (message, char-count)
  *
  * Sizes:
- *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
- *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
- *   small  → --sds-spacing-size-small  (48px) · border-radius-small  (10px)
+ *   large  → --sds-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-size-medium (56px) · border-radius-medium (12px)
+ *   small  → --sds-size-small  (48px) · border-radius-small  (10px)
  *
  * State     CSS mechanism
  * ──────────────────────────────────────────────────────────────────────
@@ -95,23 +95,23 @@
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
 .sds-text-field--large .sds-text-field__wrapper {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   gap: 16px;
 }
 
 .sds-text-field--medium .sds-text-field__wrapper {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
   gap: 16px;
 }
 
 .sds-text-field--small .sds-text-field__wrapper {
-  height: var(--sds-spacing-size-small);
+  height: var(--sds-size-small);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-small);
+  border-radius: var(--sds-radius-small);
   gap: 12px;
 }
 
@@ -178,9 +178,9 @@
 .sds-text-field--large.sds-text-field--filled .sds-text-field__label {
   top: 10px;
   transform: translateY(0);
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Floating label — medium: focused or filled */
@@ -188,16 +188,16 @@
 .sds-text-field--medium.sds-text-field--filled .sds-text-field__label {
   top: 6px;
   transform: translateY(0);
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* External label — small size (rendered above the wrapper) */
 .sds-text-field__label--external {
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Input ─────────────────────────────────────────────────────────────────── */
@@ -240,7 +240,7 @@
 /* Reveal when focused — cursor, caret, and typing all work */
 .sds-text-field--large .sds-text-field__wrapper:focus-within .sds-text-field__input,
 .sds-text-field--medium .sds-text-field__wrapper:focus-within .sds-text-field__input {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   overflow: visible;
   opacity: 1;
 }
@@ -248,7 +248,7 @@
 /* Reveal when filled (has a value) */
 .sds-text-field--large.sds-text-field--filled .sds-text-field__input,
 .sds-text-field--medium.sds-text-field--filled .sds-text-field__input {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   overflow: visible;
   opacity: 1;
 }
@@ -307,7 +307,7 @@
 /* Support icon — centers the 16px SVG within the text line-height */
 .sds-text-field__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-text-field--error .sds-text-field__support {

@@ -143,7 +143,7 @@ export const StaticVariant: Story = {
       <div style={{
         background: 'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
         padding: 24,
-        borderRadius: 'var(--sds-shape-border-radius-medium)',
+        borderRadius: 'var(--sds-radius-medium)',
       }}>
         <Story />
       </div>
@@ -166,7 +166,7 @@ export const StaticWithOverflow: Story = {
       <div style={{
         background: 'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
         padding: 24,
-        borderRadius: 'var(--sds-shape-border-radius-medium)',
+        borderRadius: 'var(--sds-radius-medium)',
       }}>
         <Story />
       </div>

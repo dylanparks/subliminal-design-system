@@ -4,7 +4,7 @@
  * Tokens: --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
  *         --sds-interactive-static-filled-*, --sds-interactive-static-hollow-*,
  *         --sds-interactive-negative-filled-*, --sds-effects-focusring,
- *         --sds-shape-border-radius-xxsmall
+ *         --sds-radius-xxsmall
  *
  * This component is purely visual. Interactive states (hover, focus ring,
  * pressed) are applied via CSS selectors from the parent component's stylesheet
@@ -33,7 +33,7 @@
   align-items: center;
   justify-content: center;
   box-sizing:  border-box;
-  border-radius: var(--sds-shape-border-radius-xxsmall);
+  border-radius: var(--sds-radius-xxsmall);
 
   /* Large size (default) */
   width:  22px;

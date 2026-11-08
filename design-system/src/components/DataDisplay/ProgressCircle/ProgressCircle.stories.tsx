@@ -109,7 +109,7 @@ export const StaticVariant: Story = {
       alignItems:   'center',
       gap:          24,
       padding:      32,
-      borderRadius: 'var(--sds-shape-border-radius-medium)',
+      borderRadius: 'var(--sds-radius-medium)',
       background:   'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
     }}>
       <ProgressCircle size="xsmall" propStatic aria-label="Loading" />
@@ -133,7 +133,7 @@ export const StaticDeterminate: Story = {
       alignItems:   'center',
       gap:          24,
       padding:      32,
-      borderRadius: 'var(--sds-shape-border-radius-medium)',
+      borderRadius: 'var(--sds-radius-medium)',
       background:   'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
     }}>
       <ProgressCircle size="xsmall" value={65} propStatic aria-label="65%" />

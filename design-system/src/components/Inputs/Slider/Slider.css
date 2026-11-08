@@ -4,9 +4,9 @@
  * Tokens: --sds-interactive-primary-filled-*, --sds-interactive-secondary-hollow-inactive-*,
  *         --sds-interactive-fields-stroke-*, --sds-effects-focusring,
  *         --sds-neutral-content-*, --sds-neutral-background-*,
- *         --sds-shape-border-radius-*
- * Typography: sds-text--subtitle-medium (label), sds-text--body-interactive-medium (input, sep),
- *             sds-text--body-content-small (tooltip)
+ *         --sds-radius-*
+ * Typography: sds-text--subtitle-medium (label), sds-text--interactive-medium (input, sep),
+ *             sds-text--content-small (tooltip)
  *
  * Structure:
  *   .sds-slider              → root flex column
@@ -182,7 +182,7 @@
 
   background-color: var(--sds-neutral-content-primary);
   color: var(--sds-neutral-background-default);
-  border-radius: var(--sds-shape-border-radius-small, 4px);
+  border-radius: var(--sds-radius-small, 4px);
 
   padding: 2px 6px;
   white-space: nowrap;

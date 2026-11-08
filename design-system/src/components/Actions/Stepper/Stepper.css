@@ -1,7 +1,7 @@
 /* Stepper — Subliminal Design System
  * Tokens: --sds-interactive-secondary-*, --sds-effects-*,
- *         --sds-shape-border-radius-*
- * Typography: .sds-text--body-interactive-medium (value display)
+ *         --sds-radius-*
+ * Typography: .sds-text--interactive-medium (value display)
  */
 
 /* ─── Container ─────────────────────────────────────────────────────────────── */
@@ -31,7 +31,7 @@
   flex-shrink: 0;
   width: 36px;
   height: 36px;
-  border-radius: var(--sds-shape-border-radius-round);
+  border-radius: var(--sds-radius-round);
   border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);

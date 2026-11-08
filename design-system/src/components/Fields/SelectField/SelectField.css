@@ -2,17 +2,17 @@
  * Fields/SelectField
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-focusring, --sds-shape-border-radius-*,
- *         --sds-spacing-size-*,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-medium (label, value)
- *             sds-text--body-content-small  (message)
+ *         --sds-effects-focusring, --sds-radius-*,
+ *         --sds-size-*,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-medium (label, value)
+ *             sds-text--content-small  (message)
  *
  * Sizes:
- *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
- *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *   large  → --sds-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-size-medium (56px) · border-radius-medium (12px)
  *
  * State     CSS mechanism
  * ──────────────────────────────────────────────────────────────────────
@@ -105,16 +105,16 @@
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
 .sds-select-field--large .sds-select-field__trigger {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   gap: 16px;
 }
 
 .sds-select-field--medium .sds-select-field__trigger {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
   gap: 16px;
 }
 
@@ -179,18 +179,18 @@
 .sds-select-field--large.sds-select-field--filled .sds-select-field__label {
   top: 10px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Floating label — medium: filled only */
 .sds-select-field--medium.sds-select-field--filled .sds-select-field__label {
   top: 6px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Selected value text ────────────────────────────────────────────────────── */
@@ -214,7 +214,7 @@
 
 /* Reveal when a value is selected */
 .sds-select-field--filled .sds-select-field__value {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   opacity: 1;
 }
 
@@ -259,7 +259,7 @@
 /* Support icon — centers the 16px SVG within the text line-height */
 .sds-select-field__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-select-field--error .sds-select-field__support {

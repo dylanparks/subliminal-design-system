@@ -2,12 +2,12 @@
  * Fields/SearchField
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-*, --sds-shape-border-radius-*,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-medium (label, input)
- *             sds-text--body-content-small  (message)
+ *         --sds-effects-*, --sds-radius-*,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-medium (label, input)
+ *             sds-text--content-small  (message)
  *
  * Sizes:
  *   large  → 64px height · border-radius-large  (16px)
@@ -108,16 +108,16 @@
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
 .sds-search-field--large .sds-search-field__wrapper {
-  height: var(--sds-spacing-size-large); /* 64px */
+  height: var(--sds-size-large); /* 64px */
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   gap: 8px;
 }
 
 .sds-search-field--medium .sds-search-field__wrapper {
-  height: var(--sds-spacing-size-medium); /* 56px */
+  height: var(--sds-size-medium); /* 56px */
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
   gap: 8px;
 }
 
@@ -192,9 +192,9 @@
 .sds-search-field--large.sds-search-field--filled .sds-search-field__label {
   top: 10px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float the label — medium: focused or filled */
@@ -202,9 +202,9 @@
 .sds-search-field--medium.sds-search-field--filled .sds-search-field__label {
   top: 6px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Input ─────────────────────────────────────────────────────────────────── */
@@ -252,14 +252,14 @@
 
 /* Reveal when focused */
 .sds-search-field__wrapper:focus-within .sds-search-field__input {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   overflow: visible;
   opacity: 1;
 }
 
 /* Reveal when filled */
 .sds-search-field--filled .sds-search-field__input {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   overflow: visible;
   opacity: 1;
 }
@@ -358,7 +358,7 @@
   max-height: 300px;
   background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevated-elevatedx) * 1px)
     calc(var(--sds-effects-elevated-elevatedy) * 1px)

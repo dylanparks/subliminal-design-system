@@ -4,14 +4,14 @@
  * Modes: date · range · month · year
  * Sizes: large (64px) · medium (56px)
  *
- * Typography: sds-text--body-content-medium    (label, value, range-date)
- *             sds-text--body-interactive-large (header-title)
- *             sds-text--body-content-small     (weekday, message)
+ * Typography: sds-text--content-medium    (label, value, range-date)
+ *             sds-text--interactive-large (header-title)
+ *             sds-text--content-small     (weekday, message)
  *             body-content-small declared directly on .sds-datepicker__day-btn
  *             and .sds-datepicker__grid-btn (all:unset cancels utility classes)
  * Selected day/grid overrides differ by weight + letter-spacing only:
- *   font-weight:    var(--sds-typography-font-weight-body-interactive)
- *   letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small)
+ *   font-weight:    var(--sds-typography-font-weight-interactive)
+ *   letter-spacing: var(--sds-typography-letter-spacing-interactive-small)
  *
  * State      CSS mechanism
  * ─────────────────────────────────────────────────────────────────
@@ -96,15 +96,15 @@
 /* ─── Sizes ───────────────────────────────────────────────────── */
 
 .sds-datepicker--large .sds-datepicker__wrapper {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
 }
 
 .sds-datepicker--medium .sds-datepicker__wrapper {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
 }
 
 /* ─── Inner (floating label + trigger text) ──────────────────── */
@@ -153,18 +153,18 @@
 .sds-datepicker--large.sds-datepicker--filled .sds-datepicker__label {
   top: 10px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float up — medium (only when filled, matching SelectField) */
 .sds-datepicker--medium.sds-datepicker--filled .sds-datepicker__label {
   top: 6px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Selected value text ─────────────────────────────────────── */
@@ -192,7 +192,7 @@
 
 /* Reveal when a value is selected */
 .sds-datepicker--filled .sds-datepicker__value {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   opacity: 1;
 }
 
@@ -309,7 +309,7 @@
   z-index: 1300;
   background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevated-elevatedx) * 1px)
     calc(var(--sds-effects-elevated-elevatedy) * 1px)
@@ -441,11 +441,11 @@
 .sds-datepicker__day-btn {
   all: unset;
   /* Typography — explicit after all:unset (utility classes are cancelled by the reset) */
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  font-weight:    var(--sds-typography-font-weight-body-content);
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-small);
+  font-weight:    var(--sds-typography-font-weight-content);
   line-height:    1; /* intentional: centres the digit in the 32×32 button */
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
   position: relative;
   z-index: 1;
   display: flex;
@@ -454,7 +454,7 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: var(--sds-shape-border-radius-round);
+  border-radius: var(--sds-radius-round);
   box-sizing: border-box;
   color: var(--sds-interactive-secondary-hollow-content-default);
   cursor: pointer;
@@ -485,8 +485,8 @@
 .sds-datepicker__day-btn--today {
   background-color: var(--sds-interactive-primary-hollow-background-active);
   color: var(--sds-interactive-primary-hollow-content-default);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  font-weight: var(--sds-typography-font-weight-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-small);
 }
 
 /*
@@ -497,8 +497,8 @@
 .sds-datepicker__day-btn--active {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  font-weight: var(--sds-typography-font-weight-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-small);
 }
 
 /*
@@ -509,8 +509,8 @@
 .sds-datepicker__day-btn--range-end {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-weight: var(--sds-typography-font-weight-body-interactive);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  font-weight: var(--sds-typography-font-weight-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-small);
 }
 
 /* Disabled days (outside-month inherit the --outside colour above) */
@@ -537,11 +537,11 @@
 .sds-datepicker__grid-btn {
   all: unset;
   /* Typography — explicit after all:unset */
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-small);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
   width: 100%;
   display: flex;
   align-items: center;
@@ -549,7 +549,7 @@
   padding: 16px;
   box-sizing: border-box;
   color: var(--sds-interactive-secondary-hollow-content-default);
-  border-radius: var(--sds-shape-border-radius-round);
+  border-radius: var(--sds-radius-round);
   cursor: pointer;
   transition: background-color 100ms ease, color 100ms ease;
 }
@@ -568,7 +568,7 @@
 .sds-datepicker__grid-cell:not([aria-selected='true']) .sds-datepicker__grid-btn--current {
   background-color: var(--sds-interactive-primary-hollow-background-active);
   color: var(--sds-interactive-primary-hollow-content-default);
-  border-radius: var(--sds-shape-border-radius-round);
+  border-radius: var(--sds-radius-round);
   padding: 12px 16px;
 }
 
@@ -576,10 +576,10 @@
 .sds-datepicker__grid-cell[aria-selected='true'] .sds-datepicker__grid-btn {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-neutral-content-static-primary);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+  font-weight:    var(--sds-typography-font-weight-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-small);
   padding: 12px 16px;
-  border-radius: var(--sds-shape-border-radius-round);
+  border-radius: var(--sds-radius-round);
 }
 
 /* ─── Divider between range panels ──────────────────────────────*/
@@ -602,7 +602,7 @@
 
 .sds-datepicker__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-datepicker--error .sds-datepicker__support {

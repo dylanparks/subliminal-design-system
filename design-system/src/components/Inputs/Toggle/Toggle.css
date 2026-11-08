@@ -3,8 +3,8 @@
  *
  * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
  *         --sds-effects-focusring, --sds-typography-line-height-*
- * Typography utility classes: .sds-text--body-content-medium (label),
- *                              .sds-text--body-content-small (description)
+ * Typography utility classes: .sds-text--content-medium (label),
+ *                              .sds-text--content-small (description)
  *
  * Structure:
  *   .sds-toggle                → root <label>
@@ -50,11 +50,11 @@
   display:     flex;
   align-items: center;
   flex-shrink: 0;
-  height: var(--sds-typography-line-height-body-content-medium);
+  height: var(--sds-typography-line-height-content-medium);
 }
 
 .sds-toggle--medium .sds-toggle__indicator-wrap {
-  height: var(--sds-typography-line-height-body-content-small);
+  height: var(--sds-typography-line-height-content-small);
 }
 
 /* ─── Content slot ───────────────────────────────────────────────────────────── */
@@ -76,15 +76,15 @@
 }
 
 .sds-toggle--medium .sds-toggle__label {
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 .sds-toggle--medium .sds-toggle__description {
-  font-size:      var(--sds-typography-font-size-body-content-xsmall);
-  line-height:    var(--sds-typography-line-height-body-content-xsmall);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+  font-size:      var(--sds-typography-font-size-content-xsmall);
+  line-height:    var(--sds-typography-line-height-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-content-xsmall);
 }
 
 /* ─── Hover states ───────────────────────────────────────────────────────────── */

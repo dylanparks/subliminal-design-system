@@ -1,7 +1,7 @@
 /* Tooltip — Subliminal Design System
  * Utility/Tooltip
  *
- * Typography: .sds-text--body-content-small (text)
+ * Typography: .sds-text--content-small (text)
  *
  * Matches Base UI's tooltip approach:
  *   - Popup:  outline (not border) + box-shadow in light / outline-inset + no shadow in dark
@@ -47,14 +47,14 @@
   position: relative;
   pointer-events: auto;
   background-color: var(--sds-neutral-background-elevated);
-  border-radius:    var(--sds-shape-border-radius-xsmall);
+  border-radius:    var(--sds-radius-xsmall);
   padding:          8px 12px;
 
   /* Outer stroke — token resolves to #e1e6f0 (light) / #232b3b (dark) */
   outline:          1px solid var(--sds-neutral-stroke-elevated);
 
   /* Depth shadow — light mode only (invisible against dark backgrounds) */
-  box-shadow:       var(--sds-effect-interactive-element-elevated-box-shadow);
+  box-shadow:       var(--sds-effect-static-element-elevated-box-shadow);
 }
 
 /* Dark mode: inset the outline and drop the shadow (matches Base UI pattern) */

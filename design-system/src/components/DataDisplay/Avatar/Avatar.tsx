@@ -89,8 +89,8 @@ export function Avatar({
         {hasInitials ? (
           <span className={[
             'sds-avatar__initials',
-            size === 'medium' && 'sds-text--body-interactive-small',
-            size === 'large'  && 'sds-text--body-interactive-medium',
+            size === 'medium' && 'sds-text--interactive-small',
+            size === 'large'  && 'sds-text--interactive-medium',
           ].filter(Boolean).join(' ')}>{resolvedInitials}</span>
         ) : (
           <PersonIcon size={ICON_SIZE[size]} className="sds-avatar__icon" />

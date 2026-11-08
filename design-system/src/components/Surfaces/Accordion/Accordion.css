@@ -4,10 +4,10 @@
  * Tokens: --sds-interactive-secondary-hollow-content-*,
  *         --sds-interactive-secondary-hollow-background-*,
  *         --sds-neutral-content-secondary,
- *         --sds-shape-border-radius-medium,
+ *         --sds-radius-medium,
  *         --sds-effects-focusring
  * Typography: .sds-text--subtitle-medium/large (trigger title),
- *             .sds-text--body-content-small/medium (panel content)
+ *             .sds-text--content-small/medium (panel content)
  *
  * Structure:
  *   .sds-accordion                      → root flex-column container
@@ -38,7 +38,7 @@
 
 .sds-accordion-item {
   position:      relative;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
   overflow:      hidden;
   background:    transparent;
   transition:    background-color 120ms ease;
@@ -71,7 +71,7 @@
 
 .sds-accordion-trigger:focus-visible {
   box-shadow:    0 0 0 4px var(--sds-effects-focusring);
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
 }
 
 /* ─── Trigger — sizes ────────────────────────────────────────────────────────── */

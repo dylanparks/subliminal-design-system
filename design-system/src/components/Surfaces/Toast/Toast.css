@@ -15,7 +15,7 @@
  *   .sds-toast__header                 → title + dismiss button row
  *   .sds-toast__title                  → sds-text--subtitle-medium
  *   .sds-toast__close                  → × icon button
- *   .sds-toast__description            → sds-text--body-content-small
+ *   .sds-toast__description            → sds-text--content-small
  *   .sds-toast__actions                → row of action buttons (up to 2)
  */
 
@@ -171,8 +171,8 @@
   gap:            8px;
   background:     var(--sds-neutral-background-elevated);
   outline:        1px solid var(--sds-neutral-stroke-elevated);
-  border-radius:  var(--sds-shape-border-radius-medium);
-  box-shadow:     var(--sds-effect-interactive-element-elevated-box-shadow);
+  border-radius:  var(--sds-radius-medium);
+  box-shadow:     var(--sds-effect-static-element-elevated-box-shadow);
 }
 
 /*
@@ -211,7 +211,7 @@
   background:      transparent;
   cursor:          pointer;
   color:           var(--sds-interactive-secondary-hollow-content-default);
-  border-radius:   var(--sds-shape-border-radius-xxsmall);
+  border-radius:   var(--sds-radius-xxsmall);
   transition:      color 120ms ease;
   flex-shrink:     0;
   outline:         none;

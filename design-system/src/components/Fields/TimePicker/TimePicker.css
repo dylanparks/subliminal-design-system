@@ -3,17 +3,17 @@
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
  *         --sds-effects-focusring, --sds-effects-dropshadow-elevated, --sds-effects-elevated-elevated*,
- *         --sds-shape-border-radius-*, --sds-spacing-size-*,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-medium (label, value)
+ *         --sds-radius-*, --sds-size-*,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-medium (label, value)
  *             sds-text--subtitle-small      (column-label)
- *             sds-text--body-content-small  (message)
+ *             sds-text--content-small  (message)
  *
  * Sizes:
- *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
- *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *   large  → --sds-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-size-medium (56px) · border-radius-medium (12px)
  *
  * State     CSS mechanism
  * ──────────────────────────────────────────────────────────────────────
@@ -98,15 +98,15 @@
 /* ─── Sizes ───────────────────────────────────────────────────── */
 
 .sds-timepicker--large .sds-timepicker__wrapper {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
 }
 
 .sds-timepicker--medium .sds-timepicker__wrapper {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
 }
 
 /* ─── Trigger button (fills the wrapper as a flex row) ──────── */
@@ -172,18 +172,18 @@
 .sds-timepicker--large.sds-timepicker--filled .sds-timepicker__label {
   top: 10px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float up — medium */
 .sds-timepicker--medium.sds-timepicker--filled .sds-timepicker__label {
   top: 6px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Value text ──────────────────────────────────────────────── */
@@ -211,7 +211,7 @@
 
 /* Reveal when a value is selected */
 .sds-timepicker--filled .sds-timepicker__value {
-  max-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 24px);
   opacity: 1;
 }
 
@@ -287,7 +287,7 @@
   z-index: 1300;
   background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevated-elevatedx) * 1px)
     calc(var(--sds-effects-elevated-elevatedy) * 1px)
@@ -392,7 +392,7 @@
   transform: translateX(-50%);
   width: 6px;
   min-height: 24px;
-  border-radius: var(--sds-shape-border-radius-round, 999px);
+  border-radius: var(--sds-radius-round, 999px);
   background-color: var(--sds-neutral-content-subtle);
   cursor: grab;
   transition: background-color 120ms ease;
@@ -453,7 +453,7 @@
 
 .sds-timepicker__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-timepicker--error .sds-timepicker__support {

@@ -2,10 +2,11 @@
 /**
  * Token build pipeline for the Subliminal design system.
  *
- * Reads W3C Design Token JSON files exported by Subliminal Relay and produces:
- *   - tokens.css   — CSS custom properties (:root light + .dark + responsive media queries)
- *   - tokens.ts    — TypeScript constants (typed CSS var references)
- *   - fonts.ts     — Google Fonts metadata
+ * Reads a Brand-layer token export from Subliminal Relay and produces:
+ *   - tokens.css      — CSS custom properties: Brand, Color mode (light/dark), scale, breakpoints
+ *   - typography.css  — .sds-text--{category}-{size} utility classes
+ *   - tokens.ts       — TypeScript constants (typed CSS var references)
+ *   - fonts.ts        — Google Fonts metadata
  *
  * ─── Usage ────────────────────────────────────────────────────────────────────
  *
@@ -17,24 +18,20 @@
  *     npx sds-build-tokens --input ./my-tokens --output ./src/design-tokens
  *
  *   Flags:
- *     --input  -i   Directory containing Relay token JSON files (required for consumers)
+ *     --input  -i   A Relay export: a ZIP, or a directory of its files (required for consumers)
  *     --output -o   Directory for generated output files
  *
- * ─── Token inputs (export via Subliminal Relay) ──────────────────────────────
+ * ─── Token input (export via Subliminal Relay ≥ 0.5.0, "Download All (.zip)") ─
  *
- *   Colours — a Brand-layer export (Relay ≥ 0.5.0), see build-color-layer.mjs:
- *     Brand.<mode>.tokens.json            — the brand file: Colors/Light/*, Colors/Dark/*
- *     Color mode.<Light|Dark>.tokens.json — intent tokens, derived from Brand
- *   Taken from --input when it holds one, else from src/tokens/relay-export/.
+ *   Brand.<mode>.tokens.json        — the theme: colour palettes, radius, size, border, type
+ *   Color mode.<mode>.tokens.json   — intent colours, one file per mode (light/dark)
+ *   Breakpoint.<mode>.tokens.json   — font sizes, line heights, viewport, one file per breakpoint
+ *   Globals.<mode>.tokens.json      — primitives (read through Brand's aliases; not emitted)
+ *   effect-styles.json              — optional
  *
- *   Everything else — legacy files, until Phase T.2.2 moves them to the Brand-layer export:
- *     typography-lg.json       — typography tokens, LG (default)
- *     typography-md.json       — typography tokens, MD breakpoint
- *     typography-xs.json       — typography tokens, XS breakpoint
- *     shape.json               — border-radius values
- *     viewport-lg.json         — viewport reference values, LG (default)
- *     viewport-md.json         — viewport reference values, MD
- *     viewport-xs.json         — viewport reference values, XS
+ *   Colours are built by build-color-layer.mjs, everything else by build-scale-layer.mjs; both
+ *   read the export through build-token-export.mjs. Without --input or a subliminal-tokens*.zip in
+ *   the current directory, the repo's own export in src/tokens/relay-export/ is used.
  */
 
 import { readFileSync, mkdirSync, writeFileSync, rmSync, existsSync, readdirSync } from 'fs';
@@ -42,7 +39,11 @@ import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { parseArgs } from 'util';
 import AdmZip from 'adm-zip';
-import { buildColorLayer, hasBrandLayerExport } from './build-color-layer.mjs';
+import { buildColorLayer } from './build-color-layer.mjs';
+import { buildScaleLayer } from './build-scale-layer.mjs';
+import {
+  hasBrandLayerExport, tidy, BRAND_COLLECTION, COLOR_MODE_COLLECTION, BREAKPOINT_COLLECTION,
+} from './build-token-export.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -95,65 +96,8 @@ function segmentize(str) {
     .replace(/^-|-$/g, '');
 }
 
-/**
- * Recursively traverse a W3C Design Token tree and collect all leaf tokens.
- * A leaf is any node that has a "$value" key.
- *
- * @returns {{ path: string[], value: any, type: string, description?: string }[]}
- */
-function traverseW3C(obj, currentPath = [], results = []) {
-  for (const [key, val] of Object.entries(obj)) {
-    if (val && typeof val === 'object' && '$value' in val) {
-      results.push({
-        path: [...currentPath, key],
-        value: val.$value,
-        type: val.$type,
-        description: val.$description,
-      });
-    } else if (val && typeof val === 'object') {
-      traverseW3C(val, [...currentPath, key], results);
-    }
-  }
-  return results;
-}
-
-// ─── W3C Token Parsers ────────────────────────────────────────────────────────
-// Colours are built by ./build-color-layer.mjs from the Brand-layer export.
-
-/**
- * Parse a Relay flat-token file (shape.json, viewport.json, typography*.json)
- * into a flat { cssVar: value } map.
- *
- * FLOAT rules:
- *   - Paths containing "weight" → unitless number (font-weight)
- *   - All others → appends "px"
- * STRING rules:
- *   - Multi-word values (e.g. "Work Sans") are quoted for CSS font-family use
- *
- * @param {string}   filePath
- * @param {string}   [prefix]  — CSS segment inserted after "--sds-" (e.g. "shape")
- * @param {string[]} [skip]    — Path segments to exclude (e.g. ["Min Height"])
- */
-function parseRelayFlatTokens(filePath, { prefix = '', skip = [] } = {}) {
-  const data = JSON.parse(readFileSync(filePath, 'utf8'));
-  const vars = {};
-
-  for (const { path, value } of traverseW3C(data)) {
-    if (skip.some((s) => path.some((p) => p.includes(s)))) continue;
-
-    const segment = path.map(segmentize).join('-');
-    const cssVar = prefix ? `--sds-${prefix}-${segment}` : `--sds-${segment}`;
-
-    if (typeof value === 'number') {
-      const isWeight = path.some((p) => /weight/i.test(p));
-      vars[cssVar] = isWeight ? String(value) : `${value}px`;
-    } else if (typeof value === 'string') {
-      vars[cssVar] = value.includes(' ') ? `"${value}"` : value;
-    }
-  }
-
-  return vars;
-}
+// ─── Effect styles ────────────────────────────────────────────────────────────
+// Token layers are built by ./build-color-layer.mjs and ./build-scale-layer.mjs.
 
 /**
  * Parse effect-styles.json exported by Subliminal Relay into a flat CSS var map.
@@ -179,7 +123,8 @@ function parseEffectStyles(filePath) {
       for (const [prop, value] of Object.entries(css)) {
         if (prop === 'WebkitBackdropFilter') continue;
         const cssVar = `--sds-effect-${pathSegments}-${camelToKebab(prop)}`;
-        vars[cssVar] = value;
+        // Relay writes Figma's float32 values verbatim (rgba(…, 0.10000000149011612)); round them.
+        vars[cssVar] = String(value).replace(/\d+\.\d{5,}/g, (n) => String(tidy(n)));
       }
     } else if (node && typeof node === 'object') {
       for (const [key, child] of Object.entries(node)) {
@@ -230,31 +175,6 @@ function buildEffectNestedTs(filePath) {
   return root;
 }
 
-/**
- * Extract font family names and weights from a Relay typography.json (W3C format).
- * Inspects token paths for "family" / "weight" keywords to classify tokens.
- */
-function extractFontMetadataW3C(filePath) {
-  const data = JSON.parse(readFileSync(filePath, 'utf8'));
-  const families = new Set();
-  const weights = new Set();
-
-  for (const { path, value } of traverseW3C(data)) {
-    const pathStr = path.join('/').toLowerCase();
-    if (pathStr.includes('family') && typeof value === 'string') {
-      families.add(value);
-    }
-    if (pathStr.includes('weight') && typeof value === 'number') {
-      weights.add(Math.round(value));
-    }
-  }
-
-  return {
-    families: [...families].sort(),
-    weights: [...weights].sort((a, b) => a - b),
-  };
-}
-
 // ─── TypeScript constants ─────────────────────────────────────────────────────
 
 function buildNestedObject(paths, valueFactory) {
@@ -280,101 +200,11 @@ function objectToTs(obj, indent = 2) {
   return `{\n${entries.join('\n')}\n${' '.repeat(indent - 2)}}`;
 }
 
-/**
- * Build a nested TypeScript object from a flat CSS var map.
- * "--sds-typography-font-size-display-huge" → nested path from segments.
- */
-function flatVarsToNestedTs(vars) {
-  const root = {};
-  for (const [cssVar] of Object.entries(vars)) {
-    const path = cssVar.replace(/^--sds-/, '').split('-');
-    setDeep(root, path, `var(${cssVar})`);
-  }
-  return root;
-}
-
-// ─── Typography utility class generator ──────────────────────────────────────
-
-/**
- * Generate typography utility classes from a flat CSS var map produced by
- * parseRelayFlatTokens(). One class per (category × size) pair found in
- * the font-size vars, bundling all five font properties.
- *
- * Class naming: .sds-text--{category}-{size}
- *   e.g. .sds-text--subtitle-small, .sds-text--body-content-medium
- *
- * Responsive behaviour is free: tokens.css already overrides the underlying
- * custom properties in @media blocks, so these classes stay accurate at every
- * breakpoint without any duplication.
- *
- * @param {Record<string, string>} typographyVars
- * @returns {string}
- */
-function generateTypographyUtilities(typographyVars) {
-  const knownSizes = new Set(['huge', 'large', 'medium', 'small', 'xsmall']);
-
-  // Discover every (category, size) pair from font-size vars
-  const pairs = [];
-  for (const cssVar of Object.keys(typographyVars)) {
-    const match = cssVar.match(/^--sds-typography-font-size-(.+)$/);
-    if (!match) continue;
-    const segments = match[1].split('-');
-    const size = segments[segments.length - 1];
-    if (!knownSizes.has(size)) continue;
-    const category = segments.slice(0, -1).join('-');
-    pairs.push({ category, size });
-  }
-
-  const blocks = [];
-  for (const { category, size } of pairs) {
-    const family        = `--sds-typography-font-family-${category}`;
-    const fontSize      = `--sds-typography-font-size-${category}-${size}`;
-    const weight        = `--sds-typography-font-weight-${category}`;
-    const lineHeight    = `--sds-typography-line-height-${category}-${size}`;
-    const letterSpacing = `--sds-typography-letter-spacing-${category}-${size}`;
-
-    const props = [
-      typographyVars[family]        && `  font-family:    var(${family});`,
-      typographyVars[fontSize]      && `  font-size:      var(${fontSize});`,
-      typographyVars[weight]        && `  font-weight:    var(${weight});`,
-      typographyVars[lineHeight]    && `  line-height:    var(${lineHeight});`,
-      typographyVars[letterSpacing] && `  letter-spacing: var(${letterSpacing});`,
-    ].filter(Boolean);
-
-    if (props.length > 0) {
-      blocks.push(`.sds-text--${category}-${size} {\n${props.join('\n')}\n}`);
-    }
-  }
-
-  return [
-    '/* Generated by build-tokens.mjs — do not edit manually */',
-    '/* Re-run: npm run build:tokens                         */',
-    '',
-    '/*',
-    ' * Typography utility classes — one class per type scale variant.',
-    ' * Each class sets the full set of font properties for that scale:',
-    ' * family, size, weight, line-height, and letter-spacing.',
-    ' *',
-    ' * Responsive overrides in tokens.css automatically update the underlying',
-    ' * custom properties at each breakpoint, keeping these classes accurate',
-    ' * without any duplication here.',
-    ' */',
-    '',
-    blocks.join('\n\n'),
-    '',
-  ].join('\n');
-}
-
 // ─── CSS rendering ────────────────────────────────────────────────────────────
 
 function renderCssBlock(selector, vars) {
   const lines = Object.entries(vars).map(([k, v]) => `  ${k}: ${v};`);
   return `${selector} {\n${lines.join('\n')}\n}`;
-}
-
-function renderMediaQuery(maxWidth, vars) {
-  const inner = Object.entries(vars).map(([k, v]) => `    ${k}: ${v};`).join('\n');
-  return `@media (max-width: ${maxWidth}px) {\n  :root {\n${inner}\n  }\n}`;
 }
 
 // ─── Google Fonts ─────────────────────────────────────────────────────────────
@@ -414,8 +244,6 @@ const outputDir = cliArgs.output
   ? resolve(process.cwd(), cliArgs.output)
   : join(__dirname, 'src', 'tokens', 'generated');
 
-const tmpDir = join(outputDir, '.tokens-tmp');
-
 // ─── Resolve input: --input flag, ZIP auto-detect, or DS repo default ─────────
 
 let relayDir;
@@ -427,15 +255,11 @@ function extractZip(zipPath) {
   mkdirSync(extractTo, { recursive: true });
   const zip = new AdmZip(zipPath);
   zip.extractAllTo(extractTo, true);
-  // The ZIP contains a single top-level folder (e.g. subliminal-tokens/)
-  // Find it and use it as relayDir
-  const entries = readdirSync(extractTo);
-  const folder = entries.find(e => existsSync(join(extractTo, e, 'global-colors.json')));
-  if (!folder) {
-    // No nested folder — files are at the root of the ZIP
-    return extractTo;
-  }
-  return join(extractTo, folder);
+  // Relay's "Download All (.zip)" puts the files at the root; a hand-made ZIP may wrap them in one
+  // top-level folder. Use whichever holds the export.
+  if (hasBrandLayerExport(extractTo)) return extractTo;
+  const folder = readdirSync(extractTo).find((e) => hasBrandLayerExport(join(extractTo, e)));
+  return folder ? join(extractTo, folder) : extractTo;
 }
 
 if (cliArgs.input) {
@@ -468,65 +292,50 @@ if (cliArgs.input) {
     console.error(`    npx sds-build-tokens --input ./${zipMatches[0]}`);
     process.exit(1);
   } else {
-    // No ZIP found — fall back to DS repo default (src/tokens/default-values/)
-    relayDir = join(__dirname, 'src', 'tokens', 'default-values');
-    if (!existsSync(relayDir)) {
-      console.error('✖ sds-build-tokens: No subliminal-tokens*.zip found in the current directory.');
-      console.error('  Export your tokens from the Subliminal Relay Figma plugin, then re-run.');
-      console.error('  Or pass the path explicitly:');
-      console.error('    npx sds-build-tokens --input ./subliminal-tokens.zip');
-      process.exit(1);
-    }
+    // No ZIP found — fall back to the DS repo's own export
+    relayDir = join(__dirname, 'src', 'tokens', 'relay-export');
   }
 }
 
-// Interim, Phase T.2.1 → T.2.3: colours come from the Brand-layer export (Globals / Brand /
-// Color mode / Breakpoint); everything else still comes from the legacy files until T.2.2.
-// A Brand-layer export passed via --input supplies the colours; otherwise the repo's own does.
-const colorDir = hasBrandLayerExport(relayDir)
-  ? relayDir
-  : join(__dirname, 'src', 'tokens', 'relay-export');
-
-// Guard: ensure the legacy (non-colour) token files exist before proceeding
-const requiredFiles = [
-  'typography-lg.json',
-  'typography-md.json',
-  'typography-xs.json',
-  'shape.json',
-  'spacing.json',
-  'viewport-lg.json',
-  'viewport-md.json',
-  'viewport-xs.json',
-];
-const missing = requiredFiles.filter((f) => !existsSync(join(relayDir, f)));
-if (missing.length > 0) {
-  console.error(`✖ sds-build-tokens: Missing required token files in ${relayDir}:`);
-  for (const f of missing) console.error(`  • ${f}`);
-  console.error('  Export your Figma variables using Subliminal Relay, then re-run.');
+if (!hasBrandLayerExport(relayDir)) {
+  console.error(`✖ sds-build-tokens: No Subliminal token export found in ${relayDir}.`);
+  console.error(`  Expected ${BRAND_COLLECTION}, ${COLOR_MODE_COLLECTION} and ${BREAKPOINT_COLLECTION} files`);
+  console.error('  (e.g. "Brand.Default.tokens.json"), as exported by Subliminal Relay ≥ 0.5.0.');
+  console.error('  Export from Figma with Relay\'s "Download All (.zip)", then:');
+  console.error('    npx sds-build-tokens --input ./subliminal-tokens.zip');
   process.exit(1);
 }
 
 mkdirSync(outputDir, { recursive: true });
-mkdirSync(tmpDir, { recursive: true });
 
-// ─── Color tokens ─────────────────────────────────────────────────────────────
-// Brand palettes plus intent formulas derived from them — see build-color-layer.mjs.
+// ─── Build the layers ──────────────────────────────────────────────────────────
+// Colours: Brand palettes + intent formulas (build-color-layer.mjs).
+// Everything else: radii, sizes, borders, typography, viewport (build-scale-layer.mjs).
 
 let colorLayer;
+let scaleLayer;
 try {
-  colorLayer = buildColorLayer(colorDir);
+  colorLayer = buildColorLayer(relayDir);
+  scaleLayer = buildScaleLayer(relayDir);
 } catch (err) {
   console.error(`✖ sds-build-tokens: ${err.message}`);
   process.exit(1);
 }
 
-// ─── Shape tokens ──────────────────────────────────────────────────────────────
+// Two layers producing the same CSS name would silently overwrite each other.
+{
+  const colorNames = [
+    ...colorLayer.intentPaths.map((p) => toCssVarName('sds', p)),
+    ...colorLayer.brandPaths.map((p) => toCssVarName('sds-brand', p)),
+  ];
+  const clashes = scaleLayer.varNames.filter((n) => colorNames.includes(n));
+  if (clashes.length > 0) {
+    console.error(`✖ sds-build-tokens: these names are produced by both the colour and scale layers: ${clashes.join(', ')}`);
+    process.exit(1);
+  }
+}
 
-const shapeVars = parseRelayFlatTokens(join(relayDir, 'shape.json'), { prefix: 'shape' });
-
-// ─── Spacing tokens ────────────────────────────────────────────────────────────
-
-const spacingVars = parseRelayFlatTokens(join(relayDir, 'spacing.json'), { prefix: 'spacing' });
+for (const w of scaleLayer.warnings) console.warn(`⚠  build-tokens: ${w}`);
 
 // ─── Effect style tokens (optional) ───────────────────────────────────────────
 
@@ -534,48 +343,9 @@ const effectStylesPath = join(relayDir, 'effect-styles.json');
 const effectVars = existsSync(effectStylesPath) ? parseEffectStyles(effectStylesPath) : {};
 const effectNested = existsSync(effectStylesPath) ? buildEffectNestedTs(effectStylesPath) : {};
 
-// ─── Viewport tokens ───────────────────────────────────────────────────────────
-// Three modes (LG/MD/XS) — each emitted under the matching media query.
-// Viewport/Width drives the responsive breakpoint thresholds: MD styles apply
-// below LG width, XS styles apply below MD width.
-
-const viewportLgVars = parseRelayFlatTokens(join(relayDir, 'viewport-lg.json'), { skip: ['Min Height'] });
-const viewportMdVars = parseRelayFlatTokens(join(relayDir, 'viewport-md.json'), { skip: ['Min Height'] });
-const viewportXsVars = parseRelayFlatTokens(join(relayDir, 'viewport-xs.json'), { skip: ['Min Height'] });
-
-// Derive media query thresholds from viewport Width values (e.g. LG=1440 → MD applies below 1440px)
-const viewportLgWidth = JSON.parse(readFileSync(join(relayDir, 'viewport-lg.json'), 'utf8')).Viewport.Width.$value;
-const viewportMdWidth = JSON.parse(readFileSync(join(relayDir, 'viewport-md.json'), 'utf8')).Viewport.Width.$value;
-const mdBreakpoint = viewportLgWidth - 1;  // e.g. 1439
-const xsBreakpoint = viewportMdWidth - 1;  // e.g. 767
-
-const viewportMdDiff = Object.fromEntries(
-  Object.entries(viewportMdVars).filter(([k, v]) => viewportLgVars[k] !== v)
-);
-const viewportXsDiff = Object.fromEntries(
-  Object.entries(viewportXsVars).filter(([k, v]) => viewportLgVars[k] !== v)
-);
-
-// ─── Typography tokens ─────────────────────────────────────────────────────────
-// Three modes (LG/MD/XS) — same breakpoint thresholds as viewport above.
-
-const typographyLgVars = parseRelayFlatTokens(join(relayDir, 'typography-lg.json'));
-const typographyMdVars = parseRelayFlatTokens(join(relayDir, 'typography-md.json'));
-const typographyXsVars = parseRelayFlatTokens(join(relayDir, 'typography-xs.json'));
-
-// Only emit MD/XS vars that differ from LG
-const typographyMdDiff = Object.fromEntries(
-  Object.entries(typographyMdVars).filter(([k, v]) => typographyLgVars[k] !== v)
-);
-const typographyXsDiff = Object.fromEntries(
-  Object.entries(typographyXsVars).filter(([k, v]) => typographyLgVars[k] !== v)
-);
-
 // ─── Google Fonts ──────────────────────────────────────────────────────────────
 
-const { families: gFamilies, weights: gWeights } = extractFontMetadataW3C(
-  join(relayDir, 'typography-lg.json')
-);
+const { families: gFamilies, weights: gWeights } = scaleLayer.fonts;
 const googleFontsUrl = buildGoogleFontsUrl(gFamilies, gWeights);
 const fontVerification = await verifyGoogleFonts(gFamilies, googleFontsUrl);
 
@@ -603,45 +373,22 @@ const parts = [
     : []),
   colorLayer.css,
   '',
-  '/* ─── Shape ───────────────────────────────────────────────────────────────── */',
-  renderCssBlock(':root', shapeVars),
-  '',
-  '/* ─── Spacing ──────────────────────────────────────────────────────────────── */',
-  renderCssBlock(':root', spacingVars),
-  '',
   ...(Object.keys(effectVars).length > 0
     ? [
-        '/* ─── Effects ─────────────────────────────────────────────────────────────── */',
+        '/* ─── Effect styles ──────────────────────────────────────────────────────── */',
         renderCssBlock(':root', effectVars),
         '',
       ]
     : []),
-  '/* ─── Viewport (LG — default) ─────────────────────────────────────────────── */',
-  renderCssBlock(':root', viewportLgVars),
+  scaleLayer.css,
   '',
-  '/* ─── Typography (LG — default) ───────────────────────────────────────────── */',
-  renderCssBlock(':root', typographyLgVars),
 ];
-
-if (Object.keys(viewportMdDiff).length > 0 || Object.keys(typographyMdDiff).length > 0) {
-  parts.push('');
-  parts.push(`/* ─── MD — ≤${mdBreakpoint}px ─────────────────────────────────────────────────── */`);
-  parts.push(renderMediaQuery(mdBreakpoint, { ...viewportMdDiff, ...typographyMdDiff }));
-}
-
-if (Object.keys(viewportXsDiff).length > 0 || Object.keys(typographyXsDiff).length > 0) {
-  parts.push('');
-  parts.push(`/* ─── XS — ≤${xsBreakpoint}px ──────────────────────────────────────────────────── */`);
-  parts.push(renderMediaQuery(xsBreakpoint, { ...viewportXsDiff, ...typographyXsDiff }));
-}
-
-parts.push('');
 
 writeFileSync(join(outputDir, 'tokens.css'), parts.join('\n'));
 
 // ─── Generate typography utility classes ──────────────────────────────────────
 
-writeFileSync(join(outputDir, 'typography.css'), generateTypographyUtilities(typographyLgVars));
+writeFileSync(join(outputDir, 'typography.css'), scaleLayer.typographyCss);
 
 // ─── Generate TypeScript constants ────────────────────────────────────────────
 
@@ -657,20 +404,24 @@ const brandNested = buildNestedObject(colorLayer.brandPaths, (path) => {
   return `var(${toCssVarName(`${sdCssPrefix}-brand`, path)})`;
 });
 
-const shapeNested = flatVarsToNestedTs(shapeVars);
-const spacingNested = flatVarsToNestedTs(spacingVars);
-const typographyNested = flatVarsToNestedTs(typographyLgVars);
-const breakpointNested = flatVarsToNestedTs(viewportLgVars);
+// One export per top-level group of the scale layer: radiusTokens, sizeTokens,
+// borderThicknessTokens, typographyTokens, viewportTokens.
+const scaleNested = buildNestedObject(scaleLayer.tsPaths, (path) => `var(${toCssVarName(sdCssPrefix, path)})`);
+const exportName = (group) => `${group.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())}Tokens`;
+const scaleTsLines = Object.entries(scaleNested).flatMap(([group, tree]) => [
+  `export const ${exportName(group)} = ${objectToTs(tree)} as const;`,
+  '',
+]);
 
 const effectTsLines = Object.keys(effectNested).length > 0
   ? [
-      '',
       '/**',
       ' * Effect style tokens — each leaf is a CSS style object for direct use',
       ' * as React inline styles or Emotion css() arguments.',
       ' * Example: css(effectTokens.Static.elevation.low)',
       ' */',
       `export const effectTokens = ${objectToTs(effectNested)} as const;`,
+      '',
     ]
   : [];
 
@@ -688,15 +439,8 @@ const tokensTs = [
   ' */',
   `export const brandTokens = ${objectToTs(brandNested)} as const;`,
   '',
-  `export const shapeTokens = ${objectToTs(shapeNested)} as const;`,
-  '',
-  `export const spacingTokens = ${objectToTs(spacingNested)} as const;`,
-  '',
-  `export const typographyTokens = ${objectToTs(typographyNested)} as const;`,
-  '',
-  `export const breakpointTokens = ${objectToTs(breakpointNested)} as const;`,
+  ...scaleTsLines,
   ...effectTsLines,
-  '',
 ].join('\n');
 
 writeFileSync(join(outputDir, 'tokens.ts'), tokensTs);
@@ -707,7 +451,7 @@ const fontsTs = [
   '/* Generated by build-tokens.mjs — do not edit manually */',
   '/* Re-run: npm run build:tokens                         */',
   '',
-  '/** All font families declared in typography-lg.json, with Google Fonts verification status. */',
+  '/** All font families declared in the Brand collection, with Google Fonts verification status. */',
   'export const fontFamilies: {',
   '  /** Every unique family across all typography tokens. */',
   '  all: string[];',
@@ -727,7 +471,6 @@ writeFileSync(join(outputDir, 'fonts.ts'), fontsTs);
 
 // ─── Cleanup ───────────────────────────────────────────────────────────────────
 
-rmSync(tmpDir, { recursive: true, force: true });
 if (zipExtractDir) rmSync(zipExtractDir, { recursive: true, force: true });
 
 {
@@ -736,6 +479,13 @@ if (zipExtractDir) rmSync(zipExtractDir, { recursive: true, force: true });
     `✓ colour layer — ${s.brandColors} Brand colours; ${s.composed} composed + ${s.aliases} aliased intent colours` +
     `${s.fixed ? `, ${s.fixed} fixed to Globals` : ''}, ${s.numbers} numbers` +
     `${s.skippedBooleans ? ` (${s.skippedBooleans} boolean flag not emitted)` : ''}`,
+  );
+}
+{
+  const s = scaleLayer.summary;
+  console.log(
+    `✓ scale layer — ${s.brand} Brand values (radius, size, border, type), ${s.breakpoint} per breakpoint ` +
+    `(${s.breakpoints.join(' → ')}), ${s.typeStyles} type styles`,
   );
 }
 console.log('✓ tokens.css');

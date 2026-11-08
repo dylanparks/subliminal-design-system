@@ -2,7 +2,7 @@
  * Surfaces/Notification/Notification
  *
  * Tokens: --sds-status-*, --sds-neutral-content-*, --sds-effects-focusring
- * Typography: .sds-text--subtitle-medium (title), .sds-text--body-content-medium (description)
+ * Typography: .sds-text--subtitle-medium (title), .sds-text--content-medium (description)
  *
  * Structure:
  *   .sds-notification              → root (role="alert"|"status")
@@ -70,7 +70,7 @@
 .sds-notification--error         .sds-notification__title { color: var(--sds-status-error-content-default); }
 
 /* ─── Description ──────────────────────────────────────────────────────────── */
-/* Typography set by .sds-text--body-content-medium on the element */
+/* Typography set by .sds-text--content-medium on the element */
 
 .sds-notification__description {
   color: var(--sds-neutral-content-secondary);
@@ -99,7 +99,7 @@
   height:          24px;
   background:      none;
   border:          none;
-  border-radius:   var(--sds-shape-border-radius-xsmall);
+  border-radius:   var(--sds-radius-xsmall);
   padding:         0;
   cursor:          pointer;
   color:           var(--sds-neutral-content-secondary);

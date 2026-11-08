@@ -3,9 +3,9 @@
  *
  * Tokens: --sds-neutral-content-*, --sds-interactive-secondary-*,
  *         --sds-interactive-negative-*, --sds-effects-focusring,
- *         --sds-shape-border-radius-xxsmall, --sds-typography-line-height-*
- * Typography utility classes: .sds-text--body-content-medium (label),
- *                              .sds-text--body-content-small (description)
+ *         --sds-radius-xxsmall, --sds-typography-line-height-*
+ * Typography utility classes: .sds-text--content-medium (label),
+ *                              .sds-text--content-small (description)
  *
  * Structure:
  *   .sds-checkbox                → root <label>, lays out indicator + slot
@@ -54,11 +54,11 @@
   flex-shrink: 0;
   /* Height matches the first-line line-height so the indicator
      centers against the first content line, not the full slot height */
-  height: var(--sds-typography-line-height-body-content-medium);
+  height: var(--sds-typography-line-height-content-medium);
 }
 
 .sds-checkbox--medium .sds-checkbox__indicator-wrap {
-  height: var(--sds-typography-line-height-body-content-small);
+  height: var(--sds-typography-line-height-content-small);
 }
 
 /* ─── Content slot ───────────────────────────────────────────────────────────── */
@@ -81,15 +81,15 @@
 
 /* Medium size overrides */
 .sds-checkbox--medium .sds-checkbox__label {
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 .sds-checkbox--medium .sds-checkbox__description {
-  font-size:      var(--sds-typography-font-size-body-content-xsmall);
-  line-height:    var(--sds-typography-line-height-body-content-xsmall);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+  font-size:      var(--sds-typography-font-size-content-xsmall);
+  line-height:    var(--sds-typography-line-height-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-content-xsmall);
 }
 
 /* Error — label and description take on error content color */

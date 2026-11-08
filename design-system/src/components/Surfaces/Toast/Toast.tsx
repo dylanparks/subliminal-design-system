@@ -174,7 +174,7 @@ function FrontCard({ toast, isTop, onDismiss }: FrontCardProps) {
         </div>
 
         {hasDesc && (
-          <p className="sds-toast__description sds-text--body-content-small">
+          <p className="sds-toast__description sds-text--content-small">
             {toast.description}
           </p>
         )}

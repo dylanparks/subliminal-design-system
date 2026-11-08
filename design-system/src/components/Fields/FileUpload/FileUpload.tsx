@@ -204,8 +204,8 @@ export function FileUpload({
 
       {showFooter && (
         <div className="sds-file-upload__footer">
-          {errorMessage && <span className="sds-file-upload__error-message sds-text--body-content-small">{errorMessage}</span>}
-          {!errorMessage && hint && <span className="sds-file-upload__hint sds-text--body-content-small">{hint}</span>}
+          {errorMessage && <span className="sds-file-upload__error-message sds-text--content-small">{errorMessage}</span>}
+          {!errorMessage && hint && <span className="sds-file-upload__hint sds-text--content-small">{hint}</span>}
         </div>
       )}
     </div>

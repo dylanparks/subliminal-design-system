@@ -214,8 +214,8 @@ export function AccordionPanel({ children, className }: AccordionPanelProps) {
   const { isOpen, panelId, triggerId } = useAccordionItemContext();
 
   const contentClass = size === 'medium'
-    ? 'sds-text--body-content-medium'
-    : 'sds-text--body-content-small';
+    ? 'sds-text--content-medium'
+    : 'sds-text--content-small';
 
   return (
     <div

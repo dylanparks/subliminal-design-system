@@ -397,162 +397,168 @@ export const brandTokens = {
   },
 } as const;
 
-export const shapeTokens = {
-  shape: {
-    border: {
-      radius: {
-        xxsmall: "var(--sds-shape-border-radius-xxsmall)",
-        xsmall: "var(--sds-shape-border-radius-xsmall)",
-        small: "var(--sds-shape-border-radius-small)",
-        medium: "var(--sds-shape-border-radius-medium)",
-        large: "var(--sds-shape-border-radius-large)",
-        xlarge: "var(--sds-shape-border-radius-xlarge)",
-        display: {
-          small: "var(--sds-shape-border-radius-display-small)",
-          medium: "var(--sds-shape-border-radius-display-medium)",
-          large: "var(--sds-shape-border-radius-display-large)",
-        },
-        round: "var(--sds-shape-border-radius-round)",
-      },
-    },
-  },
-} as const;
-
-export const spacingTokens = {
-  spacing: {
-    size: {
-      large: "var(--sds-spacing-size-large)",
-      medium: "var(--sds-spacing-size-medium)",
-      small: "var(--sds-spacing-size-small)",
-      xsmall: "var(--sds-spacing-size-xsmall)",
-    },
-  },
-} as const;
-
 export const typographyTokens = {
-  typography: {
-    font: {
-      family: {
-        title: "var(--sds-typography-font-family-title)",
-        subtitle: "var(--sds-typography-font-family-subtitle)",
-        body: {
-          content: "var(--sds-typography-font-family-body-content)",
-          interactive: "var(--sds-typography-font-family-body-interactive)",
-        },
-      },
-      size: {
-        title: {
-          huge: "var(--sds-typography-font-size-title-huge)",
-          large: "var(--sds-typography-font-size-title-large)",
-          medium: "var(--sds-typography-font-size-title-medium)",
-          small: "var(--sds-typography-font-size-title-small)",
-          xsmall: "var(--sds-typography-font-size-title-xsmall)",
-        },
-        subtitle: {
-          large: "var(--sds-typography-font-size-subtitle-large)",
-          medium: "var(--sds-typography-font-size-subtitle-medium)",
-          small: "var(--sds-typography-font-size-subtitle-small)",
-          xsmall: "var(--sds-typography-font-size-subtitle-xsmall)",
-        },
-        body: {
-          content: {
-            huge: "var(--sds-typography-font-size-body-content-huge)",
-            large: "var(--sds-typography-font-size-body-content-large)",
-            medium: "var(--sds-typography-font-size-body-content-medium)",
-            small: "var(--sds-typography-font-size-body-content-small)",
-            xsmall: "var(--sds-typography-font-size-body-content-xsmall)",
-          },
-          interactive: {
-            huge: "var(--sds-typography-font-size-body-interactive-huge)",
-            large: "var(--sds-typography-font-size-body-interactive-large)",
-            medium: "var(--sds-typography-font-size-body-interactive-medium)",
-            small: "var(--sds-typography-font-size-body-interactive-small)",
-          },
-        },
-      },
-      weight: {
-        title: "var(--sds-typography-font-weight-title)",
-        subtitle: "var(--sds-typography-font-weight-subtitle)",
-        body: {
-          content: "var(--sds-typography-font-weight-body-content)",
-          interactive: "var(--sds-typography-font-weight-body-interactive)",
-        },
-      },
+  "font-family": {
+    title: "var(--sds-typography-font-family-title)",
+    subtitle: "var(--sds-typography-font-family-subtitle)",
+    content: "var(--sds-typography-font-family-content)",
+    interactive: "var(--sds-typography-font-family-interactive)",
+  },
+  "font-weight": {
+    title: "var(--sds-typography-font-weight-title)",
+    subtitle: "var(--sds-typography-font-weight-subtitle)",
+    content: "var(--sds-typography-font-weight-content)",
+    interactive: "var(--sds-typography-font-weight-interactive)",
+  },
+  "letter-spacing": {
+    title: {
+      huge: "var(--sds-typography-letter-spacing-title-huge)",
+      large: "var(--sds-typography-letter-spacing-title-large)",
+      medium: "var(--sds-typography-letter-spacing-title-medium)",
+      small: "var(--sds-typography-letter-spacing-title-small)",
+      xsmall: "var(--sds-typography-letter-spacing-title-xsmall)",
     },
-    line: {
-      height: {
-        title: {
-          huge: "var(--sds-typography-line-height-title-huge)",
-          large: "var(--sds-typography-line-height-title-large)",
-          medium: "var(--sds-typography-line-height-title-medium)",
-          small: "var(--sds-typography-line-height-title-small)",
-          xsmall: "var(--sds-typography-line-height-title-xsmall)",
-        },
-        subtitle: {
-          large: "var(--sds-typography-line-height-subtitle-large)",
-          medium: "var(--sds-typography-line-height-subtitle-medium)",
-          small: "var(--sds-typography-line-height-subtitle-small)",
-          xsmall: "var(--sds-typography-line-height-subtitle-xsmall)",
-        },
-        body: {
-          content: {
-            huge: "var(--sds-typography-line-height-body-content-huge)",
-            large: "var(--sds-typography-line-height-body-content-large)",
-            medium: "var(--sds-typography-line-height-body-content-medium)",
-            small: "var(--sds-typography-line-height-body-content-small)",
-            xsmall: "var(--sds-typography-line-height-body-content-xsmall)",
-          },
-          interactive: {
-            huge: "var(--sds-typography-line-height-body-interactive-huge)",
-            large: "var(--sds-typography-line-height-body-interactive-large)",
-            medium: "var(--sds-typography-line-height-body-interactive-medium)",
-            small: "var(--sds-typography-line-height-body-interactive-small)",
-          },
-        },
-      },
+    subtitle: {
+      large: "var(--sds-typography-letter-spacing-subtitle-large)",
+      medium: "var(--sds-typography-letter-spacing-subtitle-medium)",
+      small: "var(--sds-typography-letter-spacing-subtitle-small)",
+      xsmall: "var(--sds-typography-letter-spacing-subtitle-xsmall)",
     },
-    letter: {
-      spacing: {
-        title: {
-          huge: "var(--sds-typography-letter-spacing-title-huge)",
-          large: "var(--sds-typography-letter-spacing-title-large)",
-          medium: "var(--sds-typography-letter-spacing-title-medium)",
-          small: "var(--sds-typography-letter-spacing-title-small)",
-          xsmall: "var(--sds-typography-letter-spacing-title-xsmall)",
-        },
-        subtitle: {
-          large: "var(--sds-typography-letter-spacing-subtitle-large)",
-          medium: "var(--sds-typography-letter-spacing-subtitle-medium)",
-          small: "var(--sds-typography-letter-spacing-subtitle-small)",
-          xsmall: "var(--sds-typography-letter-spacing-subtitle-xsmall)",
-        },
-        body: {
-          content: {
-            huge: "var(--sds-typography-letter-spacing-body-content-huge)",
-            large: "var(--sds-typography-letter-spacing-body-content-large)",
-            medium: "var(--sds-typography-letter-spacing-body-content-medium)",
-            small: "var(--sds-typography-letter-spacing-body-content-small)",
-            xsmall: "var(--sds-typography-letter-spacing-body-content-xsmall)",
-          },
-          interactive: {
-            huge: "var(--sds-typography-letter-spacing-body-interactive-huge)",
-            large: "var(--sds-typography-letter-spacing-body-interactive-large)",
-            medium: "var(--sds-typography-letter-spacing-body-interactive-medium)",
-            small: "var(--sds-typography-letter-spacing-body-interactive-small)",
-          },
-        },
-      },
+    content: {
+      huge: "var(--sds-typography-letter-spacing-content-huge)",
+      large: "var(--sds-typography-letter-spacing-content-large)",
+      medium: "var(--sds-typography-letter-spacing-content-medium)",
+      small: "var(--sds-typography-letter-spacing-content-small)",
+      xsmall: "var(--sds-typography-letter-spacing-content-xsmall)",
+    },
+    interactive: {
+      huge: "var(--sds-typography-letter-spacing-interactive-huge)",
+      large: "var(--sds-typography-letter-spacing-interactive-large)",
+      medium: "var(--sds-typography-letter-spacing-interactive-medium)",
+      small: "var(--sds-typography-letter-spacing-interactive-small)",
+    },
+  },
+  "font-size": {
+    title: {
+      huge: "var(--sds-typography-font-size-title-huge)",
+      large: "var(--sds-typography-font-size-title-large)",
+      medium: "var(--sds-typography-font-size-title-medium)",
+      small: "var(--sds-typography-font-size-title-small)",
+      xsmall: "var(--sds-typography-font-size-title-xsmall)",
+    },
+    subtitle: {
+      large: "var(--sds-typography-font-size-subtitle-large)",
+      medium: "var(--sds-typography-font-size-subtitle-medium)",
+      small: "var(--sds-typography-font-size-subtitle-small)",
+      xsmall: "var(--sds-typography-font-size-subtitle-xsmall)",
+    },
+    content: {
+      huge: "var(--sds-typography-font-size-content-huge)",
+      large: "var(--sds-typography-font-size-content-large)",
+      medium: "var(--sds-typography-font-size-content-medium)",
+      small: "var(--sds-typography-font-size-content-small)",
+      xsmall: "var(--sds-typography-font-size-content-xsmall)",
+    },
+    interactive: {
+      huge: "var(--sds-typography-font-size-interactive-huge)",
+      large: "var(--sds-typography-font-size-interactive-large)",
+      medium: "var(--sds-typography-font-size-interactive-medium)",
+      small: "var(--sds-typography-font-size-interactive-small)",
+    },
+  },
+  "line-height": {
+    title: {
+      huge: "var(--sds-typography-line-height-title-huge)",
+      large: "var(--sds-typography-line-height-title-large)",
+      medium: "var(--sds-typography-line-height-title-medium)",
+      small: "var(--sds-typography-line-height-title-small)",
+      xsmall: "var(--sds-typography-line-height-title-xsmall)",
+    },
+    subtitle: {
+      large: "var(--sds-typography-line-height-subtitle-large)",
+      medium: "var(--sds-typography-line-height-subtitle-medium)",
+      small: "var(--sds-typography-line-height-subtitle-small)",
+      xsmall: "var(--sds-typography-line-height-subtitle-xsmall)",
+    },
+    content: {
+      huge: "var(--sds-typography-line-height-content-huge)",
+      large: "var(--sds-typography-line-height-content-large)",
+      medium: "var(--sds-typography-line-height-content-medium)",
+      small: "var(--sds-typography-line-height-content-small)",
+      xsmall: "var(--sds-typography-line-height-content-xsmall)",
+    },
+    interactive: {
+      huge: "var(--sds-typography-line-height-interactive-huge)",
+      large: "var(--sds-typography-line-height-interactive-large)",
+      medium: "var(--sds-typography-line-height-interactive-medium)",
+      small: "var(--sds-typography-line-height-interactive-small)",
     },
   },
 } as const;
 
-export const breakpointTokens = {
-  viewport: {
-    width: "var(--sds-viewport-width)",
-    x: {
-      padding: "var(--sds-viewport-x-padding)",
-    },
+export const radiusTokens = {
+  xxsmall: "var(--sds-radius-xxsmall)",
+  xsmall: "var(--sds-radius-xsmall)",
+  small: "var(--sds-radius-small)",
+  medium: "var(--sds-radius-medium)",
+  large: "var(--sds-radius-large)",
+  xlarge: "var(--sds-radius-xlarge)",
+  cards: {
+    small: "var(--sds-radius-cards-small)",
+    medium: "var(--sds-radius-cards-medium)",
+    large: "var(--sds-radius-cards-large)",
   },
+  round: "var(--sds-radius-round)",
+} as const;
+
+export const sizeTokens = {
+  custom: {
+    "slider-indicator": "var(--sds-size-custom-slider-indicator)",
+    "slider-bar": "var(--sds-size-custom-slider-bar)",
+    "checkbox-large": "var(--sds-size-custom-checkbox-large)",
+    "checkbox-medium": "var(--sds-size-custom-checkbox-medium)",
+    "toggle-large": "var(--sds-size-custom-toggle-large)",
+    "toggle-medium": "var(--sds-size-custom-toggle-medium)",
+    "radio-large": "var(--sds-size-custom-radio-large)",
+    "radio-medium": "var(--sds-size-custom-radio-medium)",
+    "progress-bar": "var(--sds-size-custom-progress-bar)",
+    "rating-star": "var(--sds-size-custom-rating-star)",
+  },
+  xsmall: "var(--sds-size-xsmall)",
+  small: "var(--sds-size-small)",
+  medium: "var(--sds-size-medium)",
+  large: "var(--sds-size-large)",
+} as const;
+
+export const borderThicknessTokens = {
+  neutral: {
+    divider: "var(--sds-border-thickness-neutral-divider)",
+    surface: "var(--sds-border-thickness-neutral-surface)",
+    elevated: "var(--sds-border-thickness-neutral-elevated)",
+  },
+  interactive: {
+    primary: "var(--sds-border-thickness-interactive-primary)",
+    secondary: "var(--sds-border-thickness-interactive-secondary)",
+    "secondary-inactive": "var(--sds-border-thickness-interactive-secondary-inactive)",
+    negative: "var(--sds-border-thickness-interactive-negative)",
+    static: "var(--sds-border-thickness-interactive-static)",
+    "static-inactive": "var(--sds-border-thickness-interactive-static-inactive)",
+  },
+  field: {
+    large: "var(--sds-border-thickness-field-large)",
+    medium: "var(--sds-border-thickness-field-medium)",
+    small: "var(--sds-border-thickness-field-small)",
+  },
+  data: {
+    badge: "var(--sds-border-thickness-data-badge)",
+    avatar: "var(--sds-border-thickness-data-avatar)",
+  },
+} as const;
+
+export const viewportTokens = {
+  width: "var(--sds-viewport-width)",
+  "min-height": "var(--sds-viewport-min-height)",
+  "x-padding": "var(--sds-viewport-x-padding)",
 } as const;
 
 /**
@@ -574,7 +580,6 @@ export const effectTokens = {
       },
       Focus: {
         boxShadow: "var(--sds-effect-interactive-element-focus-box-shadow)",
-        filter: "var(--sds-effect-interactive-element-focus-filter)",
       },
       Disabled: {
         boxShadow: "var(--sds-effect-interactive-element-disabled-box-shadow)",
@@ -585,16 +590,15 @@ export const effectTokens = {
       Success: {
         boxShadow: "var(--sds-effect-interactive-element-success-box-shadow)",
       },
-      Elevated: {
-        boxShadow: "var(--sds-effect-interactive-element-elevated-box-shadow)",
-        filter: "var(--sds-effect-interactive-element-elevated-filter)",
-      },
     },
   },
   Static: {
     Element: {
       Default: {
         boxShadow: "var(--sds-effect-static-element-default-box-shadow)",
+      },
+      Elevated: {
+        boxShadow: "var(--sds-effect-static-element-elevated-box-shadow)",
       },
     },
     Card: {

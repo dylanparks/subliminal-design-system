@@ -593,9 +593,9 @@ export function TimePicker({
           <div className="sds-timepicker__inner">
             {/* Floating label — aria-hidden because the accessible name is on
                 the button itself */}
-            <span className="sds-timepicker__label sds-text--body-content-medium" aria-hidden="true">{label}</span>
+            <span className="sds-timepicker__label sds-text--content-medium" aria-hidden="true">{label}</span>
             {/* Value text — hidden (max-height:0) until --filled */}
-            <span className="sds-timepicker__value sds-text--body-content-medium" aria-hidden="true">
+            <span className="sds-timepicker__value sds-text--content-medium" aria-hidden="true">
               {formatTime(currentValue, format, showSeconds)}
             </span>
           </div>
@@ -966,7 +966,7 @@ export function TimePicker({
         <div id={supportId} className="sds-timepicker__support">
           {showError   && <ErrorIcon size={16} />}
           {showSuccess && <SuccessIcon size={16} />}
-          <p className="sds-timepicker__message sds-text--body-content-small">{message}</p>
+          <p className="sds-timepicker__message sds-text--content-small">{message}</p>
         </div>
       )}
 

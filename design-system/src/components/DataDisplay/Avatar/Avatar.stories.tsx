@@ -232,11 +232,11 @@ export const Decorative: Story = {
           color:         'var(--sds-neutral-content-primary)',
         }}>Blake Pierce</div>
         <div style={{
-          fontFamily:    'var(--sds-typography-font-family-body-content)',
-          fontWeight:    'var(--sds-typography-font-weight-body-content)',
-          fontSize:      'var(--sds-typography-font-size-body-content-small)',
-          lineHeight:    'var(--sds-typography-line-height-body-content-small)',
-          letterSpacing: 'var(--sds-typography-letter-spacing-body-content-small)',
+          fontFamily:    'var(--sds-typography-font-family-content)',
+          fontWeight:    'var(--sds-typography-font-weight-content)',
+          fontSize:      'var(--sds-typography-font-size-content-small)',
+          lineHeight:    'var(--sds-typography-line-height-content-small)',
+          letterSpacing: 'var(--sds-typography-letter-spacing-content-small)',
           color:         'var(--sds-neutral-content-secondary)',
         }}>Design Lead</div>
       </div>

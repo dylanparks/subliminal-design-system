@@ -2,13 +2,9 @@
 /* Re-run: npm run build:tokens                         */
 
 /*
- * Typography utility classes — one class per type scale variant.
- * Each class sets the full set of font properties for that scale:
- * family, size, weight, line-height, and letter-spacing.
- *
- * Responsive overrides in tokens.css automatically update the underlying
- * custom properties at each breakpoint, keeping these classes accurate
- * without any duplication here.
+ * Typography utility classes — one per type style: .sds-text--{category}-{size}.
+ * Each sets all five font properties. Breakpoints and themes change the underlying
+ * variables, so these classes stay correct at every screen size and in every theme.
  */
 
 .sds-text--title-huge {
@@ -83,74 +79,74 @@
   letter-spacing: var(--sds-typography-letter-spacing-subtitle-xsmall);
 }
 
-.sds-text--body-content-huge {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-huge);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-huge);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-huge);
+.sds-text--content-huge {
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-huge);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-huge);
+  letter-spacing: var(--sds-typography-letter-spacing-content-huge);
 }
 
-.sds-text--body-content-large {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-large);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-large);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-large);
+.sds-text--content-large {
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-large);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-large);
+  letter-spacing: var(--sds-typography-letter-spacing-content-large);
 }
 
-.sds-text--body-content-medium {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+.sds-text--content-medium {
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-medium);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-content-medium);
 }
 
-.sds-text--body-content-small {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+.sds-text--content-small {
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-small);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
-.sds-text--body-content-xsmall {
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-xsmall);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-xsmall);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-xsmall);
+.sds-text--content-xsmall {
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-xsmall);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-xsmall);
+  letter-spacing: var(--sds-typography-letter-spacing-content-xsmall);
 }
 
-.sds-text--body-interactive-huge {
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-huge);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  line-height:    var(--sds-typography-line-height-body-interactive-huge);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-huge);
+.sds-text--interactive-huge {
+  font-family:    var(--sds-typography-font-family-interactive);
+  font-size:      var(--sds-typography-font-size-interactive-huge);
+  font-weight:    var(--sds-typography-font-weight-interactive);
+  line-height:    var(--sds-typography-line-height-interactive-huge);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-huge);
 }
 
-.sds-text--body-interactive-large {
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-large);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  line-height:    var(--sds-typography-line-height-body-interactive-large);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-large);
+.sds-text--interactive-large {
+  font-family:    var(--sds-typography-font-family-interactive);
+  font-size:      var(--sds-typography-font-size-interactive-large);
+  font-weight:    var(--sds-typography-font-weight-interactive);
+  line-height:    var(--sds-typography-line-height-interactive-large);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-large);
 }
 
-.sds-text--body-interactive-medium {
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-medium);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  line-height:    var(--sds-typography-line-height-body-interactive-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+.sds-text--interactive-medium {
+  font-family:    var(--sds-typography-font-family-interactive);
+  font-size:      var(--sds-typography-font-size-interactive-medium);
+  font-weight:    var(--sds-typography-font-weight-interactive);
+  line-height:    var(--sds-typography-line-height-interactive-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-medium);
 }
 
-.sds-text--body-interactive-small {
-  font-family:    var(--sds-typography-font-family-body-interactive);
-  font-size:      var(--sds-typography-font-size-body-interactive-small);
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  line-height:    var(--sds-typography-line-height-body-interactive-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-small);
+.sds-text--interactive-small {
+  font-family:    var(--sds-typography-font-family-interactive);
+  font-size:      var(--sds-typography-font-size-interactive-small);
+  font-weight:    var(--sds-typography-font-weight-interactive);
+  line-height:    var(--sds-typography-line-height-interactive-small);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-small);
 }

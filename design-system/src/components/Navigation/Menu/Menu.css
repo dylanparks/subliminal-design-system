@@ -5,9 +5,9 @@
  *         --sds-interactive-fields-background-*, --sds-interactive-fields-content-*,
  *         --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
  *         --sds-effects-focusring, --sds-effects-dropshadow-elevated, --sds-effects-elevated-elevated*,
- *         --sds-shape-border-radius-*
+ *         --sds-radius-*
  * Typography: body-content-medium (item — declared on .sds-menu-item directly),
- *             sds-text--subtitle-small (suffix--tag), sds-text--body-content-small (suffix--text)
+ *             sds-text--subtitle-small (suffix--tag), sds-text--content-small (suffix--text)
  *
  * Subcomponents:
  *   .sds-menu            → floating list container (portal-rendered, position: fixed)
@@ -41,7 +41,7 @@
   flex-direction: row;
   background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevated-elevatedx) * 1px)
     calc(var(--sds-effects-elevated-elevatedy) * 1px)
@@ -114,7 +114,7 @@
   transform: translateX(-50%);
   width: 6px;
   min-height: 24px;
-  border-radius: var(--sds-shape-border-radius-round, 999px);
+  border-radius: var(--sds-radius-round, 999px);
   background-color: var(--sds-neutral-content-subtle);
   cursor: grab;
   transition: background-color 120ms ease;
@@ -142,11 +142,11 @@
   list-style: none;
 
   /* Typography — owned here so all consumers (Menu, Combobox, TimePicker) inherit it */
-  font-family:    var(--sds-typography-font-family-body-content);
-  font-size:      var(--sds-typography-font-size-body-content-medium);
-  font-weight:    var(--sds-typography-font-weight-body-content);
-  line-height:    var(--sds-typography-line-height-body-content-medium);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-medium);
+  font-family:    var(--sds-typography-font-family-content);
+  font-size:      var(--sds-typography-font-size-content-medium);
+  font-weight:    var(--sds-typography-font-weight-content);
+  line-height:    var(--sds-typography-line-height-content-medium);
+  letter-spacing: var(--sds-typography-letter-spacing-content-medium);
 
   color:           var(--sds-interactive-fields-content-default);
 
@@ -176,8 +176,8 @@
 
 /* Selected / active state — semibold label text (overrides body-content-medium weight/spacing) */
 .sds-menu-item--selected .sds-menu-item__content {
-  font-weight:    var(--sds-typography-font-weight-body-interactive);
-  letter-spacing: var(--sds-typography-letter-spacing-body-interactive-medium);
+  font-weight:    var(--sds-typography-font-weight-interactive);
+  letter-spacing: var(--sds-typography-letter-spacing-interactive-medium);
 }
 
 /* Disabled state */
@@ -253,7 +253,7 @@
   background-color: var(--sds-neutral-background-subtle);
   color:            var(--sds-neutral-content-secondary);
   padding: 2px 6px;
-  border-radius: var(--sds-shape-border-radius-large); /* full pill */
+  border-radius: var(--sds-radius-large); /* full pill */
   white-space: nowrap;
 }
 

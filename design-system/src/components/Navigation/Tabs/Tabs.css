@@ -8,8 +8,8 @@
  *         --sds-interactive-static-hollow-stroke-default,
  *         --sds-neutral-stroke-default,
  *         --sds-effects-focusring,
- *         --sds-shape-border-radius-xsmall
- * Typography: .sds-text--body-interactive-small (tab label)
+ *         --sds-radius-xsmall
+ * Typography: .sds-text--interactive-small (tab label)
  *
  * Structure:
  *   .sds-tabs                  → root flex-column container
@@ -61,7 +61,7 @@
   padding: 8px;
   border: none;
   background: transparent;
-  border-radius: var(--sds-shape-border-radius-xsmall) var(--sds-shape-border-radius-xsmall) 0 0;
+  border-radius: var(--sds-radius-xsmall) var(--sds-radius-xsmall) 0 0;
   cursor: pointer;
   outline: none;
   transition:

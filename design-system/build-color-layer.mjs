@@ -49,11 +49,9 @@
  * and anything this can't place fails the build rather than being guessed at.
  */
 
-import { readFileSync, readdirSync } from 'fs';
-import { join } from 'path';
-
-const BRAND_COLLECTION = 'Brand';
-const COLOR_MODE_COLLECTION = 'Color mode';
+import {
+  BRAND_COLLECTION, COLOR_MODE_COLLECTION, readCollection, segment, tidy, relayProblem,
+} from './build-token-export.mjs';
 
 /**
  * Intent tokens allowed to reach past Brand straight into Globals. Each one is a token that will
@@ -63,42 +61,7 @@ const COLOR_MODE_COLLECTION = 'Color mode';
  */
 const FIXED_TO_GLOBALS = new Set(['Accents/Gradient/PrimaryStart', 'Accents/Gradient/PrimaryEnd']);
 
-// ─── Reading the export ───────────────────────────────────────────────────────
-
-/** Every token leaf, with its Figma path. The file-level `$extensions` is metadata, not a token. */
-function leaves(obj, path = [], out = []) {
-  for (const [key, value] of Object.entries(obj)) {
-    if (path.length === 0 && key === '$extensions') continue;
-    if (value && typeof value === 'object' && '$value' in value) out.push({ path: [...path, key], token: value });
-    else if (value && typeof value === 'object') leaves(value, [...path, key], out);
-  }
-  return out;
-}
-
-/** `<Collection>.<Mode>.tokens.json` files for one collection, as { mode, tokens[] }. */
-function readCollection(dir, collection) {
-  return readdirSync(dir)
-    .filter((f) => f.startsWith(`${collection}.`) && f.endsWith('.tokens.json'))
-    .map((file) => {
-      const json = JSON.parse(readFileSync(join(dir, file), 'utf8'));
-      return { file, mode: json.$extensions?.['com.figma.modeName'] ?? file, tokens: leaves(json) };
-    });
-}
-
-/** True when `dir` holds a Brand-layer export (as opposed to the legacy 12-collection files). */
-export function hasBrandLayerExport(dir) {
-  try {
-    return readCollection(dir, BRAND_COLLECTION).length > 0 && readCollection(dir, COLOR_MODE_COLLECTION).length > 0;
-  } catch {
-    return false;
-  }
-}
-
 // ─── Naming ───────────────────────────────────────────────────────────────────
-
-/** One path segment as a CSS identifier: "Primary-foreground" → "primary-foreground". */
-const segment = (s) =>
-  s.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
 /** Intent token path → the path used for both its CSS name and its key in `tokens.ts`. */
 const intentPath = (figmaPath) => figmaPath.map(segment);
@@ -119,9 +82,6 @@ const mixVar = (path) => `--sds-mix-${path.join('-')}`;
 const brandVar = (path) => `--sds-brand-${path.join('-')}`;
 
 // ─── Values ───────────────────────────────────────────────────────────────────
-
-/** Drop float32 noise: 0.20000000298023224 → 0.2, 93 → 93. */
-const tidy = (n) => +Number(n).toFixed(4);
 
 const channel = (c) => Math.round(c * 255);
 
@@ -193,7 +153,7 @@ export function buildColorLayer(dir) {
       const ext = token.$extensions ?? {};
       const entry = { iPath: intentPath(path), type: token.$type, description: token.$description };
 
-      if (ext['com.subliminal.unreadableValue'] || ext['com.subliminal.unsupportedExpression']) {
+      if (relayProblem(token)) {
         errors.push(`${where}: Relay couldn't read this value. Re-export, or check the plugin's Diagnostics tab.`);
         continue;
       }

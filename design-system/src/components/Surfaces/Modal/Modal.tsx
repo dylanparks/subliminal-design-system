@@ -132,7 +132,7 @@ export function Modal({
             <div className="sds-modal__heading">
               <p id={titleId} className="sds-modal__title sds-text--title-xsmall">{title}</p>
               {description && (
-                <p id={descId} className="sds-modal__description sds-text--body-content-medium">
+                <p id={descId} className="sds-modal__description sds-text--content-medium">
                   {description}
                 </p>
               )}

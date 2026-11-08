@@ -3,9 +3,9 @@
  *
  * Tokens: --sds-neutral-background-elevated, --sds-neutral-stroke-elevated,
  *         --sds-neutral-content-primary, --sds-neutral-content-secondary,
- *         --sds-shape-border-radius-display-small, --sds-effects-*,
+ *         --sds-radius-cards-small, --sds-effects-*,
  *         --sds-interactive-static-filled-*
- * Typography: .sds-text--title-xsmall (title), .sds-text--body-content-medium (description)
+ * Typography: .sds-text--title-xsmall (title), .sds-text--content-medium (description)
  *
  * Structure:
  *   .sds-modal-dialog             → <dialog> element (top-layer, focus trap, ESC, backdrop)
@@ -18,7 +18,7 @@
  *   .sds-modal__header            → title row with optional dismiss button
  *   .sds-modal__heading           → title + description column
  *   .sds-modal__title             → title text (sds-text--title-xsmall)
- *   .sds-modal__description       → support text (sds-text--body-content-medium)
+ *   .sds-modal__description       → support text (sds-text--content-medium)
  *   .sds-modal__content           → children slot
  *   .sds-modal__actions           → action buttons row
  *   .sds-modal__dismiss           → X icon close button
@@ -51,8 +51,8 @@
   max-height:       inherit;
   background-color: var(--sds-neutral-background-elevated);
   border:           1px solid var(--sds-neutral-stroke-elevated);
-  border-radius:    var(--sds-shape-border-radius-display-small);
-  box-shadow:       var(--sds-effect-interactive-element-elevated-box-shadow);
+  border-radius:    var(--sds-radius-cards-small);
+  box-shadow:       var(--sds-effect-static-element-elevated-box-shadow);
   overflow:         hidden;
 }
 
@@ -145,7 +145,7 @@
   height:          24px;
   background:      none;
   border:          none;
-  border-radius:   var(--sds-shape-border-radius-small);
+  border-radius:   var(--sds-radius-small);
   padding:         0;
   cursor:          pointer;
   color:           var(--sds-neutral-content-secondary);
@@ -166,7 +166,7 @@
   right:            8px;
   width:            36px;
   height:           36px;
-  border-radius:    var(--sds-shape-border-radius-round);
+  border-radius:    var(--sds-radius-round);
   background-color: var(--sds-interactive-static-filled-background-default);
   color:            var(--sds-interactive-static-filled-content-default);
 }
@@ -189,8 +189,8 @@
   .sds-modal--medium,
   .sds-modal--small {
     width:         100%;
-    border-radius: var(--sds-shape-border-radius-display-small)
-                   var(--sds-shape-border-radius-display-small)
+    border-radius: var(--sds-radius-cards-small)
+                   var(--sds-radius-cards-small)
                    0 0;
   }
 
@@ -201,8 +201,8 @@
   /* Scale down to small-size dimensions (48px / 10px radius / 0 16px padding) */
   .sds-modal__actions .sds-button {
     width:         100%;
-    height:        var(--sds-spacing-size-small);
+    height:        var(--sds-size-small);
     padding:       0 16px;
-    border-radius: var(--sds-shape-border-radius-small);
+    border-radius: var(--sds-radius-small);
   }
 }

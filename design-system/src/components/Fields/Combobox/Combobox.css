@@ -3,16 +3,16 @@
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
  *         --sds-effects-focusring, --sds-effects-dropshadow-elevated, --sds-effects-elevated-elevated*,
- *         --sds-shape-border-radius-*, --sds-spacing-size-*,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-small  (label-above, message)
- *             sds-text--body-content-medium (floating label, input, no-options)
+ *         --sds-radius-*, --sds-size-*,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-small  (label-above, message)
+ *             sds-text--content-medium (floating label, input, no-options)
  *
  * Sizes:
- *   large  → --sds-spacing-size-large  (64px) · border-radius-large  (16px)
- *   medium → --sds-spacing-size-medium (56px) · border-radius-medium (12px)
+ *   large  → --sds-size-large  (64px) · border-radius-large  (16px)
+ *   medium → --sds-size-medium (56px) · border-radius-medium (12px)
  *   small  → 48px fixed · border-radius-small  (10px) · label above wrapper
  *
  * State     CSS mechanism
@@ -103,21 +103,21 @@
 /* ─── Sizes ──────────────────────────────────────────────────────────────── */
 
 .sds-combobox--large .sds-combobox__wrapper {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
 }
 
 .sds-combobox--medium .sds-combobox__wrapper {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
 }
 
 .sds-combobox--small .sds-combobox__wrapper {
   height: 48px;
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-small);
+  border-radius: var(--sds-radius-small);
   gap: 8px;
 }
 
@@ -188,9 +188,9 @@
 .sds-combobox--large .sds-combobox__wrapper:focus-within .sds-combobox__label {
   top: 10px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* Float up — medium */
@@ -199,9 +199,9 @@
 .sds-combobox--medium .sds-combobox__wrapper:focus-within .sds-combobox__label {
   top: 6px;
   transform: translateY(0);
-  font-size:      var(--sds-typography-font-size-body-content-small);
-  line-height:    var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size:      var(--sds-typography-font-size-content-small);
+  line-height:    var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Input ──────────────────────────────────────────────────────────────── */
@@ -343,7 +343,7 @@
   overflow-y: auto;
   background-color: var(--sds-neutral-background-elevated);
   border: 1px solid var(--sds-interactive-fields-stroke-default);
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevated-elevatedx) * 1px)
     calc(var(--sds-effects-elevated-elevatedy) * 1px)
@@ -391,7 +391,7 @@
 /* Support icon — vertically centres the 16px SVG within the text line-height */
 .sds-combobox__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-combobox--error .sds-combobox__support {

@@ -219,7 +219,7 @@ export const StaticVariant: Story = {
     <div style={{
       background: 'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
       padding: 24,
-      borderRadius: 'var(--sds-shape-border-radius-medium)',
+      borderRadius: 'var(--sds-radius-medium)',
     }}>
       <Tabs defaultValue="overview" propStatic>
         <TabList aria-label="Product sections">
@@ -276,12 +276,12 @@ export const Controlled: Story = {
                 onClick={() => setActive(t)}
                 style={{
                   padding: '4px 12px',
-                  borderRadius: 'var(--sds-shape-border-radius-xsmall)',
+                  borderRadius: 'var(--sds-radius-xsmall)',
                   border: '1px solid var(--sds-neutral-stroke-default)',
                   background: active === t ? 'var(--sds-interactive-secondary-hollow-background-inactive-hover)' : 'transparent',
                   cursor: 'pointer',
-                  fontFamily: 'var(--sds-typography-font-family-body-content)',
-                  fontSize: 'var(--sds-typography-font-size-body-content-small)',
+                  fontFamily: 'var(--sds-typography-font-family-content)',
+                  fontSize: 'var(--sds-typography-font-size-content-small)',
                   color: 'var(--sds-neutral-content-primary)',
                 }}
               >
@@ -367,7 +367,7 @@ export const AllVariants: Story = {
         <div style={{
           background: 'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
           padding: 24,
-          borderRadius: 'var(--sds-shape-border-radius-medium)',
+          borderRadius: 'var(--sds-radius-medium)',
         }}>
           <p style={{ ...labelStyle, color: 'var(--sds-neutral-content-static-secondary)' }}>Static variant</p>
           <Tabs defaultValue="a" propStatic>

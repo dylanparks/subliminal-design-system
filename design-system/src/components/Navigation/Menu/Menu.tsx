@@ -143,7 +143,7 @@ function MenuItemSuffixView({ suffix }: { suffix: MenuSuffix }) {
   }
   if (suffix.type === 'text') {
     return (
-      <span className="sds-menu-item__suffix sds-menu-item__suffix--text sds-text--body-content-small" aria-hidden="true">
+      <span className="sds-menu-item__suffix sds-menu-item__suffix--text sds-text--content-small" aria-hidden="true">
         {suffix.label}
       </span>
     );

@@ -1,8 +1,8 @@
 /* Button — Subliminal Design System
  * Tokens: --sds-interactive-*, --sds-interactive-static-*,
  *         --sds-interactive-negative-*, --sds-effects-*,
- *         --sds-shape-border-radius-*
- * Typography: sds-text--body-interactive-{small|medium|large|huge}
+ *         --sds-radius-*
+ * Typography: sds-text--interactive-{small|medium|large|huge}
  */
 
 /* ─── Base ─────────────────────────────────────────────────────────────────── */
@@ -47,9 +47,9 @@
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
 .sds-button--xsmall {
-  height: var(--sds-spacing-size-xsmall);
+  height: var(--sds-size-xsmall);
   padding: 0 12px;
-  border-radius: var(--sds-shape-border-radius-xsmall);
+  border-radius: var(--sds-radius-xsmall);
   gap: 6px;
 }
 
@@ -59,9 +59,9 @@
 }
 
 .sds-button--small {
-  height: var(--sds-spacing-size-small);
+  height: var(--sds-size-small);
   padding: 0 16px;
-  border-radius: var(--sds-shape-border-radius-small);
+  border-radius: var(--sds-radius-small);
   gap: 8px;
 }
 
@@ -71,9 +71,9 @@
 }
 
 .sds-button--medium {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 20px;
-  border-radius: var(--sds-shape-border-radius-medium);
+  border-radius: var(--sds-radius-medium);
   gap: 8px;
 }
 
@@ -83,9 +83,9 @@
 }
 
 .sds-button--large {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 24px;
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   gap: 10px;
 }
 

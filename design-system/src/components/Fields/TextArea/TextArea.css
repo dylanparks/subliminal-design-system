@@ -1,11 +1,11 @@
 /* TextArea — Subliminal Design System
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-*, --sds-shape-border-radius-large,
- *         --sds-typography-font-size-body-content-{small|medium},
- *         --sds-typography-line-height-body-content-{small|medium},
- *         --sds-typography-letter-spacing-body-content-{small|medium}
- * Typography: sds-text--body-content-medium (label, textarea)
- *             sds-text--body-content-small  (message, char-count)
+ *         --sds-effects-*, --sds-radius-large,
+ *         --sds-typography-font-size-content-{small|medium},
+ *         --sds-typography-line-height-content-{small|medium},
+ *         --sds-typography-letter-spacing-content-{small|medium}
+ * Typography: sds-text--content-medium (label, textarea)
+ *             sds-text--content-small  (message, char-count)
  *
  * Single size: padding 12px 16px · border-radius-large (16px)
  *
@@ -45,7 +45,7 @@
   padding: 12px 16px;
   border: 2px solid var(--sds-interactive-fields-stroke-default);
   background-color: var(--sds-interactive-fields-background-default);
-  border-radius: var(--sds-shape-border-radius-large);
+  border-radius: var(--sds-radius-large);
   box-sizing: border-box;
   cursor: text;
   gap: 8px;
@@ -133,9 +133,9 @@
 /* Shrink label to small when focused or filled */
 .sds-text-area__wrapper:focus-within .sds-text-area__label,
 .sds-text-area--filled .sds-text-area__label {
-  font-size: var(--sds-typography-font-size-body-content-small);
-  line-height: var(--sds-typography-line-height-body-content-small);
-  letter-spacing: var(--sds-typography-letter-spacing-body-content-small);
+  font-size: var(--sds-typography-font-size-content-small);
+  line-height: var(--sds-typography-line-height-content-small);
+  letter-spacing: var(--sds-typography-letter-spacing-content-small);
 }
 
 /* ─── Textarea ──────────────────────────────────────────────────────────────── */
@@ -152,7 +152,7 @@
   resize: none;
   cursor: inherit;
   display: block;
-  min-height: var(--sds-typography-line-height-body-content-medium, 24px);
+  min-height: var(--sds-typography-line-height-content-medium, 24px);
 
   /* Hidden when unfocused and empty; height is 0 from CSS; JS clears inline
      style on blur so this value takes effect. */
@@ -240,7 +240,7 @@
 /* Support icon — centers the 16px SVG within the text line-height */
 .sds-text-area__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
 }
 
 .sds-text-area--error .sds-text-area__support {

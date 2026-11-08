@@ -2,7 +2,7 @@
  * DataDisplay/Tag
  *
  * Tokens: --sds-interactive-primary-hollow-*, --sds-status-*, --sds-neutral-*,
- *         --sds-shape-border-radius-*
+ *         --sds-radius-*
  * Typography: .sds-text--subtitle-small (root label)
  *
  * Sizes:
@@ -32,12 +32,12 @@
 
 .sds-tag--large {
   padding:       4px 8px;
-  border-radius: var(--sds-shape-border-radius-small);
+  border-radius: var(--sds-radius-small);
 }
 
 .sds-tag--small {
   padding:       2px 6px;
-  border-radius: var(--sds-shape-border-radius-xsmall);
+  border-radius: var(--sds-radius-xsmall);
 }
 
 /* ─── Icon padding ───────────────────────────────────────────────────────────── */

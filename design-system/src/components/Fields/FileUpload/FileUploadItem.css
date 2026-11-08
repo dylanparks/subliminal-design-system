@@ -2,7 +2,7 @@
  * Fields/FileUpload/FileUploadItem
  *
  * Tokens: --sds-neutral-content-*, --sds-status-error-*
- * Typography: .sds-text--subtitle-small (name), .sds-text--body-content-small (size), .sds-text--body-content-xsmall (error-text)
+ * Typography: .sds-text--subtitle-small (name), .sds-text--content-small (size), .sds-text--content-xsmall (error-text)
  *
  * Structure:
  *   .sds-file-upload-item              → flat flex-row wrapper (no card)
@@ -82,6 +82,6 @@
 
 .sds-file-upload-item__error-message > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-body-content-xsmall) - 14px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-xsmall) - 14px) / 2);
 }
 

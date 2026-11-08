@@ -46,10 +46,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   const iconOnly = hasIcon && !hasLabel;
 
   const sizeTypographyClass: Record<ButtonSize, string> = {
-    xsmall: 'sds-text--body-interactive-small',
-    small:  'sds-text--body-interactive-medium',
-    medium: 'sds-text--body-interactive-large',
-    large:  'sds-text--body-interactive-huge',
+    xsmall: 'sds-text--interactive-small',
+    small:  'sds-text--interactive-medium',
+    medium: 'sds-text--interactive-large',
+    large:  'sds-text--interactive-huge',
   };
 
   const classes = [

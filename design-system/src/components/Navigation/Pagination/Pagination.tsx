@@ -174,7 +174,7 @@ export function Pagination({
                   type="button"
                   className={[
                     'sds-pagination__page-btn',
-                    'sds-text--body-interactive-small',
+                    'sds-text--interactive-small',
                     isSelected && 'sds-pagination__page-btn--selected',
                   ].filter(Boolean).join(' ')}
                   onClick={() => navigate(item)}
@@ -191,7 +191,7 @@ export function Pagination({
 
       {/* ── Compact: "X of Y" ──────────────────────────────────────── */}
       {variant === 'compact' && (
-        <span className="sds-pagination__compact-label sds-text--body-content-medium" aria-live="polite" aria-atomic="true" dir="ltr">
+        <span className="sds-pagination__compact-label sds-text--content-medium" aria-live="polite" aria-atomic="true" dir="ltr">
           {isRtl ? `${count} of ${currentPage}` : `${currentPage} of ${count}`}
         </span>
       )}

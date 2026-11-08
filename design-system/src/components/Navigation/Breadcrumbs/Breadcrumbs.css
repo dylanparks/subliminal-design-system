@@ -9,8 +9,8 @@
  *         --sds-interactive-static-hollow-stroke-*,
  *         --sds-neutral-content-secondary,
  *         --sds-neutral-content-static-secondary,
- *         --sds-shape-border-radius-xsmall
- * Typography: .sds-text--body-interactive-medium (link), .sds-text--body-content-medium (current)
+ *         --sds-radius-xsmall
+ * Typography: .sds-text--interactive-medium (link), .sds-text--content-medium (current)
  *
  * Structure:
  *   .sds-breadcrumbs          → <nav> root
@@ -101,7 +101,7 @@
   height: 36px;
   padding: 8px;
   border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
-  border-radius: var(--sds-shape-border-radius-xsmall);
+  border-radius: var(--sds-radius-xsmall);
   background: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
   cursor: pointer;

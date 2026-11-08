@@ -108,11 +108,11 @@ panel today, not a named export).
 
 **Effects** — `--sds-effects-focusring` (focus ring), `--sds-effects-dropshadow-elevated` + `--sds-effects-elevated-elevated{blur,spread,x,y}` (popover elevation shadow).
 
-**Shape** — `--sds-shape-border-radius-{large,medium,round}`.
+**Shape** — `--sds-radius-{large,medium,round}`.
 
-**Spacing** — `--sds-spacing-size-{large,medium}` (trigger height per size).
+**Spacing** — `--sds-size-{large,medium}` (trigger height per size).
 
-**Typography** — utility classes `sds-text--body-content-medium` (label/value/range text), `sds-text--body-interactive-large` (header title), `sds-text--body-content-small` (weekday labels, message). Day/grid cell buttons declare typography custom properties **directly** (`--sds-typography-font-family-body-content`, `-font-size-body-content-small`, `-font-weight-{body-content,body-interactive}`, `-letter-spacing-{body-content-small,body-interactive-small}`, `-line-height-{body-content-medium,body-content-small}`) rather than a utility class, because they reset with `all: unset` first — a utility class can't survive that reset at equal specificity (same pattern documented in `Menu.css`).
+**Typography** — utility classes `sds-text--content-medium` (label/value/range text), `sds-text--interactive-large` (header title), `sds-text--content-small` (weekday labels, message). Day/grid cell buttons declare typography custom properties **directly** (`--sds-typography-font-family-content`, `-font-size-body-content-small`, `-font-weight-{body-content,body-interactive}`, `-letter-spacing-{body-content-small,body-interactive-small}`, `-line-height-{body-content-medium,body-content-small}`) rather than a utility class, because they reset with `all: unset` first — a utility class can't survive that reset at equal specificity (same pattern documented in `Menu.css`).
 
 **Icons** — `CalendarIcon`, `CloseIcon`, `ChevronLeftIcon`, `ChevronRightIcon`, `ArrowForwardIcon`, `SuccessIcon`, `ErrorIcon` (all from the shared `icons` module).
 

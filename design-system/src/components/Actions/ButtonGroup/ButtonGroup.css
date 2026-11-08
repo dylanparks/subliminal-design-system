@@ -1,7 +1,7 @@
 /* ButtonGroup — Subliminal Design System
  * Tokens: --sds-interactive-secondary-*, --sds-effects-*,
- *         --sds-shape-border-radius-*, --sds-spacing-size-*
- * Typography: sds-text--body-interactive-{small|medium|large|huge}
+ *         --sds-radius-*, --sds-size-*
+ * Typography: sds-text--interactive-{small|medium|large|huge}
  */
 
 /* ─── Container ─────────────────────────────────────────────────────────────── */
@@ -48,39 +48,39 @@
 /* ─── First / last radius ────────────────────────────────────────────────────── */
 
 .sds-button-group--xsmall .sds-button-group__item:first-child {
-  border-start-start-radius: var(--sds-shape-border-radius-xsmall);
-  border-end-start-radius:   var(--sds-shape-border-radius-xsmall);
+  border-start-start-radius: var(--sds-radius-xsmall);
+  border-end-start-radius:   var(--sds-radius-xsmall);
 }
 .sds-button-group--xsmall .sds-button-group__item:last-child {
-  border-start-end-radius: var(--sds-shape-border-radius-xsmall);
-  border-end-end-radius:   var(--sds-shape-border-radius-xsmall);
+  border-start-end-radius: var(--sds-radius-xsmall);
+  border-end-end-radius:   var(--sds-radius-xsmall);
 }
 
 .sds-button-group--small .sds-button-group__item:first-child {
-  border-start-start-radius: var(--sds-shape-border-radius-small);
-  border-end-start-radius:   var(--sds-shape-border-radius-small);
+  border-start-start-radius: var(--sds-radius-small);
+  border-end-start-radius:   var(--sds-radius-small);
 }
 .sds-button-group--small .sds-button-group__item:last-child {
-  border-start-end-radius: var(--sds-shape-border-radius-small);
-  border-end-end-radius:   var(--sds-shape-border-radius-small);
+  border-start-end-radius: var(--sds-radius-small);
+  border-end-end-radius:   var(--sds-radius-small);
 }
 
 .sds-button-group--medium .sds-button-group__item:first-child {
-  border-start-start-radius: var(--sds-shape-border-radius-medium);
-  border-end-start-radius:   var(--sds-shape-border-radius-medium);
+  border-start-start-radius: var(--sds-radius-medium);
+  border-end-start-radius:   var(--sds-radius-medium);
 }
 .sds-button-group--medium .sds-button-group__item:last-child {
-  border-start-end-radius: var(--sds-shape-border-radius-medium);
-  border-end-end-radius:   var(--sds-shape-border-radius-medium);
+  border-start-end-radius: var(--sds-radius-medium);
+  border-end-end-radius:   var(--sds-radius-medium);
 }
 
 .sds-button-group--large .sds-button-group__item:first-child {
-  border-start-start-radius: var(--sds-shape-border-radius-large);
-  border-end-start-radius:   var(--sds-shape-border-radius-large);
+  border-start-start-radius: var(--sds-radius-large);
+  border-end-start-radius:   var(--sds-radius-large);
 }
 .sds-button-group--large .sds-button-group__item:last-child {
-  border-start-end-radius: var(--sds-shape-border-radius-large);
-  border-end-end-radius:   var(--sds-shape-border-radius-large);
+  border-start-end-radius: var(--sds-radius-large);
+  border-end-end-radius:   var(--sds-radius-large);
 }
 
 /* ─── Active (selected) state ────────────────────────────────────────────────── */
@@ -154,7 +154,7 @@
 /* ─── Sizes ──────────────────────────────────────────────────────────────────── */
 
 .sds-button-group--xsmall .sds-button-group__item {
-  height: var(--sds-spacing-size-xsmall);
+  height: var(--sds-size-xsmall);
   padding: 0 12px;
 }
 
@@ -164,7 +164,7 @@
 }
 
 .sds-button-group--small .sds-button-group__item {
-  height: var(--sds-spacing-size-small);
+  height: var(--sds-size-small);
   padding: 0 16px;
 }
 
@@ -174,7 +174,7 @@
 }
 
 .sds-button-group--medium .sds-button-group__item {
-  height: var(--sds-spacing-size-medium);
+  height: var(--sds-size-medium);
   padding: 0 20px;
 }
 
@@ -184,7 +184,7 @@
 }
 
 .sds-button-group--large .sds-button-group__item {
-  height: var(--sds-spacing-size-large);
+  height: var(--sds-size-large);
   padding: 0 24px;
 }
 

@@ -24,10 +24,10 @@ export interface ButtonGroupProps {
 }
 
 const sizeTypographyClass: Record<ButtonGroupSize, string> = {
-  xsmall: 'sds-text--body-interactive-small',
-  small:  'sds-text--body-interactive-medium',
-  medium: 'sds-text--body-interactive-large',
-  large:  'sds-text--body-interactive-huge',
+  xsmall: 'sds-text--interactive-small',
+  small:  'sds-text--interactive-medium',
+  medium: 'sds-text--interactive-large',
+  large:  'sds-text--interactive-huge',
 };
 
 export function ButtonGroup({

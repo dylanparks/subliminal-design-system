@@ -122,7 +122,7 @@ export const CustomContent: Story = {
           <span className="sds-text--subtitle-medium" style={{ color: 'var(--sds-neutral-content-primary)' }}>
             Upgrade plan
           </span>
-          <span className="sds-text--body-content-small" style={{ color: 'var(--sds-neutral-content-secondary)' }}>
+          <span className="sds-text--content-small" style={{ color: 'var(--sds-neutral-content-secondary)' }}>
             You've reached the limit for your current plan.
           </span>
           <div style={{ marginTop: 4 }}>
@@ -157,7 +157,7 @@ export const IconTrigger: Story = {
           cursor: 'pointer',
           padding: 4,
           color: 'var(--sds-neutral-content-secondary)',
-          borderRadius: 'var(--sds-shape-border-radius-xxsmall)',
+          borderRadius: 'var(--sds-radius-xxsmall)',
         }}
         aria-label="Learn more"
       >

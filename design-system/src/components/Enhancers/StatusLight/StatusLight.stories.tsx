@@ -38,7 +38,7 @@ function Avatar({ name = 'AB' }: { name?: string }) {
         userSelect:     'none',
       }}
     >
-      <span className="sds-text--body-interactive-small">{name}</span>
+      <span className="sds-text--interactive-small">{name}</span>
     </div>
   );
 }
@@ -70,7 +70,7 @@ export const AllVariants: Story = {
           <StatusLight variant={v} position="bottom-end">
             <Avatar name={v.slice(0, 2).toUpperCase()} />
           </StatusLight>
-          <span className="sds-text--body-content-xsmall" style={{ color: 'var(--sds-neutral-content-subtle)', textTransform: 'capitalize' }}>
+          <span className="sds-text--content-xsmall" style={{ color: 'var(--sds-neutral-content-subtle)', textTransform: 'capitalize' }}>
             {v}
           </span>
         </div>
@@ -94,7 +94,7 @@ export const AllPositions: Story = {
           <StatusLight variant="success" position={p}>
             <Avatar name="AB" />
           </StatusLight>
-          <span className="sds-text--body-content-xsmall" style={{ color: 'var(--sds-neutral-content-subtle)' }}>
+          <span className="sds-text--content-xsmall" style={{ color: 'var(--sds-neutral-content-subtle)' }}>
             {p}
           </span>
         </div>

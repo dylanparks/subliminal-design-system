@@ -3,8 +3,8 @@
  *
  * Tokens: --sds-interactive-fields-background-*, --sds-interactive-fields-stroke-*,
  *         --sds-interactive-fields-content-*, --sds-status-error-*,
- *         --sds-effects-focusring, --sds-shape-border-radius-xlarge
- * Typography: .sds-text--subtitle-medium (prompt-title), .sds-text--body-content-small (hint, error-message)
+ *         --sds-effects-focusring, --sds-radius-xlarge
+ * Typography: .sds-text--subtitle-medium (prompt-title), .sds-text--content-small (hint, error-message)
  *
  * Structure:
  *   .sds-file-upload             → root wrapper
@@ -34,7 +34,7 @@
   padding: 16px;
 
   border: 1px solid var(--sds-interactive-fields-stroke-default);
-  border-radius: var(--sds-shape-border-radius-xlarge);
+  border-radius: var(--sds-radius-xlarge);
   background-color: var(--sds-interactive-fields-background-default);
 
   cursor: pointer;

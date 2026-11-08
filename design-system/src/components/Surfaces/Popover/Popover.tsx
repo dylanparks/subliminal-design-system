@@ -363,7 +363,7 @@ export function Popover({
                   </span>
                 )}
                 {hasDesc && (
-                  <span id={descId} className="sds-popover__description sds-text--body-content-small">
+                  <span id={descId} className="sds-popover__description sds-text--content-small">
                     {description}
                   </span>
                 )}

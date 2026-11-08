@@ -265,7 +265,7 @@ export function Tooltip({
             onMouseEnter={handlePopupMouseEnter}
             onMouseLeave={handlePopupMouseLeave}
           >
-            <span className="sds-tooltip__text sds-text--body-content-small">{content}</span>
+            <span className="sds-tooltip__text sds-text--content-small">{content}</span>
           </div>
           <svg
             ref={caretRef}

@@ -4,8 +4,8 @@
  * Tokens: --sds-interactive-secondary-hollow-*,
  *         --sds-effects-focusring,
  *         --sds-neutral-content-secondary,
- *         --sds-shape-border-radius-xsmall
- * Typography: .sds-text--body-interactive-small (page-btn), .sds-text--body-content-medium (compact-label)
+ *         --sds-radius-xsmall
+ * Typography: .sds-text--interactive-small (page-btn), .sds-text--content-medium (compact-label)
  *
  * Structure:
  *   .sds-pagination              → <nav> root — flex row
@@ -38,7 +38,7 @@
   height: 36px;
   padding: 6px;
   border: none;
-  border-radius: var(--sds-shape-border-radius-xsmall);
+  border-radius: var(--sds-radius-xsmall);
   background: transparent;
   color: var(--sds-interactive-secondary-hollow-content-default);
   cursor: pointer;
@@ -86,7 +86,7 @@
   height: 36px;
   padding: 0 8px;
   border: none;
-  border-radius: var(--sds-shape-border-radius-xsmall) var(--sds-shape-border-radius-xsmall) 0 0;
+  border-radius: var(--sds-radius-xsmall) var(--sds-radius-xsmall) 0 0;
   background: transparent;
   color: var(--sds-interactive-secondary-hollow-content-inactive-default);
   cursor: pointer;

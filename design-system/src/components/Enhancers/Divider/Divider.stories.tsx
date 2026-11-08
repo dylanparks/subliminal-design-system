@@ -46,11 +46,11 @@ export const Horizontal: Story = {
   decorators: [
     (Story) => (
       <div style={{ width: 320, display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-primary)' }}>
           Section above
         </p>
         <Story />
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-primary)' }}>
           Section below
         </p>
       </div>
@@ -69,11 +69,11 @@ export const Vertical: Story = {
   decorators: [
     (Story) => (
       <div style={{ height: 48, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-primary)' }}>
           Left
         </p>
         <Story />
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-primary)' }}>
           Right
         </p>
       </div>
@@ -94,17 +94,17 @@ export const StaticHorizontal: Story = {
       <div style={{
         width:        320,
         padding:      24,
-        borderRadius: 'var(--sds-shape-border-radius-medium)',
+        borderRadius: 'var(--sds-radius-medium)',
         background:   'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
         display:      'flex',
         flexDirection: 'column',
         gap:          16,
       }}>
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
           Section above
         </p>
         <Story />
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
           Section below
         </p>
       </div>
@@ -125,17 +125,17 @@ export const StaticVertical: Story = {
       <div style={{
         height:       64,
         padding:      16,
-        borderRadius: 'var(--sds-shape-border-radius-medium)',
+        borderRadius: 'var(--sds-radius-medium)',
         background:   'linear-gradient(109deg, var(--sds-accents-gradient-primarystart) 10.664%, var(--sds-accents-gradient-primaryend) 89.336%)',
         display:      'flex',
         alignItems:   'center',
         gap:          16,
       }}>
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
           Left
         </p>
         <Story />
-        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-body-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
+        <p style={{ margin: 0, fontFamily: 'var(--sds-typography-font-family-content)', color: 'var(--sds-neutral-content-static-primary)' }}>
           Right
         </p>
       </div>

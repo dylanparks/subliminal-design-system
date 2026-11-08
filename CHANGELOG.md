@@ -53,6 +53,42 @@ light/dark was named for themes, so it's been renamed to say what it does:
 Behaviour is unchanged: it still toggles `.dark` on `<html>`. On the site, `ThemeToggle` /
 `theme-init.js` are now `ModeToggle` / `mode-init.js`.
 
+#### Radius, size, border and typography come from the Brand-layer export (Phase T.2.2)
+Names are now a mechanical translation of the Figma path, without the collection name (the
+shortest form, since developers type these).
+
+| Before | After | Figma source |
+| --- | --- | --- |
+| `--sds-shape-border-radius-{xxsmall…xlarge,round}` | `--sds-radius-{…}` | `Brand/Radius/*` |
+| `--sds-shape-border-radius-display-{small,medium,large}` | `--sds-radius-cards-{small,medium,large}` | `Brand/Radius/Cards/*` |
+| `--sds-spacing-size-{xsmall…large}` | `--sds-size-{xsmall…large}` | `Brand/Size/*` |
+| `--sds-typography-*-body-content-*` | `--sds-typography-*-content-*` | `Brand` / `Breakpoint` › Typography |
+| `--sds-typography-*-body-interactive-*` | `--sds-typography-*-interactive-*` | |
+| `.sds-text--body-content-*` | `.sds-text--content-*` | |
+| `.sds-text--body-interactive-*` | `.sds-text--interactive-*` | |
+| `--sds-effect-interactive-element-elevated-box-shadow` | `--sds-effect-static-element-elevated-box-shadow` | effect style moved in Figma |
+
+`title` / `subtitle` names and `--sds-viewport-width` / `-x-padding` are unchanged.
+
+- **New:** `--sds-border-thickness-*` (14), `--sds-size-custom-*` (slider, checkbox, toggle, radio,
+  progress bar, rating star), `--sds-viewport-min-height`.
+- **Themeable:** every Brand value above can be overridden on a `[data-sds-theme]` element.
+- **Font families include a fallback**, e.g. `"Work Sans", ui-sans-serif, system-ui, sans-serif`.
+- `tokens.ts`: `shapeTokens` / `spacingTokens` / `breakpointTokens` are replaced by `radiusTokens`,
+  `sizeTokens`, `borderThicknessTokens`, `viewportTokens`; `typographyTokens` follows the new names.
+- **Visual change:** letter-spacing tightens throughout (e.g. `interactive-medium` +0.2px → −0.5px,
+  `content-huge` −0.5px → −1.5px) and subtitles go from weight 600 to 700. Font sizes and line
+  heights are unchanged. `interactive` text no longer switches to Work Sans below 1440px: the
+  typeface is a Brand decision, not a breakpoint one.
+- The build **fails** if a type style is missing any of its five properties. The old generator
+  silently left it out, which is how a line height could disappear unnoticed.
+- Each narrower breakpoint now overrides relative to the next-wider one, not to the default. No
+  current value was affected, but a value that returned to the default at the narrowest width
+  would previously have shown the middle breakpoint's value on phones.
+- Float noise is rounded in effect-style values too (`0.10000000149011612` → `0.1`).
+- `build-tokens.mjs` reads **only** the Brand-layer export now; the legacy files in
+  `src/tokens/default-values/` are no longer used.
+
 #### Token variables
 
 - `--sds-effects-focus` → `--sds-effects-focusring`
