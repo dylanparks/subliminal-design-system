@@ -94,7 +94,7 @@ shortest form, since developers type these).
 - `--sds-effects-focus` → `--sds-effects-focusring`
 - `--sds-effects-shadowdefault` → `--sds-effects-dropshadow-elevated` (the 10% elevation shadow;
   `--sds-effects-dropshadow-default` is the 0% interactive-state shadow and is *not* a replacement)
-- `--sds-effects-values-elevated-{blur,spread,x,y}` → `--sds-effects-elevated-elevated{blur,spread,x,y}`
+- `--sds-effects-values-elevated-{blur,spread,x,y}` → `--sds-effects-elevatedshadow-{blur,spread,x,y}`
 - `--sds-effects-shadowcallout` → `--sds-effects-dropshadow-callout` (now 30% Brand Shadow, was opaque)
 - `--sds-utility-transparent` removed (use `transparent`)
 - New: `--sds-effects-dropshadow-{default,hover,active,disabled}`

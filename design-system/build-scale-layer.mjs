@@ -57,7 +57,6 @@ export function buildScaleLayer(dir) {
   const brandVars = new Map(); // CSS name → { value, path }
   const families = new Set();
   const weights = new Set();
-  const categories = new Set(); // typography categories, from Brand's Font-family group
 
   for (const { path, token } of brandFiles[0].tokens) {
     if (token.$type === 'color') continue; // the colour layer's job
@@ -71,7 +70,6 @@ export function buildScaleLayer(dir) {
     } else if (token.$type === 'string' && typeof token.$value === 'string' && /family/i.test(path.join('/'))) {
       value = fontFamilyValue(token.$value);
       families.add(token.$value);
-      categories.add(path[path.length - 1]);
     } else {
       errors.push(`${where}: unsupported ${token.$type} value ${JSON.stringify(token.$value)}`);
       continue;
@@ -92,17 +90,7 @@ export function buildScaleLayer(dir) {
       }
       if (path.join('/') === 'Viewport/Width') width = token.$value;
 
-      // Figma nests line-height categories under an extra `Body/` group (Line height/Body/Content)
-      // where every other typography group uses the category directly (Font size/Content). Pair
-      // them by dropping `Body/` so the names line up. Once `Body/` is removed in Figma this is a
-      // no-op; until then it warns, because a mismatch here is how line height gets lost.
-      let p = path;
-      if (p[0] === 'Typography' && p[1] === 'Line height' && p[2] === 'Body' && categories.has(p[3])) {
-        p = [p[0], p[1], ...p.slice(3)];
-        const note = 'Breakpoint › Typography/Line height nests categories under "Body/" (e.g. Body/Content). Remove the Body group in Figma so every typography group names categories the same way.';
-        if (!warnings.includes(note)) warnings.push(note);
-      }
-      vars.set(cssName(p), { value: numberValue(p, token.$value), path: p });
+      vars.set(cssName(path), { value: numberValue(path, token.$value), path });
     }
     if (width === null) errors.push(`${m.file}: no Viewport/Width — it sets where this breakpoint applies`);
     return { ...m, vars, width };

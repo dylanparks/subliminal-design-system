@@ -5910,8 +5910,8 @@
         }
       }
     },
-    "Elevated": {
-      "ElevatedBlur": {
+    "ElevatedShadow": {
+      "Blur": {
         "$type": "number",
         "$value": 0,
         "$extensions": {
@@ -5921,7 +5921,7 @@
           ]
         }
       },
-      "ElevatedSpread": {
+      "Spread": {
         "$type": "number",
         "$value": 0,
         "$extensions": {
@@ -5931,7 +5931,7 @@
           ]
         }
       },
-      "ElevatedY": {
+      "Y": {
         "$type": "number",
         "$value": 0,
         "$extensions": {
@@ -5941,7 +5941,7 @@
           ]
         }
       },
-      "ElevatedX": {
+      "X": {
         "$type": "number",
         "$value": 0,
         "$extensions": {
@@ -5954,7 +5954,7 @@
     }
   },
   "Images": {
-    "Images": {
+    "DarkImages": {
       "$type": "boolean",
       "$value": true,
       "$extensions": {

@@ -325,11 +325,11 @@ export const tokens = {
       elevated: "var(--sds-effects-dropshadow-elevated)",
       callout: "var(--sds-effects-dropshadow-callout)",
     },
-    elevated: {
-      elevatedblur: "var(--sds-effects-elevated-elevatedblur)",
-      elevatedspread: "var(--sds-effects-elevated-elevatedspread)",
-      elevatedy: "var(--sds-effects-elevated-elevatedy)",
-      elevatedx: "var(--sds-effects-elevated-elevatedx)",
+    elevatedshadow: {
+      blur: "var(--sds-effects-elevatedshadow-blur)",
+      spread: "var(--sds-effects-elevatedshadow-spread)",
+      y: "var(--sds-effects-elevatedshadow-y)",
+      x: "var(--sds-effects-elevatedshadow-x)",
     },
   },
 } as const;

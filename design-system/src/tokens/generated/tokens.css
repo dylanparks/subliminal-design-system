@@ -254,18 +254,18 @@
  */
 :root, [data-sds-mode="light"] {
   color-scheme: light;
-  --sds-effects-elevated-elevatedblur: 16;
-  --sds-effects-elevated-elevatedspread: 2;
-  --sds-effects-elevated-elevatedy: 4;
-  --sds-effects-elevated-elevatedx: 0;
+  --sds-effects-elevatedshadow-blur: 16;
+  --sds-effects-elevatedshadow-spread: 2;
+  --sds-effects-elevatedshadow-y: 4;
+  --sds-effects-elevatedshadow-x: 0;
 }
 
 .dark, [data-sds-mode="dark"] {
   color-scheme: dark;
-  --sds-effects-elevated-elevatedblur: 0;
-  --sds-effects-elevated-elevatedspread: 0;
-  --sds-effects-elevated-elevatedy: 0;
-  --sds-effects-elevated-elevatedx: 0;
+  --sds-effects-elevatedshadow-blur: 0;
+  --sds-effects-elevatedshadow-spread: 0;
+  --sds-effects-elevatedshadow-y: 0;
+  --sds-effects-elevatedshadow-x: 0;
 }
 
 /* ─── Effect styles ──────────────────────────────────────────────────────── */

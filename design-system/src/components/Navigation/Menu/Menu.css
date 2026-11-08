@@ -4,7 +4,7 @@
  * Tokens: --sds-neutral-background-*, --sds-neutral-stroke-*, --sds-neutral-content-*,
  *         --sds-interactive-fields-background-*, --sds-interactive-fields-content-*,
  *         --sds-interactive-secondary-filled-*, --sds-interactive-secondary-hollow-*,
- *         --sds-effects-focusring, --sds-effects-dropshadow-elevated, --sds-effects-elevated-elevated*,
+ *         --sds-effects-focusring, --sds-effects-dropshadow-elevated, --sds-effects-elevatedshadow-*,
  *         --sds-radius-*
  * Typography: body-content-medium (item — declared on .sds-menu-item directly),
  *             sds-text--subtitle-small (suffix--tag), sds-text--content-small (suffix--text)
@@ -43,10 +43,10 @@
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-large);
   box-shadow:
-    calc(var(--sds-effects-elevated-elevatedx) * 1px)
-    calc(var(--sds-effects-elevated-elevatedy) * 1px)
-    calc(var(--sds-effects-elevated-elevatedblur) * 1px)
-    calc(var(--sds-effects-elevated-elevatedspread) * 1px)
+    calc(var(--sds-effects-elevatedshadow-x) * 1px)
+    calc(var(--sds-effects-elevatedshadow-y) * 1px)
+    calc(var(--sds-effects-elevatedshadow-blur) * 1px)
+    calc(var(--sds-effects-elevatedshadow-spread) * 1px)
     var(--sds-effects-dropshadow-elevated);
   overflow: hidden;
   box-sizing: border-box;

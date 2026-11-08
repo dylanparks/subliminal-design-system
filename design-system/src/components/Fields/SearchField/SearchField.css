@@ -360,10 +360,10 @@
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-large);
   box-shadow:
-    calc(var(--sds-effects-elevated-elevatedx) * 1px)
-    calc(var(--sds-effects-elevated-elevatedy) * 1px)
-    calc(var(--sds-effects-elevated-elevatedblur) * 1px)
-    calc(var(--sds-effects-elevated-elevatedspread) * 1px)
+    calc(var(--sds-effects-elevatedshadow-x) * 1px)
+    calc(var(--sds-effects-elevatedshadow-y) * 1px)
+    calc(var(--sds-effects-elevatedshadow-blur) * 1px)
+    calc(var(--sds-effects-elevatedshadow-spread) * 1px)
     var(--sds-effects-dropshadow-elevated);
   box-sizing: border-box;
   overflow-y: auto;
