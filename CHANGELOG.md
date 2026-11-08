@@ -16,8 +16,18 @@ All notable changes to the Subliminal Design System are documented here.
   **Rebrand by overriding `--sds-brand-*`. No rebuild needed.**
 - Every composed state has an optional `--sds-mix-<token>` variable. Set one (e.g. `80%`) to
   retune that state's opacity in both modes.
-- `.dark` redeclares every intent formula, so it works on a section of a light page as well as on
-  `<html>`.
+- **Themes and modes, scoped to any section (Phase T.2.4).** Two independent hooks:
+  - **Theme** = a whole Brand, user-named. Put `data-sds-theme="<name>"` on any element and set
+    `--sds-brand-*` (and optionally `--sds-mix-*`) on it; everything inside re-themes.
+  - **Mode** = a fixed system axis (light/dark). Put `data-sds-mode="light|dark"` on any element.
+    `.dark` still works, as ThemeProvider uses it on `<html>`.
+
+  They nest freely: a theme on a dark page, dark inside a theme, a light section inside a dark page
+  inside a theme. Intent tokens use CSS `light-dark()`, which resolves on the element using the
+  colour, from its inherited `color-scheme`. **This requires browsers from mid-2024 onward**
+  (Chrome 123, Firefox 120, Safari 17.5); `color-mix()` alone needed 2023 browsers.
+- Modes now set `color-scheme`, so **native scrollbars and form controls follow the mode** (dark
+  in dark mode). Previously nothing set it.
 - `build-tokens.mjs` reads colours from a Brand-layer Relay export (≥ 0.5.0) and fails the build,
   rather than guessing, if an intent colour doesn't derive from Brand, a Brand colour is
   translucent, or a mode uses the other palette. Style Dictionary is no longer used for colours.

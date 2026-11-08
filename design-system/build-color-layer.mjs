@@ -1,25 +1,49 @@
 /**
- * The colour half of the token pipeline (Phase T.2.1).
+ * The colour half of the token pipeline (Phases T.2.1 and T.2.4).
  *
  * Reads a Relay export of the Brand-layer Figma file and emits CSS that *derives* intent colours
- * from Brand at runtime instead of baking them in:
+ * from Brand at runtime instead of baking them in.
  *
- *   :root   Brand: both palettes, --sds-brand-light-* and --sds-brand-dark-*. This mirrors Figma's
- *           mode-less Brand collection, and it's the write surface: a new brand is a set of
- *           overrides here, with no rebuild.
- *   :root   Color mode, Lightmode: every intent token as a formula over the light palette.
- *   .dark   Color mode, Darkmode: every formula redeclared over the dark palette.
+ * ── Themes and modes are different things ────────────────────────────────────────────
  *
- * Darkmode redeclares *every* formula, not just the ones that differ, because a custom property
- * resolves where it's declared and descendants inherit the resolved value. Formulas declared only
- * on :root would hand a `.dark` subtree its light colours.
+ *   THEME  A whole Brand — colours (both palettes), and later typography, radii, borders —
+ *          named by whoever makes it ("Lavender", "Sunset"). Dynamic and user-defined.
+ *   MODE   A fixed system axis that every theme supports: light/dark today, possibly
+ *          regular/high-contrast later. Static and defined here.
+ *
+ * ── Output ───────────────────────────────────────────────────────────────────────────
+ *
+ *   :root                            The default theme: --sds-brand-light-* and --sds-brand-dark-*,
+ *                                    mirroring Figma's mode-less Brand collection.
+ *   :root, [data-sds-theme]          Every intent token, as
+ *                                      light-dark(<formula over light palette>,
+ *                                                 <formula over dark palette>)
+ *   :root, [data-sds-mode="light"]   color-scheme: light, plus light values of mode-dependent numbers
+ *   .dark, [data-sds-mode="dark"]    color-scheme: dark, plus dark values
+ *
+ * ── Why it is shaped this way ────────────────────────────────────────────────────────
+ *
+ * A custom property resolves its var()s on the element that *declares* it, and descendants
+ * inherit the resolved result. So formulas declared only on :root would ignore a Brand override
+ * on a section — the theme would silently not apply. That is why formulas are redeclared on every
+ * [data-sds-theme] element: there, var(--sds-brand-…) picks up that theme's values.
+ *
+ * Modes can't work the same way, because CSS selectors can't express "the *nearest* mode marker
+ * wins" (a light section inside a dark page inside a theme). light-dark() solves that: unlike
+ * var(), it resolves on the element that *uses* the colour, from that element's inherited
+ * color-scheme, and inheritance always picks the nearest ancestor. A mode marker therefore only
+ * needs to set color-scheme, and themes and modes compose at any nesting depth.
+ *
+ * light-dark() is strictly two-valued, so it covers the light/dark axis only. A future contrast
+ * axis would need its own mechanism, designed when that axis exists.
  *
  * A composed colour (a Brand colour plus an opacity) becomes
  *
  *   color-mix(in srgb, var(--sds-brand-light-x) var(--sds-mix-<token>, N%), transparent)
  *
- * so a theme can retune one state's opacity with a single variable. The mix variables are never
- * declared here: unset, they fall back to Figma's value.
+ * so one state's opacity can be retuned with a single variable. The mix variables are never
+ * declared here: unset, they fall back to Figma's value. Like Brand overrides, they take effect
+ * on :root or on a [data-sds-theme] element.
  *
  * Nothing is inferred. Every relationship is read from the export's `aliasData` / `composedColor`,
  * and anything this can't place fails the build rather than being guessed at.
@@ -157,18 +181,17 @@ export function buildColorLayer(dir) {
     );
   }
 
-  const intentPaths = [];
-  const counts = { composed: 0, aliases: 0, fixed: 0, numbers: 0, skippedBooleans: 0 };
-
-  function renderMode({ file, tokens }, palette) {
-    const lines = [];
+  /**
+   * One mode's tokens, resolved to CSS values: name → { iPath, type, value, kind, description }.
+   * `kind` records how a colour was built, for the summary and the comments.
+   */
+  function resolveMode({ file, tokens }, palette) {
+    const out = new Map();
     for (const { path, token } of tokens) {
       const name = path.join('/');
       const where = `${file} › ${name}`;
       const ext = token.$extensions ?? {};
-      const iPath = intentPath(path);
-      const decl = (value, note) => lines.push(`  ${cssVar(iPath)}: ${value};${note}`);
-      const desc = palette === 'light' ? comment(token.$description) : '';
+      const entry = { iPath: intentPath(path), type: token.$type, description: token.$description };
 
       if (ext['com.subliminal.unreadableValue'] || ext['com.subliminal.unsupportedExpression']) {
         errors.push(`${where}: Relay couldn't read this value. Re-export, or check the plugin's Diagnostics tab.`);
@@ -178,13 +201,11 @@ export function buildColorLayer(dir) {
       if (token.$type === 'number') {
         if (typeof token.$value !== 'number') { errors.push(`${where}: not a number (${JSON.stringify(token.$value)})`); continue; }
         // Unitless on purpose: components apply units, e.g. calc(var(--…) * 1px).
-        decl(tidy(token.$value), desc);
-        if (palette === 'light') { intentPaths.push(iPath); counts.numbers++; }
+        out.set(name, { ...entry, value: String(tidy(token.$value)), kind: 'number' });
         continue;
       }
       if (token.$type === 'boolean') {
-        // e.g. Images/Images: a Figma-side flag with no CSS meaning yet. Not emitted.
-        if (palette === 'light') counts.skippedBooleans++;
+        out.set(name, { ...entry, kind: 'boolean' }); // e.g. Images/Images: no CSS meaning yet
         continue;
       }
       if (token.$type !== 'color') { errors.push(`${where}: unsupported type "${token.$type}"`); continue; }
@@ -206,8 +227,7 @@ export function buildColorLayer(dir) {
         // Short form: a base inside Color mode itself. That token is checked on its own pass.
         base = `var(${cssVar(intentPath(alias.targetVariableName.split('/')))})`;
       } else if (FIXED_TO_GLOBALS.has(name) && !composed && isColor(token.$value)) {
-        decl(cssColor(token.$value), comment(`Fixed: does not follow Brand.${token.$description ? ' ' + token.$description : ''}`));
-        if (palette === 'light') { intentPaths.push(iPath); counts.fixed++; }
+        out.set(name, { ...entry, value: cssColor(token.$value), kind: 'fixed' });
         continue;
       } else {
         const target = alias ? `${alias.targetVariableSetName ?? '?'}/${alias.targetVariableName}` : 'a literal colour';
@@ -218,37 +238,68 @@ export function buildColorLayer(dir) {
       if (composed) {
         const opacity = composed.opacityArg?.value;
         if (typeof opacity !== 'number') { errors.push(`${where}: composed colour has no numeric opacity`); continue; }
-        decl(`color-mix(in srgb, ${base} var(${mixVar(iPath)}, ${tidy(opacity)}%), transparent)`, desc);
-        if (palette === 'light') counts.composed++;
+        out.set(name, {
+          ...entry,
+          value: `color-mix(in srgb, ${base} var(${mixVar(entry.iPath)}, ${tidy(opacity)}%), transparent)`,
+          kind: 'composed',
+        });
       } else {
-        decl(base, desc);
-        if (palette === 'light') counts.aliases++;
+        out.set(name, { ...entry, value: base, kind: 'alias' });
       }
-      if (palette === 'light') intentPaths.push(iPath);
     }
-    return lines;
+    return out;
   }
 
-  const lightLines = renderMode(light[0], 'light');
-  const darkLines = renderMode(dark[0], 'dark');
+  const L = resolveMode(light[0], 'light');
+  const D = resolveMode(dark[0], 'dark');
 
-  // Both modes must define the same tokens, or `.dark` would leave some resolving to light.
-  const names = (m) => new Set(m.tokens.filter((t) => t.token.$type !== 'boolean').map((t) => t.path.join('/')));
-  const [ln, dn] = [names(light[0]), names(dark[0])];
-  for (const n of ln) if (!dn.has(n)) errors.push(`${dark[0].file}: missing ${n}, which ${light[0].file} defines`);
-  for (const n of dn) if (!ln.has(n)) errors.push(`${light[0].file}: missing ${n}, which ${dark[0].file} defines`);
+  // Both modes must define the same tokens, or one mode would fall back to the other's values.
+  for (const n of L.keys()) if (!D.has(n)) errors.push(`${dark[0].file}: missing ${n}, which ${light[0].file} defines`);
+  for (const n of D.keys()) if (!L.has(n)) errors.push(`${light[0].file}: missing ${n}, which ${dark[0].file} defines`);
 
   if (errors.length > 0) {
     throw new Error(`The colour layer can't be built from ${dir}:\n${errors.map((e) => `  • ${e}`).join('\n')}`);
+  }
+
+  // ── Combine the two modes ──
+  const intentPaths = [];
+  const counts = { composed: 0, aliases: 0, fixed: 0, numbers: 0, skippedBooleans: 0 };
+  const colorLines = [];
+  const lightNumbers = [];
+  const darkNumbers = [];
+
+  for (const [name, l] of L) {
+    const d = D.get(name);
+    const prop = cssVar(l.iPath);
+
+    if (l.kind === 'boolean') { counts.skippedBooleans++; continue; }
+
+    if (l.kind === 'number') {
+      // Numbers can't use light-dark(), which only accepts colours. They're literals, though,
+      // so plain inheritance from the mode blocks below already makes the nearest mode win.
+      lightNumbers.push(`  ${prop}: ${l.value};${comment(l.description)}`);
+      darkNumbers.push(`  ${prop}: ${d.value};`);
+      counts.numbers++;
+      intentPaths.push(l.iPath);
+      continue;
+    }
+
+    const value = l.value === d.value ? l.value : `light-dark(${l.value}, ${d.value})`;
+    const note = l.kind === 'fixed'
+      ? comment(`Fixed: does not follow Brand.${l.description ? ' ' + l.description : ''}`)
+      : comment(l.description);
+    colorLines.push(`  ${prop}: ${value};${note}`);
+    counts[l.kind === 'alias' ? 'aliases' : l.kind]++;
+    intentPaths.push(l.iPath);
   }
 
   const brandEntries = [...brand.values()];
   const byPalette = (p) => brandEntries.filter((b) => b.path[0] === p).map((b) => `  ${brandVar(b.path)}: ${b.css};`);
 
   const css = [
-    '/* ─── Brand ──────────────────────────────────────────────────────────────────',
-    ' * The brand file: Figma\'s Brand collection, both palettes. Rebrand by overriding these.',
-    ' * Colour mode tokens below derive from them at runtime, so nothing needs rebuilding.',
+    '/* ─── Brand: the default theme ──────────────────────────────────────────────',
+    ' * Figma\'s Brand collection: both palettes. A theme is a full set of these values — set them',
+    ' * on :root to rebrand everything, or on a [data-sds-theme="<name>"] element to theme a section.',
     ' */',
     ':root {',
     ...byPalette('light'),
@@ -256,18 +307,29 @@ export function buildColorLayer(dir) {
     ...byPalette('dark'),
     '}',
     '',
-    '/* ─── Color mode: light ─────────────────────────────────────────────────────',
-    ' * Override any --sds-mix-<token> (e.g. 80%) to retune that one state\'s opacity.',
+    '/* ─── Color mode ────────────────────────────────────────────────────────────',
+    ' * Intent tokens, derived from Brand. Redeclared on every [data-sds-theme] element so that',
+    ' * section\'s Brand values apply inside it. light-dark() picks the palette on the element that',
+    ' * *uses* the colour, so modes and themes nest freely. Override --sds-mix-<token> (e.g. 80%)',
+    ' * on :root or a theme element to retune one state\'s opacity in both modes.',
     ' */',
-    ':root {',
-    ...lightLines,
+    ':root, [data-sds-theme] {',
+    ...colorLines,
     '}',
     '',
-    '/* ─── Color mode: dark ──────────────────────────────────────────────────────',
-    ' * Every token is redeclared, so `.dark` also works on a section of a light page.',
+    '/* ─── Modes ─────────────────────────────────────────────────────────────────',
+    ' * A mode only sets color-scheme, which light-dark() reads, and the few mode-dependent numbers.',
+    ' * Both inherit, so the nearest marker wins: a light section works inside a dark page.',
+    ' * `.dark` is kept for compatibility with ThemeProvider; data-sds-mode is the general form.',
     ' */',
-    '.dark {',
-    ...darkLines,
+    ':root, [data-sds-mode="light"] {',
+    '  color-scheme: light;',
+    ...lightNumbers,
+    '}',
+    '',
+    '.dark, [data-sds-mode="dark"] {',
+    '  color-scheme: dark;',
+    ...darkNumbers,
     '}',
   ].join('\n');
 
