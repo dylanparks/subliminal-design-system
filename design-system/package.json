@@ -62,7 +62,7 @@
     "test:coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "node --env-file=.env.local node_modules/chromatic/dist/bin.js",
+    "chromatic": "node --env-file=.env.local run-chromatic.mjs",
     "build:tokens": "node build-tokens.mjs"
   },
   "browserslist": {
