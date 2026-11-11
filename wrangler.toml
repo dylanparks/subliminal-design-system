@@ -6,3 +6,5 @@ compatibility_date = "2026-07-19"
 
 [assets]
 directory = "./site/dist"
+# Unknown URLs return the built 404.html (with a 404 status) instead of an empty response.
+not_found_handling = "404-page"

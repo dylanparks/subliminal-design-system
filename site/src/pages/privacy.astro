@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import '../styles/legal.css';
 
 const company = 'Subliminal Design System LLC';
 const address = '440 Monticello Ave Ste 1802 #625273, Norfolk, VA 23510, United States';
@@ -206,75 +207,3 @@ const sections = [
     </address>
   </article>
 </Layout>
-
-<style>
-  /* Figma › Page Templates › Privacy Policy: a 1000px column inside the breakpoint's side padding,
-     48px between sections, 8px between a heading and its text. */
-  .policy {
-    box-sizing: border-box;
-    width: min(100%, calc(62.5rem + 2 * var(--sds-viewport-x-padding)));
-    margin: 0 auto;
-    padding: 3rem var(--sds-viewport-x-padding);
-  }
-
-  .title-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .title-block h1,
-  .title-block p {
-    margin: 0;
-  }
-
-  .policy .updated {
-    color: var(--sds-neutral-content-secondary);
-  }
-
-  .policy h2 {
-    margin: 3rem 0 0.5rem;
-    color: var(--sds-neutral-content-primary);
-  }
-
-  .policy p,
-  .policy ul,
-  .policy ol,
-  .policy address {
-    margin: 0 0 1rem;
-    color: var(--sds-neutral-content-secondary);
-  }
-
-  .policy strong {
-    color: var(--sds-neutral-content-primary);
-  }
-
-  .policy ul,
-  .policy ol {
-    padding-inline-start: 1.5rem;
-  }
-
-  .policy li + li {
-    margin-top: 0.5rem;
-  }
-
-  .toc h2 {
-    margin-top: 3rem;
-  }
-
-  .toc ol {
-    margin: 0;
-  }
-
-  .toc a {
-    text-decoration: none;
-  }
-
-  .policy a {
-    color: var(--sds-interactive-primary-filled-background-default);
-  }
-
-  .policy address {
-    font-style: normal;
-  }
-</style>

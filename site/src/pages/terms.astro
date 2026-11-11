@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/legal.css';
+
+const company = 'Subliminal Design System LLC';
+const address = '440 Monticello Ave Ste 1802 #625273, Norfolk, VA 23510, United States';
+const email = 'support@subliminaldesignsystem.com';
+const updated = 'November 11, 2026';
+
+// The numbered sections below, in order, for the table of contents.
+const sections = [
+  { id: 'acceptance-of-terms', title: 'Acceptance of Terms' },
+  { id: 'changes-to-the-terms', title: 'Changes to the Terms' },
+  { id: 'using-the-site', title: 'Using the Site' },
+  { id: 'intellectual-property-and-open-source-software', title: 'Intellectual Property and Open-Source Software' },
+  { id: 'feedback', title: 'Feedback' },
+  { id: 'third-party-links', title: 'Third-Party Links' },
+  { id: 'disclaimers', title: 'Disclaimers' },
+  { id: 'limitation-of-liability', title: 'Limitation of Liability' },
+  { id: 'suspension-and-termination', title: 'Suspension and Termination' },
+  { id: 'governing-law-and-disputes', title: 'Governing Law and Disputes' },
+  { id: 'general', title: 'General' },
+  { id: 'contact-us', title: 'Contact Us' },
+];
+---
+
+<Layout
+  title="Terms of Service · Subliminal Design System"
+  description="The terms for using subliminaldesignsystem.com."
+>
+  <article class="policy">
+    <header class="title-block">
+      <h1 class="sds-text--title-huge">Terms of Service</h1>
+      <p class="sds-text--content-large updated">Updated: {updated}</p>
+    </header>
+
+    <h2 id="welcome" class="sds-text--title-small">Welcome to Our Terms of Service</h2>
+    <p class="sds-text--content-large lead">
+      These Terms of Service (the “Terms”) govern your use of subliminaldesignsystem.com (the “Site”),
+      which is operated by {company} (“we,” “us,” or “our”). By using the Site you agree to the
+      Terms. If you don't agree, please don't use the Site. The Site is a documentation website. If
+      we add accounts, a newsletter, or paid features, additional terms will apply to them, and we
+      will publish those terms before the features launch.
+    </p>
+
+    <nav aria-label="Table of contents" class="toc">
+      <h2 class="sds-text--title-xsmall">Table of contents</h2>
+      <ol class="sds-text--interactive-medium">
+        {sections.map((section) => (
+          <li><a href={`#${section.id}`}>{section.title}</a></li>
+        ))}
+      </ol>
+    </nav>
+
+    <h2 id="acceptance-of-terms" class="sds-text--title-xsmall">1. Acceptance of Terms</h2>
+    <p class="sds-text--content-medium">
+      By accessing or using the Site you confirm that you have read and agree to these Terms and to
+      our <a href="/privacy">Privacy Policy</a>. You must be at least 16 years old to use the Site.
+      If you use the Site on behalf of an organization, you confirm that you are allowed to accept
+      these Terms for it.
+    </p>
+
+    <h2 id="changes-to-the-terms" class="sds-text--title-xsmall">2. Changes to the Terms</h2>
+    <p class="sds-text--content-medium">
+      We may update these Terms from time to time. The date at the top shows when they last changed.
+      If we make a material change, we will say so clearly on the Site. If you keep using the Site
+      after a change takes effect, you accept the updated Terms.
+    </p>
+
+    <h2 id="using-the-site" class="sds-text--title-xsmall">3. Using the Site</h2>
+    <p class="sds-text--content-medium">
+      You may read the Site, link to it, and use what it teaches you in your own work. You agree not
+      to:
+    </p>
+    <ul class="sds-text--content-medium">
+      <li>break the law, or help anyone else to, through your use of the Site;</li>
+      <li>interfere with or disrupt the Site, its hosting, or other people's use of it, including by
+        sending automated traffic at a volume that affects its performance;</li>
+      <li>try to gain unauthorized access to the Site, its infrastructure, or other people's data; or</li>
+      <li>probe the Site for security weaknesses other than by reporting what you find to us
+        privately at <a href={`mailto:${email}`}>{email}</a>.</li>
+    </ul>
+
+    <h2 id="intellectual-property-and-open-source-software" class="sds-text--title-xsmall">4. Intellectual Property and Open-Source Software</h2>
+    <p class="sds-text--content-medium">
+      The Site's text, graphics, layout, name, and logo belong to us or our licensors and are
+      protected by intellectual property laws. These Terms let you view and link to the Site. They do
+      not give you any right to use our name or logo, or to present anything as coming from or
+      endorsed by us, without our written permission.
+    </p>
+    <p class="sds-text--content-medium">
+      The Subliminal Design System software (the code in its public repository and its published
+      package) is licensed separately, under the open-source licence in that repository. That
+      licence, not these Terms, governs your use of the code, and nothing here limits the rights it
+      gives you. The fonts used on the Site, Manrope and Work Sans, are licensed under the SIL Open
+      Font License 1.1.
+    </p>
+
+    <h2 id="feedback" class="sds-text--title-xsmall">5. Feedback</h2>
+    <p class="sds-text--content-medium">
+      If you send us suggestions or feedback, we may use them without limit and without owing you
+      anything, and without any obligation to keep them confidential. Please don't send us anything
+      you want to keep private.
+    </p>
+
+    <h2 id="third-party-links" class="sds-text--title-xsmall">6. Third-Party Links</h2>
+    <p class="sds-text--content-medium">
+      The Site may link to websites and services that we don't own or control. We are not responsible
+      for them, and linking to one is not an endorsement. Their own terms and privacy policies apply
+      to your use of them.
+    </p>
+
+    <h2 id="disclaimers" class="sds-text--title-xsmall">7. Disclaimers</h2>
+    <p class="sds-text--content-medium">
+      The Site and everything on it are provided “as is” and “as available,” without warranties of
+      any kind, whether express or implied, including warranties of merchantability, fitness for a
+      particular purpose, non-infringement, accuracy, and uninterrupted or error-free operation.
+      Design guidance, tokens, and examples are provided for information only: you are responsible
+      for testing anything you build with them, including for accessibility and legal compliance in
+      your own products.
+    </p>
+
+    <h2 id="limitation-of-liability" class="sds-text--title-xsmall">8. Limitation of Liability</h2>
+    <p class="sds-text--content-medium">
+      To the fullest extent the law allows, we are not liable for any indirect, incidental, special,
+      consequential, or punitive damages, or for lost profits, revenue, data, or goodwill, arising
+      out of or related to your use of the Site, even if we have been told they are possible. To the
+      fullest extent the law allows, our total liability for all claims relating to the Site will not
+      exceed US$100. Nothing in these Terms limits liability that cannot lawfully be limited, such as
+      liability for fraud, or for death or personal injury caused by negligence, and nothing in them
+      takes away consumer rights that cannot be waived in your country.
+    </p>
+
+    <h2 id="suspension-and-termination" class="sds-text--title-xsmall">9. Suspension and Termination</h2>
+    <p class="sds-text--content-medium">
+      We may suspend or restrict access to the Site at any time, for example if we think these Terms
+      have been broken or to protect the Site's security, and we may change or discontinue the Site.
+      Sections 4, 5, 7, 8, 10, and 11 continue to apply after your use of the Site ends.
+    </p>
+
+    <h2 id="governing-law-and-disputes" class="sds-text--title-xsmall">10. Governing Law and Disputes</h2>
+    <p class="sds-text--content-medium">
+      These Terms are governed by the laws of the Commonwealth of Virginia, United States, without
+      regard to its conflict-of-law rules. Any dispute arising out of or relating to these Terms or
+      the Site will be brought in the state or federal courts located in Virginia, and you and we
+      consent to their jurisdiction. If you are a consumer, this does not take away any protection
+      you have under the mandatory laws of the country where you live, or any right to bring a claim
+      in the courts of that country.
+    </p>
+
+    <h2 id="general" class="sds-text--title-xsmall">11. General</h2>
+    <p class="sds-text--content-medium">
+      These Terms and our Privacy Policy are the whole agreement between you and us about the Site.
+      If a part of them is found to be unenforceable, the rest stays in effect. If we don't enforce a
+      part of them, that is not a waiver of it. We may assign these Terms in connection with a sale or
+      reorganization of the business; you may not assign them without our consent.
+    </p>
+
+    <h2 id="contact-us" class="sds-text--title-xsmall">12. Contact Us</h2>
+    <p class="sds-text--content-medium">
+      If you have a question about these Terms, contact us at{' '}
+      <a href={`mailto:${email}`}>{email}</a>, or write to:
+    </p>
+    <address class="sds-text--content-medium">
+      {company}<br />
+      {address}
+    </address>
+  </article>
+</Layout>

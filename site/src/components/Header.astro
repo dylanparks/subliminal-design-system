@@ -1,23 +1,37 @@
 ---
 import ModeToggle from './ModeToggle';
+import Logo from './Logo.astro';
 ---
 
 <header class="site-header">
-  <a href="/" class="site-header__brand sds-text--subtitle-large">Subliminal Design System</a>
+  <a href="/" class="site-header__brand" aria-label="Subliminal Design System, home">
+    <Logo class="site-header__logo" />
+  </a>
   <ModeToggle client:load />
 </header>
 
 <style>
+  /* Figma › Page Templates: a 60px bar, the logo at 24px tall, the breakpoint's side padding. */
   .site-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem var(--sds-viewport-x-padding);
+    box-sizing: border-box;
+    min-height: 3.75rem;
+    padding: 0.5rem var(--sds-viewport-x-padding);
     border-bottom: 1px solid var(--sds-neutral-background-offset);
   }
 
   .site-header__brand {
+    display: inline-flex;
     color: var(--sds-neutral-content-primary);
     text-decoration: none;
+  }
+
+  /* The SVG belongs to the Logo component, so Astro's scoped CSS needs :global to reach it. */
+  .site-header :global(.site-header__logo) {
+    display: block;
+    height: 1.5rem;
+    width: auto;
   }
 </style>

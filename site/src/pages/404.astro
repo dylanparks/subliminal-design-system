@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found · Subliminal Design System" description="This page could not be found.">
+  <section class="not-found">
+    <div class="not-found__content">
+      <div class="not-found__heading">
+        <p class="sds-text--title-xsmall not-found__code">Error code: 404</p>
+        <h1 class="sds-text--title-medium">Page Not Found</h1>
+      </div>
+      <p class="sds-text--content-large not-found__message">
+        We couldn't find the page you were looking for. It may have moved, or the address may have
+        been mistyped.
+      </p>
+      <!-- The design system's Button, as a link: it is navigation, not an action. -->
+      <a href="/" class="sds-button sds-button--medium sds-button--primary-filled sds-text--interactive-medium">
+        <span class="sds-button__label">Back to home</span>
+        <span class="sds-button__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M647-440H160q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h487L423-744q-12-12-11.5-28.5T424-801q12-12 28.5-12t28.5 12l264 264q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L481-217q-12 12-28.5 11.5T424-218q-12-12-12-28.5t12-28.5l223-225Z"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Figma › Page Templates › 404: a 1000px column, content centred in about 620px of height. */
+  .not-found {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: min(100%, calc(62.5rem + 2 * var(--sds-viewport-x-padding)));
+    min-height: 38.75rem;
+    margin: 0 auto;
+    padding: 3rem var(--sds-viewport-x-padding);
+  }
+
+  .not-found__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 30.25rem;
+  }
+
+  .not-found__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .not-found__heading p,
+  .not-found__heading h1,
+  .not-found__message {
+    margin: 0;
+  }
+
+  .not-found__code {
+    color: var(--sds-neutral-content-tertiary);
+  }
+
+  .not-found__message {
+    color: var(--sds-neutral-content-secondary);
+  }
+</style>
