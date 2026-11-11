@@ -8,6 +8,11 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Radio indicator matches Figma's size (Phase T.3)
+- **Visual change:** the Radio indicator is 24px (large) and 20px (medium) instead of 22px and
+  18px, with an inner dot of 10px and 8px instead of 8px and 6px, as in Figma. It uses
+  `--sds-size-custom-radio-large` / `--sds-size-custom-radio-medium`, so a theme can change it.
+
 #### Component sizes and borders use tokens and rem (Phase T.3)
 - **No visual change at default settings.** Every component story renders pixel-identical to
   before (201 of 211 stories compared; the rest are either not renderable offline or vary between
