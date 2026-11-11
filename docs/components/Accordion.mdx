@@ -103,7 +103,7 @@ the trigger.
 `:has(.sds-accordion-trigger:hover)` / `:active` — the whole card fills, not just the button),
 `--sds-neutral-content-secondary` (panel content text).
 
-**Effects** — `--sds-effects-focusring` (trigger `focus-visible` ring).
+**Effects** — `--sds-effects-focus-ring` (trigger `focus-visible` ring).
 
 **Shape** — `--sds-radius-medium` (item corners, shared by both sizes).
 
@@ -127,7 +127,7 @@ size) and `sds-text--content-{small,medium}` (panel content, small/medium size).
 - `AccordionPanel` has `role="region"` and `aria-labelledby` pointing back at its trigger's `id` — verified in `Accordion.test.tsx` (`getByRole('region', { name: 'Alpha' })`).
 - Arrow-key navigation across all triggers in one `Accordion`: `ArrowDown`/`ArrowUp` move focus to the next/previous **enabled** trigger (wrapping at the ends), `Home`/`End` jump to the first/last enabled trigger. Disabled items are excluded from this cycle.
 - Disabled items get the native `disabled` attribute on their trigger (removed from tab order, `pointer-events: none` in CSS as a second guard).
-- `focus-visible` renders a 4px `box-shadow` ring via `--sds-effects-focusring`.
+- `focus-visible` renders a 4px `box-shadow` ring via `--sds-effects-focus-ring`.
 - Target: WCAG AA.
 
 ## Usage in Figma
