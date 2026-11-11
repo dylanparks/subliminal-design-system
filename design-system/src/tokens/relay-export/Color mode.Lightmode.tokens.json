@@ -5637,7 +5637,7 @@
           }
         }
       },
-      "PrimaryEnd": {
+      "Primary-end": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -5938,7 +5938,7 @@
         }
       }
     },
-    "ElevatedShadow": {
+    "Elevated-shadow": {
       "Blur": {
         "$type": "number",
         "$value": 16,

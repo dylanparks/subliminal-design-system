@@ -237,7 +237,7 @@
   --sds-accents-solid-primary-weak: light-dark(color-mix(in srgb, var(--sds-brand-light-accent) var(--sds-mix-accents-solid-primary-weak, 10%), transparent), color-mix(in srgb, var(--sds-brand-dark-accent) var(--sds-mix-accents-solid-primary-weak, 10%), transparent)); /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-solid-secondary: light-dark(var(--sds-brand-light-neutral), var(--sds-brand-dark-neutral)); /** Used for accent backgrounds, icons, text, or effects. Non-interactive only. */
   --sds-accents-gradient-primary-start: #1871f8; /** Fixed: does not follow Brand. Color variable only to be used a color stop for gradient styles. */
-  --sds-accents-gradient-primaryend: #8707c3; /** Fixed: does not follow Brand. Color variable only to be used a color stop for gradient styles. */
+  --sds-accents-gradient-primary-end: #8707c3; /** Fixed: does not follow Brand. Color variable only to be used a color stop for gradient styles. */
   --sds-effects-overlay-solid: light-dark(color-mix(in srgb, var(--sds-brand-light-shadow) var(--sds-mix-effects-overlay-solid, 40%), transparent), color-mix(in srgb, var(--sds-brand-dark-shadow) var(--sds-mix-effects-overlay-solid, 40%), transparent)); /** Used as the background behind popover display components such as modals. */
   --sds-effects-focus-ring: light-dark(var(--sds-brand-light-focus-ring), var(--sds-brand-dark-focus-ring)); /** Used for focus indicators on secondary-level interactive elements, such as secondary buttons, segmented controls, or hollow actions. Maintains accessibility clarity while aligning with the secondary visual language. Should be paired with secondary background and content, and sometimes interactive input tokens. */
   --sds-effects-dropshadow-default: light-dark(color-mix(in srgb, var(--sds-brand-light-shadow) var(--sds-mix-effects-dropshadow-default, 0%), transparent), color-mix(in srgb, var(--sds-brand-dark-shadow) var(--sds-mix-effects-dropshadow-default, 0%), transparent)); /** Color used for elevation drop shadow effects only. */
@@ -255,18 +255,18 @@
  */
 :root, [data-sds-mode="light"] {
   color-scheme: light;
-  --sds-effects-elevatedshadow-blur: 16;
-  --sds-effects-elevatedshadow-spread: 2;
-  --sds-effects-elevatedshadow-y: 4;
-  --sds-effects-elevatedshadow-x: 0;
+  --sds-effects-elevated-shadow-blur: 16;
+  --sds-effects-elevated-shadow-spread: 2;
+  --sds-effects-elevated-shadow-y: 4;
+  --sds-effects-elevated-shadow-x: 0;
 }
 
 .dark, [data-sds-mode="dark"] {
   color-scheme: dark;
-  --sds-effects-elevatedshadow-blur: 0;
-  --sds-effects-elevatedshadow-spread: 0;
-  --sds-effects-elevatedshadow-y: 0;
-  --sds-effects-elevatedshadow-x: 0;
+  --sds-effects-elevated-shadow-blur: 0;
+  --sds-effects-elevated-shadow-spread: 0;
+  --sds-effects-elevated-shadow-y: 0;
+  --sds-effects-elevated-shadow-x: 0;
 }
 
 /* ─── Effect styles ────────────────────────────────────────────────────────
@@ -283,7 +283,7 @@
   --sds-effect-interactive-element-error-box-shadow: 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
   --sds-effect-interactive-element-success-box-shadow: 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
   --sds-effect-static-element-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-static-element-elevated-box-shadow: calc(var(--sds-effects-elevatedshadow-x) * 1px) calc(var(--sds-effects-elevatedshadow-y) * 1px) calc(var(--sds-effects-elevatedshadow-blur) * 1px) calc(var(--sds-effects-elevatedshadow-spread) * 1px) var(--sds-effects-dropshadow-elevated);
+  --sds-effect-static-element-elevated-box-shadow: calc(var(--sds-effects-elevated-shadow-x) * 1px) calc(var(--sds-effects-elevated-shadow-y) * 1px) calc(var(--sds-effects-elevated-shadow-blur) * 1px) calc(var(--sds-effects-elevated-shadow-spread) * 1px) var(--sds-effects-dropshadow-elevated);
   --sds-effect-static-card-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 

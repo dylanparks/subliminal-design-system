@@ -175,9 +175,13 @@
   background-color: var(--sds-interactive-static-filled-background-hover);
 }
 
-/* ─── Mobile — bottom sheet ─────────────────────────────────────────────────── */
+/* ─── Mobile — bottom sheet ───────────────────────────────────────────────────
+ * Below the XS breakpoint (Figma Breakpoint › XS = below 768px, 48em at the default font size).
+ * A media query can't read a variable, so this repeats that width; breakpoints.test.ts fails
+ * if it drifts from the generated tokens.css.
+ */
 
-@media (width < 37.5em) {
+@media (width < 48em) {
   .sds-modal-dialog {
     inset:      auto 0 0 0;
     margin:     0;

@@ -312,7 +312,7 @@ export const tokens = {
     },
     gradient: {
       "primary-start": "var(--sds-accents-gradient-primary-start)",
-      primaryend: "var(--sds-accents-gradient-primaryend)",
+      "primary-end": "var(--sds-accents-gradient-primary-end)",
     },
   },
   effects: {
@@ -326,11 +326,11 @@ export const tokens = {
       elevated: "var(--sds-effects-dropshadow-elevated)",
       callout: "var(--sds-effects-dropshadow-callout)",
     },
-    elevatedshadow: {
-      blur: "var(--sds-effects-elevatedshadow-blur)",
-      spread: "var(--sds-effects-elevatedshadow-spread)",
-      y: "var(--sds-effects-elevatedshadow-y)",
-      x: "var(--sds-effects-elevatedshadow-x)",
+    "elevated-shadow": {
+      blur: "var(--sds-effects-elevated-shadow-blur)",
+      spread: "var(--sds-effects-elevated-shadow-spread)",
+      y: "var(--sds-effects-elevated-shadow-y)",
+      x: "var(--sds-effects-elevated-shadow-x)",
     },
   },
 } as const;

@@ -17,11 +17,16 @@ All notable changes to the Subliminal Design System are documented here.
   | `--sds-effects-overlaysolid` | `--sds-effects-overlay-solid` |
   | `--sds-accents-solid-primaryweak` | `--sds-accents-solid-primary-weak` |
   | `--sds-accents-gradient-primarystart` | `--sds-accents-gradient-primary-start` |
+  | `--sds-accents-gradient-primaryend` | `--sds-accents-gradient-primary-end` |
+  | `--sds-effects-elevatedshadow-{blur,spread,x,y}` | `--sds-effects-elevated-shadow-{blur,spread,x,y}` |
   | `--sds-mix-effects-focusring` / `-overlaysolid` / `-accents-solid-primaryweak` | the same renames |
 
-  The TypeScript token keys follow (`focusring` → `"focus-ring"`, and so on). The `Images/Dark-images`
-  flag is renamed in Figma too, but it isn't emitted. Still CamelCase in Figma: `Accents/Gradient/PrimaryEnd`
-  (`--sds-accents-gradient-primaryend`) and the `Effects/ElevatedShadow` group.
+  The TypeScript token keys follow (`focusring` → `"focus-ring"`, `elevatedshadow` →
+  `"elevated-shadow"`, and so on). The `Images/Dark-images` flag is renamed in Figma too, but it
+  isn't emitted.
+- **Visual change, Modal:** the mobile bottom-sheet layout applies below the XS breakpoint
+  (768px, `48em`) instead of below 600px, so it follows Figma's breakpoints. A test fails if
+  Modal's query ever differs from the breakpoint in `tokens.css`.
 - New token `--sds-accents-solid-primary-stroke` (the brand accent at 30%, with an optional
   `--sds-mix-accents-solid-primary-stroke`).
 - **Visual change, Tag:** the outline border is 1px (`--sds-border-thickness-data-badge`) instead of

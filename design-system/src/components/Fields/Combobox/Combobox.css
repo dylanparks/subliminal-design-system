@@ -2,7 +2,7 @@
  * Fields/Combobox
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-focus-ring, --sds-effects-dropshadow-elevated, --sds-effects-elevatedshadow-*,
+ *         --sds-effects-focus-ring, --sds-effects-dropshadow-elevated, --sds-effects-elevated-shadow-*,
  *         --sds-radius-*, --sds-size-*,
  *         --sds-typography-font-size-content-{small|medium},
  *         --sds-typography-line-height-content-{small|medium},
@@ -348,10 +348,10 @@
   border: var(--sds-border-thickness-neutral-elevated) solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-large);
   box-shadow:
-    calc(var(--sds-effects-elevatedshadow-x) * 1px)
-    calc(var(--sds-effects-elevatedshadow-y) * 1px)
-    calc(var(--sds-effects-elevatedshadow-blur) * 1px)
-    calc(var(--sds-effects-elevatedshadow-spread) * 1px)
+    calc(var(--sds-effects-elevated-shadow-x) * 1px)
+    calc(var(--sds-effects-elevated-shadow-y) * 1px)
+    calc(var(--sds-effects-elevated-shadow-blur) * 1px)
+    calc(var(--sds-effects-elevated-shadow-spread) * 1px)
     var(--sds-effects-dropshadow-elevated);
   padding: 0.5rem 0;
   box-sizing: border-box;
