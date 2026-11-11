@@ -2,7 +2,10 @@ import './FileUploadItem.css';
 import type { FileStatus } from './FileUpload.types';
 import { ProgressBar } from '../../DataDisplay/ProgressBar/ProgressBar';
 import { Button } from '../../Actions/Button/Button';
-import { CloseIcon, ErrorIcon } from '../../../icons';
+import {
+  CloseIcon, ErrorIcon, ImageFileIcon, VideoFileIcon, AudioFileIcon, PdfFileIcon, ZipFileIcon,
+  TextFileIcon, DocumentFileIcon, SpreadsheetFileIcon, GenericFileIcon,
+} from '../../../icons';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -17,7 +20,7 @@ export interface FileUploadItemProps {
   errorMessage?: string;
   /** Called when the remove button is clicked */
   onRemove?: (file: File) => void;
-  /** Show a Material Symbols Rounded icon representing the file MIME type */
+  /** Show an icon representing the file's MIME type */
   showFileTypeIcon?: boolean;
   /** Additional className forwarded to the root element */
   className?: string;
@@ -31,16 +34,18 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function mimeToIcon(mimeType: string): string {
-  if (mimeType.startsWith('image/'))  return 'image';
-  if (mimeType.startsWith('video/'))  return 'video_file';
-  if (mimeType.startsWith('audio/'))  return 'audio_file';
-  if (mimeType === 'application/pdf') return 'picture_as_pdf';
-  if (mimeType === 'application/zip' || mimeType === 'application/x-zip-compressed') return 'folder_zip';
-  if (mimeType.startsWith('text/'))   return 'description';
-  if (mimeType.includes('word'))      return 'article';
-  if (mimeType.includes('sheet') || mimeType.includes('excel') || mimeType.includes('csv')) return 'table';
-  return 'draft';
+function FileTypeIcon({ mimeType, className }: { mimeType: string; className?: string }) {
+  const Icon =
+    mimeType.startsWith('image/')  ? ImageFileIcon :
+    mimeType.startsWith('video/')  ? VideoFileIcon :
+    mimeType.startsWith('audio/')  ? AudioFileIcon :
+    mimeType === 'application/pdf' ? PdfFileIcon :
+    mimeType === 'application/zip' || mimeType === 'application/x-zip-compressed' ? ZipFileIcon :
+    mimeType.startsWith('text/')   ? TextFileIcon :
+    mimeType.includes('word')      ? DocumentFileIcon :
+    mimeType.includes('sheet') || mimeType.includes('excel') || mimeType.includes('csv') ? SpreadsheetFileIcon :
+    GenericFileIcon;
+  return <Icon className={className} />;
 }
 
 // ─── FileUploadItem ───────────────────────────────────────────────────────────
@@ -69,12 +74,7 @@ export function FileUploadItem({
   return (
     <div className={rootClasses}>
       {showFileTypeIcon && (
-        <span
-          className="material-symbols-rounded sds-file-upload-item__type-icon"
-          aria-hidden="true"
-        >
-          {mimeToIcon(file.type)}
-        </span>
+        <FileTypeIcon mimeType={file.type} className="sds-file-upload-item__type-icon" />
       )}
 
       <div className="sds-file-upload-item__body">

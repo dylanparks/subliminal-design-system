@@ -37,6 +37,7 @@
     "./style.css": "./dist/style.css",
     "./tokens.css": "./dist/tokens.css",
     "./typography.css": "./dist/typography.css",
+    "./fonts.css": "./dist/fonts.css",
     "./package.json": "./package.json"
   },
   "dependencies": {

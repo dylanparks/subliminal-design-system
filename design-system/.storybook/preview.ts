@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import React from 'react';
 import '../src/tokens/generated/tokens.css';
+import '../src/tokens/generated/fonts.css'; // Storybook loads the brand fonts from Google; consumers choose
 import '../src/tokens/generated/typography.css';
 import './preview.css';
 import { fontFamilies } from '../src/tokens/generated/fonts';

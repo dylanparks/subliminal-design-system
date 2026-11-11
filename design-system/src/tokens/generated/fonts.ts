@@ -5,7 +5,7 @@
 export const fontFamilies: {
   /** Every unique family across all typography tokens. */
   all: string[];
-  /** Confirmed present on Google Fonts (loaded via @import in tokens.css). */
+  /** Confirmed present on Google Fonts (loadable via the optional fonts.css). */
   googleFonts: string[];
   /** Not found on Google Fonts — custom, purchased, or self-hosted. */
   unverified: string[];

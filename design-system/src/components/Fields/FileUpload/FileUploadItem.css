@@ -6,7 +6,7 @@
  *
  * Structure:
  *   .sds-file-upload-item              → flat flex-row wrapper (no card)
- *   .sds-file-upload-item__type-icon   → optional Material Symbols Rounded glyph
+ *   .sds-file-upload-item__type-icon   → optional file-type icon (SVG)
  *   .sds-file-upload-item__body        → flex column, grows to fill row
  *   .sds-file-upload-item__label-group → filename + size in a baseline row
  *   .sds-file-upload-item__name        → filename, subtitle/small
@@ -14,8 +14,6 @@
  *   ProgressBar                        → rendered below label-group when uploading
  *   .sds-file-upload-item__error-message → icon + text row on error status
  */
-
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 /* ─── Root (flat row, no card) ───────────────────────────────────────────────── */
 
@@ -30,11 +28,9 @@
 
 .sds-file-upload-item__type-icon {
   flex-shrink: 0;
-  font-size:   1.5rem;
-  line-height: 1;
+  width:       1.5rem;
+  height:      1.5rem;
   color:       var(--sds-neutral-content-secondary);
-
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 /* ─── Body ───────────────────────────────────────────────────────────────────── */

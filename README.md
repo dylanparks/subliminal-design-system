@@ -57,6 +57,12 @@ npx sds-build-tokens --input ./subliminal-tokens.zip --output ./src/design-token
 
 Then import the generated `tokens.css` and `typography.css` instead of the package's.
 
+**Fonts.** `tokens.css` no longer loads any font, so installing the design system makes no request to
+Google. The Brand collection's font families (Manrope and Work Sans, both open-source under the SIL
+OFL) are your choice to load: either self-host them (the docs site does, from `site/public/fonts/`) or
+import the optional `subliminal-design-system/fonts.css`, which loads them from Google Fonts and so
+sends each visitor's IP address to Google. Without either, text uses the fallback font.
+
 **Designer workflow:** edit variables in Figma → export with Relay → replace the files in
 `design-system/src/tokens/relay-export/` → `npm run build:tokens`. The build fails, listing every
 problem, rather than guessing — e.g. an intent colour that doesn't derive from Brand, a translucent

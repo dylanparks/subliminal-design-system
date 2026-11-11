@@ -8,6 +8,17 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### No requests to Google: self-hosted fonts and SVG file icons
+- **Breaking:** `tokens.css` no longer `@import`s the brand fonts from Google. They moved to a new,
+  optional `subliminal-design-system/fonts.css` (the `sds-build-tokens` CLI writes it too). Import it
+  to keep the old behaviour, or self-host Manrope and Work Sans. Before, every visitor's browser
+  contacted Google just because the design system was installed.
+- The docs site self-hosts both fonts (Latin subset, `site/public/fonts/`, with their OFL licences), and
+  its CSP no longer allows Google. A browser load of the built page makes no request to any other
+  origin, and both fonts load from the site.
+- `FileUploadItem` draws file-type icons as SVGs (the same Material Symbols Rounded glyphs) instead of
+  the Material Symbols icon font, so it no longer imports a font from Google either.
+
 #### Security hardening
 - **Dependencies:** `npm audit` went from 28 findings (3 critical, 12 high) to 7 moderate ones, all in
   Storybook's development tooling. `adm-zip`, which `sds-build-tokens` uses to open a ZIP, is on the

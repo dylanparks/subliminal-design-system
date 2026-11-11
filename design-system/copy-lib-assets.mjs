@@ -8,6 +8,7 @@ import { copyFileSync, renameSync } from 'node:fs';
 const pairs = [
   ['src/tokens/generated/tokens.css', 'dist/tokens.css'],
   ['src/tokens/generated/typography.css', 'dist/typography.css'],
+  ['src/tokens/generated/fonts.css', 'dist/fonts.css'],
 ];
 
 for (const [from, to] of pairs) {
