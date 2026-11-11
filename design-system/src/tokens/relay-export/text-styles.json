@@ -1,0 +1,820 @@
+{
+  "Titles": {
+    "Huge": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 64,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 88
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:cf75d5005097b7cb2fedc07b05e9f5f906b02aea,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Title"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Title/Huge"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Title"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Title/Huge"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Title/Huge"
+          }
+        }
+      }
+    },
+    "Large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 56,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 72
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:2302325f554a12abc5d9a898bc6a03bc1692167d,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Title"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Title/Large"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Title"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Title/Large"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Title/Large"
+          }
+        }
+      }
+    },
+    "Medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 48,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 56
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:11d55be7ce34328248a2a15fb28d485fbd2f43ee,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Title"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Title/Medium"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Title"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Title/Medium"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Title/Medium"
+          }
+        }
+      }
+    },
+    "Small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 36,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 48
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.25
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:b0489a379b665754733d503fee283782f2325bf3,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Title"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Title/Small"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Title"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Title/Small"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Title/Small"
+          }
+        }
+      }
+    },
+    "XSmall": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 28,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 32
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:ef8c4acc266d967c4dbc5682ba78f110b8fb7cd8,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Title"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Title/XSmall"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Title"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Title/XSmall"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Title/XSmall"
+          }
+        }
+      }
+    }
+  },
+  "Subtitle": {
+    "Large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "Bold",
+        "fontSize": 20,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 24
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:97c76d147192a86c3e13db6ebdf4188c6ec3ce5d,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Subtitle"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Subtitle/Large"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Subtitle"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Subtitle/Large"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Subtitle/Large"
+          }
+        }
+      }
+    },
+    "Medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "Bold",
+        "fontSize": 16,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 20
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:6d5fde8ad71340bfeeb0d9f20f52d28a9d4e6d6f,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Subtitle"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Subtitle/Medium"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Subtitle"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Subtitle/Medium"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Subtitle/Medium"
+          }
+        }
+      }
+    },
+    "Small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "Bold",
+        "fontSize": 14,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 20
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.25
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:0fceb14ddd98b058ae8af752c624cc56e313425d,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Subtitle"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Subtitle/Small"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Subtitle"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Subtitle/Small"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Subtitle/Small"
+          }
+        }
+      }
+    },
+    "XSmall": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "Bold",
+        "fontSize": 12,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 16
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:fc3f82c7ffcfe37549c864b14adc013d7b3beeca,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Subtitle"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Subtitle/XSmall"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Subtitle"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Subtitle/XSmall"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Subtitle/XSmall"
+          }
+        }
+      }
+    }
+  },
+  "Content": {
+    "Huge": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontStyle": "Regular",
+        "fontSize": 24,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 36
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:553ecb7842634c2448a6e848d3de64a48ddd9656,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Content"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Content/Huge"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Content"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Content/Huge"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Content/Huge"
+          }
+        }
+      }
+    },
+    "Large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontStyle": "Regular",
+        "fontSize": 20,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 32
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:27eb3464361290b04f93d513fa75fe3486d226d7,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Content"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Content/Large"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Content"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Content/Large"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Content/Large"
+          }
+        }
+      }
+    },
+    "Medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontStyle": "Regular",
+        "fontSize": 16,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 24
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:38ebb93e5ec0f555c74e6efa783475835186e198,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Content"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Content/Medium"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Content"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Content/Medium"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Content/Medium"
+          }
+        }
+      }
+    },
+    "Small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontStyle": "Regular",
+        "fontSize": 14,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 20
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.25
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:6416d28816c086447e07c6311e826cda46a89d32,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Content"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Content/Small"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Content"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Content/Small"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Content/Small"
+          }
+        }
+      }
+    },
+    "XSmall": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontStyle": "Regular",
+        "fontSize": 12,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 18
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:970c27b464447dd28eb46dd770a69f882e70ce91,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Content"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Content/XSmall"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Content"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Content/XSmall"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Content/XSmall"
+          }
+        }
+      }
+    }
+  },
+  "Interactive": {
+    "Huge": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 24,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 36
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:cb9f49d6c14e828196b76c629a6586565c4df757,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Interactive"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Interactive/Huge"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Interactive"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Interactive/Huge"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Interactive/Huge"
+          }
+        }
+      }
+    },
+    "Large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 20,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 32
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -1
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:cf658e7128edb0c19344df9ab64258583028911c,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Interactive"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Interactive/Large"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Interactive"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Interactive/Large"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Interactive/Large"
+          }
+        }
+      }
+    },
+    "Medium": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 16,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 24
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.5
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:940ca2af079d7f77346068011de287bd6328a34b,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Interactive"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Interactive/Medium"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Interactive"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Interactive/Medium"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Interactive/Medium"
+          }
+        }
+      }
+    },
+    "Small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontStyle": "ExtraBold",
+        "fontSize": 14,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 20
+        },
+        "letterSpacing": {
+          "unit": "PIXELS",
+          "value": -0.25
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "paragraphSpacing": 0,
+        "paragraphIndent": 0
+      },
+      "$extensions": {
+        "com.figma.styleId": "S:ae7e7e5b5ab164375b0c64fd8b2a05d28282dffc,",
+        "com.subliminal.boundVariables": {
+          "fontFamily": {
+            "collection": "Brand",
+            "name": "Typography/Font-family/Interactive"
+          },
+          "fontSize": {
+            "collection": "Breakpoint",
+            "name": "Typography/Font size/Interactive/Small"
+          },
+          "fontWeight": {
+            "collection": "Brand",
+            "name": "Typography/Font-weight/Interactive"
+          },
+          "lineHeight": {
+            "collection": "Breakpoint",
+            "name": "Typography/Line height/Interactive/Small"
+          },
+          "letterSpacing": {
+            "collection": "Brand",
+            "name": "Typography/Letter-spacing/Interactive/Small"
+          }
+        }
+      }
+    }
+  }
+}

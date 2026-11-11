@@ -8,6 +8,17 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Type classes are built from Figma's text styles (Phase T.3)
+- Relay 0.6.0 exports Figma's text styles (`text-styles.json`) with the variable bound to each
+  field. `build:tokens` builds each `.sds-text--*` class from those bindings. With the current
+  export the generated `typography.css` is byte-identical to before; the difference is that
+  re-hooking a style to another variable in Figma now changes the class with no other edit.
+- The build fails if a text style has an unbound field, a Font size variable has no text style, or
+  a style is bound to a variable the export doesn't contain. Without `text-styles.json` it infers the
+  classes from the Font size names as before.
+- The `text-styles.json` committed here was produced by running Relay's extraction against the live
+  Figma file, not by the plugin UI; replace it with the next real export.
+
 #### Five breakpoints: XL, LG, MD, SM, XS (Phase T.3)
 - Figma's Breakpoint collection now has five modes. Each applies from its own width up to the next
   wider one, in `em` so it follows the reader's font size: **XL** ≥ 1536px (the default), **LG**

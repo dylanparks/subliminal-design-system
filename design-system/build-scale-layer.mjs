@@ -17,12 +17,17 @@
  * overrides on a `[data-sds-theme]` element inherit with no extra machinery, and the Breakpoint
  * `@media` blocks override on `:root` as before.
  *
+ * Type styles: when the export has Figma's text styles (Relay 0.6.0+, text-styles.json), each
+ * `.sds-text--*` class is built from the variables the style is bound to, so a style hooked to a
+ * different variable in Figma changes the code with no other edit. Without that file, the five
+ * properties are inferred from the Breakpoint › Font size names, as before.
+ *
  * Nothing is guessed: a missing typography property, an unexpected type, or two tokens mapping
  * to the same CSS name fails the build.
  */
 
 import {
-  BRAND_COLLECTION, BREAKPOINT_COLLECTION, readCollection, segment, tidy, relayProblem,
+  BRAND_COLLECTION, BREAKPOINT_COLLECTION, readCollection, readTextStyles, segment, tidy, relayProblem,
 } from './build-token-export.mjs';
 
 /** Used after every font family, so a font that fails to load falls back to something sensible. */
@@ -137,27 +142,68 @@ export function buildScaleLayer(dir) {
   // The old generator silently skipped a missing property, which is exactly how a line height
   // could vanish from a class without anyone noticing.
   const has = (name) => brandVars.has(name) || modes[0]?.vars.has(name);
+  const textStyles = readTextStyles(dir);
+  const stylesBySize = new Map(); // `--sds-…` font-size variable → style name
+  for (const [styleName, style] of textStyles ?? []) {
+    const size = style.bound.fontSize;
+    if (size) stylesBySize.set(cssName(size.name.split('/')), styleName);
+    else errors.push(`Text style "${styleName}" has no variable bound to its font size.`);
+  }
+  const usedStyles = new Set();
+  const FIELD_PROPS = {
+    fontFamily: 'font-family', fontSize: 'font-size', fontWeight: 'font-weight',
+    lineHeight: 'line-height', letterSpacing: 'letter-spacing',
+  };
+
   const classes = [];
   for (const [name, { path }] of modes[0]?.vars ?? []) {
     if (path[0] !== 'Typography' || path[1] !== 'Font size') continue;
     const [category, size] = path.slice(2).map(segment);
-    const props = {
-      'font-family': `--sds-typography-font-family-${category}`,
-      'font-size': name,
-      'font-weight': `--sds-typography-font-weight-${category}`,
-      'line-height': `--sds-typography-line-height-${category}-${size}`,
-      'letter-spacing': `--sds-typography-letter-spacing-${category}-${size}`,
-    };
-    const missing = Object.values(props).filter((v) => !has(v));
-    if (missing.length) {
-      errors.push(`.sds-text--${category}-${size} has no ${missing.join(', ')}. Every type style needs all five properties.`);
-      continue;
+    let props;
+    if (textStyles) {
+      const styleName = stylesBySize.get(name);
+      if (!styleName) {
+        errors.push(`.sds-text--${category}-${size}: no Figma text style uses ${path.join('/')} for its font size.`);
+        continue;
+      }
+      usedStyles.add(styleName);
+      props = {};
+      const missing = [];
+      for (const [field, prop] of Object.entries(FIELD_PROPS)) {
+        const ref = textStyles.get(styleName).bound[field];
+        if (!ref) { missing.push(`${field} (no variable bound)`); continue; }
+        const varName = cssName(ref.name.split('/'));
+        if (!has(varName)) { missing.push(`${field} (${ref.collection} › ${ref.name} isn't in the export)`); continue; }
+        props[prop] = varName;
+      }
+      if (missing.length) {
+        errors.push(`Text style "${styleName}" (.sds-text--${category}-${size}): ${missing.join(', ')}. Every type style needs all five properties.`);
+        continue;
+      }
+    } else {
+      props = {
+        'font-family': `--sds-typography-font-family-${category}`,
+        'font-size': name,
+        'font-weight': `--sds-typography-font-weight-${category}`,
+        'line-height': `--sds-typography-line-height-${category}-${size}`,
+        'letter-spacing': `--sds-typography-letter-spacing-${category}-${size}`,
+      };
+      const missing = Object.values(props).filter((v) => !has(v));
+      if (missing.length) {
+        errors.push(`.sds-text--${category}-${size} has no ${missing.join(', ')}. Every type style needs all five properties.`);
+        continue;
+      }
     }
     classes.push(
       `.sds-text--${category}-${size} {\n` +
       Object.entries(props).map(([prop, v]) => `  ${`${prop}:`.padEnd(15)} var(${v});`).join('\n') +
       '\n}',
     );
+  }
+  for (const styleName of textStyles?.keys() ?? []) {
+    if (!usedStyles.has(styleName) && stylesBySize.has(cssName(textStyles.get(styleName).bound.fontSize?.name.split('/') ?? []))) {
+      errors.push(`Text style "${styleName}" is bound to a font size no type class is built from (${textStyles.get(styleName).bound.fontSize.name}). Is it a Breakpoint › Font size variable?`);
+    }
   }
 
   if (errors.length > 0) {
@@ -229,6 +275,7 @@ export function buildScaleLayer(dir) {
       breakpoint: modes[0].vars.size,
       breakpoints: modes.map((m) => `${m.mode} ${m.width}px`),
       typeStyles: classes.length,
+      typeStylesFrom: textStyles ? `${textStyles.size} Figma text styles` : 'Font size names',
     },
   };
 }

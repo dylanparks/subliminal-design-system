@@ -60,7 +60,9 @@ Then import the generated `tokens.css` and `typography.css` instead of the packa
 **Designer workflow:** edit variables in Figma → export with Relay → replace the files in
 `design-system/src/tokens/relay-export/` → `npm run build:tokens`. The build fails, listing every
 problem, rather than guessing — e.g. an intent colour that doesn't derive from Brand, a translucent
-Brand colour, or a type style missing one of its five properties.
+Brand colour, or a type style missing one of its five properties. The `.sds-text--*` classes are
+built from the variables each Figma text style is bound to (`text-styles.json`), so re-hooking a style
+to another variable in Figma changes the class.
 
 ## Components
 

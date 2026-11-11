@@ -574,7 +574,7 @@ if (zipExtractDir) rmSync(zipExtractDir, { recursive: true, force: true });
   const s = scaleLayer.summary;
   console.log(
     `✓ scale layer — ${s.brand} Brand values (radius, size, border, type), ${s.breakpoint} per breakpoint ` +
-    `(${s.breakpoints.join(' → ')}), ${s.typeStyles} type styles`,
+    `(${s.breakpoints.join(' → ')}), ${s.typeStyles} type styles from ${s.typeStylesFrom}`,
   );
 }
 console.log('✓ tokens.css');

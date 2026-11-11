@@ -20,6 +20,29 @@ export const BRAND_COLLECTION = 'Brand';
 export const COLOR_MODE_COLLECTION = 'Color mode';
 export const BREAKPOINT_COLLECTION = 'Breakpoint';
 
+/** Relay 0.6.0+ exports Figma's text styles here, with the variable bound to each field. Optional. */
+export const TEXT_STYLES_FILE = 'text-styles.json';
+
+/**
+ * Figma text styles from Relay's text-styles.json, or null when the export has none.
+ * @returns {Map<string, { path: string[], bound: Record<string, { collection: string, name: string }> }> | null}
+ *   keyed by the style's name in Figma, e.g. "Titles/Huge".
+ */
+export function readTextStyles(dir) {
+  const file = join(dir, TEXT_STYLES_FILE);
+  let json;
+  try { json = JSON.parse(readFileSync(file, 'utf8')); } catch (err) {
+    if (err.code === 'ENOENT') return null;
+    throw new Error(`${TEXT_STYLES_FILE} isn't valid JSON: ${err.message}`);
+  }
+  const styles = new Map();
+  for (const { path, token } of leaves(json)) {
+    if (token.$type !== 'typography') continue;
+    styles.set(path.join('/'), { path, bound: token.$extensions?.['com.subliminal.boundVariables'] ?? {} });
+  }
+  return styles;
+}
+
 /** Every token leaf, with its Figma path. The file-level `$extensions` is metadata, not a token. */
 export function leaves(obj, path = [], out = []) {
   for (const [key, value] of Object.entries(obj)) {
