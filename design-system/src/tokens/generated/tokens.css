@@ -345,6 +345,7 @@
   --sds-border-thickness-interactive-negative: 2px;
   --sds-border-thickness-interactive-static: 2px;
   --sds-border-thickness-interactive-static-inactive: 2px;
+  --sds-border-thickness-focus-ring: 4px;
   --sds-border-thickness-field-large: 2px;
   --sds-border-thickness-field-medium: 2px;
   --sds-border-thickness-field-small: 2px;

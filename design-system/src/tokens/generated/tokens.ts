@@ -544,6 +544,7 @@ export const borderThicknessTokens = {
     static: "var(--sds-border-thickness-interactive-static)",
     "static-inactive": "var(--sds-border-thickness-interactive-static-inactive)",
   },
+  "focus-ring": "var(--sds-border-thickness-focus-ring)",
   field: {
     large: "var(--sds-border-thickness-field-large)",
     medium: "var(--sds-border-thickness-field-medium)",

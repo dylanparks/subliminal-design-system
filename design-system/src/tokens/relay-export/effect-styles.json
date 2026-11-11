@@ -132,6 +132,10 @@
                 "color": {
                   "type": "VARIABLE_ALIAS",
                   "id": "VariableID:96:23103"
+                },
+                "spread": {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:467:10918"
                 }
               },
               "color": {

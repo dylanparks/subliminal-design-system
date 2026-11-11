@@ -1205,7 +1205,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:432:16161",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "FONT_WEIGHT"
           ],
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:438:11093",
@@ -1221,7 +1221,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:432:16162",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "FONT_WEIGHT"
           ],
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:439:10922",
@@ -1237,7 +1237,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:432:16163",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "FONT_WEIGHT"
           ],
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:438:11095",
@@ -1253,7 +1253,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:432:16164",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "FONT_WEIGHT"
           ],
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:438:11093",
@@ -1815,6 +1815,17 @@
             "STROKE_FLOAT"
           ]
         }
+      }
+    },
+    "Focus-ring": {
+      "$type": "number",
+      "$value": 4,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:467:10918",
+        "com.figma.scopes": [
+          "STROKE_FLOAT",
+          "EFFECT_FLOAT"
+        ]
       }
     },
     "Field": {
