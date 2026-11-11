@@ -8,6 +8,28 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Token names follow the kebab-case standard; Tag matches Figma's badge (Phase T.3)
+- **Breaking, renamed CSS variables** (Figma renamed them; the build follows mechanically):
+
+  | Before | After |
+  |---|---|
+  | `--sds-effects-focusring` | `--sds-effects-focus-ring` |
+  | `--sds-effects-overlaysolid` | `--sds-effects-overlay-solid` |
+  | `--sds-accents-solid-primaryweak` | `--sds-accents-solid-primary-weak` |
+  | `--sds-accents-gradient-primarystart` | `--sds-accents-gradient-primary-start` |
+  | `--sds-mix-effects-focusring` / `-overlaysolid` / `-accents-solid-primaryweak` | the same renames |
+
+  The TypeScript token keys follow (`focusring` → `"focus-ring"`, and so on). The `Images/Dark-images`
+  flag is renamed in Figma too, but it isn't emitted. Still CamelCase in Figma: `Accents/Gradient/PrimaryEnd`
+  (`--sds-accents-gradient-primaryend`) and the `Effects/ElevatedShadow` group.
+- New token `--sds-accents-solid-primary-stroke` (the brand accent at 30%, with an optional
+  `--sds-mix-accents-solid-primary-stroke`).
+- **Visual change, Tag:** the outline border is 1px (`--sds-border-thickness-data-badge`) instead of
+  2px. Primary Tags use `--sds-accents-solid-primary-weak` for the fill and
+  `--sds-accents-solid-primary` for the text; primary outline Tags also get that fill and
+  `--sds-accents-solid-primary-stroke` for the border. Static outline Tags use
+  `--sds-neutral-stroke-static-default` for the border. All as in Figma's Badges.
+
 #### Radio indicator matches Figma's size (Phase T.3)
 - **Visual change:** the Radio indicator is 24px (large) and 20px (medium) instead of 22px and
   18px, with an inner dot of 10px and 8px instead of 8px and 6px, as in Figma. It uses

@@ -306,17 +306,18 @@ export const tokens = {
   accents: {
     solid: {
       primary: "var(--sds-accents-solid-primary)",
-      primaryweak: "var(--sds-accents-solid-primaryweak)",
+      "primary-stroke": "var(--sds-accents-solid-primary-stroke)",
+      "primary-weak": "var(--sds-accents-solid-primary-weak)",
       secondary: "var(--sds-accents-solid-secondary)",
     },
     gradient: {
-      primarystart: "var(--sds-accents-gradient-primarystart)",
+      "primary-start": "var(--sds-accents-gradient-primary-start)",
       primaryend: "var(--sds-accents-gradient-primaryend)",
     },
   },
   effects: {
-    overlaysolid: "var(--sds-effects-overlaysolid)",
-    focusring: "var(--sds-effects-focusring)",
+    "overlay-solid": "var(--sds-effects-overlay-solid)",
+    "focus-ring": "var(--sds-effects-focus-ring)",
     dropshadow: {
       default: "var(--sds-effects-dropshadow-default)",
       hover: "var(--sds-effects-dropshadow-hover)",

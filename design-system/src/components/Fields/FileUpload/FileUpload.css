@@ -3,7 +3,7 @@
  *
  * Tokens: --sds-interactive-fields-background-*, --sds-interactive-fields-stroke-*,
  *         --sds-interactive-fields-content-*, --sds-status-error-*,
- *         --sds-effects-focusring, --sds-radius-xlarge
+ *         --sds-effects-focus-ring, --sds-radius-xlarge
  * Typography: .sds-text--subtitle-medium (prompt-title), .sds-text--content-small (hint, error-message)
  *
  * Structure:

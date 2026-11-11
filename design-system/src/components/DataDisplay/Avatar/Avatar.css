@@ -3,7 +3,7 @@
  *
  * Tokens: --sds-neutral-background-subtle, --sds-neutral-content-secondary,
  *         --sds-neutral-content-static-primary,
- *         --sds-accents-gradient-primarystart, --sds-accents-gradient-primaryend,
+ *         --sds-accents-gradient-primary-start, --sds-accents-gradient-primaryend,
  *         --sds-radius-round
  * Typography: sds-text--interactive-small (medium), sds-text--interactive-medium (large)
  *
@@ -48,7 +48,7 @@
 .sds-avatar--gradient {
   background: linear-gradient(
     109deg,
-    var(--sds-accents-gradient-primarystart) 10.664%,
+    var(--sds-accents-gradient-primary-start) 10.664%,
     var(--sds-accents-gradient-primaryend)   89.336%
   );
 }

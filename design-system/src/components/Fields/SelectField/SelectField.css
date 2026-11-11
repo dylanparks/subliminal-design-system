@@ -2,7 +2,7 @@
  * Fields/SelectField
  *
  * Tokens: --sds-interactive-fields-*, --sds-status-*, --sds-neutral-*,
- *         --sds-effects-focusring, --sds-radius-*,
+ *         --sds-effects-focus-ring, --sds-radius-*,
  *         --sds-size-*,
  *         --sds-typography-font-size-content-{small|medium},
  *         --sds-typography-line-height-content-{small|medium},
@@ -54,7 +54,7 @@
 
 /* Focus ring — inset outline so the field height doesn't expand */
 .sds-select-field__trigger:focus-visible {
-  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focusring);
+  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focus-ring);
   outline-offset: calc(-1 * var(--sds-border-thickness-focus-ring));
 }
 

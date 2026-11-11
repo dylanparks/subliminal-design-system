@@ -5530,7 +5530,44 @@
           }
         }
       },
-      "PrimaryWeak": {
+      "Primary-stroke": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.24313725531101227,
+            0.3607843220233917,
+            1
+          ],
+          "alpha": 0.30000001192092896,
+          "hex": "#3E5CFF"
+        },
+        "$description": "Used for accent backgrounds, icons, text, or effects. Non-interactive only.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:467:15111",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE",
+            "EFFECT_COLOR"
+          ],
+          "com.figma.composedColor": {
+            "colorArg": {
+              "type": "alias",
+              "alias": {
+                "targetVariableId": "VariableID:442:10927",
+                "targetVariableName": "Colors/Dark/Accent",
+                "targetVariableSetId": "VariableCollectionId:74:26090",
+                "targetVariableSetName": "Brand"
+              }
+            },
+            "opacityArg": {
+              "type": "number",
+              "value": 30
+            }
+          }
+        }
+      },
+      "Primary-weak": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -5595,7 +5632,7 @@
       }
     },
     "Gradient": {
-      "PrimaryStart": {
+      "Primary-start": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -5644,7 +5681,7 @@
     }
   },
   "Effects": {
-    "OverlaySolid": {
+    "Overlay-solid": {
       "$type": "color",
       "$value": {
         "colorSpace": "srgb",
@@ -5680,7 +5717,7 @@
         }
       }
     },
-    "FocusRing": {
+    "Focus-ring": {
       "$type": "color",
       "$value": {
         "colorSpace": "srgb",
@@ -5954,7 +5991,7 @@
     }
   },
   "Images": {
-    "DarkImages": {
+    "Dark-images": {
       "$type": "boolean",
       "$value": true,
       "$extensions": {

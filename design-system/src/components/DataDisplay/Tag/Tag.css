@@ -1,8 +1,8 @@
 /* Tag — Subliminal Design System
  * DataDisplay/Tag
  *
- * Tokens: --sds-interactive-primary-hollow-*, --sds-status-*, --sds-neutral-*,
- *         --sds-radius-*
+ * Tokens: --sds-accents-solid-primary*, --sds-status-*, --sds-neutral-*,
+ *         --sds-radius-*, --sds-border-thickness-data-badge
  * Typography: .sds-text--subtitle-small (root label)
  *
  * Sizes:
@@ -88,14 +88,14 @@
 /* ─── Outline border ─────────────────────────────────────────────────────────── */
 
 .sds-tag--outline {
-  border: 2px solid var(--_sds-tag-border);
+  border: var(--sds-border-thickness-data-badge) solid var(--_sds-tag-border);
 }
 
 /* ─── Solid types ────────────────────────────────────────────────────────────── */
 
 .sds-tag--solid.sds-tag--primary {
-  --_sds-tag-bg:    var(--sds-interactive-primary-hollow-background-active);
-  --_sds-tag-color: var(--sds-interactive-primary-hollow-content-default);
+  --_sds-tag-bg:    var(--sds-accents-solid-primary-weak);
+  --_sds-tag-color: var(--sds-accents-solid-primary);
 }
 
 .sds-tag--solid.sds-tag--informational {
@@ -126,8 +126,9 @@
 /* ─── Outline types ──────────────────────────────────────────────────────────── */
 
 .sds-tag--outline.sds-tag--primary {
-  --_sds-tag-border: var(--sds-interactive-primary-hollow-stroke-active);
-  --_sds-tag-color:  var(--sds-interactive-primary-hollow-content-default);
+  --_sds-tag-bg:     var(--sds-accents-solid-primary-weak);
+  --_sds-tag-border: var(--sds-accents-solid-primary-stroke);
+  --_sds-tag-color:  var(--sds-accents-solid-primary);
 }
 
 .sds-tag--outline.sds-tag--informational {
@@ -163,6 +164,6 @@
 }
 
 .sds-tag--static.sds-tag--outline {
-  --_sds-tag-border: var(--sds-neutral-content-static-subtle);
+  --_sds-tag-border: var(--sds-neutral-stroke-static-default);
   --_sds-tag-color:  var(--sds-neutral-content-static-primary);
 }

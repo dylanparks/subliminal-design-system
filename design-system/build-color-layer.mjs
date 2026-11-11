@@ -59,7 +59,7 @@ import {
  * the gradient is a fixed Subliminal signature for now (decided 2026-11-08). Making it
  * rebrandable means two new Brand tokens and an empty list.
  */
-const FIXED_TO_GLOBALS = new Set(['Accents/Gradient/PrimaryStart', 'Accents/Gradient/PrimaryEnd']);
+const FIXED_TO_GLOBALS = new Set(['Accents/Gradient/Primary-start', 'Accents/Gradient/PrimaryEnd']);
 
 // ─── Naming ───────────────────────────────────────────────────────────────────
 

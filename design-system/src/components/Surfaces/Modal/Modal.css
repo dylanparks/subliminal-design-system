@@ -40,7 +40,7 @@
 }
 
 .sds-modal-dialog::backdrop {
-  background: var(--sds-effects-overlaysolid);
+  background: var(--sds-effects-overlay-solid);
 }
 
 /* ─── Card ──────────────────────────────────────────────────────────────────── */
