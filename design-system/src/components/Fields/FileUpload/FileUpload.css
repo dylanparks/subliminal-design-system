@@ -51,7 +51,7 @@
 
 .sds-file-upload__zone:focus-visible,
 .sds-file-upload__zone[data-drag-over] {
-  box-shadow:   0 0 0 4px var(--sds-effects-focusring);
+  box-shadow:   var(--sds-effect-interactive-element-focus-box-shadow);
   border-color: var(--sds-interactive-fields-stroke-hover);
 }
 

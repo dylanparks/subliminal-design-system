@@ -468,7 +468,7 @@
 }
 
 .sds-datepicker__day-btn:focus-visible {
-  outline: 2px solid var(--sds-effects-focusring);
+  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focusring);
   outline-offset: 2px;
 }
 
@@ -560,7 +560,7 @@
 }
 
 .sds-datepicker__grid-btn:focus-visible {
-  outline: 2px solid var(--sds-effects-focusring);
+  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focusring);
   outline-offset: 2px;
 }
 

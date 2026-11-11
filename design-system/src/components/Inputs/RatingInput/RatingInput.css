@@ -108,7 +108,7 @@
  * mousedown and removes it in a setTimeout(0), exactly as Toggle does.
  */
 .sds-rating-input__star-label:not([data-mouse-focus]):has(.sds-rating-input__radio:focus-visible) .sds-rating-input__star-icon {
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 /* ─── Disabled state ─────────────────────────────────────────────────────────── */

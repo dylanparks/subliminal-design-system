@@ -83,7 +83,7 @@
 /* ─── Focus ring (applied by parent via .sds-checkbox-indicator--focus-ring) ─── */
 
 .sds-checkbox-indicator--focus-ring {
-  box-shadow: 0 0 0 6px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 /* ─── Hover state (applied by parent context) ────────────────────────────────── */

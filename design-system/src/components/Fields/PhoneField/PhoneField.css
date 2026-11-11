@@ -132,8 +132,8 @@
 }
 
 .sds-phone-field__country:focus-visible {
-  outline: 2px solid var(--sds-effects-focusring);
-  outline-offset: -2px;
+  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focusring);
+  outline-offset: calc(-1 * var(--sds-border-thickness-focus-ring));
 }
 
 .sds-phone-field--large .sds-phone-field__country {

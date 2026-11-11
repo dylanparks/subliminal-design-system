@@ -268,17 +268,21 @@
   --sds-effects-elevatedshadow-x: 0;
 }
 
-/* ─── Effect styles ──────────────────────────────────────────────────────── */
-:root {
-  --sds-effect-interactive-element-default-box-shadow: 0px 0px 0px 0px rgba(4, 5, 6, 0);
-  --sds-effect-interactive-element-hover-box-shadow: inset 0px 0px 0px 0px rgba(4, 5, 6, 0);
-  --sds-effect-interactive-element-active-box-shadow: inset 0px 0px 0px 0px rgba(4, 5, 6, 0);
-  --sds-effect-interactive-element-focus-box-shadow: 0px 0px 0px 4px rgba(122, 143, 255, 1);
-  --sds-effect-interactive-element-disabled-box-shadow: inset 0px 0px 0px 0px rgba(4, 5, 6, 0);
-  --sds-effect-interactive-element-error-box-shadow: 0px 0px 0px 0px rgba(4, 5, 6, 0);
-  --sds-effect-interactive-element-success-box-shadow: 0px 0px 0px 0px rgba(4, 5, 6, 0);
+/* ─── Effect styles ────────────────────────────────────────────────────────
+ * Linked to the variables they use in Figma. Re-declared on theme and mode sections because
+ * a custom property resolves its var()s where it is declared: this way a section with its own
+ * theme or mode gets its own focus ring width and shadow sizes.
+ */
+:root, [data-sds-theme], [data-sds-mode] {
+  --sds-effect-interactive-element-default-box-shadow: 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
+  --sds-effect-interactive-element-hover-box-shadow: inset 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
+  --sds-effect-interactive-element-active-box-shadow: inset 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
+  --sds-effect-interactive-element-focus-box-shadow: 0px 0px 0px var(--sds-border-thickness-focus-ring) var(--sds-effects-focusring);
+  --sds-effect-interactive-element-disabled-box-shadow: inset 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
+  --sds-effect-interactive-element-error-box-shadow: 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
+  --sds-effect-interactive-element-success-box-shadow: 0px 0px 0px 0px var(--sds-effects-dropshadow-default);
   --sds-effect-static-element-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  --sds-effect-static-element-elevated-box-shadow: 0px 4px 16px 2px rgba(4, 5, 6, 0.1);
+  --sds-effect-static-element-elevated-box-shadow: calc(var(--sds-effects-elevatedshadow-x) * 1px) calc(var(--sds-effects-elevatedshadow-y) * 1px) calc(var(--sds-effects-elevatedshadow-blur) * 1px) calc(var(--sds-effects-elevatedshadow-spread) * 1px) var(--sds-effects-dropshadow-elevated);
   --sds-effect-static-card-default-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 

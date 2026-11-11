@@ -26,7 +26,7 @@ export interface ButtonGroupProps {
 const sizeTypographyClass: Record<ButtonGroupSize, string> = {
   xsmall: 'sds-text--interactive-small',
   small:  'sds-text--interactive-medium',
-  medium: 'sds-text--interactive-large',
+  medium: 'sds-text--interactive-medium',
   large:  'sds-text--interactive-huge',
 };
 

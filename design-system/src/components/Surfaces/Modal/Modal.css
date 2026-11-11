@@ -156,7 +156,7 @@
 
 .sds-modal__dismiss:focus-visible {
   outline:    none;
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 /* Round dismiss overlaid on image */

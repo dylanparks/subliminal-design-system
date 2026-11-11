@@ -48,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   const sizeTypographyClass: Record<ButtonSize, string> = {
     xsmall: 'sds-text--interactive-small',
     small:  'sds-text--interactive-medium',
-    medium: 'sds-text--interactive-large',
+    medium: 'sds-text--interactive-medium',
     large:  'sds-text--interactive-huge',
   };
 

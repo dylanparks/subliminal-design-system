@@ -54,8 +54,8 @@
 
 /* Focus ring — inset outline so the field height doesn't expand */
 .sds-select-field__trigger:focus-visible {
-  outline: 4px solid var(--sds-effects-focusring);
-  outline-offset: -4px;
+  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focusring);
+  outline-offset: calc(-1 * var(--sds-border-thickness-focus-ring));
 }
 
 /* Hover */

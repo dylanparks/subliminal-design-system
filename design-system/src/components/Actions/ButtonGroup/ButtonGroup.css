@@ -1,7 +1,7 @@
 /* ButtonGroup — Subliminal Design System
  * Tokens: --sds-interactive-secondary-*, --sds-effects-*,
  *         --sds-radius-*, --sds-size-*
- * Typography: sds-text--interactive-{small|medium|large|huge}
+ * Typography: sds-text--interactive-{small|medium|huge} (Small and Medium share medium, per Figma)
  */
 
 /* ─── Container ─────────────────────────────────────────────────────────────── */
@@ -125,7 +125,7 @@
 /* ─── Focus ──────────────────────────────────────────────────────────────────── */
 
 .sds-button-group__item:focus-visible {
-  box-shadow: 0 0 0 3px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
   z-index: 2;
 }
 

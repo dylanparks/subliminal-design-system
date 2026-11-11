@@ -168,8 +168,8 @@
  * (:focus-visible) to avoid the ring on mouse/touch focus.
  */
 .sds-menu-item:focus-visible {
-  outline: 4px solid var(--sds-effects-focusring);
-  outline-offset: -4px;
+  outline: var(--sds-border-thickness-focus-ring) solid var(--sds-effects-focusring);
+  outline-offset: calc(-1 * var(--sds-border-thickness-focus-ring));
   background-color: var(--sds-interactive-fields-background-hover);
 }
 
@@ -385,6 +385,6 @@
 }
 
 .sds-menu-item__toggle-zone:focus-visible {
-  box-shadow: inset 0 0 0 3px var(--sds-effects-focusring);
+  box-shadow: inset 0 0 0 var(--sds-border-thickness-focus-ring) var(--sds-effects-focusring);
 }
 

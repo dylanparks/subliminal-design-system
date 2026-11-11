@@ -124,7 +124,7 @@
 /* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
 
 .sds-toggle:not([data-mouse-focus]):has(.sds-toggle__input:focus-visible) .sds-toggle-indicator {
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 /* ─── Disabled state ─────────────────────────────────────────────────────────── */

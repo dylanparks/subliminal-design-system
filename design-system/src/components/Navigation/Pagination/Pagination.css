@@ -56,7 +56,7 @@
 }
 
 .sds-pagination__nav-btn:focus-visible {
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-pagination__nav-btn:disabled {
@@ -111,7 +111,7 @@
 }
 
 .sds-pagination__page-btn:focus-visible {
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 /* ─── Sliding indicator ──────────────────────────────────────────────────────── */

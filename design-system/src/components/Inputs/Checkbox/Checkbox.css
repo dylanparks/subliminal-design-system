@@ -157,7 +157,7 @@
 /* ─── Keyboard focus ring ────────────────────────────────────────────────────── */
 
 .sds-checkbox:not([data-mouse-focus]):has(.sds-checkbox__input:focus-visible) .sds-checkbox-indicator {
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 /* ─── Disabled state ─────────────────────────────────────────────────────────── */

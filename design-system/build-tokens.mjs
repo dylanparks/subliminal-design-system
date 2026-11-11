@@ -44,7 +44,8 @@ import AdmZip from 'adm-zip';
 import { buildColorLayer } from './build-color-layer.mjs';
 import { buildScaleLayer } from './build-scale-layer.mjs';
 import {
-  hasBrandLayerExport, tidy, BRAND_COLLECTION, COLOR_MODE_COLLECTION, BREAKPOINT_COLLECTION,
+  hasBrandLayerExport, tidy, readCollection, segment,
+  BRAND_COLLECTION, COLOR_MODE_COLLECTION, BREAKPOINT_COLLECTION,
 } from './build-token-export.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -114,9 +115,11 @@ function segmentize(str) {
  * @param {string} filePath
  * @returns {Record<string, string>} flat { cssVar: value } map
  */
-function parseEffectStyles(filePath) {
+function parseEffectStyles(filePath, bindings = new Map()) {
   const data = JSON.parse(readFileSync(filePath, 'utf8'));
   const vars = {};
+  const warnings = [];
+  let bound = 0;
 
   function walk(node, path) {
     if (node && typeof node === 'object' && '$type' in node && node.$type === 'effect') {
@@ -126,7 +129,21 @@ function parseEffectStyles(filePath) {
         if (prop === 'WebkitBackdropFilter') continue;
         const cssVar = `--sds-effect-${pathSegments}-${camelToKebab(prop)}`;
         // Relay writes Figma's float32 values verbatim (rgba(…, 0.10000000149011612)); round them.
-        vars[cssVar] = String(value).replace(/\d+\.\d{5,}/g, (n) => String(tidy(n)));
+        const literal = String(value).replace(/\d+\.\d{5,}/g, (n) => String(tidy(n)));
+        vars[cssVar] = literal;
+
+        // A shadow whose values are linked to variables in Figma references those variables, so it
+        // follows the theme and mode like everything else. Only when rebuilding it from Figma's raw
+        // effect data, with no links, reproduces Relay's CSS exactly: otherwise keep the literal.
+        if (prop !== 'boxShadow') continue;
+        const effects = node.$value?.$effects ?? [];
+        if (!effects.some((e) => e.boundVariables && Object.keys(e.boundVariables).length)) continue;
+        if (shadowCss(effects, () => undefined) !== literal) {
+          warnings.push(`${path.join('/')}: couldn't match Relay's CSS for this shadow, so it keeps fixed values`);
+          continue;
+        }
+        vars[cssVar] = shadowCss(effects, (id) => bindings.get(id));
+        if (vars[cssVar] !== literal) bound++;
       }
     } else if (node && typeof node === 'object') {
       for (const [key, child] of Object.entries(node)) {
@@ -136,7 +153,50 @@ function parseEffectStyles(filePath) {
   }
 
   walk(data, []);
-  return vars;
+  return { vars, warnings, bound };
+}
+
+const fx = (n) => `${tidy(n)}px`;
+const rgba = ({ r, g, b, a }) =>
+  `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)}, ${tidy(a)})`;
+
+/**
+ * One box-shadow from Figma's raw effect list. `bind(variableId)` returns a CSS expression for a
+ * linked value, or undefined to use the literal. Returns null for anything that isn't all shadows.
+ */
+function shadowCss(effects, bind) {
+  const shadows = effects.filter((e) => e.visible !== false);
+  if (!shadows.length || shadows.some((e) => e.type !== 'DROP_SHADOW' && e.type !== 'INNER_SHADOW')) return null;
+  return shadows.map((e) => {
+    const linked = (field, literal) => bind(e.boundVariables?.[field]?.id) ?? literal;
+    return [
+      e.type === 'INNER_SHADOW' ? 'inset' : null,
+      linked('offsetX', fx(e.offset?.x ?? 0)),
+      linked('offsetY', fx(e.offset?.y ?? 0)),
+      linked('radius', fx(e.radius ?? 0)),
+      linked('spread', fx(e.spread ?? 0)),
+      linked('color', rgba(e.color)),
+    ].filter(Boolean).join(' ');
+  }).join(', ');
+}
+
+/**
+ * Figma variable ID → CSS expression, for every variable this build emits. Brand numbers already
+ * carry a unit; Color mode numbers are unitless (components multiply by 1px), so wrap those.
+ * Anything not emitted (Globals, Brand colours, which are per-mode) stays unmapped → literal.
+ */
+function effectBindings(dir, emitted) {
+  const map = new Map();
+  for (const [collection, unitless] of [[BRAND_COLLECTION, false], [COLOR_MODE_COLLECTION, true]]) {
+    const [first] = readCollection(dir, collection);
+    for (const { path, token } of first?.tokens ?? []) {
+      const id = token.$extensions?.['com.figma.variableId'];
+      const name = `--sds-${path.map(segment).join('-')}`;
+      if (!id || !emitted.has(name)) continue;
+      map.set(id, token.$type === 'number' && unitless ? `calc(var(${name}) * 1px)` : `var(${name})`);
+    }
+  }
+  return map;
 }
 
 /**
@@ -358,7 +418,14 @@ for (const w of scaleLayer.warnings) console.warn(`⚠  build-tokens: ${w}`);
 // ─── Effect style tokens (optional) ───────────────────────────────────────────
 
 const effectStylesPath = join(relayDir, 'effect-styles.json');
-const effectVars = existsSync(effectStylesPath) ? parseEffectStyles(effectStylesPath) : {};
+const effectResult = existsSync(effectStylesPath)
+  ? parseEffectStyles(effectStylesPath, effectBindings(relayDir, new Set([
+    ...colorLayer.intentPaths.map((p) => toCssVarName('sds', p)),
+    ...scaleLayer.varNames,
+  ])))
+  : { vars: {}, warnings: [], bound: 0 };
+const effectVars = effectResult.vars;
+for (const w of effectResult.warnings) console.warn(`⚠  build-tokens: ${w}`);
 const effectNested = existsSync(effectStylesPath) ? buildEffectNestedTs(effectStylesPath) : {};
 
 // ─── Google Fonts ──────────────────────────────────────────────────────────────
@@ -393,8 +460,12 @@ const parts = [
   '',
   ...(Object.keys(effectVars).length > 0
     ? [
-        '/* ─── Effect styles ──────────────────────────────────────────────────────── */',
-        renderCssBlock(':root', effectVars),
+        '/* ─── Effect styles ────────────────────────────────────────────────────────',
+        ' * Linked to the variables they use in Figma. Re-declared on theme and mode sections because',
+        ' * a custom property resolves its var()s where it is declared: this way a section with its own',
+        ' * theme or mode gets its own focus ring width and shadow sizes.',
+        ' */',
+        renderCssBlock(':root, [data-sds-theme], [data-sds-mode]', effectVars),
         '',
       ]
     : []),
@@ -511,6 +582,6 @@ console.log('✓ typography.css');
 console.log('✓ tokens.ts');
 console.log('✓ fonts.ts');
 if (Object.keys(effectVars).length > 0) {
-  console.log(`  ✓ effectTokens — ${Object.keys(effectVars).length} effect vars`);
+  console.log(`  ✓ effectTokens — ${Object.keys(effectVars).length} effect vars, ${effectResult.bound} linked to variables`);
 }
 console.log(`  → ${outputDir}`);

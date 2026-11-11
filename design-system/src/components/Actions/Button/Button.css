@@ -2,7 +2,7 @@
  * Tokens: --sds-interactive-*, --sds-interactive-static-*,
  *         --sds-interactive-negative-*, --sds-effects-*,
  *         --sds-radius-*
- * Typography: sds-text--interactive-{small|medium|large|huge}
+ * Typography: sds-text--interactive-{small|medium|huge} (Small and Medium share medium, per Figma)
  */
 
 /* ─── Base ─────────────────────────────────────────────────────────────────── */
@@ -132,7 +132,7 @@
 .sds-button--primary-filled:focus-visible {
   background-color: var(--sds-interactive-primary-filled-background-default);
   color: var(--sds-interactive-primary-filled-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--primary-filled:disabled {
@@ -164,7 +164,7 @@
   background-color: var(--sds-interactive-primary-hollow-background-default);
   color: var(--sds-interactive-primary-hollow-content-default);
   border-color: var(--sds-interactive-primary-hollow-stroke-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--primary-hollow:disabled {
@@ -189,7 +189,7 @@
 
 .sds-button--primary-ghost:focus-visible {
   color: var(--sds-interactive-primary-hollow-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--primary-ghost:disabled {
@@ -216,7 +216,7 @@
 .sds-button--secondary-filled:focus-visible {
   background-color: var(--sds-interactive-secondary-filled-background-default);
   color: var(--sds-interactive-secondary-filled-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--secondary-filled:disabled {
@@ -248,7 +248,7 @@
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
   border-color: var(--sds-interactive-secondary-hollow-stroke-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--secondary-hollow:disabled {
@@ -273,7 +273,7 @@
 
 .sds-button--secondary-ghost:focus-visible {
   color: var(--sds-interactive-secondary-hollow-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--secondary-ghost:disabled {
@@ -300,7 +300,7 @@
 .sds-button--static-filled:focus-visible {
   background-color: var(--sds-interactive-static-filled-background-default);
   color: var(--sds-interactive-static-filled-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--static-filled:disabled {
@@ -332,7 +332,7 @@
   background-color: var(--sds-interactive-static-hollow-background-default);
   color: var(--sds-interactive-static-hollow-content-default);
   border-color: var(--sds-interactive-static-hollow-stroke-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--static-hollow:disabled {
@@ -357,7 +357,7 @@
 
 .sds-button--static-ghost:focus-visible {
   color: var(--sds-interactive-static-hollow-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--static-ghost:disabled {
@@ -384,7 +384,7 @@
 .sds-button--negative-filled:focus-visible {
   background-color: var(--sds-interactive-negative-filled-background-default);
   color: var(--sds-interactive-negative-filled-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--negative-filled:disabled {
@@ -416,7 +416,7 @@
   background-color: var(--sds-interactive-negative-hollow-background-default);
   color: var(--sds-interactive-negative-hollow-content-default);
   border-color: var(--sds-interactive-negative-hollow-stroke-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--negative-hollow:disabled {
@@ -441,7 +441,7 @@
 
 .sds-button--negative-ghost:focus-visible {
   color: var(--sds-interactive-negative-hollow-content-default);
-  box-shadow: 0 0 0 4px var(--sds-effects-focusring);
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
 }
 
 .sds-button--negative-ghost:disabled {

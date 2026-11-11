@@ -8,6 +8,22 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Focus rings, button labels and effect styles follow Figma (Phase T.3)
+- New token `--sds-border-thickness-focus-ring` (Brand › Border-thickness › Focus-ring, 4px).
+  Every component's focus ring uses it: plain rings via the Focus effect style
+  (`--sds-effect-interactive-element-focus-box-shadow`), outlines and inset rings via the width
+  token directly. **Visual change:** ButtonGroup, Stepper, Popover, Toast, PasswordField and the
+  Menu toggle zone go from 3px to 4px; DatePicker and PhoneField from 2px to 4px. The unused
+  `.sds-checkbox-indicator--focus-ring` hook goes from 6px to 4px.
+- Effect-style variables (`--sds-effect-*`) now reference the variables their values are linked to
+  in Figma instead of fixed values, and are re-declared on `[data-sds-theme]` and
+  `[data-sds-mode]` sections, so they follow the theme and mode. **Visual change:** in dark mode,
+  Tooltip, Popover, Modal and Toast no longer show a drop shadow; Figma's Darkmode sets the
+  elevated-shadow sizes to 0, which Menu, DatePicker, Combobox, SearchField and TimePicker
+  already followed.
+- **Visual change:** Medium Button and ButtonGroup labels use `interactive-medium` (16/24px)
+  instead of `interactive-large` (20/32px), as in Figma.
+
 #### Colour tokens derive from Brand at runtime (Phase T.2.1)
 - `tokens.css` now has a **Brand layer**: `--sds-brand-light-*` and `--sds-brand-dark-*`, both
   palettes, mirroring the Figma Brand collection. Intent colours are no longer baked hex values;
