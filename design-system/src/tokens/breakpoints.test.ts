@@ -4,24 +4,28 @@ import { join } from 'path';
 
 /**
  * Media queries can't read CSS variables, so a component that switches layout at a Figma
- * breakpoint repeats its width. This keeps that copy honest: it must equal the breakpoint the
- * generated tokens.css switches at.
+ * breakpoint repeats its width. This keeps that copy honest: it must equal the Figma breakpoint
+ * it names, and be a point where the generated tokens.css actually switches.
  */
 const root = join(__dirname, '..');
 const tokens = readFileSync(join(__dirname, 'generated/tokens.css'), 'utf8');
+const thresholds = [...tokens.matchAll(/@media \(width < ([\d.]+)em\)/g)].map((m) => Number(m[1]));
 
-/** The `@media (width < Xem)` thresholds in tokens.css, widest first: [MD, XS]. */
-const breakpointThresholds = [...tokens.matchAll(/@media \(width < ([\d.]+)em\)/g)].map((m) => m[1]);
+/** A breakpoint's Figma width in em at the default 16px font size. */
+const figmaWidthEm = (mode: string) => {
+  const json = JSON.parse(readFileSync(join(__dirname, `relay-export/Breakpoint.${mode}.tokens.json`), 'utf8'));
+  return json.Viewport.Width.$value / 16;
+};
 
 describe('breakpoints', () => {
-  it('tokens.css has one threshold per narrower breakpoint', () => {
-    expect(breakpointThresholds.length).toBeGreaterThanOrEqual(2);
+  it('tokens.css switches at every breakpoint width except the narrowest', () => {
+    expect(thresholds.length).toBeGreaterThanOrEqual(2);
+    for (const mode of ['XL', 'LG', 'MD', 'SM']) expect(thresholds).toContain(figmaWidthEm(mode));
   });
 
-  it('Modal switches to its mobile layout at the XS breakpoint', () => {
-    const xs = breakpointThresholds[breakpointThresholds.length - 1];
+  it('Modal switches to its mobile layout below the MD breakpoint', () => {
     const modal = readFileSync(join(root, 'components/Surfaces/Modal/Modal.css'), 'utf8');
-    const queries = [...modal.matchAll(/@media \(width < ([\d.]+)em\)/g)].map((m) => m[1]);
-    expect(queries).toEqual([xs]);
+    const queries = [...modal.matchAll(/@media \(width < ([\d.]+)em\)/g)].map((m) => Number(m[1]));
+    expect(queries).toEqual([figmaWidthEm('MD')]);
   });
 });

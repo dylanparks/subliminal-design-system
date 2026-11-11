@@ -9,7 +9,7 @@ hand — change Figma and re-export.
 | `Globals.Value.tokens.json` | Primitives: colour ramps, font weights. Not emitted; Brand aliases into it. |
 | `Brand.Default.tokens.json` | **The theme**: `Colors/Light/*` and `Colors/Dark/*`, radius, size, border thickness, font family / weight / letter-spacing. One mode. |
 | `Color mode.{Lightmode,Darkmode}.tokens.json` | Intent colours — each a Brand colour, alone or with an opacity. |
-| `Breakpoint.{LG,MD,XS}.tokens.json` | Font sizes, line heights, viewport. Numbers only; typeface is a Brand decision. |
+| `Breakpoint.{XL,LG,MD,SM,XS}.tokens.json` | Font sizes, line heights, viewport. Numbers only; typeface is a Brand decision. |
 | `effect-styles.json` | Figma effect styles as CSS (`boxShadow`, …). |
 
 ## To update

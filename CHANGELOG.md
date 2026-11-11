@@ -8,6 +8,18 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Five breakpoints: XL, LG, MD, SM, XS (Phase T.3)
+- Figma's Breakpoint collection now has five modes. Each applies from its own width up to the next
+  wider one, in `em` so it follows the reader's font size: **XL** ≥ 1536px (the default), **LG**
+  1200–1535px, **MD** 768–1199px, **SM** 576–767px, **XS** below 576px. Adding or moving a
+  breakpoint in Figma needs no code change.
+- **Visual change:** the MD layout used to start below 1440px and now starts below 1200px, so
+  between 1200px and 1439px wide the larger XL/LG type sizes apply (for example titles at 64px,
+  not 56px). The new SM layout (below 768px) has the same type sizes as before for those widths; XS differs
+  from SM only in its viewport variables.
+- Modal's mobile layout now applies below the MD breakpoint (768px) and its test follows Figma's
+  MD width.
+
 #### Token names follow the kebab-case standard; Tag matches Figma's badge (Phase T.3)
 - **Breaking, renamed CSS variables** (Figma renamed them; the build follows mechanically):
 
@@ -24,7 +36,7 @@ All notable changes to the Subliminal Design System are documented here.
   The TypeScript token keys follow (`focusring` → `"focus-ring"`, `elevatedshadow` →
   `"elevated-shadow"`, and so on). The `Images/Dark-images` flag is renamed in Figma too, but it
   isn't emitted.
-- **Visual change, Modal:** the mobile bottom-sheet layout applies below the XS breakpoint
+- **Visual change, Modal:** the mobile bottom-sheet layout applies below the MD breakpoint
   (768px, `48em`) instead of below 600px, so it follows Figma's breakpoints. A test fails if
   Modal's query ever differs from the breakpoint in `tokens.css`.
 - New token `--sds-accents-solid-primary-stroke` (the brand accent at 30%, with an optional

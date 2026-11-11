@@ -394,7 +394,7 @@
     },
     "Min Height": {
       "$type": "number",
-      "$value": 820,
+      "$value": 600,
       "$extensions": {
         "com.figma.variableId": "VariableID:425:14546",
         "com.figma.scopes": [

@@ -21,7 +21,7 @@ Tokens live in Figma as four variable collections, exported with the **Sublimina
 | **Globals** | one | Primitives — colour ramps, font weights. Not emitted; Brand aliases into it. |
 | **Brand** | one | **The theme.** Light and dark colour palettes, radii, sizes, border thickness, font family / weight / letter-spacing. |
 | **Color mode** | Lightmode, Darkmode | Intent colours (`--sds-interactive-primary-filled-background-hover`, …), each defined as a Brand colour plus an opacity. |
-| **Breakpoint** | LG, MD, XS | Font sizes, line heights, viewport — one mode per screen size. |
+| **Breakpoint** | XL, LG, MD, SM, XS | Font sizes, line heights, viewport — one mode per screen size. |
 
 `npm run build:tokens` reads `design-system/src/tokens/relay-export/` and writes
 `design-system/src/tokens/generated/`:

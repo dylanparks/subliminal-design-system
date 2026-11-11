@@ -384,7 +384,7 @@
   "Viewport": {
     "Width": {
       "$type": "number",
-      "$value": 1440,
+      "$value": 1200,
       "$extensions": {
         "com.figma.variableId": "VariableID:425:14545",
         "com.figma.scopes": [
@@ -394,7 +394,7 @@
     },
     "Min Height": {
       "$type": "number",
-      "$value": 1024,
+      "$value": 750,
       "$extensions": {
         "com.figma.variableId": "VariableID:425:14546",
         "com.figma.scopes": [

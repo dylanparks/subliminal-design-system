@@ -358,7 +358,7 @@
   --sds-border-thickness-data-avatar: 0px;
 }
 
-/* ─── Breakpoint: LG (default, ≥ 1440px) ──────────────────────────────────────────
+/* ─── Breakpoint: XL (default, ≥ 1536px) ──────────────────────────────────────────
  * Font sizes, line heights, viewport. Narrower breakpoints override below.
  */
 :root {
@@ -398,13 +398,21 @@
   --sds-typography-line-height-interactive-large: 2rem;
   --sds-typography-line-height-interactive-medium: 1.5rem;
   --sds-typography-line-height-interactive-small: 1.25rem;
-  --sds-viewport-width: 1440px;
-  --sds-viewport-min-height: 1024px;
+  --sds-viewport-width: 1536px;
+  --sds-viewport-min-height: 864px;
   --sds-viewport-x-padding: 32px;
 }
 
-/* ─── Breakpoint: MD (narrower than 1440px = 90em at default size) */
-@media (width < 90em) {
+/* ─── Breakpoint: LG (narrower than 1536px = 96em at default size) */
+@media (width < 96em) {
+  :root {
+    --sds-viewport-width: 1200px;
+    --sds-viewport-min-height: 750px;
+  }
+}
+
+/* ─── Breakpoint: MD (narrower than 1200px = 75em at default size) */
+@media (width < 75em) {
   :root {
     --sds-typography-font-size-title-huge: 3.5rem;
     --sds-typography-font-size-title-large: 3rem;
@@ -416,11 +424,12 @@
     --sds-typography-line-height-title-medium: 3.25rem;
     --sds-typography-line-height-title-small: 2.75rem;
     --sds-viewport-width: 768px;
+    --sds-viewport-min-height: 920px;
     --sds-viewport-x-padding: 24px;
   }
 }
 
-/* ─── Breakpoint: XS (narrower than 768px = 48em at default size) */
+/* ─── Breakpoint: SM (narrower than 768px = 48em at default size) */
 @media (width < 48em) {
   :root {
     --sds-typography-font-size-title-huge: 3rem;
@@ -433,8 +442,16 @@
     --sds-typography-line-height-title-large: 3rem;
     --sds-typography-line-height-title-medium: 3rem;
     --sds-typography-line-height-title-small: 2.25rem;
-    --sds-viewport-width: 375px;
+    --sds-viewport-width: 576px;
     --sds-viewport-min-height: 820px;
     --sds-viewport-x-padding: 16px;
+  }
+}
+
+/* ─── Breakpoint: XS (narrower than 576px = 36em at default size) */
+@media (width < 36em) {
+  :root {
+    --sds-viewport-width: 375px;
+    --sds-viewport-min-height: 600px;
   }
 }
