@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/check-csp.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "csp-hashes": "node scripts/print-csp-hashes.mjs"
+    "csp-hashes": "node scripts/print-csp-hashes.mjs",
+    "check-csp": "node scripts/check-csp.mjs"
   },
   "dependencies": {
     "astro": "^7.1.1",

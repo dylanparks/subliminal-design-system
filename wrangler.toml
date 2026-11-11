@@ -1,6 +1,6 @@
 # Deploys the Astro site's static build output as a Cloudflare Worker (Workers Static Assets).
 # Build command (set in the Cloudflare dashboard) must produce ./site/dist before this runs:
-#   npm run build -w site
+#   npm run build:site   (builds the design system, then the site, then checks the site's CSP)
 name = "subliminal-design-system"
 compatibility_date = "2026-07-19"
 

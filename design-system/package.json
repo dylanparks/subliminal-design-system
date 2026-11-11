@@ -42,7 +42,7 @@
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
     "@material-symbols/svg-400": "^0.42.3",
-    "adm-zip": "^0.5.16",
+    "adm-zip": "^0.6.1",
     "libphonenumber-js": "^1.12.40",
     "web-vitals": "^2.1.4"
   },
@@ -81,8 +81,6 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.1",
     "@playwright/test": "^1.59.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",
     "@storybook/addon-links": "^10.3.5",
@@ -104,6 +102,8 @@
     "@vitest/coverage-v8": "^4.1.4",
     "chromatic": "^16.0.0",
     "jsdom": "^26",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-flagpack": "^2.0.6",
     "storybook": "^10.3.5",
     "typescript": "^5",

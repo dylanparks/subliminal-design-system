@@ -1,5 +1,9 @@
 name: Chromatic
 
+# Least privilege: this job only reads the repository. Chromatic's token comes from a secret.
+permissions:
+  contents: read
+
 on:
   push:
     branches:

@@ -8,6 +8,20 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Security hardening
+- **Dependencies:** `npm audit` went from 28 findings (3 critical, 12 high) to 7 moderate ones, all in
+  Storybook's development tooling. `adm-zip`, which `sds-build-tokens` uses to open a ZIP, is on the
+  patched 0.6.1 (a crafted ZIP could allocate 4 GB or overwrite files through symlinks). Astro,
+  Storybook, Vite and Vitest moved to patched minor versions. All stories render identically and the
+  CLI output is byte-identical.
+- **The site's Content-Security-Policy is now enforced at build time** (`site/scripts/check-csp.mjs`).
+  It pins inline scripts and styles by hash, and the Astro upgrade changed Astro's own inline
+  hydration scripts: with the old hashes the browser blocked them and the page's interactive parts
+  stopped working. The hashes are updated, and the build now fails if they ever go stale.
+- New headers: `Cross-Origin-Opener-Policy` and `Cross-Origin-Resource-Policy` (`same-origin`).
+- Added `SECURITY.md`, weekly Dependabot updates, and least-privilege (`contents: read`)
+  permissions on the Chromatic workflow.
+
 #### FileUpload matches the other fields (Phase T.3)
 - **Visual change:** the drop zone's border is the Field border (`--sds-border-thickness-field-large`, 2px) instead of
   1px, so the zone is 2px taller. It gets the Fields hover fill as well as the hover stroke, and
