@@ -173,8 +173,9 @@
   background-color: var(--sds-interactive-fields-background-hover);
 }
 
-/* Selected / active state — semibold label text (overrides body-content-medium weight/spacing) */
+/* Selected / active state — the Interactive/Medium style (Figma): its family, weight and spacing. Size and line height already match content-medium. */
 .sds-menu-item--selected .sds-menu-item__content {
+  font-family:    var(--sds-typography-font-family-interactive);
   font-weight:    var(--sds-typography-font-weight-interactive);
   letter-spacing: var(--sds-typography-letter-spacing-interactive-medium);
 }

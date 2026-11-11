@@ -2,7 +2,7 @@ import { type KeyboardEvent, type ReactNode, useRef, useState } from 'react';
 import './ButtonGroup.css';
 
 export type ButtonGroupMode = 'single' | 'multi';
-export type ButtonGroupSize = 'xsmall' | 'small' | 'medium' | 'large';
+export type ButtonGroupSize = 'xsmall' | 'small' | 'medium';
 
 export interface ButtonGroupItem {
   value: string;
@@ -27,7 +27,6 @@ const sizeTypographyClass: Record<ButtonGroupSize, string> = {
   xsmall: 'sds-text--interactive-small',
   small:  'sds-text--interactive-medium',
   medium: 'sds-text--interactive-medium',
-  large:  'sds-text--interactive-huge',
 };
 
 export function ButtonGroup({

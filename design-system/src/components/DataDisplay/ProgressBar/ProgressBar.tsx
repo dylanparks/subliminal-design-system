@@ -91,7 +91,7 @@ export function ProgressBar({
         <div className="sds-progress-bar__message">
           {error   && <ErrorIcon   size={16} />}
           {success && <SuccessIcon size={16} />}
-          <p className="sds-progress-bar__message-text sds-text--content-small">{validationMessage}</p>
+          <p className="sds-progress-bar__message-text sds-text--content-xsmall">{validationMessage}</p>
         </div>
       )}
     </div>

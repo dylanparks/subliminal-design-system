@@ -49,7 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     xsmall: 'sds-text--interactive-small',
     small:  'sds-text--interactive-medium',
     medium: 'sds-text--interactive-medium',
-    large:  'sds-text--interactive-huge',
+    large:  'sds-text--interactive-large',
   };
 
   const classes = [

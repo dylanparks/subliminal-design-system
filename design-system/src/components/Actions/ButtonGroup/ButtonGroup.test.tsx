@@ -51,7 +51,6 @@ describe('ButtonGroup', () => {
     ['xsmall', 'sds-button-group--xsmall'],
     ['small',  'sds-button-group--small'],
     ['medium', 'sds-button-group--medium'],
-    ['large',  'sds-button-group--large'],
   ] as const)('applies %s size class', (size, expectedClass) => {
     const { container } = render(<ButtonGroup items={items} size={size} aria-label="View" />);
     expect(container.firstChild).toHaveClass(expectedClass);

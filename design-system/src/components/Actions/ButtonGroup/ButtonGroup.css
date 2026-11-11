@@ -1,7 +1,7 @@
 /* ButtonGroup — Subliminal Design System
  * Tokens: --sds-interactive-secondary-*, --sds-effects-*,
  *         --sds-radius-*, --sds-size-*
- * Typography: sds-text--interactive-{small|medium|huge} (Small and Medium share medium, per Figma)
+ * Typography: sds-text--interactive-{small|medium} (Small and Medium share medium, per Figma)
  */
 
 /* ─── Container ─────────────────────────────────────────────────────────────── */
@@ -72,15 +72,6 @@
 .sds-button-group--medium .sds-button-group__item:last-child {
   border-start-end-radius: var(--sds-radius-medium);
   border-end-end-radius:   var(--sds-radius-medium);
-}
-
-.sds-button-group--large .sds-button-group__item:first-child {
-  border-start-start-radius: var(--sds-radius-large);
-  border-end-start-radius:   var(--sds-radius-large);
-}
-.sds-button-group--large .sds-button-group__item:last-child {
-  border-start-end-radius: var(--sds-radius-large);
-  border-end-end-radius:   var(--sds-radius-large);
 }
 
 /* ─── Active (selected) state ────────────────────────────────────────────────── */
@@ -181,14 +172,4 @@
 .sds-button-group--medium .sds-button-group__icon {
   width: 20px;
   height: 20px;
-}
-
-.sds-button-group--large .sds-button-group__item {
-  height: var(--sds-size-large);
-  padding: 0 24px;
-}
-
-.sds-button-group--large .sds-button-group__icon {
-  width: 22px;
-  height: 22px;
 }

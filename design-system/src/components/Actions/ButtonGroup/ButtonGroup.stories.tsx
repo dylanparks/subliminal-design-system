@@ -11,7 +11,7 @@ const meta: Meta<typeof ButtonGroup> = {
     },
     size: {
       control: 'select',
-      options: ['xsmall', 'small', 'medium', 'large'],
+      options: ['xsmall', 'small', 'medium'],
     },
     value: { control: false },
   },

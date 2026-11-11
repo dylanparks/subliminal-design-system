@@ -4,7 +4,7 @@
  * Tokens: --sds-neutral-background-subtle, --sds-accents-solid-primary,
  *         --sds-status-error-content-default, --sds-status-success-content-default,
  *         --sds-neutral-content-tertiary
- * Typography: .sds-text--subtitle-small (label), .sds-text--content-small (value, message-text)
+ * Typography: .sds-text--subtitle-small (label), .sds-text--content-small (value), .sds-text--content-xsmall (message-text)
  *
  * Structure:
  *   .sds-progress-bar              → root wrapper
@@ -174,7 +174,7 @@
 
 .sds-progress-bar__message > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-xsmall) - 16px) / 2);
 }
 
 .sds-progress-bar__message-text {

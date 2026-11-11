@@ -23,6 +23,16 @@ All notable changes to the Subliminal Design System are documented here.
   already followed.
 - **Visual change:** Medium Button and ButtonGroup labels use `interactive-medium` (16/24px)
   instead of `interactive-large` (20/32px), as in Figma.
+- **Visual change:** Large Button labels use `interactive-large` (20/32px) instead of
+  `interactive-huge` (24/36px); Figma's Large buttons all use Interactive/Large.
+- **Visual change:** selected options in Menu (so Select, Combobox, Phone Field and Time Picker
+  lists too) and the selected day or month in Date Picker now use the whole Interactive style,
+  including its Manrope family. Before, only the weight and letter-spacing changed, so the text
+  stayed in Work Sans.
+- **Visual change:** the ProgressBar validation message uses `content-xsmall` (12px) instead of
+  `content-small` (14px).
+- **Breaking:** ButtonGroup no longer has a `large` size (`ButtonGroupSize` is now
+  `'xsmall' | 'small' | 'medium'`); Figma's Button Group only has those three.
 
 #### Colour tokens derive from Brand at runtime (Phase T.2.1)
 - `tokens.css` now has a **Brand layer**: `--sds-brand-light-*` and `--sds-brand-dark-*`, both
