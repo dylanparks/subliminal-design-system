@@ -11,7 +11,7 @@ All notable changes to the Subliminal Design System are documented here.
 #### Site chrome and legal pages (logo, footer, Terms of Service, 404)
 - The header shows the Subliminal Design System logo (the mark, "SUBLIMINAL", and "Design System" beneath;
   Figma › Page Blocks › Company Logo, 139×28, inline SVG so it follows light and dark mode) in a 60px bar,
-  keeping the light/dark toggle. The site favicon is Figma's Favicon, as `favicon.svg`, a 32px PNG, a
+  keeping the light/dark toggle. The site favicon is Figma's Favicon (mark at 28px in the 32px tile, so it reads larger in a tab), as `favicon.svg`, a 32px PNG, a
   16+32px `favicon.ico`, and a rounded-square `apple-touch-icon.png` (180px).
 - The footer is now legal only: links to the Privacy Policy and Terms of Service, then a legal line in
   the smallest body style (Content/XSmall): © Subliminal Design System LLC, all rights reserved.
