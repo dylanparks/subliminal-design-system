@@ -8,6 +8,14 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Privacy policy page
+- New `/privacy` page (Subliminal Design System LLC; written for visitors in the EU/UK, California and
+  Virginia) and a footer link. Stylesheets are now always separate files (`inlineStylesheets: 'never'`), so
+  editing a page's CSS no longer changes the CSP's style hash.
+- The policy states that the site loads no third-party fonts or scripts, which is true once the
+  self-hosted fonts below are deployed: publish them together. Update the policy before adding
+  analytics, a newsletter, or accounts.
+
 #### No requests to Google: self-hosted fonts and SVG file icons
 - **Breaking:** `tokens.css` no longer `@import`s the brand fonts from Google. They moved to a new,
   optional `subliminal-design-system/fonts.css` (the `sds-build-tokens` CLI writes it too). Import it
