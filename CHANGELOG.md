@@ -8,6 +8,12 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### FileUpload matches the other fields (Phase T.3)
+- **Visual change:** the drop zone's border is the Field border (`--sds-border-thickness-field-large`, 2px) instead of
+  1px, so the zone is 2px taller. It gets the Fields hover fill as well as the hover stroke, and
+  keyboard focus shows the focus ring alone, as in Figma's File Upload. Dragging a file over keeps the
+  ring plus the hover look.
+
 #### Type classes are built from Figma's text styles (Phase T.3)
 - Relay 0.6.0 exports Figma's text styles (`text-styles.json`) with the variable bound to each
   field. `build:tokens` builds each `.sds-text--*` class from those bindings. With the current

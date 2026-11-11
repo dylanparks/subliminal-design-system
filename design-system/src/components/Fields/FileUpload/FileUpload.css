@@ -3,7 +3,11 @@
  *
  * Tokens: --sds-interactive-fields-background-*, --sds-interactive-fields-stroke-*,
  *         --sds-interactive-fields-content-*, --sds-status-error-*,
- *         --sds-effects-focus-ring, --sds-radius-xlarge
+ *         --sds-border-thickness-field-large, --sds-effect-interactive-element-focus-box-shadow,
+ *         --sds-radius-xlarge
+ *
+ * Matches the other fields (Figma: File Upload uses the Field border, the Fields background and
+ * stroke, with a hover fill and a focus ring).
  * Typography: .sds-text--subtitle-medium (prompt-title), .sds-text--content-small (hint, error-message)
  *
  * Structure:
@@ -33,7 +37,7 @@
   gap: 1rem;
   padding: 1rem;
 
-  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-field-large) solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-xlarge);
   background-color: var(--sds-interactive-fields-background-default);
 
@@ -46,13 +50,20 @@
 }
 
 .sds-file-upload__zone:hover:not(.sds-file-upload__zone--disabled) {
-  border-color: var(--sds-interactive-fields-stroke-hover);
+  border-color:     var(--sds-interactive-fields-stroke-hover);
+  background-color: var(--sds-interactive-fields-background-hover);
 }
 
-.sds-file-upload__zone:focus-visible,
+/* Keyboard focus: the focus ring alone, as in Figma's Focused state. */
+.sds-file-upload__zone:focus-visible {
+  box-shadow: var(--sds-effect-interactive-element-focus-box-shadow);
+}
+
+/* Dragging a file over: the focus ring plus the hover look. */
 .sds-file-upload__zone[data-drag-over] {
-  box-shadow:   var(--sds-effect-interactive-element-focus-box-shadow);
-  border-color: var(--sds-interactive-fields-stroke-hover);
+  box-shadow:       var(--sds-effect-interactive-element-focus-box-shadow);
+  border-color:     var(--sds-interactive-fields-stroke-hover);
+  background-color: var(--sds-interactive-fields-background-hover);
 }
 
 /* ─── Zone modifiers ─────────────────────────────────────────────────────────── */
