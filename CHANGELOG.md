@@ -9,6 +9,9 @@ All notable changes to the Subliminal Design System are documented here.
 ### Changed
 
 #### Privacy policy page
+- The page follows Figma's Page Templates › Privacy Policy: a 1000px column inside the breakpoint's side
+  padding (`--sds-viewport-x-padding`, now also used by the header and footer), a Titles/Huge title with an
+  "Updated:" line, an Introduction, a numbered table of contents, and numbered sections with 48px between them.
 - New `/privacy` page (Subliminal Design System LLC; written for visitors in the EU/UK, California and
   Virginia) and a footer link. Stylesheets are now always separate files (`inlineStylesheets: 'never'`), so
   editing a page's CSS no longer changes the CSP's style hash.

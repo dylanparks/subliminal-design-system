@@ -5,6 +5,23 @@ const company = 'Subliminal Design System LLC';
 const address = '440 Monticello Ave Ste 1802 #625273, Norfolk, VA 23510, United States';
 const email = 'support@subliminaldesignsystem.com';
 const updated = 'November 11, 2026';
+
+// The numbered sections below, in order, for the table of contents.
+const sections = [
+  { id: 'definitions', title: 'Definitions' },
+  { id: 'what-we-collect', title: 'What we collect' },
+  { id: 'why-we-use-it', title: 'Why we use it' },
+  { id: 'who-we-share-it-with', title: 'Who we share it with' },
+  { id: 'international-transfers', title: 'International transfers' },
+  { id: 'how-long-we-keep-it', title: 'How long we keep it' },
+  { id: 'security', title: 'Security' },
+  { id: 'your-rights', title: 'Your rights' },
+  { id: 'children', title: 'Children' },
+  { id: 'do-not-track-and-global-privacy-control', title: '“Do Not Track” and Global Privacy Control' },
+  { id: 'links-to-other-sites', title: 'Links to other sites' },
+  { id: 'changes-to-this-policy', title: 'Changes to this Policy' },
+  { id: 'contact-us', title: 'Contact us' },
+];
 ---
 
 <Layout
@@ -12,9 +29,12 @@ const updated = 'November 11, 2026';
   description="How Subliminal Design System LLC handles personal data on subliminaldesignsystem.com."
 >
   <article class="policy">
-    <h1 class="sds-text--title-medium">Privacy Policy</h1>
-    <p class="sds-text--content-small updated">Last updated: {updated}</p>
+    <header class="title-block">
+      <h1 class="sds-text--title-huge">Privacy Policy</h1>
+      <p class="sds-text--content-large updated">Updated: {updated}</p>
+    </header>
 
+    <h2 id="introduction" class="sds-text--title-xsmall">Introduction</h2>
     <p class="sds-text--content-medium">
       This Privacy Policy (the “Policy”) explains how {company} (the “Company,” “we,” “us,” or
       “our”) processes Personal Data about people who visit subliminaldesignsystem.com (the “Site”)
@@ -22,7 +42,16 @@ const updated = 'November 11, 2026';
       are based in the United States and the Site is available worldwide.
     </p>
 
-    <h2 class="sds-text--title-xsmall">1. Definitions</h2>
+    <nav aria-label="Table of contents" class="toc">
+      <h2 class="sds-text--title-xsmall">Table of contents</h2>
+      <ol class="sds-text--interactive-medium">
+        {sections.map((section) => (
+          <li><a href={`#${section.id}`}>{section.title}</a></li>
+        ))}
+      </ol>
+    </nav>
+
+    <h2 id="definitions" class="sds-text--title-xsmall">1. Definitions</h2>
     <ul class="sds-text--content-medium">
       <li>
         “Controller” means the person or organization that, alone or with others, decides the
@@ -35,7 +64,7 @@ const updated = 'November 11, 2026';
       <li>“You” means the person visiting the Site or contacting us.</li>
     </ul>
 
-    <h2 class="sds-text--title-xsmall">2. What we collect</h2>
+    <h2 id="what-we-collect" class="sds-text--title-xsmall">2. What we collect</h2>
     <p class="sds-text--content-medium">
       The Site is a static documentation website. It has no accounts, no sign-up forms, and no
       payments. This is all we collect or store:
@@ -64,7 +93,7 @@ const updated = 'November 11, 2026';
       or newsletters. If that changes, we will update this Policy before it does.
     </p>
 
-    <h2 class="sds-text--title-xsmall">3. Why we use it</h2>
+    <h2 id="why-we-use-it" class="sds-text--title-xsmall">3. Why we use it</h2>
     <p class="sds-text--content-medium">
       We use Personal Data to deliver and secure the Site, and to read and reply to messages you
       send us. Where the law of your country requires a legal basis, ours is our legitimate interest
@@ -75,7 +104,7 @@ const updated = 'November 11, 2026';
       on your consent, you can withdraw it at any time.
     </p>
 
-    <h2 class="sds-text--title-xsmall">4. Who we share it with</h2>
+    <h2 id="who-we-share-it-with" class="sds-text--title-xsmall">4. Who we share it with</h2>
     <p class="sds-text--content-medium">
       We share Personal Data only with service providers that process it on our behalf and under
       their agreements with us: Cloudflare, Inc. (hosting, content delivery, and security for the
@@ -85,7 +114,7 @@ const updated = 'November 11, 2026';
       share it for advertising across other companies' sites or apps.</strong>
     </p>
 
-    <h2 class="sds-text--title-xsmall">5. International transfers</h2>
+    <h2 id="international-transfers" class="sds-text--title-xsmall">5. International transfers</h2>
     <p class="sds-text--content-medium">
       We are in the United States, and our providers process data in the United States and in other
       countries where they operate. If you are in the European Economic Area, the United Kingdom, or
@@ -94,7 +123,7 @@ const updated = 'November 11, 2026';
       Clauses, the UK Addendum, or a provider's certification under the Data Privacy Framework.
     </p>
 
-    <h2 class="sds-text--title-xsmall">6. How long we keep it</h2>
+    <h2 id="how-long-we-keep-it" class="sds-text--title-xsmall">6. How long we keep it</h2>
     <p class="sds-text--content-medium">
       Request data held by Cloudflare is kept for the period set out in Cloudflare's own policies.
       Emails you send us are kept for as long as we need them to respond and keep reasonable business
@@ -103,7 +132,7 @@ const updated = 'November 11, 2026';
       further use until it can be deleted.
     </p>
 
-    <h2 class="sds-text--title-xsmall">7. Security</h2>
+    <h2 id="security" class="sds-text--title-xsmall">7. Security</h2>
     <p class="sds-text--content-medium">
       We use appropriate technical and organizational measures to protect the Personal Data we
       process, designed to provide a level of security appropriate to the risk. The Site is served
@@ -111,7 +140,7 @@ const updated = 'November 11, 2026';
       concern about the security of your Personal Data, please contact us immediately.
     </p>
 
-    <h2 class="sds-text--title-xsmall">8. Your rights</h2>
+    <h2 id="your-rights" class="sds-text--title-xsmall">8. Your rights</h2>
     <p class="sds-text--content-medium">
       Depending on where you live, you may have some or all of these rights over your Personal Data.
       We apply them to everyone, wherever you are, to the extent we can.
@@ -141,32 +170,32 @@ const updated = 'November 11, 2026';
       to 45 days.
     </p>
 
-    <h2 class="sds-text--title-xsmall">9. Children</h2>
+    <h2 id="children" class="sds-text--title-xsmall">9. Children</h2>
     <p class="sds-text--content-medium">
       The Site is not directed at children under 16, and we do not knowingly collect Personal Data
       from them. If you believe a child has sent us Personal Data, contact us and we will delete it.
     </p>
 
-    <h2 class="sds-text--title-xsmall">10. “Do Not Track” and Global Privacy Control</h2>
+    <h2 id="do-not-track-and-global-privacy-control" class="sds-text--title-xsmall">10. “Do Not Track” and Global Privacy Control</h2>
     <p class="sds-text--content-medium">
       Because the Site does not track you across websites or use advertising or analytics tools,
       there is nothing for these browser signals to switch off, and we honor them.
     </p>
 
-    <h2 class="sds-text--title-xsmall">11. Links to other sites</h2>
+    <h2 id="links-to-other-sites" class="sds-text--title-xsmall">11. Links to other sites</h2>
     <p class="sds-text--content-medium">
       The Site may link to other websites, such as code repositories. They have their own privacy
       practices, which this Policy does not cover.
     </p>
 
-    <h2 class="sds-text--title-xsmall">12. Changes to this Policy</h2>
+    <h2 id="changes-to-this-policy" class="sds-text--title-xsmall">12. Changes to this Policy</h2>
     <p class="sds-text--content-medium">
       We keep this Policy under regular review and may update this page at any time. The date at the
       top shows when it last changed. If we make a material change, we will say so clearly on the
       Site.
     </p>
 
-    <h2 class="sds-text--title-xsmall">13. Contact us</h2>
+    <h2 id="contact-us" class="sds-text--title-xsmall">13. Contact us</h2>
     <p class="sds-text--content-medium">
       If you have any question or concern about this Policy, contact us at{' '}
       <a href={`mailto:${email}`}>{email}</a>, or write to:
@@ -179,41 +208,70 @@ const updated = 'November 11, 2026';
 </Layout>
 
 <style>
+  /* Figma › Page Templates › Privacy Policy: a 1000px column inside the breakpoint's side padding,
+     48px between sections, 8px between a heading and its text. */
   .policy {
-    max-width: 720px;
-    margin: 48px auto;
-    padding: 0 24px;
+    box-sizing: border-box;
+    width: min(100%, calc(62.5rem + 2 * var(--sds-viewport-x-padding)));
+    margin: 0 auto;
+    padding: 3rem var(--sds-viewport-x-padding);
   }
 
-  .policy h1 {
-    margin: 0 0 8px;
+  .title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .title-block h1,
+  .title-block p {
+    margin: 0;
+  }
+
+  .policy .updated {
+    color: var(--sds-neutral-content-secondary);
   }
 
   .policy h2 {
-    margin: 40px 0 8px;
+    margin: 3rem 0 0.5rem;
+    color: var(--sds-neutral-content-primary);
   }
 
   .policy p,
   .policy ul,
+  .policy ol,
   .policy address {
-    margin: 0 0 16px;
+    margin: 0 0 1rem;
+    color: var(--sds-neutral-content-secondary);
   }
 
-  .policy ul {
-    padding-inline-start: 24px;
+  .policy strong {
+    color: var(--sds-neutral-content-primary);
+  }
+
+  .policy ul,
+  .policy ol {
+    padding-inline-start: 1.5rem;
   }
 
   .policy li + li {
-    margin-top: 8px;
+    margin-top: 0.5rem;
   }
 
-  .policy .updated {
-    margin: 0 0 24px;
-    color: var(--sds-neutral-content-tertiary);
+  .toc h2 {
+    margin-top: 3rem;
+  }
+
+  .toc ol {
+    margin: 0;
+  }
+
+  .toc a {
+    text-decoration: none;
   }
 
   .policy a {
-    color: var(--sds-accents-solid-primary);
+    color: var(--sds-interactive-primary-filled-background-default);
   }
 
   .policy address {
