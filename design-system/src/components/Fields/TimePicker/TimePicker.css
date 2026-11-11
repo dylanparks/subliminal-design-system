@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
@@ -42,7 +42,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-field-medium) solid var(--sds-interactive-fields-stroke-default);
   background-color: var(--sds-interactive-fields-background-default);
   box-sizing: border-box;
   cursor: pointer;
@@ -98,14 +98,16 @@
 /* ─── Sizes ───────────────────────────────────────────────────── */
 
 .sds-timepicker--large .sds-timepicker__wrapper {
+  border-width: var(--sds-border-thickness-field-large);
   height: var(--sds-size-large);
-  padding: 0 16px;
+  padding: 0 1rem;
   border-radius: var(--sds-radius-large);
 }
 
 .sds-timepicker--medium .sds-timepicker__wrapper {
+  border-width: var(--sds-border-thickness-field-medium);
   height: var(--sds-size-medium);
-  padding: 0 12px;
+  padding: 0 0.75rem;
   border-radius: var(--sds-radius-medium);
 }
 
@@ -139,11 +141,11 @@
 }
 
 .sds-timepicker--large .sds-timepicker__inner {
-  padding-bottom: 10px;
+  padding-bottom: 0.625rem;
 }
 
 .sds-timepicker--medium .sds-timepicker__inner {
-  padding-bottom: 6px;
+  padding-bottom: 0.375rem;
 }
 
 /* ─── Floating label ─────────────────────────────────────────── */
@@ -170,7 +172,7 @@
 
 /* Float up — large */
 .sds-timepicker--large.sds-timepicker--filled .sds-timepicker__label {
-  top: 10px;
+  top: 0.625rem;
   transform: translateY(0);
   font-size:      var(--sds-typography-font-size-content-small);
   line-height:    var(--sds-typography-line-height-content-small);
@@ -179,7 +181,7 @@
 
 /* Float up — medium */
 .sds-timepicker--medium.sds-timepicker--filled .sds-timepicker__label {
-  top: 6px;
+  top: 0.375rem;
   transform: translateY(0);
   font-size:      var(--sds-typography-font-size-content-small);
   line-height:    var(--sds-typography-line-height-content-small);
@@ -211,7 +213,7 @@
 
 /* Reveal when a value is selected */
 .sds-timepicker--filled .sds-timepicker__value {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   opacity: 1;
 }
 
@@ -226,7 +228,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-inline-start: 4px;
+  margin-inline-start: 0.25rem;
   color: var(--sds-interactive-fields-content-default);
   cursor: pointer;
   transition: color 120ms ease;
@@ -243,8 +245,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   background: none;
   border: none;
   padding: 0;
@@ -252,7 +254,7 @@
   color: var(--sds-interactive-secondary-hollow-content-default);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-4px);
+  transform: translateY(-0.25rem);
   transition:
     opacity   120ms ease,
     transform 120ms ease,
@@ -286,7 +288,7 @@
   position: fixed;
   z-index: 1300;
   background-color: var(--sds-neutral-background-elevated);
-  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-neutral-elevated) solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevatedshadow-x) * 1px)
@@ -326,13 +328,13 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 0 0 0 8px;
+  padding: 0 0 0 0.5rem;
 }
 
 /* Tighten the AM/PM column — only 2 items, doesn't need equal flex */
 .sds-timepicker__column--period {
   flex: 0 0 auto;
-  min-width: 80px;
+  min-width: 5rem;
 }
 
 /* ─── Column label (Hour / Minute / AM·PM) ──────────────────── */
@@ -341,7 +343,7 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  padding: 4px 8px;
+  padding: 0.25rem 0.5rem;
   color: var(--sds-neutral-content-tertiary);
   white-space: nowrap;
 }
@@ -356,7 +358,7 @@
 .sds-timepicker__column-body {
   display: flex;
   flex-direction: row;
-  max-height: 308px;
+  max-height: 19.25rem;
   overflow: hidden;
 }
 
@@ -378,7 +380,7 @@
 /* Track — 12px wide flex sibling, stretches to the full column height. */
 .sds-timepicker__scrollbar {
   flex-shrink: 0;
-  width: 12px;
+  width: 0.75rem;
   align-self: stretch;
   position: relative;
   cursor: pointer;
@@ -390,8 +392,8 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 6px;
-  min-height: 24px;
+  width: 0.375rem;
+  min-height: 1.5rem;
   border-radius: var(--sds-radius-round, 999px);
   background-color: var(--sds-neutral-content-subtle);
   cursor: grab;
@@ -447,13 +449,13 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
 .sds-timepicker__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 1rem) / 2);
 }
 
 .sds-timepicker--error .sds-timepicker__support {
@@ -488,7 +490,7 @@
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

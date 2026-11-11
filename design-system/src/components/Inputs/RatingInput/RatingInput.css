@@ -28,7 +28,7 @@
 .sds-rating-input {
   display: inline-flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 /* ─── Group label ────────────────────────────────────────────────────────────── */
@@ -42,7 +42,7 @@
 .sds-rating-input__stars {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 /* ─── Star label (click target + focus scope) ────────────────────────────────── */
@@ -63,7 +63,7 @@
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -76,8 +76,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: var(--sds-size-custom-rating-star);
+  height: var(--sds-size-custom-rating-star);
   border-radius: var(--sds-radius-round, 999px);
   color: var(--sds-interactive-secondary-hollow-stroke-inactive-default);
   transition: color 120ms ease, box-shadow 120ms ease;

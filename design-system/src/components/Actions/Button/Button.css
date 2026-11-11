@@ -11,7 +11,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.5rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -48,50 +48,50 @@
 
 .sds-button--xsmall {
   height: var(--sds-size-xsmall);
-  padding: 0 12px;
+  padding: 0 0.75rem;
   border-radius: var(--sds-radius-xsmall);
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .sds-button--xsmall .sds-button__icon {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .sds-button--small {
   height: var(--sds-size-small);
-  padding: 0 16px;
+  padding: 0 1rem;
   border-radius: var(--sds-radius-small);
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .sds-button--small .sds-button__icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .sds-button--medium {
   height: var(--sds-size-medium);
-  padding: 0 20px;
+  padding: 0 1.25rem;
   border-radius: var(--sds-radius-medium);
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .sds-button--medium .sds-button__icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .sds-button--large {
   height: var(--sds-size-large);
-  padding: 0 24px;
+  padding: 0 1.5rem;
   border-radius: var(--sds-radius-large);
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .sds-button--large .sds-button__icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* ─── Icon-only ─────────────────────────────────────────────────────────────── */
@@ -145,7 +145,7 @@
 .sds-button--primary-hollow {
   background-color: var(--sds-interactive-primary-hollow-background-default);
   color: var(--sds-interactive-primary-hollow-content-default);
-  border: 2px solid var(--sds-interactive-primary-hollow-stroke-default);
+  border: var(--sds-border-thickness-interactive-primary) solid var(--sds-interactive-primary-hollow-stroke-default);
 }
 
 .sds-button--primary-hollow:hover {
@@ -229,7 +229,7 @@
 .sds-button--secondary-hollow {
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  border: var(--sds-border-thickness-interactive-secondary) solid var(--sds-interactive-secondary-hollow-stroke-default);
 }
 
 .sds-button--secondary-hollow:hover {
@@ -313,7 +313,7 @@
 .sds-button--static-hollow {
   background-color: var(--sds-interactive-static-hollow-background-default);
   color: var(--sds-interactive-static-hollow-content-default);
-  border: 2px solid var(--sds-interactive-static-hollow-stroke-default);
+  border: var(--sds-border-thickness-interactive-static) solid var(--sds-interactive-static-hollow-stroke-default);
 }
 
 .sds-button--static-hollow:hover {
@@ -397,7 +397,7 @@
 .sds-button--negative-hollow {
   background-color: var(--sds-interactive-negative-hollow-background-default);
   color: var(--sds-interactive-negative-hollow-content-default);
-  border: 2px solid var(--sds-interactive-negative-hollow-stroke-default);
+  border: var(--sds-border-thickness-interactive-negative) solid var(--sds-interactive-negative-hollow-stroke-default);
 }
 
 .sds-button--negative-hollow:hover {

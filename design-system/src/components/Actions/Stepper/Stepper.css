@@ -9,17 +9,17 @@
 .sds-stepper {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .sds-stepper--vertical {
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 /* Tighten gap when the value display is present */
 .sds-stepper--vertical.sds-stepper--show-value {
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 /* ─── Button ─────────────────────────────────────────────────────────────────── */
@@ -29,10 +29,10 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: var(--sds-size-xsmall);
+  height: var(--sds-size-xsmall);
   border-radius: var(--sds-radius-round);
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  border: var(--sds-border-thickness-interactive-secondary) solid var(--sds-interactive-secondary-hollow-stroke-default);
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
   cursor: pointer;
@@ -82,8 +82,8 @@
 /* ─── Icon ───────────────────────────────────────────────────────────────────── */
 
 .sds-stepper__icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   flex-shrink: 0;
 }
 

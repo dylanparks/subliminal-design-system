@@ -42,8 +42,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  min-height: 20px;
+  gap: 0.5rem;
+  min-height: 1.25rem;
 }
 
 /* ─── Label ──────────────────────────────────────────────────────────────────── */
@@ -57,7 +57,7 @@
 .sds-slider__inputs {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
   flex-shrink: 0;
 }
 
@@ -93,7 +93,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 2.25rem;
   /* Touch target: thumb ::after { inset: -10px } gives 36×36 on the 16px thumb */
 }
 
@@ -102,8 +102,8 @@
 .sds-slider__track {
   position: relative;
   width: 100%;
-  height: 4px;
-  border-radius: 2px;
+  height: var(--sds-size-custom-slider-bar);
+  border-radius: 0.125rem;
   background-color: var(--sds-interactive-secondary-hollow-stroke-inactive-default);
   overflow: visible;
 }
@@ -114,7 +114,7 @@
   position: absolute;
   top: 0;
   height: 100%;
-  border-radius: 2px;
+  border-radius: 0.125rem;
   background-color: var(--sds-interactive-primary-filled-background-default);
   transition: background-color 120ms ease;
   pointer-events: none;
@@ -128,11 +128,11 @@
   transform: translate(-50%, -50%);
   /* left set by JS via inline style */
 
-  width: 16px;
-  height: 16px;
+  width: var(--sds-size-custom-slider-indicator);
+  height: var(--sds-size-custom-slider-indicator);
   border-radius: 50%;
   background-color: var(--sds-interactive-primary-filled-background-default);
-  border: 2px solid var(--sds-interactive-primary-filled-background-default);
+  border: var(--sds-border-thickness-interactive-primary) solid var(--sds-interactive-primary-filled-background-default);
 
   cursor: grab;
   outline: none;
@@ -149,7 +149,7 @@
 .sds-slider__thumb::after {
   content: '';
   position: absolute;
-  inset: -10px;
+  inset: -0.625rem;
 }
 
 .sds-slider__thumb:hover {
@@ -177,14 +177,14 @@
    * Vertically: center of track-area is at 50%. Thumb top is at ~(50% - 8px).
    * bottom: calc(50% + 20px) puts tooltip bottom 4px above thumb visual top.
    */
-  bottom: calc(50% + 20px);
+  bottom: calc(50% + 1.25rem);
   transform: translateX(-50%);
 
   background-color: var(--sds-neutral-content-primary);
   color: var(--sds-neutral-background-default);
-  border-radius: var(--sds-radius-small, 4px);
+  border-radius: var(--sds-radius-small, 0.25rem);
 
-  padding: 2px 6px;
+  padding: 0.125rem 0.375rem;
   white-space: nowrap;
   pointer-events: none;
 

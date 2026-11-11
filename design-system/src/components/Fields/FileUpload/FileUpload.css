@@ -19,7 +19,7 @@
 .sds-file-upload {
   display:        flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
@@ -30,8 +30,8 @@
   flex-direction:  column;
   align-items:     center;
   justify-content: center;
-  gap: 16px;
-  padding: 16px;
+  gap: 1rem;
+  padding: 1rem;
 
   border: 1px solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-xlarge);
@@ -74,7 +74,7 @@
   width:      1px;
   height:     1px;
   padding:    0;
-  margin:     -1px;
+  margin:     -0.0625rem;
   overflow:   hidden;
   clip:       rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -87,7 +87,7 @@
   display:        flex;
   flex-direction: column;
   align-items:    center;
-  gap: 16px;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -96,7 +96,7 @@
   flex-direction: column;
   align-items:    center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -113,7 +113,7 @@
 /* ─── Footer ─────────────────────────────────────────────────────────────────── */
 
 .sds-file-upload__footer {
-  padding: 0 2px;
+  padding: 0 0.125rem;
 }
 
 .sds-file-upload__hint {

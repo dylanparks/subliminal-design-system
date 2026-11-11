@@ -36,12 +36,12 @@
   border-radius: var(--sds-radius-xxsmall);
 
   /* Large size (default) */
-  width:  22px;
-  height: 22px;
+  width:  var(--sds-size-custom-checkbox-large);
+  height: var(--sds-size-custom-checkbox-large);
 
   /* Unchecked: hollow — white fill, subtle stroke */
   background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
+  border: var(--sds-border-thickness-interactive-secondary-inactive) solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
 
   transition:
     background-color 120ms ease,
@@ -62,8 +62,8 @@
 /* ─── Medium size ────────────────────────────────────────────────────────────── */
 
 .sds-checkbox-indicator--medium {
-  width:  18px;
-  height: 18px;
+  width:  var(--sds-size-custom-checkbox-medium);
+  height: var(--sds-size-custom-checkbox-medium);
 }
 
 /* ─── Checked ────────────────────────────────────────────────────────────────── */
@@ -159,14 +159,14 @@
 
 /* Large on-media is 24px (slightly larger than off-media 22px) */
 .sds-checkbox-indicator--on-media {
-  width:  24px;
-  height: 24px;
+  width:  1.5rem;
+  height: 1.5rem;
 }
 
 /* Medium on-media stays 18px */
 .sds-checkbox-indicator--medium.sds-checkbox-indicator--on-media {
-  width:  18px;
-  height: 18px;
+  width:  1.125rem;
+  height: 1.125rem;
 }
 
 /* On media unchecked */

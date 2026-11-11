@@ -43,8 +43,8 @@
   position: relative;
   display: flex;
   align-items: stretch;
-  gap: 4px;
-  border-bottom: 1px solid var(--sds-neutral-stroke-default);
+  gap: 0.25rem;
+  border-bottom: var(--sds-border-thickness-neutral-divider) solid var(--sds-neutral-stroke-default);
 }
 
 .sds-tab-list--static {
@@ -58,7 +58,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding: 8px;
+  padding: 0.5rem;
   border: none;
   background: transparent;
   border-radius: var(--sds-radius-xsmall) var(--sds-radius-xsmall) 0 0;
@@ -71,7 +71,7 @@
 
 /* Icon + label needs more top padding to balance the taller tab */
 .sds-tab--with-icon {
-  padding-top: 12px;
+  padding-top: 0.75rem;
 }
 
 /* ─── Content ────────────────────────────────────────────────────────────────── */
@@ -85,7 +85,7 @@
 }
 
 .sds-tab--with-icon .sds-tab__content {
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 /* ─── Icon ───────────────────────────────────────────────────────────────────── */
@@ -95,13 +95,13 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .sds-tab--icon-only .sds-tab__icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* ─── Label ──────────────────────────────────────────────────────────────────── */
@@ -116,11 +116,11 @@
 /* Single absolute bar that slides to the active tab via --indicator-left/width */
 .sds-tab-list__indicator {
   position:         absolute;
-  bottom:           -1px;
-  left:             var(--indicator-left, 0px);
+  bottom:           -0.0625rem;
+  left:             var(--indicator-left, 0);
   width:            var(--indicator-width, 0px);
   height:           2px;
-  border-radius:    1px 1px 0 0;
+  border-radius:    0.0625rem 0.0625rem 0 0;
   background-color: var(--sds-interactive-secondary-hollow-content-default);
   transition:       left 200ms ease, width 200ms ease;
   pointer-events:   none;

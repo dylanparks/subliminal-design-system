@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
   position: relative; /* contains the visually-hidden live region */
 }
@@ -52,7 +52,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-field-medium) solid var(--sds-interactive-fields-stroke-default);
   background-color: var(--sds-interactive-fields-background-default);
   box-sizing: border-box;
   cursor: text;
@@ -108,17 +108,19 @@
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
 .sds-search-field--large .sds-search-field__wrapper {
+  border-width: var(--sds-border-thickness-field-large);
   height: var(--sds-size-large); /* 64px */
-  padding: 0 16px;
+  padding: 0 1rem;
   border-radius: var(--sds-radius-large);
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .sds-search-field--medium .sds-search-field__wrapper {
+  border-width: var(--sds-border-thickness-field-medium);
   height: var(--sds-size-medium); /* 56px */
-  padding: 0 12px;
+  padding: 0 0.75rem;
   border-radius: var(--sds-radius-medium);
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 /* ─── Leading search icon ───────────────────────────────────────────────────── */
@@ -128,8 +130,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--sds-interactive-fields-content-suggested);
   transition: color 120ms ease;
 }
@@ -159,11 +161,11 @@
 }
 
 .sds-search-field--large .sds-search-field__inner {
-  padding-bottom: 10px;
+  padding-bottom: 0.625rem;
 }
 
 .sds-search-field--medium .sds-search-field__inner {
-  padding-bottom: 6px;
+  padding-bottom: 0.375rem;
 }
 
 /* ─── Floating label ────────────────────────────────────────────────────────── */
@@ -190,7 +192,7 @@
 /* Float the label — large: focused or filled */
 .sds-search-field--large .sds-search-field__wrapper:focus-within .sds-search-field__label,
 .sds-search-field--large.sds-search-field--filled .sds-search-field__label {
-  top: 10px;
+  top: 0.625rem;
   transform: translateY(0);
   font-size:      var(--sds-typography-font-size-content-small);
   line-height:    var(--sds-typography-line-height-content-small);
@@ -200,7 +202,7 @@
 /* Float the label — medium: focused or filled */
 .sds-search-field--medium .sds-search-field__wrapper:focus-within .sds-search-field__label,
 .sds-search-field--medium.sds-search-field--filled .sds-search-field__label {
-  top: 6px;
+  top: 0.375rem;
   transform: translateY(0);
   font-size:      var(--sds-typography-font-size-content-small);
   line-height:    var(--sds-typography-line-height-content-small);
@@ -252,14 +254,14 @@
 
 /* Reveal when focused */
 .sds-search-field__wrapper:focus-within .sds-search-field__input {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   overflow: visible;
   opacity: 1;
 }
 
 /* Reveal when filled */
 .sds-search-field--filled .sds-search-field__input {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   overflow: visible;
   opacity: 1;
 }
@@ -271,8 +273,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   background: none;
   border: none;
   padding: 0;
@@ -280,7 +282,7 @@
   color: var(--sds-interactive-secondary-hollow-content-default);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-4px);
+  transform: translateY(-0.25rem);
   transition:
     opacity   120ms ease,
     transform 120ms ease,
@@ -306,13 +308,13 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
 .sds-search-field__support > svg {
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 0.0625rem;
 }
 
 .sds-search-field--error .sds-search-field__support {
@@ -345,7 +347,7 @@
 
 .sds-search-field__listbox {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 0.25rem);
   left: 0;
   right: 0;
   z-index: 1300;
@@ -353,11 +355,11 @@
   animation: sds-search-field-listbox-enter 140ms cubic-bezier(0.4, 0, 0.2, 1) both;
   list-style: none;
   margin: 0;
-  padding: 8px 0;
-  min-width: 220px;
-  max-height: 300px;
+  padding: 0.5rem 0;
+  min-width: 13.75rem;
+  max-height: 18.75rem;
   background-color: var(--sds-neutral-background-elevated);
-  border: 1px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-neutral-elevated) solid var(--sds-interactive-fields-stroke-default);
   border-radius: var(--sds-radius-large);
   box-shadow:
     calc(var(--sds-effects-elevatedshadow-x) * 1px)
@@ -392,7 +394,7 @@
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

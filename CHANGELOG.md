@@ -8,6 +8,26 @@ All notable changes to the Subliminal Design System are documented here.
 
 ### Changed
 
+#### Component sizes and borders use tokens and rem (Phase T.3)
+- **No visual change at default settings.** Every component story renders pixel-identical to
+  before (201 of 211 stories compared; the rest are either not renderable offline or vary between
+  runs on the old build too, and behave the same on the new one), and every changed CSS
+  declaration resolves to the same value as before.
+- Border widths use the Border-thickness tokens: field borders by size
+  (`--sds-border-thickness-field-{large,medium,small}`), dropdown panels, Tooltip, Popover, Toast
+  and Modal (`neutral-elevated`), Tabs (`neutral-divider`), Button, ButtonGroup, Stepper and
+  Breadcrumbs (`interactive-*`), and the Checkbox, Radio and Toggle indicators
+  (`interactive-secondary-inactive`). ButtonGroup's border-overlap margin follows its border.
+  A theme can now change these, per field size.
+- Control sizes use the Figma size tokens: `--sds-size-xsmall` (Stepper buttons, Pagination,
+  Breadcrumbs overflow), `--sds-size-small` (small Combobox) and the `--sds-size-custom-*`
+  tokens (Checkbox and Toggle indicators, Rating star, Slider thumb and track, ProgressBar track).
+- Every other `px` length in component CSS is `rem` (÷ 16), so components scale with the reader's
+  browser font size like the type does. Hairlines (1–2px widths and heights, borders, rings and
+  outline offsets) and fully round radii stay `px`. Pagination's sliding indicator now measures the
+  button's padding instead of assuming 8px. Modal's mobile layout switches below `37.5em` (600px
+  at the default size) instead of `max-width: 599px`, so it follows the font size too.
+
 #### Focus rings, button labels and effect styles follow Figma (Phase T.3)
 - New token `--sds-border-thickness-focus-ring` (Brand › Border-thickness › Focus-ring, 4px).
   Every component's focus ring uses it: plain rings via the Focus effect style

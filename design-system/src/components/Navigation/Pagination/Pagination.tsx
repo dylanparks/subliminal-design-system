@@ -117,9 +117,11 @@ export function Pagination({
     if (!list) return;
     const selected = list.querySelector<HTMLButtonElement>('[aria-current="page"]');
     const label = selected?.querySelector<HTMLSpanElement>('.sds-pagination__page-label') ?? null;
-    if (label) {
-      list.style.setProperty('--indicator-left', `${label.offsetLeft - 8}px`);
-      list.style.setProperty('--indicator-width', `${label.offsetWidth + 16}px`);
+    if (label && selected) {
+      // The indicator extends past the label by the button's own padding (rem, so it scales).
+      const pad = parseFloat(getComputedStyle(selected).paddingLeft) || 0;
+      list.style.setProperty('--indicator-left', `${label.offsetLeft - pad}px`);
+      list.style.setProperty('--indicator-width', `${label.offsetWidth + pad * 2}px`);
     } else {
       list.style.setProperty('--indicator-width', '0px');
     }

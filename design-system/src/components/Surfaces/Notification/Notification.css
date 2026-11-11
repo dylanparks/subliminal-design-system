@@ -22,9 +22,9 @@
 .sds-notification {
   display:        flex;
   flex-direction: row;
-  gap:            8px;
-  padding:        12px;
-  border-radius:  16px;
+  gap:            0.5rem;
+  padding:        0.75rem;
+  border-radius:  1rem;
 }
 
 /* ─── Layouts ──────────────────────────────────────────────────────────────── */
@@ -58,7 +58,7 @@
   flex-direction: column;
   flex:           1;
   min-width:      0;
-  gap:            8px;
+  gap:            0.5rem;
 }
 
 /* ─── Title ────────────────────────────────────────────────────────────────── */
@@ -81,7 +81,7 @@
 .sds-notification__actions {
   display:     flex;
   flex-wrap:   wrap;
-  gap:         16px;
+  gap:         1rem;
 }
 
 .sds-notification--inline .sds-notification__actions {
@@ -95,8 +95,8 @@
   align-items:     center;
   justify-content: center;
   flex-shrink:     0;
-  width:           24px;
-  height:          24px;
+  width:           1.5rem;
+  height:          1.5rem;
   background:      none;
   border:          none;
   border-radius:   var(--sds-radius-xsmall);

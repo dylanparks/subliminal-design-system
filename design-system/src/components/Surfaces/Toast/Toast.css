@@ -24,7 +24,7 @@
 .sds-toast-region {
   position:       fixed;
   z-index:        9900;
-  padding:        16px;
+  padding:        1rem;
   pointer-events: none;
 }
 
@@ -60,7 +60,7 @@
 .sds-toast-stack--expanded {
   display:        flex;
   flex-direction: column;
-  gap:            8px;
+  gap:            0.5rem;
 }
 
 /* In expanded mode cards are in-flow flex items — remove collapsed z-index stacking */
@@ -84,12 +84,12 @@
 
 .sds-toast-stack--bottom.sds-toast-stack--collapsing .sds-toast--front:not(:last-child) {
   opacity:   0;
-  transform: translateY(8px);
+  transform: translateY(0.5rem);
 }
 
 .sds-toast-stack--top.sds-toast-stack--collapsing .sds-toast--front:not(:first-child) {
   opacity:   0;
-  transform: translateY(-8px);
+  transform: translateY(-0.5rem);
 }
 
 /* ─── Front card ─────────────────────────────────────────────────────────────── */
@@ -131,46 +131,46 @@
 /* -- Bottom stack (peek strips show ABOVE the front card, toward top of viewport) -- */
 
 .sds-toast-stack--bottom .sds-toast--peek-1 {
-  left:      8px;
-  right:     8px;
+  left:      0.5rem;
+  right:     0.5rem;
   z-index:   2;
-  transform: translateY(-6px);
+  transform: translateY(-0.375rem);
 }
 
 .sds-toast-stack--bottom .sds-toast--peek-2 {
-  left:      16px;
-  right:     16px;
+  left:      1rem;
+  right:     1rem;
   z-index:   1;
-  transform: translateY(-12px);
+  transform: translateY(-0.75rem);
 }
 
 /* -- Top stack (peek strips show BELOW the front card, toward bottom of viewport) -- */
 
 .sds-toast-stack--top .sds-toast--peek-1 {
-  left:      8px;
-  right:     8px;
+  left:      0.5rem;
+  right:     0.5rem;
   z-index:   2;
-  transform: translateY(6px);
+  transform: translateY(0.375rem);
 }
 
 .sds-toast-stack--top .sds-toast--peek-2 {
-  left:      16px;
-  right:     16px;
+  left:      1rem;
+  right:     1rem;
   z-index:   1;
-  transform: translateY(12px);
+  transform: translateY(0.75rem);
 }
 
 /* ─── Card ────────────────────────────────────────────────────────────────────── */
 
 .sds-toast__card {
-  width:          272px;
-  max-width:      320px;
-  padding:        16px;
+  width:          17rem;
+  max-width:      20rem;
+  padding:        1rem;
   display:        flex;
   flex-direction: column;
-  gap:            8px;
+  gap:            0.5rem;
   background:     var(--sds-neutral-background-elevated);
-  outline:        1px solid var(--sds-neutral-stroke-elevated);
+  outline:        var(--sds-border-thickness-neutral-elevated) solid var(--sds-neutral-stroke-elevated);
   border-radius:  var(--sds-radius-medium);
   box-shadow:     var(--sds-effect-static-element-elevated-box-shadow);
 }
@@ -190,7 +190,7 @@
 
 .sds-toast__header {
   display:     flex;
-  gap:         4px;
+  gap:         0.25rem;
   align-items: flex-start;
   width:       100%;
 }
@@ -206,7 +206,7 @@
   display:         flex;
   align-items:     center;
   justify-content: center;
-  padding:         2px;
+  padding:         0.125rem;
   border:          none;
   background:      transparent;
   cursor:          pointer;
@@ -215,7 +215,7 @@
   transition:      color 120ms ease;
   flex-shrink:     0;
   outline:         none;
-  margin-top:      2px;
+  margin-top:      0.125rem;
 }
 
 .sds-toast__close:hover {
@@ -238,6 +238,6 @@
 
 .sds-toast__actions {
   display:   flex;
-  gap:       8px;
+  gap:       0.5rem;
   flex-wrap: wrap;
 }

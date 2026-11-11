@@ -60,11 +60,11 @@
 
 .sds-popover__popup {
   position:      relative;
-  width:         230px;
-  padding:       12px 16px;
+  width:         14.375rem;
+  padding:       0.75rem 1rem;
   border-radius: var(--sds-radius-xsmall);
   background:    var(--sds-neutral-background-elevated);
-  outline:       1px solid var(--sds-neutral-stroke-elevated);
+  outline:       var(--sds-border-thickness-neutral-elevated) solid var(--sds-neutral-stroke-elevated);
   box-shadow:    var(--sds-effect-static-element-elevated-box-shadow);
 }
 
@@ -72,11 +72,11 @@
 
 .sds-popover__close {
   position:         absolute;
-  top:              8px;
-  inset-inline-end: 8px;
+  top:              0.5rem;
+  inset-inline-end: 0.5rem;
   display:     flex;
   align-items: center;
-  padding:     4px;
+  padding:     0.25rem;
   border:      none;
   background:  transparent;
   cursor:      pointer;
@@ -99,9 +99,9 @@
 .sds-popover__body {
   display:        flex;
   flex-direction: column;
-  gap:            2px;
+  gap:            0.125rem;
   /* Leave room for close button when it's present */
-  padding-inline-end: 20px;
+  padding-inline-end: 1.25rem;
 }
 
 .sds-popover__title {
@@ -116,7 +116,7 @@
 
 /* When only a close button exists (no body), still fill the close button area */
 .sds-popover__popup:has(.sds-popover__close):not(:has(.sds-popover__body)) {
-  min-height: 36px;
+  min-height: 2.25rem;
 }
 
 /* ─── Caret ──────────────────────────────────────────────────────────────────── */

@@ -36,7 +36,7 @@
   overflow:   visible;
   max-width:  none;
   /* Cap at viewport so the card never scrolls the page */
-  max-height: calc(100dvh - 48px);
+  max-height: calc(100dvh - 3rem);
 }
 
 .sds-modal-dialog::backdrop {
@@ -50,7 +50,7 @@
   flex-direction:   column;
   max-height:       inherit;
   background-color: var(--sds-neutral-background-elevated);
-  border:           1px solid var(--sds-neutral-stroke-elevated);
+  border:           var(--sds-border-thickness-neutral-elevated) solid var(--sds-neutral-stroke-elevated);
   border-radius:    var(--sds-radius-cards-small);
   box-shadow:       var(--sds-effect-static-element-elevated-box-shadow);
   overflow:         hidden;
@@ -81,27 +81,27 @@
 .sds-modal__inner {
   display:        flex;
   flex-direction: column;
-  gap:            16px;
-  padding:        16px;
+  gap:            1rem;
+  padding:        1rem;
 }
 
 /* Image variant: image bleeds to edges, 16px gap between image and title */
 .sds-modal--image .sds-modal__inner {
-  padding-top: 16px;
+  padding-top: 1rem;
 }
 
 /* ─── Header ────────────────────────────────────────────────────────────────── */
 
 .sds-modal__header {
   display:     flex;
-  gap:         4px;
+  gap:         0.25rem;
   align-items: flex-start;
 }
 
 .sds-modal__heading {
   display:        flex;
   flex-direction: column;
-  gap:            4px;
+  gap:            0.25rem;
   flex:           1;
   min-width:      0;
 }
@@ -131,7 +131,7 @@
 .sds-modal__actions {
   display:   flex;
   flex-wrap: wrap;
-  gap:       8px;
+  gap:       0.5rem;
 }
 
 /* ─── Dismiss button ────────────────────────────────────────────────────────── */
@@ -141,8 +141,8 @@
   align-items:     center;
   justify-content: center;
   flex-shrink:     0;
-  width:           24px;
-  height:          24px;
+  width:           1.5rem;
+  height:          1.5rem;
   background:      none;
   border:          none;
   border-radius:   var(--sds-radius-small);
@@ -162,10 +162,10 @@
 /* Round dismiss overlaid on image */
 .sds-modal__dismiss--on-image {
   position:         absolute;
-  top:              8px;
-  right:            8px;
-  width:            36px;
-  height:           36px;
+  top:              0.5rem;
+  right:            0.5rem;
+  width:            2.25rem;
+  height:           2.25rem;
   border-radius:    var(--sds-radius-round);
   background-color: var(--sds-interactive-static-filled-background-default);
   color:            var(--sds-interactive-static-filled-content-default);
@@ -177,7 +177,7 @@
 
 /* ─── Mobile — bottom sheet ─────────────────────────────────────────────────── */
 
-@media (max-width: 599px) {
+@media (width < 37.5em) {
   .sds-modal-dialog {
     inset:      auto 0 0 0;
     margin:     0;
@@ -202,7 +202,7 @@
   .sds-modal__actions .sds-button {
     width:         100%;
     height:        var(--sds-size-small);
-    padding:       0 16px;
+    padding:       0 1rem;
     border-radius: var(--sds-radius-small);
   }
 }

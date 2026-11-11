@@ -27,7 +27,7 @@
 .sds-checkbox {
   display:     flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5rem;
   cursor: pointer;
   user-select: none;
 }
@@ -39,7 +39,7 @@
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

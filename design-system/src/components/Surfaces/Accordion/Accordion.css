@@ -31,7 +31,7 @@
 .sds-accordion {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 /* ─── Item ───────────────────────────────────────────────────────────────────── */
@@ -59,7 +59,7 @@
   display:    flex;
   align-items: center;
   width:      100%;
-  gap:        8px;
+  gap:        0.5rem;
   border:     none;
   background: transparent;
   cursor:     pointer;
@@ -79,19 +79,19 @@
 /* Closed: symmetric padding. Open: drop bottom padding — panel content provides it. */
 
 .sds-accordion-item--small .sds-accordion-trigger {
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
 }
 
 .sds-accordion-item--small.sds-accordion-item--open .sds-accordion-trigger {
-  padding: 8px 12px 0;
+  padding: 0.5rem 0.75rem 0;
 }
 
 .sds-accordion-item--medium .sds-accordion-trigger {
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
 }
 
 .sds-accordion-item--medium.sds-accordion-item--open .sds-accordion-trigger {
-  padding: 12px 16px 0;
+  padding: 0.75rem 1rem 0;
 }
 
 /* ─── Trigger — disabled ─────────────────────────────────────────────────────── */
@@ -107,7 +107,7 @@
 .sds-accordion-trigger__start {
   display:     flex;
   align-items: center;
-  gap:         4px;
+  gap:         0.25rem;
   flex:        1;
   min-width:   0;
 }
@@ -123,13 +123,13 @@
 }
 
 .sds-accordion-item--small .sds-accordion-trigger__icon {
-  width:  16px;
-  height: 16px;
+  width:  1rem;
+  height: 1rem;
 }
 
 .sds-accordion-item--medium .sds-accordion-trigger__icon {
-  width:  20px;
-  height: 20px;
+  width:  1.25rem;
+  height: 1.25rem;
 }
 
 /* ─── Title ──────────────────────────────────────────────────────────────────── */
@@ -178,9 +178,9 @@
 
 /* 8px top = gap between trigger and content; bottom matches trigger top padding */
 .sds-accordion-item--small .sds-accordion-panel__content {
-  padding: 8px 12px 8px;
+  padding: 0.5rem 0.75rem 0.5rem;
 }
 
 .sds-accordion-item--medium .sds-accordion-panel__content {
-  padding: 8px 16px 12px;
+  padding: 0.5rem 1rem 0.75rem;
 }

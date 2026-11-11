@@ -21,7 +21,7 @@
 .sds-progress-bar {
   display:        flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
@@ -31,7 +31,7 @@
   display:         flex;
   justify-content: space-between;
   align-items:     baseline;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .sds-progress-bar__label {
@@ -52,7 +52,7 @@
   position:      relative;
   overflow:      hidden;
   width:         100%;
-  height:        4px;
+  height:        var(--sds-size-custom-progress-bar);
   border-radius: 9999px;
   background-color: var(--sds-neutral-background-subtle);
 }
@@ -161,7 +161,7 @@
 .sds-progress-bar__message {
   display:     flex;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .sds-progress-bar--error .sds-progress-bar__message {
@@ -174,7 +174,7 @@
 
 .sds-progress-bar__message > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-content-xsmall) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-xsmall) - 1rem) / 2);
 }
 
 .sds-progress-bar__message-text {

@@ -26,8 +26,8 @@
 
 .sds-status-light__dot {
   position:      absolute;
-  width:         16px;
-  height:        16px;
+  width:         1rem;
+  height:        1rem;
   border-radius: 50%;
   box-shadow:    0 0 0 2px var(--sds-neutral-background-elevated);
   z-index:       1;

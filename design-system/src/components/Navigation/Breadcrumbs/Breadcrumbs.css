@@ -36,11 +36,11 @@
 .sds-breadcrumbs__list {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 40px;
+  height: 2.5rem;
 }
 
 /* ─── Item ───────────────────────────────────────────────────────────────────── */
@@ -80,7 +80,7 @@
 }
 
 .sds-breadcrumbs__link:focus-visible {
-  border-radius: 2px;
+  border-radius: 0.125rem;
   box-shadow: 0 0 0 2px var(--sds-interactive-primary-hollow-content-default);
 }
 
@@ -97,10 +97,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 8px;
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  width: var(--sds-size-xsmall);
+  height: var(--sds-size-xsmall);
+  padding: 0.5rem;
+  border: var(--sds-border-thickness-interactive-secondary) solid var(--sds-interactive-secondary-hollow-stroke-default);
   border-radius: var(--sds-radius-xsmall);
   background: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);

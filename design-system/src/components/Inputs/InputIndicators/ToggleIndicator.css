@@ -28,11 +28,11 @@
   border-radius: 9999px;
   overflow: hidden;
 
-  width:  44px;
-  height: 24px;
-  padding: 2px;
+  width:  2.75rem;
+  height: var(--sds-size-custom-toggle-large);
+  padding: 0.125rem;
 
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
+  border: var(--sds-border-thickness-interactive-secondary-inactive) solid var(--sds-interactive-secondary-hollow-stroke-inactive-default);
   background-color: var(--sds-interactive-secondary-hollow-background-inactive-default);
 
   transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
@@ -51,8 +51,8 @@
   display:       block;
   flex-shrink:   0;
   border-radius: 50%;
-  width:  16px;
-  height: 16px;
+  width:  1rem;
+  height: 1rem;
 
   background-color: var(--sds-interactive-secondary-hollow-content-inactive-default);
 
@@ -62,33 +62,33 @@
 
 .sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
   background-color: var(--sds-interactive-secondary-filled-content-default);
-  transform: translateX(20px);
+  transform: translateX(1.25rem);
 }
 
 /* ─── Medium size ────────────────────────────────────────────────────────────── */
 
 .sds-toggle-indicator--medium {
-  width:  36px;
-  height: 20px;
+  width:  2.25rem;
+  height: var(--sds-size-custom-toggle-medium);
 }
 
 .sds-toggle-indicator--medium .sds-toggle-indicator__thumb {
-  width:  12px;
-  height: 12px;
+  width:  0.75rem;
+  height: 0.75rem;
 }
 
 .sds-toggle-indicator--medium.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
-  transform: translateX(16px);
+  transform: translateX(1rem);
 }
 
 /* ─── RTL ────────────────────────────────────────────────────────────────────── */
 
 [dir="rtl"] .sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
-  transform: translateX(-20px);
+  transform: translateX(-1.25rem);
 }
 
 [dir="rtl"] .sds-toggle-indicator--medium.sds-toggle-indicator--checked .sds-toggle-indicator__thumb {
-  transform: translateX(-16px);
+  transform: translateX(-1rem);
 }
 
 /* ─── Disabled ───────────────────────────────────────────────────────────────── */

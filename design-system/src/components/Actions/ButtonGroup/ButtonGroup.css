@@ -18,9 +18,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 0.25rem;
   cursor: pointer;
-  border: 2px solid var(--sds-interactive-secondary-hollow-stroke-default);
+  border: var(--sds-border-thickness-interactive-secondary) solid var(--sds-interactive-secondary-hollow-stroke-default);
   border-radius: 0;
   background-color: var(--sds-interactive-secondary-hollow-background-default);
   color: var(--sds-interactive-secondary-hollow-content-default);
@@ -35,7 +35,7 @@
 
 /* Collapse double borders between adjacent items */
 .sds-button-group__item:not(:first-child) {
-  margin-inline-start: -2px;
+  margin-inline-start: calc(-1 * var(--sds-border-thickness-interactive-secondary));
 }
 
 .sds-button-group__icon {
@@ -146,30 +146,30 @@
 
 .sds-button-group--xsmall .sds-button-group__item {
   height: var(--sds-size-xsmall);
-  padding: 0 12px;
+  padding: 0 0.75rem;
 }
 
 .sds-button-group--xsmall .sds-button-group__icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .sds-button-group--small .sds-button-group__item {
   height: var(--sds-size-small);
-  padding: 0 16px;
+  padding: 0 1rem;
 }
 
 .sds-button-group--small .sds-button-group__icon {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .sds-button-group--medium .sds-button-group__item {
   height: var(--sds-size-medium);
-  padding: 0 20px;
+  padding: 0 1.25rem;
 }
 
 .sds-button-group--medium .sds-button-group__icon {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }

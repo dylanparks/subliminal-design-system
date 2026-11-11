@@ -19,7 +19,7 @@
 .sds-tag {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 0.125rem;
   overflow: hidden;
   white-space: nowrap;
   flex-shrink: 0;
@@ -31,35 +31,35 @@
 /* ─── Sizes ──────────────────────────────────────────────────────────────────── */
 
 .sds-tag--large {
-  padding:       4px 8px;
+  padding:       0.25rem 0.5rem;
   border-radius: var(--sds-radius-small);
 }
 
 .sds-tag--small {
-  padding:       2px 6px;
+  padding:       0.125rem 0.375rem;
   border-radius: var(--sds-radius-xsmall);
 }
 
 /* ─── Icon padding ───────────────────────────────────────────────────────────── */
 
 .sds-tag--large.sds-tag--icon-start {
-  padding-inline-start: 4px;
-  padding-inline-end:   8px;
+  padding-inline-start: 0.25rem;
+  padding-inline-end:   0.5rem;
 }
 
 .sds-tag--large.sds-tag--icon-end {
-  padding-inline-start: 8px;
-  padding-inline-end:   4px;
+  padding-inline-start: 0.5rem;
+  padding-inline-end:   0.25rem;
 }
 
 .sds-tag--small.sds-tag--icon-start {
-  padding-inline-start: 4px;
-  padding-inline-end:   6px;
+  padding-inline-start: 0.25rem;
+  padding-inline-end:   0.375rem;
 }
 
 .sds-tag--small.sds-tag--icon-end {
-  padding-inline-start: 6px;
-  padding-inline-end:   4px;
+  padding-inline-start: 0.375rem;
+  padding-inline-end:   0.25rem;
 }
 
 /* ─── Icon slot ──────────────────────────────────────────────────────────────── */
@@ -71,13 +71,13 @@
 }
 
 .sds-tag--large .sds-tag__icon {
-  width:  20px;
-  height: 20px;
+  width:  1.25rem;
+  height: 1.25rem;
 }
 
 .sds-tag--small .sds-tag__icon {
-  width:  16px;
-  height: 16px;
+  width:  1rem;
+  height: 1rem;
 }
 
 .sds-tag__icon > svg {

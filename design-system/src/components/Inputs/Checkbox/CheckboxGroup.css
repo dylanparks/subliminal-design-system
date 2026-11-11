@@ -32,12 +32,12 @@
 
 /* When followed by the error message, only 4px gap */
 .sds-checkbox-group__label-slot:has(+ .sds-checkbox-group__error-message) {
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 /* When followed directly by items (no error message), 12px gap */
 .sds-checkbox-group__label-slot:has(+ .sds-checkbox-group__items) {
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 /* ─── Error message ──────────────────────────────────────────────────────────── */
@@ -45,8 +45,8 @@
 .sds-checkbox-group__error-message {
   display:       flex;
   align-items:   center;
-  gap: 4px;
-  margin-bottom: 12px;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
   color: var(--sds-status-error-content-default);
 }
 
@@ -61,9 +61,9 @@
 .sds-checkbox-group__items {
   display:        flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .sds-checkbox-group--medium .sds-checkbox-group__items {
-  gap: 12px;
+  gap: 0.75rem;
 }

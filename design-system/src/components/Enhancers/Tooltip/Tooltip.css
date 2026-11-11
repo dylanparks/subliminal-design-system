@@ -48,10 +48,10 @@
   pointer-events: auto;
   background-color: var(--sds-neutral-background-elevated);
   border-radius:    var(--sds-radius-xsmall);
-  padding:          8px 12px;
+  padding:          0.5rem 0.75rem;
 
   /* Outer stroke — token resolves to #e1e6f0 (light) / #232b3b (dark) */
-  outline:          1px solid var(--sds-neutral-stroke-elevated);
+  outline:          var(--sds-border-thickness-neutral-elevated) solid var(--sds-neutral-stroke-elevated);
 
   /* Depth shadow — light mode only (invisible against dark backgrounds) */
   box-shadow:       var(--sds-effect-static-element-elevated-box-shadow);
@@ -67,7 +67,7 @@
 
 .sds-tooltip__text {
   display:        block;
-  max-width:      250px;
+  max-width:      15.625rem;
   white-space:    normal;
   color:          var(--sds-neutral-content-primary);
 }

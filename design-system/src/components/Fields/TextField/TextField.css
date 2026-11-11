@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
@@ -39,7 +39,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-field-medium) solid var(--sds-interactive-fields-stroke-default);
   background-color: var(--sds-interactive-fields-background-default);
   box-sizing: border-box;
   cursor: text;
@@ -95,24 +95,27 @@
 /* ─── Sizes ─────────────────────────────────────────────────────────────────── */
 
 .sds-text-field--large .sds-text-field__wrapper {
+  border-width: var(--sds-border-thickness-field-large);
   height: var(--sds-size-large);
-  padding: 0 16px;
+  padding: 0 1rem;
   border-radius: var(--sds-radius-large);
-  gap: 16px;
+  gap: 1rem;
 }
 
 .sds-text-field--medium .sds-text-field__wrapper {
+  border-width: var(--sds-border-thickness-field-medium);
   height: var(--sds-size-medium);
-  padding: 0 12px;
+  padding: 0 0.75rem;
   border-radius: var(--sds-radius-medium);
-  gap: 16px;
+  gap: 1rem;
 }
 
 .sds-text-field--small .sds-text-field__wrapper {
+  border-width: var(--sds-border-thickness-field-small);
   height: var(--sds-size-small);
-  padding: 0 12px;
+  padding: 0 0.75rem;
   border-radius: var(--sds-radius-small);
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 /* ─── Inner (label + input column) ─────────────────────────────────────────── */
@@ -137,11 +140,11 @@
 }
 
 .sds-text-field--large .sds-text-field__inner {
-  padding-bottom: 10px;
+  padding-bottom: 0.625rem;
 }
 
 .sds-text-field--medium .sds-text-field__inner {
-  padding-bottom: 6px;
+  padding-bottom: 0.375rem;
 }
 
 /* ─── Label ─────────────────────────────────────────────────────────────────── */
@@ -176,7 +179,7 @@
 /* Floating label — large: focused or filled */
 .sds-text-field--large .sds-text-field__wrapper:focus-within .sds-text-field__label,
 .sds-text-field--large.sds-text-field--filled .sds-text-field__label {
-  top: 10px;
+  top: 0.625rem;
   transform: translateY(0);
   font-size: var(--sds-typography-font-size-content-small);
   line-height: var(--sds-typography-line-height-content-small);
@@ -186,7 +189,7 @@
 /* Floating label — medium: focused or filled */
 .sds-text-field--medium .sds-text-field__wrapper:focus-within .sds-text-field__label,
 .sds-text-field--medium.sds-text-field--filled .sds-text-field__label {
-  top: 6px;
+  top: 0.375rem;
   transform: translateY(0);
   font-size: var(--sds-typography-font-size-content-small);
   line-height: var(--sds-typography-line-height-content-small);
@@ -240,7 +243,7 @@
 /* Reveal when focused — cursor, caret, and typing all work */
 .sds-text-field--large .sds-text-field__wrapper:focus-within .sds-text-field__input,
 .sds-text-field--medium .sds-text-field__wrapper:focus-within .sds-text-field__input {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   overflow: visible;
   opacity: 1;
 }
@@ -248,7 +251,7 @@
 /* Reveal when filled (has a value) */
 .sds-text-field--large.sds-text-field--filled .sds-text-field__input,
 .sds-text-field--medium.sds-text-field--filled .sds-text-field__input {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   overflow: visible;
   opacity: 1;
 }
@@ -265,8 +268,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   background: none;
   border: none;
   padding: 0;
@@ -274,7 +277,7 @@
   color: var(--sds-interactive-secondary-hollow-content-default);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-4px);
+  transform: translateY(-0.25rem);
   transition:
     opacity   120ms ease,
     transform 120ms ease,
@@ -300,14 +303,14 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
 /* Support icon — centers the 16px SVG within the text line-height */
 .sds-text-field__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 1rem) / 2);
 }
 
 .sds-text-field--error .sds-text-field__support {
@@ -341,7 +344,7 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
   color: var(--sds-neutral-content-tertiary);
   white-space: nowrap;
 }
@@ -367,7 +370,7 @@
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

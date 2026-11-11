@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
@@ -40,7 +40,7 @@
   flex-direction: row;
   align-items: stretch;
   width: 100%;
-  border: 2px solid var(--sds-interactive-fields-stroke-default);
+  border: var(--sds-border-thickness-field-medium) solid var(--sds-interactive-fields-stroke-default);
   background-color: var(--sds-interactive-fields-background-default);
   box-sizing: border-box;
   transition:
@@ -105,11 +105,13 @@
 /* ─── Sizes — wrapper ───────────────────────────────────────────────────────── */
 
 .sds-phone-field--large .sds-phone-field__wrapper {
+  border-width: var(--sds-border-thickness-field-large);
   height: var(--sds-size-large);   /* 64px */
   border-radius: var(--sds-radius-large);
 }
 
 .sds-phone-field--medium .sds-phone-field__wrapper {
+  border-width: var(--sds-border-thickness-field-medium);
   height: var(--sds-size-medium);  /* 56px */
   border-radius: var(--sds-radius-medium);
 }
@@ -120,7 +122,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   flex-shrink: 0;
   background: none;
   border: none;
@@ -137,11 +139,11 @@
 }
 
 .sds-phone-field--large .sds-phone-field__country {
-  padding: 0 8px 0 16px;
+  padding: 0 0.5rem 0 1rem;
 }
 
 .sds-phone-field--medium .sds-phone-field__country {
-  padding: 0 8px 0 12px;
+  padding: 0 0.5rem 0 0.75rem;
 }
 
 /* ─── Flag container ─────────────────────────────────────────────────────────── */
@@ -185,7 +187,7 @@
   flex-shrink: 0;
   background-color: var(--sds-interactive-fields-stroke-default);
   align-self: stretch;
-  margin: 12px 0;
+  margin: 0.75rem 0;
 }
 
 /* ─── Phone input section ───────────────────────────────────────────────────── */
@@ -196,15 +198,15 @@
   align-items: center;
   flex: 1 0 0;
   min-width: 0;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .sds-phone-field--large .sds-phone-field__input-section {
-  padding: 0 16px 0 8px;
+  padding: 0 1rem 0 0.5rem;
 }
 
 .sds-phone-field--medium .sds-phone-field__input-section {
-  padding: 0 12px 0 8px;
+  padding: 0 0.75rem 0 0.5rem;
 }
 
 /* ─── Inner — label + input column ─────────────────────────────────────────── */
@@ -222,11 +224,11 @@
 }
 
 .sds-phone-field--large .sds-phone-field__inner {
-  padding-bottom: 10px;
+  padding-bottom: 0.625rem;
 }
 
 .sds-phone-field--medium .sds-phone-field__inner {
-  padding-bottom: 6px;
+  padding-bottom: 0.375rem;
 }
 
 /* ─── Floating label ─────────────────────────────────────────────────────────── */
@@ -253,7 +255,7 @@
 /* Float label up — large: when input is focused */
 .sds-phone-field--large .sds-phone-field__wrapper:focus-within .sds-phone-field__label,
 .sds-phone-field--large.sds-phone-field--menu-open .sds-phone-field__label {
-  top: 10px;
+  top: 0.625rem;
   transform: translateY(0);
   font-size: var(--sds-typography-font-size-content-small);
   line-height: var(--sds-typography-line-height-content-small);
@@ -262,7 +264,7 @@
 
 /* Float label up — large: when filled */
 .sds-phone-field--large.sds-phone-field--filled .sds-phone-field__label {
-  top: 10px;
+  top: 0.625rem;
   transform: translateY(0);
   font-size: var(--sds-typography-font-size-content-small);
   line-height: var(--sds-typography-line-height-content-small);
@@ -272,7 +274,7 @@
 /* Float label up — medium: when input is focused */
 .sds-phone-field--medium .sds-phone-field__wrapper:focus-within .sds-phone-field__label,
 .sds-phone-field--medium.sds-phone-field--menu-open .sds-phone-field__label {
-  top: 6px;
+  top: 0.375rem;
   transform: translateY(0);
   font-size: var(--sds-typography-font-size-content-small);
   line-height: var(--sds-typography-line-height-content-small);
@@ -281,7 +283,7 @@
 
 /* Float label up — medium: when filled */
 .sds-phone-field--medium.sds-phone-field--filled .sds-phone-field__label {
-  top: 6px;
+  top: 0.375rem;
   transform: translateY(0);
   font-size: var(--sds-typography-font-size-content-small);
   line-height: var(--sds-typography-line-height-content-small);
@@ -324,14 +326,14 @@
 
 /* Reveal when phone input is focused */
 .sds-phone-field__wrapper:focus-within .sds-phone-field__input {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   overflow: visible;
   opacity: 1;
 }
 
 /* Reveal when filled */
 .sds-phone-field--filled .sds-phone-field__input {
-  max-height: var(--sds-typography-line-height-content-medium, 24px);
+  max-height: var(--sds-typography-line-height-content-medium, 1.5rem);
   overflow: visible;
   opacity: 1;
 }
@@ -344,8 +346,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   background: none;
   border: none;
   padding: 0;
@@ -353,7 +355,7 @@
   color: var(--sds-interactive-secondary-hollow-content-default);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-4px);
+  transform: translateY(-0.25rem);
   transition:
     opacity   120ms ease,
     transform 120ms ease,
@@ -392,14 +394,14 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
 /* Support icon — centers the 16px SVG within the text line-height */
 .sds-phone-field__support > svg {
   flex-shrink: 0;
-  margin-top: calc((var(--sds-typography-line-height-content-small) - 16px) / 2);
+  margin-top: calc((var(--sds-typography-line-height-content-small) - 1rem) / 2);
 }
 
 .sds-phone-field--error .sds-phone-field__support {
@@ -433,7 +435,7 @@
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
