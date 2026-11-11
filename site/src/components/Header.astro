@@ -11,7 +11,7 @@ import Logo from './Logo.astro';
 </header>
 
 <style>
-  /* Figma › Page Templates: a 60px bar, the logo at 24px tall, the breakpoint's side padding. */
+  /* Figma › Page Templates: a 60px bar, the logo at 28px tall, the breakpoint's side padding. */
   .site-header {
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ import Logo from './Logo.astro';
   /* The SVG belongs to the Logo component, so Astro's scoped CSS needs :global to reach it. */
   .site-header :global(.site-header__logo) {
     display: block;
-    height: 1.5rem;
+    height: 1.75rem;
     width: auto;
   }
 </style>

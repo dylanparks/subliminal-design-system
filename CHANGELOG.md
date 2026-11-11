@@ -9,11 +9,12 @@ All notable changes to the Subliminal Design System are documented here.
 ### Changed
 
 #### Site chrome and legal pages (logo, footer, Terms of Service, 404)
-- The header shows the Subliminal logo (inline SVG from Figma, so it follows light and dark mode) in a 60px bar,
-  keeping the light/dark toggle.
+- The header shows the Subliminal Design System logo (the mark, "SUBLIMINAL", and "Design System" beneath;
+  Figma › Page Blocks › Company Logo, 139×28, inline SVG so it follows light and dark mode) in a 60px bar,
+  keeping the light/dark toggle. The site favicon is Figma's Favicon, as `favicon.svg`, a 32px PNG, a
+  16+32px `favicon.ico`, and an `apple-touch-icon.png`.
 - The footer is now legal only: links to the Privacy Policy and Terms of Service, then a legal line in
-  the smallest body style (Content/XSmall): © Subliminal Design System LLC, all rights reserved, and that
-  "Subliminal" is the LLC's brand name.
+  the smallest body style (Content/XSmall): © Subliminal Design System LLC, all rights reserved.
 - New `/terms` (Terms of Service, from Figma's template; Virginia law) and a `404` page (Figma's template, with
   the design system's Button styles on a link). The Worker serves the 404 page with a 404 status
   (`not_found_handling = "404-page"` in `wrangler.toml`).
